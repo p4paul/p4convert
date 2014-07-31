@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set ts=2 sw=2 tw=80 ai si: -->
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<chapter
+  xml:id="chapter.notes"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+>
+  <title>Notes</title>
+
+  <section xml:id="notes.keyword_expansion_issues">
+    <title>Keyword Expansion Issues:</title>
+
+    <para>
+      The conversion process preserves keyword file types and sets these files
+      in Perforce with the +k modifier. However keywords in Subversion and
+      Perforce are expanded differently. For example: In Subversion the keyword
+      <literal>$Revision$</literal> expands to:
+    </para>
+
+<screen>
+$Revision: 25005 $		(a change number in Perforce)
+</screen>
+
+    <para>
+      Another example is the keyword <literal>$Date$</literal>, which in
+      Subversion gives you the time as well...
+    </para>
+
+<screen>
+$Date: 2006-02-17 12:09:10 +0000 (Fri, 17 Feb 2006) $
+</screen>
+
+    <para>
+      and in Perforce...
+    </para>
+
+<screen>
+$Date: 2006/02/17 $
+</screen>
+
+    <para>
+      Here is a list of alternatives, (based on the above example):
+    </para>
+
+<screen>
+$Revision$    ==&gt; $Change$	gives	$Change: 25005 $
+$Date$        ==&gt; $DateTime$	gives	$DateTime: 2006/02/17 12:09:10 $
+</screen>
+
+    <para>
+      Due to the differences in keyword expansion the MD5 sum in Subversion is
+      not valid for use in Perforce. This is why any keyword expanded files has
+      an empty MD5 sum and why the <command>p4 verify -u //...</command> command
+      is recommended in the 'Optional Steps' section.
+    </para>
+  </section>
+
+  <section xml:id="notes.verification">
+    <title>Verification</title>
+
+    <para>
+      Verification can be performed using a running Subversion server and
+      comparing the differences in files in Perforce using the audit log. To
+      enable the audit log set the following option to <literal>true</literal>
+      and choose the file name.
+    </para>
+
+<programlisting language="ini">
+com.p4convert.log.audit.enabled=true
+com.p4convert.log.audit.filename=audit.log
+</programlisting>
+
+    <para>
+      A sample line of the audit log:
+    </para>
+
+<screen>
+# &lt;SVN path&gt;, &lt;SVN revision&gt;, &lt;P4 change&gt;, &lt;MD5 sum&gt;
+trunk/src/foo.c, 1, 1, 1234567890abcdef1234567890abcdef
+</screen>
+  </section>
+
+  <section xml:id="notes.output">
+    <title>Output and Logs</title>
+
+    <section xml:id="notes.output.console">
+      <title>Console output and logging configuration options</title>
+
+      <para>
+        The default SLF4J logging options can be overwritten with another
+        configuration file; specify the
+        <parameter>log4j.configuration</parameter> option with a local file,
+        using the syntax:
+      </para>
+
+      <para>
+        <literal>file:<replaceable>your_local_file</replaceable></literal>
+      </para>
+
+<programlisting language="bash">
+java -Dlog4j.configuration=file:log4j.xml -jar p4convert-svn.jar
+</programlisting>
+
+      <para>
+        Please use or refer to the sample <filename>debug.log4j.xml</filename>
+        for logging options.
+      </para>
+    </section>
+
+    <section xml:id="notes.output.future">
+      <title>
+        These options are reserved for testing or future enhancements:
+      </title>
+
+<programlisting language="ini">
+com.p4convert.core.test
+com.p4convert.core.version
+com.p4convert.svn.emptyDirEnabled
+com.p4convert.svn.emptyDirName
+com.p4convert.adv.mimeTypes=false
+</programlisting>
+    </section>
+
+    <section xml:id="notes.output.reading">
+      <title>Reading Console/Logging output</title>
+
+<screen>
+Importing Subversion ranges:
+
+start: 1 
+end:   23091
+last:  23091
+		
+1.0 A:D - trunk
+1.1 A:D - trunk/src
+1.2 A:F - trunk/src/foo.c (UTF-8)
+mapping: r1 =&gt; @1
+		
+2.0 A:F - trunk/src/bar.png (BINARY)
+mapping: r2 =&gt; @2
+...
+</screen>
+
+      <para>
+        Explanation of output lines, for example:
+      </para>
+      
+<screen>
+1.2 A:F - trunk/src/foo.c (UTF-8)</screen>
+
+      <para>
+        The numbering <literal>1.2</literal> refers to the current Subversion
+        revision and the node action. (<literal>1</literal> Subversion revision
+        1 and <literal>.2</literal> = the third node action
+        as <literal>.0</literal> would be the first index)
+      </para>
+
+      <para>
+        The letters <literal>A:F</literal> refers to the Subversion action and
+        if it is a file or directory operation.
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+            A Add
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            B Branch
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            E Edit
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            I Integrate (merge fromNode)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            M Merge (svn:mergeinfo)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            C Copy (svn replace action with fromNode)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            U Update (svn replace action)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            R Remove (delete)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            F File
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            D Directory
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>
+        The subversion path <filename>trunk/src/foo.c</filename> is followed by
+        the detected type.
+      </para>
+
+      <informaltable>
+        <tgroup cols="2">
+          <colspec colname="detected_type" colwidth="*"/>
+          <colspec colname="perforce_type" colwidth="*"/>
+          <thead>
+            <row>
+              <entry>
+                <para>
+                  Detected Type
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Perforce Base Type
+                </para>
+              </entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>
+                <para>
+                  UTF-8
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  UTF-16BE
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  utf16
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  UTF-16LE
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  utf16
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  UTF-32BE
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  UTF-32LE
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  Shift_JIS
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-2022-JP
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-2022-CN
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-2022-KR
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  GB18030
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  EUC-JP
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  EUC-KR
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  Big5
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-8859-1
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-8859-2
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-8859-5
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-8859-6
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-8859-7
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-8859-8
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  windows-1251
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  windows-1254
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  windows-1256
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  KOI8-R
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  ISO-8859-9
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  Unicode
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  IBM424_rtl
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  IBM424_ltr
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  IBM420_rtl
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  IBM420_ltr
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  downgraded to binary
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>
+                  BINARY
+                </para>
+              </entry>
+
+              <entry>
+                <para>
+                  binary
+                </para>
+              </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+
+      <note>
+        <para>
+          The detected type is based on language detection using ICU4J and not
+          Subversion MIME or Perforce detection.
+        </para>
+      </note>
+
+      <para>
+        Finally <literal>mapping: r223 =&gt; @223</literal>' refers to the
+        Subversion revision number (<literal>r223</literal>) to the Perforce
+        changelist number (<literal>@223</literal>). Typically 1:1 unless offset
+        or merged against an live or pre-existing Perforce Server.
+      </para>
+    </section>
+  </section>
+
+  <section xml:id="notes.errors">
+    <title>Errors</title>
+
+    <para>
+      In Import Mode, Perforce related <command>p4-java</command> messages are
+      reported as warnings and should be verified, for example:
+    </para>
+
+<screen>
+46.3 A:F - repo/trunk/my.file
+WARNING: p4java: //import/repo/trunk/my.file - file(s) up-to-date.
+</screen>
+
+    <para>
+      In Conversion Mode, errors are reported as <emphasis>Panics</emphasis> and
+      an exception is thrown.
+    </para>
+
+    <para>
+      Problematic Subversion dump records can be extracted and sent to Perforce
+      when it is not possible to send in the whole dumpfile. The extracted
+      dumpfile only contains meta-data and the file content is removed and
+      replaced with a block count.
+    </para>
+
+    <para>
+      During an exception note the Subversion revision and node ID (the example
+      above has a revision number of 46 and a node number of 3). Then run the
+      following command to extract the problematic record, for example:
+    </para>
+
+<programlisting language="bash">
+$ java -jar dist/p4convert-svn.jar --extract 46.3 mysvndump.dump 
+
+searching for node: 46.3...
+Node-path: repo/trunk/my.file
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 308
+Text-content-md5: 6a339b6ccf2af72d77169ef29b98eb0b
+Content-length: 318
+      
+
+PROPS-END
+</programlisting>
+
+    <para>
+      A file is then generated called <filename>node.46.3.dump</filename> and
+      will contain the Subversion record to be sent to Perforces, as well as the
+      Subversion meta-data (everything after <literal>searching for node:
+      46.3...</literal>).
+    </para>
+  </section>
+</chapter>

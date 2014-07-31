@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set ts=2 sw=2 tw=80 ai si: -->
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+><?dbhtml filename="copyright.html"?>
+  <title>P4Convert-SVN 2014.1: User Guide</title>
+  <subtitle>May 2014</subtitle>
+
+  <info>
+    <publishername>Perforce</publishername>
+
+    <copyright>
+      <year>2007-2014</year>
+      <holder>Perforce Software.</holder>
+    </copyright>
+
+    <legalnotice>
+      <para>
+        All rights reserved.
+      </para>
+
+      <para>
+        P4Convert-SVN is supplied by Perforce Software in the hope that it will
+        be useful. It is a support utility, not a Perforce product. All use of
+        this software is at the user's own risk and subject to the following
+        terms and conditions.
+      </para>
+
+      <para>
+        THIS SOFTWARE IS PROVIDED BY PERFORCE SOFTWARE, INC. 'AS IS' AND ANY
+        EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PERFORCE SOFTWARE, INC. BE
+        LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+        INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+        CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+        ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+        THE POSSIBILITY OF SUCH DAMAGE.
+      </para>
+    </legalnotice>
+  </info>
+
+  <xi:include href="00_preface.xml" />
+  <xi:include href="01_setup.xml" />
+  <xi:include href="02_config.xml" />
+  <xi:include href="03_running.xml" />
+  <xi:include href="04_notes.xml" />
+</book>

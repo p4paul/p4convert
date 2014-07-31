@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set ts=2 sw=2 tw=80 ai si: -->
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<preface
+  xml:id="about"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+><?dbhtml filename="index.html"?>
+  <title>What is p4convert-svn for?</title>
+
+  <para>
+    The p4convert-svn conversion tool imports data from Subversion and
+    reconstructs the file revision history in Perforce. The Subversion data is
+    read from a dump file and can be imported in one of two ways:
+  </para>
+
+  <section xml:id="about.import_mode">
+    <title>Import Mode (front door)</title>
+
+    <para>
+      Subversion revisions are imported into a running Perforce Server. The
+      Perforce Server could be new or contain existing data, but it must be
+      running. Subversion revisions are added sequentially; file content is
+      'imported' and metadata such as file attributes, descriptions, dates and
+      usernames are added to the Perforce changelist.
+    </para>
+
+    <para>
+      The recommended use of Import Mode is to start a new Perforce server to
+      import each Subversion revision into a Perforce changelist. Using this
+      method will produce a one-to-one mapping of Subversion revision numbers
+      to Perforce changelists. The new Perforce server can be used in
+      isolation to confirm the success of the migration and then merged with
+      an existing Perforce Server using the
+      <application>PerfMerge++</application> tool.
+    </para>
+  </section>
+
+  <section xml:id="about.convert_mode">
+    <title>Convert Mode (back door)</title>
+
+    <para>
+      SVN revisions are converted in full, creating a Perforce journal and set
+      of archive files. Once replayed the resulting conversion is just as if
+      the changes had always been in Perforce. The results can be merged into
+      an existing Perforce Server using the
+      <application>PerfMerge++</application> tool. The Import Mode is
+      considered to be the safest method as all files are imported through a
+      Perforce Client. However, the Convert Mode is significantly faster and
+      requires less user interaction.
+    </para>
+
+    <para>
+      Convert Mode is an advanced feature and should only be attempted by a
+      Perforce expert familiar with replaying and upgrading databases.
+      Incremental conversions are not supported using Convert Mode; however
+      the slower Import Mode can be used after the a conversion to update the
+      migration.
+    </para>
+  </section>
+
+  <section xml:id="about.incremental_updates">
+    <title>Incremental Updates (front door)</title>
+
+    <para>
+      Incremental updates are possible only using the Import Mode where new
+      revision from Subversion are imported into Perforce. However, no changes
+      should be made to the import area of the Perforce Server or conflicts
+      may occur.
+    </para>
+  </section>
+</preface>

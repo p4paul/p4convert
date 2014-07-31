@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set ts=2 sw=2 tw=80 ai si: -->
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<chapter
+  xml:id="chapter.setup"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+>
+  <title>Setup</title>
+
+  <section xml:id="setup.requirements">
+    <title>System Requirements</title>
+
+    <orderedlist>
+      <listitem>
+        <para>
+          An unzipped Subversion dump file of the repository to be converted
+          (generated without the <parameter>--delta</parameter> flag).
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          System must have <emphasis role="bold">Java SE Runtime 1.7</emphasis>.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          System must have the Perforce Server binaries 2010.2 or greater.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          [Import Mode] A running Perforce Server (typically empty) with no
+          pending changes in the conversion area.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          [Convert Mode] An empty Perforce Root directory for the generated
+          archive and journal files.
+        </para>
+      </listitem>
+    </orderedlist>
+
+    <section xml:id="setup.requirements.resource_tips">
+      <title>Resource Tips:</title>
+
+      <para>
+        Running some conversions, particularly in Conversion Mode can
+        be very memory intensive, as we keep a mapping of revisions and
+        integrations in memory. For large conversions or conversions with
+        excessive branching, more memory will needed by the JVM.
+      </para>
+
+      <para>
+        The <parameter>--info</parameter> option will scan the Subversion dump
+        file and report usage data to help estimate the required memory for
+        Convert Mode. For example:
+      </para>
+
+<programlisting language="bash">
+java -jar p4convert-svn.jar --info &lt;path_to_svn_dumpfile&gt;
+</programlisting>
+
+      <para>
+        Use the <parameter>-Xmx</parameter> flags to increase the memory
+        allocated to the JVM. For example, to allocate 64GB (65536MB) use:
+      </para>
+
+<programlisting language="bash">
+java -Xmx65536M -jar p4convert-svn.jar myConfig.cfg
+</programlisting>
+    </section>
+  </section>
+
+  <section xml:id="setup.caveats">
+    <title>Caveats</title>
+
+    <orderedlist>
+      <listitem>
+        <para>
+          The following table lists the combinations of tested operating systems
+          and Perforce Server versions.
+        </para>
+
+        <informaltable>
+          <tgroup cols="3">
+            <colspec colname="os" colwidth="2*"/>
+            <colspec colname="10.2" colwidth="*"/>
+            <colspec colname="13.1" colwidth="*"/>
+            <thead>
+              <row>
+                <entry><para>Operating System</para></entry>
+                <entry><para>10.2</para></entry>
+                <entry><para>13.1</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry><para>Ubuntu 10.04</para></entry>
+                <entry><para>supported</para></entry>
+                <entry><para>supported</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Darwin 11.4.0</para></entry>
+                <entry><para>supported</para></entry>
+                <entry><para>supported</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Windows 7x64</para></entry>
+                <entry><para>supported</para></entry>
+                <entry><para>supported</para></entry>
+              </row>
+
+              <row>
+                <entry><para>SunOS 5.10</para></entry>
+                <entry><para>supported</para></entry>
+                <entry><para>supported</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+
+        <para>
+          It is likely that other combinations will work, however it is not
+          possible to test all combinations.
+        </para>
+
+        <para>
+          Please contact Perforce if you have any OS or version queries.
+        </para>
+      </listitem>
+    
+      <listitem>
+        <para>
+          [Import Mode] Symbolic links are not supported in Import Mode on
+          Windows 7x64.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          Perforce keyword expansions are different from the Subversion standard
+          and may yield different results when synced.
+        </para>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <section xml:id="setup.usage">
+    <title>Setup and Usage</title>
+
+    <para>
+      Download the self-contained JAR from Perforce and check that Java SE
+      runtime is installed with version 1.7 or greater.
+    </para>
+
+    <para>
+      For usage details, execute the jar with no options (this will generate a
+      default configuration file):
+    </para>
+
+<programlisting language="bash">
+java -jar p4convert-svn.jar
+
+WARNING: No configuration file specified...
+
+Usage:
+	java -jar p4convert-svn.jar &lt;config file&gt;
+
+	java -jar p4convert-svn.jar --version
+	java -jar p4convert-svn.jar --info &lt;dump file&gt;
+	java -jar p4convert-svn.jar --users &lt;dump file&gt;
+	java -jar p4convert-svn.jar --extract rev.node &lt;dump file&gt;
+
+Generating default config file 'default.cfg'...
+</programlisting>
+
+    <para>
+      Create a configuration file based on the generated default configuration,
+      then start the conversion by executing the jar with the configuration
+      file. For example:
+    </para>
+
+<programlisting>
+java -jar p4convert-svn.jar config.txt
+</programlisting>
+
+  </section>
+
+  <section xml:id="setup.generate_dump_file">
+    <title>Generating a Subversion Dump file</title>
+
+    <para>
+      Both the Import and Convert modes require a Subversion dumpfile as the
+      history data source. A dumpfile can be generated in several different
+      ways; two of which are detailed below:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          Using the svnadmin command:
+        </para>
+
+<programlisting language="bash">
+svnadmin dump <replaceable>local_repo_path</replaceable> &gt; dumpfile.dmp
+</programlisting>
+
+        <para>
+          Replace <replaceable>local_repo_path</replaceable> with the path to
+          the Subversion repo. Do not use the <parameter>--delta</parameter>
+          flag option as the results cannot be parsed by the conversion tool.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          Using the remote dump command:
+        </para>
+
+<programlisting language="bash">
+rsvndump <replaceable>url</replaceable> &gt; dumpfile.dmp
+</programlisting>
+
+        <para>
+          Replacing <replaceable>url</replaceable> with the remote Subversion
+          server. For example: <literal>http://</literal> or
+          <literal>file://</literal> or <literal>svn://</literal>.  Note that
+          for large servers generating the dump file locally is significantly
+          faster, you might also consider creating a local copy of the
+          subversion depot using
+          <link xlink:href="http://svn.apache.org/repos/asf/subversion/trunk/notes/svnsync.txt">svnsync</link>,
+          before generating the dump file.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+</chapter>

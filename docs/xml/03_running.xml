@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set ts=2 sw=2 tw=80 ai si: -->
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<chapter
+  xml:id="chapter.running"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+>
+  <title>Running P4Convert</title>
+
+  <section xml:id="running.import_mode">
+    <title>Import Mode</title>
+
+    <para>
+      Import Mode will pull in file revisions from a Subversion dump file adding
+      them to the Perforce Server specified by the connection details in the
+      configuration options. To use this mode set:
+    </para>
+
+<programlisting language="ini">
+com.p4convert.svn.mode=true
+</programlisting>
+
+    <para>
+      Care should be taken when adding data to a pre-existing Perforce Server
+      that the revision actions do not conflict with revisions already in the
+      Perforce Server; typically, this can occur if the Server has been in-use
+      since the previous migration.
+    </para>
+
+    <para>
+      To avoid such scenarios the import should either be to a unique depot, to
+      avoid conflict, or the Perforce Server should be Read Only during
+      subsequent migrations. After a conversion is complete, it is possible to
+      merge the new data with an existing depot using tools like
+      <application>PerfMerge++</application>.
+    </para>
+
+    <para>
+      The converter will check that your Perforce Server has no pending changes,
+      and will abort a conversion if any are detected.
+    </para>
+
+    <section xml:id="running.import_mode.configuration">
+      <title>Configuration options specific to Import Mode</title>
+
+      <orderedlist>
+        <listitem>
+          <para>
+            Perforce server address and port (escape the '<literal>:</literal>'
+            with '<literal>\:</literal>'):
+          </para>
+<programlisting language="ini">
+com.p4convert.p4.port=<replaceable>localhost\:4444</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            Default user and client for server connection:
+          </para>
+
+<programlisting language="ini">
+com.p4convert.p4.client=<replaceable>svn-client</replaceable>
+com.p4convert.p4.user=<replaceable>svn-user</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            Client workspace root used to import files into Perforce:
+          </para>
+
+<programlisting language="ini">
+com.p4convert.p4.clientRoot=<replaceable>/Users/bruno/ws/</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            If Security is set to level 1 or greater, then the
+            <replaceable>svn-user</replaceable> must have
+            <emphasis>admin</emphasis> permissions in the Protection table and
+            the password supplied as a string (the
+            default is no string after the '=' sign):
+          </para>
+
+<programlisting language="ini">
+com.p4convert.p4.passwd=<replaceable>PaSSwoRd</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            Alternatively if the user is already logged in and there is a valid
+            ticket, then leave the password field unset and set your environment
+            for <envar>P4TICKETS</envar> (don't rely on the
+            <envar>P4TICKETS</envar> unset default as <command>p4-java</command>
+            will not find your ticket file).
+          </para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section xml:id="running.convert_mode">
+    <title>Convert Mode</title>
+
+    <para>
+      Convert Mode is more advanced and requires knowledge of the Perforce
+      Journal replay and Archive file store. This mode can only be used for
+      single shot conversions and cannot be used incrementally. The performance
+      of Convert Mode is significantly better than Import Mode (x100
+      sometimes!).
+    </para>
+
+    <para>
+      After a using the Convert Mode the administrator will need to run
+      several commands to rebuild the Perforce server and upgrade the
+      metadata. Please refer to the <xref linkend="running.post_conversion"/>
+      section for step-by-step instructions.
+    </para>
+
+    <para>
+      To use this mode set:
+    </para>
+        
+<programlisting language="ini">
+com.p4convert.svn.mode=false
+</programlisting>
+
+    <section xml:id="running.convert_mode.configuration">
+      <title>Configuration options specific to Conversion Mode</title>
+
+      <orderedlist>
+        <listitem>
+          <para>
+            Perforce server root address (path should end with a
+            slash (<literal>/</literal>)):
+          </para>
+
+<programlisting language="ini">
+com.p4convert.adv.p4root=<replaceable>/full/path/to/p4_root/</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            Change list offset (handy for batched conversions):
+          </para>
+
+<programlisting language="ini">
+com.p4convert.adv.offset=<replaceable>0</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            Generated journal names (useful to increment the prefix when running
+            batched conversions):
+          </para>
+
+<programlisting language="ini">
+com.p4convert.adv.jnlIndex=<replaceable>0</replaceable>
+com.p4convert.adv.jnlPrefix=<replaceable>jnl.</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            Mimic the 2011.1 or greater credit behavior on rollbacks /
+            downgrades (to enable set value to <literal>true</literal>):
+          </para>
+
+<programlisting language="ini">
+com.p4convert.adv.downgrade=<replaceable>false</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            Perforce normalises line-endings when storing the file on the server
+            and restores them based on the client workspace options and platform
+            type. However, in special cases it can be useful to store
+            line-ending in the server and use the 'share' option in the client.
+            To disable normal line-ending support set the following option to
+            <literal>false</literal>:
+          </para>
+
+<programlisting language="ini">
+com.p4convert.adv.lineEnding=<replaceable>true</replaceable>
+</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>
+            For non Unicode servers or to simplify storage of hi-ASCII files,
+            setting following option to <literal>false</literal> will store the file
+            as <literal>binary</literal>:
+          </para>
+
+<programlisting language="ini">
+com.p4convert.p4.unicode=<replaceable>false</replaceable>
+</programlisting>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section xml:id="running.post_conversion">
+    <title>Post Conversion [Conversion Mode]</title>
+
+    <para>
+      To finish the conversion you will need to install <command>p4</command>
+      and <command>p4d</command> and run a few Perforce commands.
+    </para>
+
+    <orderedlist>
+      <listitem xml:id="running.post_conversion.step1">
+        <para>
+          <emphasis role="bold">[Required]</emphasis> Change directory to
+          <envar>P4ROOT</envar>, check there are no <filename>db.*</filename>
+          files present and then replay the journal file(s):
+        </para>
+
+<screen>
+$ cd p4_root
+$ p4d -r . -jr jnl.0
+Perforce db files in '.' will be created if missing...
+Recovering from jnl.0...
+Perforce server info:
+	Server version 33 is replaying a version 0 journal/checkpoint.
+</screen>
+
+        <note>
+          <para>
+            The Server version is set to <literal>0</literal> to remind the
+            administrator that an upgrade is required, see
+            <link linkend="running.post_conversion.step3">step 3</link>.
+          </para>
+        </note>
+      </listitem>
+
+      <listitem xml:id="running.post_conversion.step2">
+        <para>
+          or, for multiple journal files:
+        </para>
+
+<programlisting>
+$ p4d -r . -jr jnl.0 jnl.1 ....
+</programlisting>
+
+        <para>
+          and with nohup:
+        </para>
+
+<programlisting>
+nohup p4d -r . -jr jnl.0 jnl.1 .... &amp;
+</programlisting>
+      </listitem>
+
+      <listitem xml:id="running.post_conversion.step3">
+        <para>
+          <emphasis role="bold">[Required]</emphasis> Upgrade the database from
+          2004.2 schema. For simplicity the conversion generates a database
+          using an old schema, allowing you to upgrade to a Perforce Server
+          version of your choice. From the <envar>P4ROOT</envar> directory run
+          the upgrade command:
+        </para>
+
+<screen>
+$ p4d -r . -xu
+Perforce db files in '.' will be created if missing...
+2001.1: splitting db.integ into db.integed/db.resolve.
+2001.1: splitting db.have into db.have and db.label.
+2002.1: splitting pending db.change into db.changex.
+2002.2: upgrading tempobj filetype in db.rev.
+2002.2: upgrading tempobj filetype in db.working.
+2003.1: initialize default depot.
+2003.2: upgrading db.user.
+2005.1: building db.revhx (headrev) table.
+2005.1: building db.locks from db.working.
+2005.2: building db.revdx (delrev) table.
+2005.2: moving spec depot entries into db.revsx.
+2007.3: (re)building haveMap from db.have/db.working.
+2007.3: (re)building db.archmap (lazy-copy map) table.
+2007.3: removing old db.archive.
+2008.1: upgrading db.change.
+2009.2: moving db.boddate/db.ixdate into db.bodtext/db.ixtext.
+2009.2: removing db.boddate/db.ixdate.
+2010.2: adding db.config.
+2011.1: upgrading tiny.db.
+...upgrades done
+</screen>
+      </listitem>
+
+      <listitem xml:id="running.post_conversion.step4">
+        <para>
+          [Optional] If the conversion was run in Unicode mode (where
+          <code>com.p4convert.p4.unicode=true</code>) and users are going to
+          continue to add Unicode content then you may wish to set the server to
+          Unicode mode. To enable Unicode run the following command from the
+          P4ROOT directory:
+        </para>
+
+<programlisting language="bash">
+$ p4d -r . -xi
+</programlisting>
+      </listitem>
+
+      <listitem xml:id="running.post_conversion.step5">
+        <para>
+          [Alternative] If you are running your Perforce Server on Linux and
+          your user base is predominantly Windows you may wish to force the
+          server to run as case insensitive (only allowing one version of case
+          for paths and files). The conversion option
+          <code>com.p4convert.adv.lowerCase=true</code> will have been used with
+          the case mode set to <code>com.p4convert.adv.caseMode=FIRST</code>.
+          All p4d commands must be include the <parameter>-C1</parameter> flag,
+          this includes the earlier
+          <link linkend="running.post_conversion.step1">step 1</link> and
+          <link linkend="running.post_conversion.step2">step 2</link>.
+        </para>
+
+        <para>
+          For example:
+        </para>
+
+<programlisting language="bash">
+$ cd p4_root
+$ p4d -C1 -r . -jr jnl.0
+$ p4d -C1 -r . -xu
+</programlisting>
+      </listitem>
+
+      <listitem xml:id="running.post_conversion.step6">
+        <para>
+          [Recommended] Some archive files may not have MD5 sum digests
+          (typically where Subversion did not store the digest or the digest
+          does not match due to the use of keyword expansion). To fill in the
+          metadata for MD5 sum digests and archive file sizes use the verify
+          command (this might be best split into depots and sub directories for
+          large servers):
+        </para>
+
+<programlisting language="bash">
+$ p4 verify -u //...
+</programlisting>
+      </listitem>
+    </orderedlist>
+  </section>
+</chapter>
