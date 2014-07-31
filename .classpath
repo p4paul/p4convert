@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="prop"/>
+	<classpathentry exported="true" kind="lib" path="ext/p4java-2013.2.858003.MAIN-TEST_ONLY-SNAPSHOT/p4java-2013.2.858003.MAIN-TEST_ONLY-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry exported="true" kind="lib" path="ext/icu4j-51_2.jar"/>
+	<classpathentry exported="true" kind="lib" path="ext/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+	<classpathentry exported="true" kind="lib" path="ext/org.junit_4.8.1.v4_8_1_v20100427-1100/junit.jar"/>
+	<classpathentry exported="true" kind="lib" path="ext/slf4j-api-1.6.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="ext/slf4j-log4j12-1.6.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="ext/log4j-1.2.17.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

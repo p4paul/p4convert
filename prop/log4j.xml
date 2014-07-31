@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- STDOUT appenders -->
+	<appender name="warn.log" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%t] %5p  %c{2}:%n%m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="warn" />
+			<param name="LevelMax" value="fatal" />
+		</filter>
+	</appender>
+
+	<appender name="info.log" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="info" />
+		</filter>
+	</appender>
+
+	<!-- File log appenders -->
+	<appender name="trace.out" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="converter.log" />
+		<param name="Append" value="true" />
+		<param name="immediateFlush" value="true" />
+		<param name="MaxFileSize" value="300MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-16t %5p %-50c... %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="fatal" />
+		</filter>
+	</appender>
+
+
+
+	<root>
+		<level value="debug" />
+		<appender-ref ref="warn.log" />
+		<appender-ref ref="info.log" />
+		<!-- appender-ref ref="trace.log" / -->
+		<appender-ref ref="trace.out" />
+	</root>
+
+
+</log4j:configuration>

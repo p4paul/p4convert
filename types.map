@@ -1,0 +1,50 @@
+TypeMap:
+
+# video
+	binary		//....avi
+	binary		//....mpg
+			
+# audio
+	binary		//....pac
+	binary		//....m4a
+	binary		//....wma
+	binary		//....mp4
+	binary		//....m4p
+	binary		//....aac
+			
+# images
+	binary		//....gif
+	binary		//....bmp
+	binary		//....ico
+	binary		//....jpg
+	binary		//....png
+			
+# compression
+	binary		//....zip
+	binary		//....bz2
+	binary		//....gzip
+	binary		//....rar
+	binary		//....sit
+	binary		//....gz
+			
+# build
+	binary		//....bin
+	binary		//....btr
+	binary		//....lib
+	binary		//....dll
+	binary		//....jar
+	binary		//....class
+	binary		//....war
+	binary		//....rar
+	binary		//....ear
+			
+# office
+	binary		//....doc
+	binary		//....docx
+	binary		//....dot
+	binary		//....exp
+	binary		//....ppt
+	binary		//....pptx
+	binary		//....xls
+	binary		//....xlsx
+	binary		//....pdf
