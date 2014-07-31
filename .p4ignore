@@ -1,0 +1,11 @@
+MANIFEST.MF
+changeMap.txt
+converter.log
+junit
+bin
+.p4config
+<unset>
+dist
+p4_root
+ws
+out.dump
