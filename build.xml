@@ -19,7 +19,6 @@
 	<property name="junit.dir" value="junit" />
 	<property name="p4java.ver" value="p4java-2013.2.858003.MAIN-TEST_ONLY-SNAPSHOT" />
 	<property name="version" value="ENGINEERING.BUILD.${user.name}" />
-	<property name="relnotedir" value="../../p4-doc/user" />
 
 	<path id="classpath">
 		<fileset dir="${ext.dir}">
@@ -35,8 +34,6 @@
 		<delete dir="${junit.dir}" />
 		<delete dir="${release.dir}" />
 	</target>
-
-
 
 
 	<!--RULE: check args for version string-->
@@ -87,7 +84,7 @@
 		<copy file="default.cfg" todir="${release.dir}/${version}" />
 		<copy file="types.map" todir="${release.dir}/${version}" />
 		<copy file="debug.log4j.xml" todir="${release.dir}/${version}" />
-		<copy file="${relnotedir}/p4convert-svnnotes.txt" todir="${release.dir}/${version}" />
+		<copy file="p4convert-notes.txt" todir="${release.dir}/${version}" />
 		<tar destfile="${release.dir}/${jar.name}.tar">
 			<tarfileset dir="${release.dir}/${version}/.." filemode="644">
 				<include name="${version}/**" />
@@ -133,6 +130,7 @@
 				<path id="svn2p4.cli.id" location="${dist.dir}/${jar.name}.jar" />
 			</classpath>
 			<jvmarg value="-Dfile.encoding=UTF-8" />
+			<arg line="--config SVN" />
 		</java>
 	</target>
 
@@ -143,6 +141,7 @@
 				<path id="svn2p4.gui.id" location="${dist.dir}/${jar.name}.jar" />
 			</classpath>
 			<jvmarg value="-Dfile.encoding=UTF-8" />
+			<arg line="--config SVN" />
 		</java>
 	</target>
 

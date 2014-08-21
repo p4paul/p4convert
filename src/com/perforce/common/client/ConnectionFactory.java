@@ -124,7 +124,7 @@ public class ConnectionFactory {
 			Properties props = System.getProperties();
 
 			// Identify ourselves in server log files.
-			props.put(PropertyDefs.PROG_NAME_KEY, "p4convert-svn");
+			props.put(PropertyDefs.PROG_NAME_KEY, "p4convert");
 			props.put(PropertyDefs.PROG_VERSION_KEY, Config.get(CFG.VERSION));
 
 			// Set up socket pooling to use a single socket
@@ -149,7 +149,9 @@ public class ConnectionFactory {
 				newIServer.connect();
 			} catch (ConnectionException e) {
 				StringBuffer sb = new StringBuffer();
-				sb.append("Unable to connect to server, please check configuration.\n");
+				sb.append("Unable to connect to server at ");
+				sb.append(port);
+				sb.append(", please check configuration.\n");
 				if ((Boolean) Config.get(CFG.P4_UNICODE)) {
 					sb.append("Unicode mode is enable; did you create the server with '-xi'?");
 				}

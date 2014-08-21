@@ -1,0 +1,737 @@
+                            Release Notes for
+             P4Convert-svn, An SVN and CVS to Perforce conversion tool.
+
+This documentation needs an update reflecting the new features on the Public release of the converter
+What follows is the last SVN only release information.
+
+                             Version 2014.1
+
+Introduction
+
+	This document lists all user-visible changes to P4Convert
+	from release 2011.2, the first supported release.
+
+	Perforce numbers releases YYYY.R/CCCCC, e.g. 2011.2/434818.
+	YYYY is the year; R is the release of that year; CCCCC is the
+	bug fix change level. Each bug fix in these release notes is
+	marked by its change number. Any build includes (1) all bug fixes
+	of all previous releases and (2) all bug fixes of the current
+	release up to the bug fix change level.
+
+	To determine the version of your P4Convert, issue the following
+	command:
+		java -jar p4convert-svn.jar --version
+		
+--------------------------------------------------------------------------
+
+Compatibility Statements
+
+	Server Compatibility
+
+	  You can use any release of P4Convert with any release of the 
+	  Perforce server later than 2010.2
+	  
+	Platform Compatibility
+
+	  While P4Convert is generally portable, this release is certified
+	  only on the following platforms:
+
+		Linux 2.6 Intel (x86_64)
+		Solaris 10 Intel (x86)
+		Windows 7 Intel (x86_64)
+		Mac OS X 10.7 (x86_64)
+		
+	Java Virtual Machine
+	
+	  This release is certified to run on Java SE Runtime Environment 1.7.*
+
+--------------------------------------------------------------------------
+
+Bugs fixed in 2014.1
+
+	#872553 #872245 (Bug #73235 #72982)
+	
+	During a Replace operation (R:D) + (SUB:B:D) all opened files were reverted.  
+	The Import mode now runs a preview integration first, then reverts only open files 
+	that have targets for the integration.	
+	
+
+	#872082 (Bug #72981)
+
+	Fixed second REMOVE action to not revert, but revert AND remove.
+
+
+Patches after 2013.1
+
+	#857075 (Bug #64029)
+	
+	Abort the conversion if Text-delta is detected.
+	
+
+	#853349 #856543 (Bug #72701)
+	
+	Set client clobber option to avoid, safe sync protection introduced in 14.1
+	
+
+	#848224 (Bug #72822)
+
+	Fixed processing of line endings when a 'text' file is identified using the typemap.
+	
+
+	#846592 (Bug #72811)
+
+	During a SVN roll back operation if the user edits the file, then p4 copy cannot be 
+	used.  The code now falls back to manual edit (pre 10.2 mode).
+
+
+	#802912 (Bug #71815 #67509 #62886)
+	
+	Type map enhanced to include 'text' and 'unicode'.	For example mapping like 
+	'text //....java'.  
+	
+	Note: if the converter fails to find a character mapping for the file it is no 
+	longer downgraded to BINARY, but stored as TEXT and the content left as-is.  The 
+	as-is content will NOT include Line Ending conversions, BOM removal or Character 
+	Map translation.
+	  
+
+	#718459 (Bug #69161)
+
+	Fix to allow automatic resolve of binary files using setForceTextualMerge() 
+	option in p4java, equivalent to '-t' flag.
+
+
+	#712269 (Bug #68935)
+	
+	Fix to 'Node-path' parse detection to ignore subsequent delimiters (': ') that 
+	might occur in a file path.
+
+
+Internal new functionality in 2013.1
+
+	#704024 (Bug #68652)
+	
+	SVN property parse support for non windows-1252 high ascii code pages.  
+	
+	Optional configuration option 'com.p4convert.svn.propTextType' can be set
+	to a specific code page for SVN properties:  
+	
+		BINARY					ISO-8859-2		
+		US-ASCII				ISO-8859-5		
+		UTF-8					ISO-8859-6		
+		UTF-16BE				ISO-8859-7		
+		UTF-16LE				ISO-8859-8		
+		UTF-32BE				windows-1251	
+		UTF-32LE				windows-1254	
+		Shift_JIS				windows-1252	
+		ISO-2022-JP				windows-1256	
+		ISO-2022-CN				KOI8-R			
+		ISO-2022-KR				ISO-8859-9		
+		GB18030					IBM424_rtl					
+		EUC-JP					IBM424_ltr		
+		EUC-KR					IBM420_rtl		
+		Big5					IBM420_ltr	
+		ISO-8859-1				UNKNOWN	 (default)
+		
+	The first scan is always 'UTF-8' followed by the configuration option.  BINARY 
+	implies a skip and the string '<binary property>' is inserted.
+		
+
+	#702766 (Bug #68510)
+	
+	By default RCS keyword expansion attributes are imported; however setting the
+	configuration option 'com.p4convert.svn.keepKeyword' to 'false' will ignore all
+	previous keyword attributes and import the files as normal text.
+	
+
+	#693333 (Bug #68191)
+	
+	Missing 'COPY' support (C:F) for file integrations.
+
+
+	#688730 (Bug #67815, #67909)
+	#688720 (Bug #67775)
+	
+	Support replacing a file/symlink with a directory.  The fix includes a new action 
+	type 'C' COPY which represents a Subversion 'replace' action that has a 'copyfrom' 
+	Node.  Normal 'replace' actions remain identified as 'U' UPDATE actions.
+	
+
+	#687931 #687905 (Bug #67716)
+	
+	Roll back imporvments for files and symlinks.
+
+
+	#686737 (Bug #67668)
+	
+	Line ending translation fix for MAC style '\r' characters.
+
+
+	#679015 (Bug #67530)
+	
+	Allow a file to be replaced with a directory by deleting the previous file revision.
+	
+
+	#678249 (Bug #67532)
+	
+	Support coping a file over a symlink with no target.
+	
+
+	#676714 (Bug #67548)
+	
+	Updated ICU4J libraries to 51.2 improving Cyrillic detection.
+	
+
+	#669199 (Bug #67263)
+	
+	Support for replacing a symlink revision with a file.
+	
+
+	#668788 (Bug #67167)
+	
+	Limit conversion user to work at 'admin' level (previously 'super' was required.
+	User must login before listing users due to configurable 'run.users.authorize'.
+
+
+	#668166 (Bug #66986)
+	
+	Updated filtering to p4java INFO message 'Unknown client error'
+	
+	
+	#664667 (Bug #66790, #67069)
+	#656616 (Bug #66683)
+
+	Remove the use of Stub files as a workaround for symlink bugs in p4java.
+
+
+
+Bugs patched after 2012.2 
+
+	#655899 #655901 #655903 (Bug #66707, #66649, #66638)
+
+	Tidy up of Warning messages from p4-java and workaround for 10.2 tamper check error.
+	
+
+	#652698 (Bug #66620)
+	
+	Report conversion tool version information in log and console output:
+		jar build version: 		12.2.652698
+		
+		
+	#652651 (Bug #66509)
+	
+	Configuration exception check when connecting to a live Perforce server.  If the 
+	Unicode counter was not set users would see a cryptic error:
+		'User nouser doesn't exist.'
+		 
+
+	#648309 (Bug #66427)
+	
+	Fix in the detection of ADD/EDIT action after the REMOVE part of UPDATE case.
+	(regression from #636750) 
+	
+
+	#648284 (Bug #66429)
+	
+	Fixed the detection of previously deleted files when adding a new revision.
+	(regression from #636750) 
+	
+
+	#645509 (Bug #66128)
+	
+	A fix to sub node/block detection; only 'delete' actions with a sub 'copyfrom'
+	action are detected.  Marked in the log with 'SUB:B:F' for branched files.
+	
+
+	#636750 (Bug #65984)
+	
+	Support SVN 'replace' actions as Action.UPDATE or 'U' in log. A 'replace' action
+	deletes the node and replaces it with the following actions.
+
+
+	#633528 (Bug #65781)
+
+	Subversion merge information is computed in SVN revisions and not Perforce 
+	change-lists.  However when querying Perforce the SVN revision number must be 
+	translated to a Perforce change-list using the ChangeMap class.
+
+
+	#631017 (Bug #65254)
+	
+	A fix to the archive format for symlinks preventing p4 status / p4 reconcile from 
+	marking the symlink as changed and trying to open for edit.
+	
+
+	#591267 (Bug #63446)
+	
+	Added a sample SLF4J configuration file for trace and debug.
+
+
+	#593032 (Bug #63611)
+
+	Change counter was offset by 1 after using the 'Convert mode', so subsequent
+	migrations using 'Import mode' did not match SVN revisions 1:1.
+
+
+	#594830 (Bug #63621)
+	
+	Store a generated version string at release time in the default.cfg file.
+	
+	
+	#594824 (Bug #63660)
+	
+	Support empty subversion revisions (resulting after 3rd party filter tools).
+	
+	
+	#594807 (Bug #63662)
+	
+	Added missing '/n' to audit log after header comment.
+	
+	
+	#601206 (Bug #63888) 
+	#605402, #604770 (Bug #64302)
+	
+	Support an empty Node-Path; implies a '//...' and is sometimes used by Subversion
+	to set properties for the whole repo.  The '--info' option now counts the number of
+	empty Node-Paths as an indication of corrupt or a hacked data set. 
+	
+
+	#602959 #603679 (Bug #64220)
+
+	Missing revisions in branch operations are reported as skipped; this is due
+	to an earlier Subversion sub-action where the rollback step was missing.
+	
+	The fix results in the following behavioural changes:	
+	
+	'Convert mode'	- 	Overlays the delete action with a roll-back to last revision.
+					 	Note that a branch to same path not allowed by a P4 client.
+
+	'Import mode' 	- 	Reverts the pending delete then attempt the integration.  
+						The integration will be skipped at resolve and may leaving
+						an empty change.
+
+	
+	#605415 #610235 #611875 (Bug #64347 #64391)
+	
+	Support Subversion merge-info across the directory hierarchy, in complex merge
+	operations including:
+	
+		- Cherry picked revisions
+		- Multiple revision ranges
+		- Indirect merges
+		
+	
+	#622215 #623359 (Bug #65174 #65254) 
+	
+	Added non-zero return codes for Warnings and Errors:
+	
+		OK(0)			All OK, no warnings
+		USAGE(1)		Usage error
+		SHUTDOWN(2)		Trapped 'Ctrl C' break signal
+		WARNING(3)		Warning count greater than 0
+		EXCEPTION(4)	Trapped Exception
+
+
+
+New functionality in 2012.2
+
+	#551486 (Bug #61340)
+
+	SSL support.  Configuration for non ssl uses sets the configuration 
+	'com.p4convert.p4.port' to 'localhost:4444' or for SSL 'ssl:localhost:4444'
+
+
+	#543222 (Bug #58715)
+
+	Documented include/exclude maps for selecting Subversion paths to import.
+	Maps now matching SVN paths with java regex:
+	
+	Basic examples:
+	
+	1. Only import files with the extension 'yml':
+	
+	    <include.map>
+	        .*\.yml
+	
+	    <exclude.map>
+	        .*
+	
+	2. Exclude the subversion folder apimanager/trunk/app/...
+	(where apimanager is the top level directory)
+	
+	    <exclude.map>
+	        ^apimanager/trunk/app.*
+
+
+	#533890, #533813, #533075, #533024, #533015, #530602, #530598, #529183,
+	#528009, #528002, #527580, #527319, #527295, #527285  (Bug #56426)
+
+	MergeInfo imported as INTEG actions.
+	
+	Subversion stores integration history on the target (about its sources) as 
+	properties.  The properties can be on FILE nodes or DIR in pending changes.  
+	Subversion uses the key svn:mergeinfo with a value of the form:
+	
+	    <path>:<done range>,<exclude>,<exclude>...
+	
+	Ranges are in the form nnn-nnn or just nnn; there is only one done range 
+	(accounted for integrations), but there can be one or more exclude ranges 
+	(ignored revisions).  In some data sets an '*' my appear on the end to 
+	indicate non-inheritable mergeinfo.
+	
+	 - Support multi merge source data for Convert and Import mode.
+	 - Branch actions sources are marked as BRANCH and not MERGE_IGNORE
+	 - Added ignore action credit IGNORE/IGNORE_BY
+	
+	Currently the feature is disabled, change to 'true' to enable, e.g.:
+	
+	    com.p4convert.svn.mergeInfoEnabled=true
+	    
+	
+	#522555, #522541, #522537 (Bug #59517)
+
+	Type map to be used for identifying binary files ONLY.  Do not use try to
+	force 'unicode' as 'text' in a mapping like 'text //....java'.
+	
+	To use create a local file 'types.map' using the Perforce typemap format.  
+	  - only paths of the form '//....xxx' are supported, any other path like 
+	    '//depot/foo/....xxx' are ignored.
+	  - only types: binary+mxwlk are supported. 
+	
+	Type map is required for small or empty binary files (e.g. zip, gif...) as 
+	ICU4J cannot determine if it is binary.  
+
+
+	#512452 (Bug #58685, Bug #58790)
+
+	The user translation map (--users) is now generated with the original 
+	Subversion username on the LHS and the filtered name on the RHS.  The filter
+	removes Perforce reserved chars (removing #, @, *, %, ... and replacing " " 
+	with "_").
+	
+	The same filter is used post translation in case the RHS contains reserved 
+	chars.
+	
+	Loading the filter reports the file and number of mappings.  For example:
+	
+	    Loaded user translation map 'users.map'; 27 user names remapped.
+
+
+	    
+Internal new functionality in 2012.2
+
+	#553863 (Bug #61622)
+
+	Skip REMOVE actions if there were no previous revisions.  This case is seen
+	where cvs2svn adds REMOVE actions when the revision does not exist.
+	
+	
+	#575401 #553849 #545744 #534836 (Bug #61619, Bug #61200, Bug #62540)
+
+	Files larger than 10MB (set as hidden config option) are compress archive 
+	with +C flag (mimics server behaviour)
+	
+	
+	#551485 (Bug #61351)
+
+	Case sensitive rename support in Import mode for case insensitive servers 
+	using FIRST mode for file and directories.  
+	
+	
+	#546739 (Bug #60117)
+
+	Support for windows-1252 encoding in property values. Property values 
+	falling outside UTF-8 or windows-1252 will throw an exception.
+	
+	
+	#545239 
+
+	Added progress class (to indicate progress when parsing logs)
+	
+	
+	#543187 (Bug #60034)
+
+	Password support for security level greater than 0.  
+	
+	The com.p4convert.p4.user must have 'super' level access and its password
+	set in com.p4convert.p4.passwd.  This removes the  UserPool and Protection
+	ProtectionTable classes.  Instead the pending change is submitted as the 
+	super user then the Owner field is modified along with the date.
+	
+	
+	#524827 (Bug #59703)
+
+	Reports the longest Subversion path when using --info
+	
+	
+	#524816, #534787 (Bug #59820)
+
+	Added @nx@ note record (type journal header) to protect against uses not
+	setting C1 / C0 flags when replaying the journal.  Server version is 
+	reported as 0 giving a big hint the the admin that 'p4d -xu' needs to be
+	run.
+	
+	
+	#515846 (Bug #58083)
+
+	Changed all logging from java.util.Logger to SLF4J + log4j.  Logging 
+	configuration is defined in file 'prop/slf4j.xml' and built into the 
+	deployed jar.
+	
+	Console output is at INFO and file logging is set to DEBUG (TRACE is not on
+	by default).  Logging is appended to a file called 'converter.log' and is 
+	rotated at 300MB and purged after 5 rotations.
+	
+	Audit log has been reimplemented to use a Buffered Output Stream.
+	
+	Schema upgraded to 5.x (as logging section has been moved to to xml file)
+	
+	
+	#504626 (Bug #58713)
+
+	Codepage support for windows 1252.
+	
+	
+	
+Bugs fixed in 2012.2
+
+	#557022 (Bug #61663)
+
+	Disable RPC_SOCKET_SO_TIMEOUT_NICK timeout.
+
+
+	#534395 (Bug #57600)
+
+	Suppress 'all revision(s) already integrated' message.
+	
+	
+	#520565 (Bug #59456)
+	
+	Clean up of warning message if a path delimiter is missing and included 
+	examples in the default configuration file.
+	
+	
+	#511728 (Bug #58826)
+
+	Attempt to re-encode text files if the wrong encoding was found with ICU4J.	
+	Windows CP1252 is used to try to encode the file as it is often miss 
+	identified.  Should this fail then, as before, the file is downgraded to 
+	BINARY.  If a file is downgraded to binary it will not have had it's 
+	line-endings processed and if changed to TEXT may have corrupt line-endings.
+	
+
+--------------------------------------------------------------------------
+
+New functionality in 2012.1
+
+	#440198, #463676 (Bug #54093) 
+	
+	Subversion revision or node extraction feature
+		
+		java -jar p4convert-svn.jar --extract rev.node <dump file>
+		
+		
+	#452368 (Bug #54101)
+	
+	Imports can now be located in a sub directory of a depot.
+	
+	Set the option com.p4convert.subPath to the sub directory required.  Do not
+	include the depot path or start with a '/', however paths must end with a 
+	'/' even if it is not being used.
+	
+	For example, to import files under "//import/sub/..." set:
+	   com.p4convert.depotPath: import
+	   com.p4convert.subPath=sub/
+	
+	
+	#457421, #462801, #464411 (Bug #54796, Bug #55837, Bug #55838) 
+	
+	File type detection now uses icu4j libraries and improved IO buffering.
+	
+	Any file type detection below 30% is assumed to be binary unless it only
+	contains valid ascii characters.  Only the first 1024K of the file is 
+	scanned.	
+	
+	
+	#463714 (Bug #54094)
+	
+	Subversion Path exclusion
+
+	Prescans data to validate path exclusion map (and inclusion). If all ok, 
+	then conversion starts, skipping any excluded files or directories.
+	
+	Exclusion map 'exclude.map' only matches strings (no wild cards), except 
+	for a single '*' to exclude everything (works well with include map).  
+	Comments can be added by starting the line with a '#'.
+	
+	For example ('exclude.map'):
+	   Database/NOE/noe_migrate/tags
+	
+	... will skip all content under 'Database/NOE/noe_migrate/tags'.
+	
+	
+	#464439 (Bug #55528)
+	
+	Split configuration into groups and format the configuration file with 
+	comments.
+	
+	
+	#451897, #485654 (Bug #53543)
+	
+	Reformat Subversion revision descriptions to include the revision ID using
+	the template:
+	
+	    <rev> substituted with the Subversion revision
+	    <description> substituted with the Subversion log
+	
+	Default (as-is): com.p4convert.svn.logRevID="<description>"
+	
+	
+	#488856 (Bug #54693, Bug #56719, Bug #57642)
+	
+	Prescan a Subversion dump file to determine system requirements.
+	
+		java -jar p4convert-svn.jar --info
+	
+		
+Internal new functionality in 2012.1
+
+	#449830 (Bug #55030)
+	
+	Added a hook to trap Ctrl-C and exit cleanly, saving the ChangeMap and 
+	finishing the last action.
+	
+		
+	#481859 (Bug #56784)
+	
+	Support UTF32 for non-unicode and unicode enabled servers. Down grades to 
+	binary, or stores as utf8 as required.
+	
+	
+	#485650 (Bug #54693)
+	
+	Support protection table access for Import mode.  Allowing the update of 
+	protections when adding content to existing servers.
+	
+	
+	#485653 (Bug #53591, Bug #54693, Bug #56325)
+	
+	Re-implementation of p4 java connection to reuse server connection and 
+	client workspace.
+	
+	
+	#486819 (Bug #57513)
+	
+	Cleanup of invalid Subversion usernames:
+	
+		Invalid characters removed: '*', '%%', '@', '#', '...'
+		Invalid characters replaced: ' ' with '_'
+	
+		
+	#488095, #489306 (Bug #54693)
+	
+	Cache of active Perforce users.  Pool based on the number of free user 
+	licenses.
+
+
+	
+Bugs fixed in 2012.1
+
+	#437285 (Bug #53680)
+	
+	Handle extremely large changelists
+
+
+	#437286, #451367 (Bug #53779)
+	
+	Support invalid SVN dumpfile schemas with 'null' MD5 strings.
+
+
+	#449810 (Bug #55336)
+	
+	Support rename of files only by case.  Reverted on case aware platforms or
+	renamed on cases sensitive platforms.
+
+	
+	#450757 (Bug #55031)
+	
+	Unicode support for property key pair values.  Read the specified number 
+	of bytes and will throw a runtime exception if the reported length does 
+	not match the amount of bytes read.
+	
+	
+	#451356 (Bug #55225)
+	
+	Detect platform case sensitivity used when generating the default 
+	configuration.
+
+
+	#451465 (Bug #54839)
+	
+	Product version stored in MANIFEST and reported in configuration file.
+
+
+	#464459 (Bug #55167)
+	
+	Bug fix to convert mode to sync to the old version of file when rolling 
+	back an edit action in Subversion.
+
+
+	#465169 (Bug #53025)
+	
+	Bug fix to only remove '\r' chars when used as line endings.
+		
+	The Configuration option 'com.p4convert.adv.lineEnding' only converts 
+	'\r\n' to '\n' when true (default).  Any isolated '\r' chars are not 
+	treated as line ending chars and left as-is (i.e MAC line endings are not 
+	converted -- may be an issue with the backdoor archive files).
+	
+	
+	#470599, #471132 (Bug #56371)
+	
+	Trim invalid white space from SVN dump file header attributes
+
+
+	#472249 (Bug #56440)
+	
+	Spelling; changed default value of com.p4convert.svn.propName to 
+	.svn.properties
+
+
+	#481323 (Bug #56686)
+	
+	SVN users rolling back a branch to an earlier point would cause the 
+	'front-door' to try to integrate between the same source/target.
+	
+	For branch roll back operations (Import Mode) now uses p4 copy.  If the 
+	server is older than 20111,	then the sync to old change and then re-add 
+	steps are used. 
+	
+	
+	#485989 (Bug #57117)
+	
+	Bug fix for file modification bits.  File modification bits (e.g. +x) were
+	not propagated to the next revision in Import Mode.
+
+
+	#486808 (Bug #53572)
+	
+	Traps null Action objects.  Logs Subversion records to file where actual 
+	Subversion file content is replaced with a block count.
+
+	
+	#489576, #489584 (Bug #57658)
+	
+	Fix to support a base-less copy where source is a deleted revision.
+	
+	Convert mode: if the source is a delete then the target will also be 
+	deleted.  No integration records are created by default; however if the 
+	following option is set:
+	
+	    com.p4convert.adv.downgrade=true
+	
+	then integration records are created for the delete (to match integ 3+).
+
+	Import mode: if the source is a delete then the target will also be deleted.
+	Includes patched for integration credit (how is now copy from/into) and 
+	resolve option to 'copy' source (-at).
