@@ -1,0 +1,11 @@
+@pv@ 9 @db.rev@ @//import/foo@ 3 1 4 3 1376561124 1376561058 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 1 @//import/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo@ 2 1 1 2 1376561059 1376561059 E30260020BAEB0398FF07B37DD33ED16 3 0 0 @//import/foo@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/foo@ 1 1 0 1 1376561058 1376561058 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 0 @//import/foo@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/foo@ @//import/foo@ 0 1 2 3 4 3 
+@pv@ 0 @db.integed@ @//import/foo@ @//import/foo@ 2 3 0 1 5 3 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @pallen@ 1376561124 1 @Revert foo
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1376561059 1 @Update foo
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1376561058 1 @Add foo
+@pv@ 0 @db.desc@ 3 @Revert foo
+@pv@ 0 @db.desc@ 2 @Update foo
+@pv@ 0 @db.desc@ 1 @Add foo
