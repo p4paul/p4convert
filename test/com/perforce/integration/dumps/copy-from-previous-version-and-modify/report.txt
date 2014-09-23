@@ -1,0 +1,19 @@
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 4
+  Converted revs     : 4
+  Branches (dir)     : 0
+  Integrates (dir)   : 0
+  Archive revisions  : 3
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Subversion users   : Last access date
+     rooneg	  15-Nov-2005 21:11
+
