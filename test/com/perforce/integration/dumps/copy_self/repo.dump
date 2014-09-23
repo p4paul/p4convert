@@ -1,0 +1,109 @@
+SVN-fs-dump-format-version: 2
+
+UUID: c0dc42c5-2cd7-460a-b63f-adebbf19201e
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-04-15T16:53:05.763441Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 110
+Content-length: 110
+
+K 8
+svn:date
+V 27
+2013-04-15T16:53:47.883049Z
+K 7
+svn:log
+V 7
+Add foo
+K 10
+svn:author
+V 9
+emosenkis
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+Node-path: foo2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 110
+Content-length: 110
+
+K 8
+svn:date
+V 27
+2013-04-15T16:54:39.971256Z
+K 7
+svn:log
+V 7
+Add bar
+K 10
+svn:author
+V 9
+emosenkis
+PROPS-END
+
+Node-path: foo
+Node-action: delete
+
+Node-path: foo2
+Node-action: delete
+
+Revision-number: 3
+Prop-content-length: 115
+Content-length: 115
+
+K 8
+svn:date
+V 27
+2013-04-15T16:55:09.589489Z
+K 7
+svn:log
+V 11
+replace foo
+K 10
+svn:author
+V 9
+emosenkis
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Node-copyfrom-path: foo
+Node-copyfrom-rev: 1
+
+Node-path: foo2
+Node-kind: file
+Node-action: add
+Node-copyfrom-path: foo2
+Node-copyfrom-rev: 1
+
