@@ -1,0 +1,45 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @add@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1399373806 1 @add@ 
+@pv@ 3 @db.rev@ @//import/trunk/file2.txt@ 1 1 0 1 1399373806 1399373806 00000000000000000000000000000000 @//import/trunk/file2.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/file2.txt@ 1 0 
+@pv@ 3 @db.rev@ @//import/trunk/file1.txt@ 1 1 0 1 1399373806 1399373806 00000000000000000000000000000000 @//import/trunk/file1.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/file1.txt@ 1 0 
+@pv@ 0 @db.desc@ 2 @edit@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1399373839 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/trunk/file1.txt@ 2 1 1 2 1399373839 1399373839 00000000000000000000000000000000 @//import/trunk/file1.txt@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/trunk/file1.txt@ 2 1 
+@pv@ 0 @db.desc@ 3 @noise@ 
+@pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1399373883 1 @noise@ 
+@pv@ 3 @db.rev@ @//import/trunk/noise.txt@ 1 1 0 3 1399373883 1399373883 00000000000000000000000000000000 @//import/trunk/noise.txt@ @1.3@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/trunk/noise.txt@ 1 0 
+@pv@ 0 @db.desc@ 4 @noise@ 
+@pv@ 0 @db.change@ 4 4 @svn-client@ @pallen@ 1399373893 1 @noise@ 
+@pv@ 3 @db.rev@ @//import/trunk/noise.txt@ 2 1 1 4 1399373893 1399373893 00000000000000000000000000000000 @//import/trunk/noise.txt@ @1.4@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/trunk/noise.txt@ 2 1 
+@pv@ 0 @db.desc@ 5 @edit@ 
+@pv@ 0 @db.change@ 5 5 @svn-client@ @pallen@ 1399374284 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/trunk/file2.txt@ 2 1 1 5 1399374284 1399374284 00000000000000000000000000000000 @//import/trunk/file2.txt@ @1.5@ 1 
+@pv@ 0 @db.revcx@ 5 @//import/trunk/file2.txt@ 2 1 
+@pv@ 0 @db.desc@ 6 @delete@ 
+@pv@ 0 @db.change@ 6 6 @svn-client@ @pallen@ 1399374285 1 @delete@ 
+@pv@ 3 @db.rev@ @//import/trunk/file2.txt@ 3 1 2 6 1399374285 1399374285 00000000000000000000000000000000 @//import/trunk/file2.txt@ @1.6@ 1 
+@pv@ 0 @db.revcx@ 6 @//import/trunk/file2.txt@ 3 2 
+@pv@ 3 @db.rev@ @//import/trunk/file1.txt@ 3 1 2 6 1399374285 1399374285 00000000000000000000000000000000 @//import/trunk/file1.txt@ @1.6@ 1 
+@pv@ 0 @db.revcx@ 6 @//import/trunk/file1.txt@ 3 2 
+@pv@ 0 @db.desc@ 7 @undel@ 
+@pv@ 0 @db.change@ 7 7 @svn-client@ @pallen@ 1399374684 1 @undel@ 
+@pv@ 0 @db.integed@ @//import/trunk/file2.txt@ @//import/trunk/file2.txt@ 0 2 3 4 2 7 
+@pv@ 0 @db.integed@ @//import/trunk/file2.txt@ @//import/trunk/file2.txt@ 3 4 0 2 11 7 
+@pv@ 3 @db.rev@ @//import/trunk/file2.txt@ 4 1 0 7 1399374684 1399374684 00000000000000000000000000000000 @//import/trunk/file2.txt@ @1.7@ 1 
+@pv@ 0 @db.revcx@ 7 @//import/trunk/file2.txt@ 4 0 
+@pv@ 0 @db.integed@ @//import/trunk/file1.txt@ @//import/trunk/file1.txt@ 0 2 3 4 2 7 
+@pv@ 0 @db.integed@ @//import/trunk/file1.txt@ @//import/trunk/file1.txt@ 3 4 0 2 11 7 
+@pv@ 3 @db.rev@ @//import/trunk/file1.txt@ 4 1 0 7 1399374684 1399374684 00000000000000000000000000000000 @//import/trunk/file1.txt@ @1.7@ 1 
+@pv@ 0 @db.revcx@ 7 @//import/trunk/file1.txt@ 4 0 
+@rv@ 1 @db.counters@ @change@ @7@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

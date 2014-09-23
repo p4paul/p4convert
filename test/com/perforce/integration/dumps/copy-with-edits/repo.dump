@@ -1,0 +1,262 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 792eee3e-55ba-4118-bccc-3b02e2dd2b80
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2014-05-06T10:55:29.476896Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2014-05-06T10:56:46.351051Z
+K 7
+svn:log
+V 3
+add
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/file1.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 17
+Text-content-md5: 4a923c2e86122aacac20ab9c96fbd796
+Text-content-sha1: 03d2541d8ac00192145e55dfd4dea736311503d8
+Content-length: 27
+
+PROPS-END
+line1: ---------
+
+
+Node-path: trunk/file2.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 17
+Text-content-md5: 4a923c2e86122aacac20ab9c96fbd796
+Text-content-sha1: 03d2541d8ac00192145e55dfd4dea736311503d8
+Content-length: 27
+
+PROPS-END
+line1: ---------
+
+
+Revision-number: 2
+Prop-content-length: 104
+Content-length: 104
+
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2014-05-06T10:57:19.469435Z
+K 7
+svn:log
+V 4
+edit
+PROPS-END
+
+Node-path: trunk/file1.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 34
+Text-content-md5: 6113f47f3e392aaf28c03940a8115ee2
+Text-content-sha1: f06980b3c19c12d90e8d84a66fe5026efff25fe7
+Content-length: 34
+
+line1: ---------
+line2: ---------
+
+
+Revision-number: 3
+Prop-content-length: 105
+Content-length: 105
+
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2014-05-06T10:58:03.529212Z
+K 7
+svn:log
+V 5
+noise
+PROPS-END
+
+Node-path: trunk/noise.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 17
+Text-content-md5: 4a923c2e86122aacac20ab9c96fbd796
+Text-content-sha1: 03d2541d8ac00192145e55dfd4dea736311503d8
+Content-length: 27
+
+PROPS-END
+line1: ---------
+
+
+Revision-number: 4
+Prop-content-length: 105
+Content-length: 105
+
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2014-05-06T10:58:13.336658Z
+K 7
+svn:log
+V 5
+noise
+PROPS-END
+
+Node-path: trunk/noise.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 34
+Text-content-md5: 6113f47f3e392aaf28c03940a8115ee2
+Text-content-sha1: f06980b3c19c12d90e8d84a66fe5026efff25fe7
+Content-length: 34
+
+line1: ---------
+line2: ---------
+
+
+Revision-number: 5
+Prop-content-length: 104
+Content-length: 104
+
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2014-05-06T11:04:44.777022Z
+K 7
+svn:log
+V 4
+edit
+PROPS-END
+
+Node-path: trunk/file2.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 34
+Text-content-md5: 6113f47f3e392aaf28c03940a8115ee2
+Text-content-sha1: f06980b3c19c12d90e8d84a66fe5026efff25fe7
+Content-length: 34
+
+line1: ---------
+line2: ---------
+
+
+Revision-number: 6
+Prop-content-length: 106
+Content-length: 106
+
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2014-05-06T11:04:45.092345Z
+K 7
+svn:log
+V 6
+delete
+PROPS-END
+
+Node-path: trunk/file1.txt
+Node-action: delete
+
+
+Node-path: trunk/file2.txt
+Node-action: delete
+
+
+Revision-number: 7
+Prop-content-length: 105
+Content-length: 105
+
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2014-05-06T11:11:24.772104Z
+K 7
+svn:log
+V 5
+undel
+PROPS-END
+
+Node-path: trunk/file1.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 5
+Node-copyfrom-path: trunk/file1.txt
+Text-copy-source-md5: 6113f47f3e392aaf28c03940a8115ee2
+Text-copy-source-sha1: f06980b3c19c12d90e8d84a66fe5026efff25fe7
+Text-content-length: 17
+Text-content-md5: 257b6cebbb7cd1c80796a14b43b6026e
+Text-content-sha1: 3eb0a9b6b503ef5671e092022356c717d5d79136
+Content-length: 17
+
+line1: --edit---
+
+
+Node-path: trunk/file2.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 5
+Node-copyfrom-path: trunk/file2.txt
+Text-copy-source-md5: 6113f47f3e392aaf28c03940a8115ee2
+Text-copy-source-sha1: f06980b3c19c12d90e8d84a66fe5026efff25fe7
+Text-content-length: 17
+Text-content-md5: 257b6cebbb7cd1c80796a14b43b6026e
+Text-content-sha1: 3eb0a9b6b503ef5671e092022356c717d5d79136
+Content-length: 17
+
+line1: --edit---
+
+
