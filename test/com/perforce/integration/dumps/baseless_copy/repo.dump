@@ -1,0 +1,185 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 45baa5dd-a022-4f52-8a88-75e4563e2cce
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2012-06-27T20:00:54.854343Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 112
+Content-length: 112
+
+K 7
+svn:log
+V 11
+Create Main
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-27T20:00:55.110123Z
+PROPS-END
+
+Node-path: main
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: main/dir1
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: main/dir1/file1
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 10
+Text-content-md5: 714d497ecf2f4b7798a99e5931e66d7d
+Text-content-sha1: d95bd1278782aa973f1a405ecc92b338c13331f4
+Content-length: 20
+
+PROPS-END
+mainfile1
+
+
+Node-path: main/dir1/file2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 10
+Text-content-md5: 7eab4462dced460f73c9d825d1f9554b
+Text-content-sha1: aa55cef3774591554aba76f0ed1719a546f2a037
+Content-length: 20
+
+PROPS-END
+mainfile2
+
+
+Revision-number: 2
+Prop-content-length: 114
+Content-length: 114
+
+K 7
+svn:log
+V 13
+Create Branch
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-27T20:00:56.143725Z
+PROPS-END
+
+Node-path: branch
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branch/dir1
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branch/dir1/file1
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 12
+Text-content-md5: 768ef4df904846ca422b8cdf0429d2aa
+Text-content-sha1: 18d6fa6a9d54d61f92bb8fac610d20fd656272a3
+Content-length: 22
+
+PROPS-END
+branchfile1
+
+
+Node-path: branch/dir1/file2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 12
+Text-content-md5: 3b1a8f77c21720d6220229d2154f094f
+Text-content-sha1: bf1c66235bb2572810652ee75d53736c27da6b40
+Content-length: 22
+
+PROPS-END
+branchfile2
+
+
+Revision-number: 3
+Prop-content-length: 118
+Content-length: 118
+
+K 7
+svn:log
+V 17
+Delete Main File1
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-27T20:00:57.066180Z
+PROPS-END
+
+Node-path: main/dir1/file1
+Node-action: delete
+
+
+Revision-number: 4
+Prop-content-length: 120
+Content-length: 120
+
+K 7
+svn:log
+V 19
+Copy main to branch
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-27T20:00:59.083529Z
+PROPS-END
+
+Node-path: branch/dir1
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 3
+Node-copyfrom-path: main/dir1
+
+

@@ -1,0 +1,19 @@
+@pv@ 9 @db.rev@ @//import/branch/dir1/file1@ 2 1 2 4 1340827259 0 00000000000000000000000000000000 -1 0 0 @//import/branch/dir1/file1@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/branch/dir1/file1@ 1 1 0 2 1340827256 1340827256 768EF4DF904846CA422B8CDF0429D2AA 12 0 0 @//import/branch/dir1/file1@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/branch/dir1/file2@ 2 1 4 4 1340827259 1340827255 7EAB4462DCED460F73C9D825D1F9554B 10 0 1 @//import/main/dir1/file2@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/branch/dir1/file2@ 1 1 0 2 1340827256 1340827256 3B1A8F77C21720D6220229D2154F094F 12 0 0 @//import/branch/dir1/file2@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/main/dir1/file1@ 2 1 2 3 1340827257 0 00000000000000000000000000000000 -1 0 0 @//import/main/dir1/file1@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/main/dir1/file1@ 1 1 0 1 1340827255 1340827255 714D497ECF2F4B7798A99E5931E66D7D 10 0 0 @//import/main/dir1/file1@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/dir1/file2@ 1 1 0 1 1340827255 1340827255 7EAB4462DCED460F73C9D825D1F9554B 10 0 0 @//import/main/dir1/file2@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/branch/dir1/file1@ @//import/main/dir1/file1@ 0 2 1 2 8 4 
+@pv@ 0 @db.integed@ @//import/branch/dir1/file2@ @//import/main/dir1/file2@ 0 1 1 2 4 4 
+@pv@ 0 @db.integed@ @//import/main/dir1/file1@ @//import/branch/dir1/file1@ 1 2 0 2 9 4 
+@pv@ 0 @db.integed@ @//import/main/dir1/file2@ @//import/branch/dir1/file2@ 1 2 0 1 5 4 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @nmorse@ 1340827259 1 @Copy main to branch
+@pv@ 2 @db.change@ 3 3 @svn-client@ @nmorse@ 1340827257 1 @Delete Main File1
+@pv@ 2 @db.change@ 2 2 @svn-client@ @nmorse@ 1340827256 1 @Create Branch
+@pv@ 2 @db.change@ 1 1 @svn-client@ @nmorse@ 1340827255 1 @Create Main
+@pv@ 0 @db.desc@ 4 @Copy main to branch
+@pv@ 0 @db.desc@ 3 @Delete Main File1
+@pv@ 0 @db.desc@ 2 @Create Branch
+@pv@ 0 @db.desc@ 1 @Create Main
