@@ -1,0 +1,152 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 867e363e-5b8f-439e-ac4b-44fdbc6ce0a3
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-09-07T13:35:31.749413Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-07T13:36:39.605981Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: f75b8179e4bbe7e2b4a074dcef62de95
+Text-content-sha1: 7fe70820e08a1aac0ef224d9c66ab66831cc4ab1
+Content-length: 18
+
+PROPS-END
+content
+
+
+Revision-number: 2
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+del
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-07T13:37:34.498970Z
+PROPS-END
+
+Node-path: trunk/file.txt
+Node-action: delete
+
+
+Revision-number: 3
+Prop-content-length: 102
+Content-length: 102
+
+K 7
+svn:log
+V 2
+br
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-07T13:39:31.133760Z
+PROPS-END
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk/file.txt
+Text-copy-source-md5: f75b8179e4bbe7e2b4a074dcef62de95
+Text-copy-source-sha1: 7fe70820e08a1aac0ef224d9c66ab66831cc4ab1
+
+
+Revision-number: 4
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+del
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-07T13:39:46.027445Z
+PROPS-END
+
+Node-path: trunk/file.txt
+Node-action: delete
+
+
+Revision-number: 5
+Prop-content-length: 102
+Content-length: 102
+
+K 7
+svn:log
+V 2
+br
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-07T13:40:02.382963Z
+PROPS-END
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 3
+Node-copyfrom-path: trunk/file.txt
+Text-copy-source-md5: f75b8179e4bbe7e2b4a074dcef62de95
+Text-copy-source-sha1: 7fe70820e08a1aac0ef224d9c66ab66831cc4ab1
+
+
