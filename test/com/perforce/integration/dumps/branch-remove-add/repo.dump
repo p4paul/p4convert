@@ -1,0 +1,154 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 105bf3ef-f47a-475d-b798-cfef0eda4ec0
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-09-09T12:52:43.320894Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-09T12:55:56.869259Z
+PROPS-END
+
+Node-path: tags
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: f75b8179e4bbe7e2b4a074dcef62de95
+Text-content-sha1: 7fe70820e08a1aac0ef224d9c66ab66831cc4ab1
+Content-length: 18
+
+PROPS-END
+content
+
+
+Node-path: trunk/test
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/test/case.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: f75b8179e4bbe7e2b4a074dcef62de95
+Text-content-sha1: 7fe70820e08a1aac0ef224d9c66ab66831cc4ab1
+Content-length: 18
+
+PROPS-END
+content
+
+
+Revision-number: 2
+Prop-content-length: 118
+Content-length: 118
+
+K 7
+svn:log
+V 17
+Branch and Remove
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-09T12:59:22.913887Z
+PROPS-END
+
+Node-path: tags/1.1
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk
+
+
+Node-path: tags/1.1/test
+Node-action: delete
+
+
+Revision-number: 3
+Prop-content-length: 107
+Content-length: 107
+
+K 7
+svn:log
+V 7
+new add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-09-09T13:00:41.894846Z
+PROPS-END
+
+Node-path: tags/1.1/test
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: tags/1.1/test/case.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 4
+Text-content-md5: 9cd599a3523898e6a12e13ec787da50a
+Text-content-sha1: 389cc6b7ae5a659383eab5dfc253764eccf84732
+Content-length: 14
+
+PROPS-END
+new
+
+

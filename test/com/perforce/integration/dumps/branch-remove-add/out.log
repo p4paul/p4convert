@@ -1,0 +1,35 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - tags
+   A:D - trunk
+   A:F - trunk/file.txt
+   A:D - trunk/test
+   A:F - trunk/test/case.txt
+rev: 2 => @2
+   B:D - tags/1.1
+   R:D - tags/1.1/test
+   removing pending rev: tags/1.1/test/case.txt
+rev: 3 => @3
+   A:D - tags/1.1/test
+   A:F - tags/1.1/test/case.txt
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 3
+  Converted revs     : 3
+  Branches (dir)     : 1
+  Integrates (dir)   : 0
+  Archive revisions  : 3
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
