@@ -1,0 +1,13 @@
+@pv@ 9 @db.rev@ @//import/tags/1.0/foo.txt@ 2 1 4 3 1377265680 1377265509 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 1 @//import/trunk/foo.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/tags/1.0/foo.txt@ 1 1 3 2 1377265611 1377265509 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 1 @//import/trunk/foo.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo.txt@ 1 1 0 1 1377265509 1377265509 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 0 @//import/trunk/foo.txt@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/tags/1.0/foo.txt@ @//import/trunk/foo.txt@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/tags/1.0/foo.txt@ @//import/trunk/foo.txt@ 0 1 1 2 4 3 
+@pv@ 0 @db.integed@ @//import/trunk/foo.txt@ @//import/tags/1.0/foo.txt@ 0 1 0 1 3 2 
+@pv@ 0 @db.integed@ @//import/trunk/foo.txt@ @//import/tags/1.0/foo.txt@ 1 2 0 1 5 3 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @pallen@ 1377265680 1 @edit
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1377265611 1 @branch
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1377265509 1 @add
+@pv@ 0 @db.desc@ 3 @edit
+@pv@ 0 @db.desc@ 2 @branch
+@pv@ 0 @db.desc@ 1 @add
