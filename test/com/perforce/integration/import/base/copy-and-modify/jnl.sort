@@ -1,0 +1,8 @@
+@pv@ 0 @db.desc@ 1 @add foo.txt
+@pv@ 0 @db.desc@ 2 @copy and change at the same time.
+@pv@ 0 @db.integed@ @//import/bar.txt@ @//import/foo.txt@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/foo.txt@ @//import/bar.txt@ 0 1 0 1 11 2 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @rooneg@ 1131406637 1 @add foo.txt
+@pv@ 2 @db.change@ 2 2 @svn-client@ @rooneg@ 1131406664 1 @copy and change at the same tim@ @//import/*@ 
+@pv@ 9 @db.rev@ @//import/bar.txt@ 1 1 0 2 1131406664 1131406664 D2508118D0D39E198D1129D87D692D59 9 0 0 @//import/bar.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/foo.txt@ 1 1 0 1 1131406637 1131406637 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/foo.txt@ @1.1@ 1 

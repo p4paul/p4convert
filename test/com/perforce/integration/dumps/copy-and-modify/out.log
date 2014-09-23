@@ -1,0 +1,26 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:F - foo.txt
+rev: 2 => @2
+   B:F - bar.txt
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 2
+  Converted revs     : 2
+  Branches (dir)     : 0
+  Integrates (dir)   : 0
+  Archive revisions  : 2
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
