@@ -1,0 +1,8 @@
+@pv@ 0 @db.desc@ 1 @add dir and file
+@pv@ 0 @db.desc@ 2 @copy dir and modify prop of f
+@pv@ 0 @db.integed@ @//import/dir/f@ @//import/dir2/f@ 0 1 0 1 11 2 
+@pv@ 0 @db.integed@ @//import/dir2/f@ @//import/dir/f@ 0 1 0 1 2 2 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pl@ 1145451029 1 @add dir and file
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pl@ 1145451075 1 @copy dir and modify prop of f
+@pv@ 9 @db.rev@ @//import/dir/f@ 1 1 0 1 1145451029 1145451029 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/dir/f@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/dir2/f@ 1 1 0 2 1145451075 1145451075 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/dir2/f@ @1.2@ 1 
