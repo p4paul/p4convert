@@ -1,0 +1,166 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 45bd1171-f238-40d8-aee4-21a716fbca0a
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2012-06-29T00:27:29.450119Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 112
+Content-length: 112
+
+K 7
+svn:log
+V 11
+Create Main
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-29T00:27:30.087716Z
+PROPS-END
+
+Node-path: main
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: main/dir1
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: main/dir1/file1
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 10
+Text-content-md5: 714d497ecf2f4b7798a99e5931e66d7d
+Text-content-sha1: d95bd1278782aa973f1a405ecc92b338c13331f4
+Content-length: 20
+
+PROPS-END
+mainfile1
+
+
+Node-path: main/dir1/file2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 10
+Text-content-md5: 7eab4462dced460f73c9d825d1f9554b
+Text-content-sha1: aa55cef3774591554aba76f0ed1719a546f2a037
+Content-length: 20
+
+PROPS-END
+mainfile2
+
+
+Revision-number: 2
+Prop-content-length: 112
+Content-length: 112
+
+K 7
+svn:log
+V 11
+Delete Dir1
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-29T00:27:31.063055Z
+PROPS-END
+
+Node-path: main/dir1
+Node-action: delete
+
+
+Revision-number: 3
+Prop-content-length: 114
+Content-length: 114
+
+K 7
+svn:log
+V 13
+Add otherfile
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-29T00:27:32.062261Z
+PROPS-END
+
+Node-path: main/otherfile1
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 10
+Text-content-md5: 89b8ce9b7989052c2408ecabdc6a7ba6
+Text-content-sha1: 4b40cc5c198a608ebade5b7274399270ff872b62
+Content-length: 20
+
+PROPS-END
+mainfile3
+
+
+Revision-number: 4
+Prop-content-length: 123
+Content-length: 123
+
+K 7
+svn:log
+V 22
+Restore dir1 with Edit
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-06-29T00:27:34.076932Z
+PROPS-END
+
+Node-path: main/dir1
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: main/dir1
+
+
+Node-path: main/dir1/file2
+Node-kind: file
+Node-action: change
+Text-content-length: 18
+Text-content-md5: b36118c9fb377ef6cf62c0ba4785db84
+Text-content-sha1: c0c23195992898d79ddc1cf129d519b3d8dade3d
+Content-length: 18
+
+mainfile2
+andEdit
+
+
