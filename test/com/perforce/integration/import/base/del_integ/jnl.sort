@@ -1,0 +1,14 @@
+@pv@ 0 @db.desc@ 1 @add
+@pv@ 0 @db.desc@ 2 @tag:1.0
+@pv@ 0 @db.desc@ 3 @del and tag:1.1
+@pv@ 0 @db.integed@ @//import/tags/1.0/file.txt@ @//import/tags/1.1/file.txt@ 0 1 0 1 3 3 
+@pv@ 0 @db.integed@ @//import/tags/1.0/file.txt@ @//import/trunk/file.txt@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/tags/1.1/file.txt@ @//import/tags/1.0/file.txt@ 0 1 0 1 2 3 
+@pv@ 0 @db.integed@ @//import/trunk/file.txt@ @//import/tags/1.0/file.txt@ 0 1 0 1 3 2 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1275493751 1 @add
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1275493801 1 @tag:1.0
+@pv@ 2 @db.change@ 3 3 @svn-client@ @pallen@ 1275494097 1 @del and tag:1.1
+@pv@ 9 @db.rev@ @//import/tags/1.0/file.txt@ 1 1 3 2 1275493801 1275493751 E1CBB0C3879AF8347246F12C559A86B5 5 0 1 @//import/trunk/file.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/tags/1.0/file.txt@ 2 1 2 3 1275494097 0 00000000000000000000000000000000 -1 0 0 @//import/tags/1.0/file.txt@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/tags/1.1/file.txt@ 1 1 3 3 1275494097 1275493751 E1CBB0C3879AF8347246F12C559A86B5 5 0 1 @//import/trunk/file.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/file.txt@ 1 1 0 1 1275493751 1275493751 E1CBB0C3879AF8347246F12C559A86B5 5 0 0 @//import/trunk/file.txt@ @1.1@ 1 
