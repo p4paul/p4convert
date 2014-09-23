@@ -1,0 +1,6 @@
+@pv@ 9 @db.rev@ @//import/foo@ 2 1 2 2 1399993571 0 00000000000000000000000000000000 -1 0 0 @//import/foo@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/foo@ 1 1 0 1 1399993571 1399993571 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/foo@ @1.1@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @svnuser@ 1399993571 1 @Delete foo
+@pv@ 2 @db.change@ 1 1 @svn-client@ @svnuser@ 1399993571 1 @Add foo
+@pv@ 0 @db.desc@ 2 @Delete foo
+@pv@ 0 @db.desc@ 1 @Add foo
