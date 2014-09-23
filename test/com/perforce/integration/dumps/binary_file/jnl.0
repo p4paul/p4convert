@@ -1,0 +1,25 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @binary file@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1275419893 1 @binary file@ 
+@pv@ 3 @db.rev@ @//import/file.png@ 1 257 0 1 1275419893 1275419893 6E71E7B41B56E41F18786D8B30B867E8 @//import/file.png@ @1.1@ 257 
+@pv@ 0 @db.revcx@ 1 @//import/file.png@ 1 0 
+@pv@ 0 @db.desc@ 2 @gif file@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1336991859 1 @gif file@ 
+@pv@ 3 @db.rev@ @//import/marbles.gif@ 1 257 0 2 1336991859 1336991859 7339676E3E0AD3E447CFE4858000D122 @//import/marbles.gif@ @1.2@ 257 
+@pv@ 0 @db.revcx@ 2 @//import/marbles.gif@ 1 0 
+@pv@ 0 @db.desc@ 3 @Adobe@ 
+@pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1336992750 1 @Adobe@ 
+@pv@ 3 @db.rev@ @//import/1x1.gif@ 1 257 0 3 1336992750 1336992750 C1C439DA8BB8C83FD02813A26C40CB1D @//import/1x1.gif@ @1.3@ 257 
+@pv@ 0 @db.revcx@ 3 @//import/1x1.gif@ 1 0 
+@pv@ 3 @db.rev@ @//import/button.pasteword.gif@ 1 257 0 3 1336992750 1336992750 525626E1DBEA31535C1BBF06037DEB7C @//import/button.pasteword.gif@ @1.3@ 257 
+@pv@ 0 @db.revcx@ 3 @//import/button.pasteword.gif@ 1 0 
+@pv@ 0 @db.desc@ 4 @add@ 
+@pv@ 0 @db.change@ 4 4 @svn-client@ @pallen@ 1336996059 1 @add@ 
+@pv@ 3 @db.rev@ @//import/whatsnew.html@ 1 1 0 4 1336996059 1336996059 00000000000000000000000000000000 @//import/whatsnew.html@ @1.4@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/whatsnew.html@ 1 0 
+@rv@ 1 @db.counters@ @change@ @4@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 
