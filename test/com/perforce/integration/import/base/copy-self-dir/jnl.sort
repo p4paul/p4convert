@@ -1,0 +1,11 @@
+@pv@ 9 @db.rev@ @//import/trunk/foo@ 3 1 4 3 1375904813 1375904812 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 1 @//import/trunk/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo@ 2 1 1 2 1375904813 1375904813 E30260020BAEB0398FF07B37DD33ED16 3 0 0 @//import/trunk/foo@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo@ 1 1 0 1 1375904812 1375904812 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 0 @//import/trunk/foo@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/trunk/foo@ @//import/trunk/foo@ 0 1 2 3 4 3 
+@pv@ 0 @db.integed@ @//import/trunk/foo@ @//import/trunk/foo@ 2 3 0 1 5 3 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @emosenkis@ 1375904813 1 @Revert trunk to r1
+@pv@ 2 @db.change@ 2 2 @svn-client@ @emosenkis@ 1375904813 1 @Update trunk/foo
+@pv@ 2 @db.change@ 1 1 @svn-client@ @emosenkis@ 1375904812 1 @Add trunk
+@pv@ 0 @db.desc@ 3 @Revert trunk to r1
+@pv@ 0 @db.desc@ 2 @Update trunk/foo
+@pv@ 0 @db.desc@ 1 @Add trunk
