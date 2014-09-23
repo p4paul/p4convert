@@ -1,0 +1,12 @@
+@pv@ 9 @db.rev@ @//import/foo@ 3 1 3 3 1366044909 1366044827 D41D8CD98F00B204E9800998ECF8427E 0 0 1 @//import/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo@ 2 1 2 2 1366044879 0 00000000000000000000000000000000 -1 0 0 @//import/foo@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/foo@ 1 1 0 1 1366044827 1366044827 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo2@ 3 1 3 3 1366044909 1366044827 D41D8CD98F00B204E9800998ECF8427E 0 0 1 @//import/foo2@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo2@ 2 1 2 2 1366044879 0 00000000000000000000000000000000 -1 0 0 @//import/foo2@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/foo2@ 1 1 0 1 1366044827 1366044827 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/foo2@ @1.1@ 1 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @emosenkis@ 1366044909 1 @replace foo
+@pv@ 2 @db.change@ 2 2 @svn-client@ @emosenkis@ 1366044879 1 @Add bar
+@pv@ 2 @db.change@ 1 1 @svn-client@ @emosenkis@ 1366044827 1 @Add foo
+@pv@ 0 @db.desc@ 3 @replace foo
+@pv@ 0 @db.desc@ 2 @Add bar
+@pv@ 0 @db.desc@ 1 @Add foo
