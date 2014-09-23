@@ -1,0 +1,107 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 3c6f2105-1317-465e-9490-0ea3586d3498
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-08-15T10:03:40.197177Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 107
+Content-length: 107
+
+K 7
+svn:log
+V 7
+Add foo
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-08-15T10:04:18.102757Z
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 3
+Text-content-md5: 4f98f59e877ecb84ff75ef0fab45bac5
+Text-content-sha1: e1d35a6f7182bfbac1c45f6bfdc12419e06e8d59
+Content-length: 13
+
+PROPS-END
+v1
+
+
+Revision-number: 2
+Prop-content-length: 111
+Content-length: 111
+
+K 7
+svn:log
+V 10
+Update foo
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-08-15T10:04:19.038244Z
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: change
+Text-content-length: 3
+Text-content-md5: e30260020baeb0398ff07b37dd33ed16
+Text-content-sha1: 870efcb9bdd84669a49ddd7a0b434a83bd44a935
+Content-length: 3
+
+v2
+
+
+Revision-number: 3
+Prop-content-length: 111
+Content-length: 111
+
+K 7
+svn:log
+V 10
+Revert foo
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-08-15T10:05:24.281103Z
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: delete
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: foo
+Text-copy-source-md5: 4f98f59e877ecb84ff75ef0fab45bac5
+Text-copy-source-sha1: e1d35a6f7182bfbac1c45f6bfdc12419e06e8d59
+
+
+
+
