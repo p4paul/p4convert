@@ -1,0 +1,19 @@
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 2
+  Converted revs     : 2
+  Branches (dir)     : 0
+  Integrates (dir)   : 0
+  Archive revisions  : 1
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Subversion users   : Last access date
+     pallen	  28-May-2010 17:10
+
