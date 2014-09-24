@@ -1,0 +1,3 @@
+@pv@ 0 @db.desc@ 1 @empty file with property svn:eol-style
+@pv@ 2 @db.change@ 1 1 @svn-client@ @des@ 1216805886 1 @empty file with property svn:eo@ @//import/*@ 
+@pv@ 9 @db.rev@ @//import/empty.txt@ 1 1 0 1 1216805886 1216805886 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/empty.txt@ @1.1@ 1 

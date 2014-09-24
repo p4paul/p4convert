@@ -1,0 +1,46 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 6c3aae5f-0fed-4bae-9886-c8e21b9d5a59
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2012-02-21T20:09:34.422092Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 233
+Content-length: 233
+
+K 7
+svn:log
+V 39
+empty file with property svn:eol-style
+
+K 10
+svn:author
+V 3
+des
+K 8
+svn:date
+V 27
+2008-07-23T09:38:06.251011Z
+PROPS-END
+
+Node-path: empty.txt
+Node-kind: file
+Node-action: change
+Prop-content-length: 40
+Content-length: 40
+
+K 13
+svn:eol-style
+V 6
+native
+PROPS-END
+
+
