@@ -1,0 +1,44 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - branches
+   A:D - tags
+   A:D - trunk
+   A:D - trunk/src
+   A:F - trunk/src/file1.txt
+   A:F - trunk/src/file2.txt
+rev: 2 => @2
+   E:F - trunk/src/file1.txt
+   E:F - trunk/src/file2.txt
+rev: 3 => @3
+   B:D - branches/1.0
+   R:F - branches/1.0/src/file1.txt
+   removing pending rev: branches/1.0/src/file1.txt
+   B:F - branches/1.0/src/file1.txt
+   R:F - branches/1.0/src/file2.txt
+   removing pending rev: branches/1.0/src/file2.txt
+   B:F - branches/1.0/src/file2.txt
+rev: 4 => @4
+   B:D - tags/1.1
+rev: 5 => @5
+   B:D - tags/1.2
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 5
+  Converted revs     : 5
+  Branches (dir)     : 3
+  Integrates (dir)   : 0
+  Archive revisions  : 5
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
