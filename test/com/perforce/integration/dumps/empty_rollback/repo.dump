@@ -1,0 +1,167 @@
+SVN-fs-dump-format-version: 2
+
+UUID: cf6f0ea0-4b02-4a6e-bad6-a3812a5cebe9
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2012-08-24T15:15:11.444603Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-08-24T15:17:06.802183Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/src
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/src/Debug
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/src/file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: f75b8179e4bbe7e2b4a074dcef62de95
+Text-content-sha1: 7fe70820e08a1aac0ef224d9c66ab66831cc4ab1
+Content-length: 18
+
+PROPS-END
+content
+
+
+Revision-number: 2
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+tag
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-08-24T15:19:10.869548Z
+PROPS-END
+
+Node-path: tags
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: tags/1.1
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk/src
+
+
+Revision-number: 3
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+edit
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-08-24T15:19:55.470673Z
+PROPS-END
+
+Node-path: trunk/src/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 16
+Text-content-md5: 0a1a26deba6fa091237a5cc6c8a5d568
+Text-content-sha1: 865f62718e35f45dd48b6b3f2dc7f135433ec92d
+Content-length: 16
+
+content
+content
+
+
+Revision-number: 4
+Prop-content-length: 133
+Content-length: 133
+
+K 7
+svn:log
+V 32
+rollback with copy from tags 1.1
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-08-24T15:26:54.318383Z
+PROPS-END
+
+Node-path: trunk/src/Debug
+Node-kind: dir
+Node-action: delete
+
+Node-path: trunk/src/Debug
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk/src/Debug
+
+
+
+
