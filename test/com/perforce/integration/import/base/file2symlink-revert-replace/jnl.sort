@@ -1,0 +1,12 @@
+@pv@ 9 @db.rev@ @//import/foo@ 3 1 4 3 1375461521 1375461520 D41D8CD98F00B204E9800998ECF8427E 0 0 1 @//import/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo@ 2 262145 1 2 1375461520 1375461520 37B51D194A7513E45B56F6524F2D51F2 3 0 0 @//import/foo@ @1.2@ 262145 
+@pv@ 9 @db.rev@ @//import/foo@ 1 1 0 1 1375461520 1375461520 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/junk@ 1 1 0 3 1375461521 1375461521 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/junk@ @1.3@ 1 
+@pv@ 0 @db.integed@ @//import/foo@ @//import/foo@ 0 1 2 3 4 3 
+@pv@ 0 @db.integed@ @//import/foo@ @//import/foo@ 2 3 0 1 5 3 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @emosenkis@ 1375461521 1 @Revert foo back to being a file@ @//import/*@ 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @emosenkis@ 1375461520 1 @Replace foo with symlink
+@pv@ 2 @db.change@ 1 1 @svn-client@ @emosenkis@ 1375461520 1 @Add foo as file
+@pv@ 0 @db.desc@ 3 @Revert foo back to being a file (and do something else unrelated)
+@pv@ 0 @db.desc@ 2 @Replace foo with symlink
+@pv@ 0 @db.desc@ 1 @Add foo as file
