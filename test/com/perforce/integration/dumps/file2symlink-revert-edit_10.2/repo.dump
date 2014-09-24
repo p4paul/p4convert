@@ -1,0 +1,153 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 9322369a-10d8-4d72-80c7-dc15f66be770
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-08-07T20:58:53.057355Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 119
+Content-length: 119
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-07T20:58:53.460735Z
+K 7
+svn:log
+V 15
+Add foo as file
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 3
+Text-content-md5: 4f98f59e877ecb84ff75ef0fab45bac5
+Text-content-sha1: e1d35a6f7182bfbac1c45f6bfdc12419e06e8d59
+Content-length: 13
+
+PROPS-END
+v1
+
+
+Revision-number: 2
+Prop-content-length: 128
+Content-length: 128
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-07T20:58:53.940739Z
+K 7
+svn:log
+V 24
+Replace foo with symlink
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: replace
+Prop-content-length: 33
+Text-content-length: 8
+Text-content-md5: e308fdc36286591d5679ee49dd03e826
+Text-content-sha1: 33701aac8ebfd8f2e84133144000a6bb9bff0040
+Content-length: 41
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link bar
+
+Revision-number: 3
+Prop-content-length: 169
+Content-length: 169
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-07T20:58:54.444781Z
+K 7
+svn:log
+V 65
+Revert foo back to being a file (and do something else unrelated)
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: delete
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: foo
+Text-copy-source-md5: 4f98f59e877ecb84ff75ef0fab45bac5
+Text-copy-source-sha1: e1d35a6f7182bfbac1c45f6bfdc12419e06e8d59
+
+
+
+
+Node-path: junk
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 4
+Prop-content-length: 111
+Content-length: 111
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-07T20:58:54.850110Z
+K 7
+svn:log
+V 8
+Edit foo
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: change
+Text-content-length: 3
+Text-content-md5: e30260020baeb0398ff07b37dd33ed16
+Text-content-sha1: 870efcb9bdd84669a49ddd7a0b434a83bd44a935
+Content-length: 3
+
+v2
+
+
