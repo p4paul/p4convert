@@ -1,0 +1,3 @@
+@pv@ 0 @db.desc@ 1 @blah
+@pv@ 2 @db.change@ 1 1 @svn-client@ @rooneg@ 1135206778 1 @blah
+@pv@ 9 @db.rev@ @//import/dir/.svn.properties@ 1 1 0 1 1135206778 1135206778 750B447340E1A79A41F4F794289CC5EA 79 0 0 @//import/dir/.svn.properties@ @1.1@ 1 
