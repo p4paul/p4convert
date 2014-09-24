@@ -1,0 +1,205 @@
+SVN-fs-dump-format-version: 2
+
+UUID: a7ccb008-ad71-4107-b262-9060dde85c6d
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-08-16T13:03:48.979893Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 107
+Content-length: 107
+
+K 7
+svn:log
+V 7
+add dir
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-08-16T13:06:03.607700Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/dir
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 5
+prop1
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-08-16T13:06:51.205968Z
+PROPS-END
+
+Node-path: trunk/dir
+Node-kind: dir
+Node-action: change
+Prop-content-length: 29
+Content-length: 29
+
+K 8
+proptest
+V 1
+1
+PROPS-END
+
+
+Revision-number: 3
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 5
+prop2
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-08-16T13:07:07.231386Z
+PROPS-END
+
+Node-path: trunk/dir
+Node-kind: dir
+Node-action: change
+Prop-content-length: 29
+Content-length: 29
+
+K 8
+proptest
+V 1
+2
+PROPS-END
+
+
+Revision-number: 4
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+new
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-08-16T13:07:25.952429Z
+PROPS-END
+
+Node-path: trunk/dir
+Node-kind: dir
+Node-action: change
+Prop-content-length: 47
+Content-length: 47
+
+K 8
+proptest
+V 1
+2
+K 7
+newtest
+V 1
+1
+PROPS-END
+
+
+Revision-number: 5
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+del
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-08-16T13:08:23.236431Z
+PROPS-END
+
+Node-path: trunk/dir
+Node-kind: dir
+Node-action: change
+Prop-content-length: 29
+Content-length: 29
+
+K 8
+proptest
+V 1
+2
+PROPS-END
+
+
+Revision-number: 6
+Prop-content-length: 108
+Content-length: 108
+
+K 7
+svn:log
+V 8
+del last
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-08-16T13:15:25.807008Z
+PROPS-END
+
+Node-path: trunk/dir
+Node-kind: dir
+Node-action: change
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+

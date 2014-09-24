@@ -1,0 +1,35 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - trunk
+   A:D - trunk/dir
+rev: 2 => @2
+   E:D - trunk/dir
+rev: 3 => @3
+   E:D - trunk/dir
+rev: 4 => @4
+   E:D - trunk/dir
+rev: 5 => @5
+   E:D - trunk/dir
+rev: 6 => @6
+   E:D - trunk/dir
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 6
+  Converted revs     : 6
+  Branches (dir)     : 0
+  Integrates (dir)   : 0
+  Archive revisions  : 4
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
