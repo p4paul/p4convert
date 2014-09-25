@@ -1,0 +1,60 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 5c78ac6f-8bf5-41c4-8e99-6c6c8d636e51
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2012-02-29T00:10:57.253468Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 112
+Content-length: 112
+
+K 7
+svn:log
+V 11
+Create Main
+K 10
+svn:author
+V 6
+nmorse
+K 8
+svn:date
+V 27
+2012-02-29T00:10:58.082659Z
+PROPS-END
+
+Node-path: main
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: main/test.awk
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 201
+Text-content-md5: 895e2a05a9d207ee53867932d4cbfe3d
+Text-content-sha1: 34dbb43f43a2ceccdefe32fca601b32d26f12c22
+Content-length: 211
+
+PROPS-END
+$AWK '
+	BEGIN {
+		# Some awk variants do not understand "\r" or "\013", so we have to
+		# put a carriage return directly in the file.
+		CR="" # <-- There is a single CR between the " chars here.
+	}
+'
+
+
