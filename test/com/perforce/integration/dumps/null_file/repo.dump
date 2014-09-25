@@ -1,0 +1,63 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 02472a55-0f77-45ed-b0d5-dc7f58c5ef2a
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-09-25T10:54:34.291060Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-09-25T10:55:53.768892Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/{{=machine}}
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/{{=machine}}/foo: bar.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+

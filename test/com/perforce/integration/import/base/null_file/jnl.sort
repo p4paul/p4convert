@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/trunk/{{=machine}}/foo: bar.txt@ 1 1 0 1 1380106553 1380106553 16FED0121505838F492D0295BA547558 8 0 0 @//import/trunk/{{=machine}}/foo: bar.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1380106553 1 @add
+@pv@ 0 @db.desc@ 1 @add
