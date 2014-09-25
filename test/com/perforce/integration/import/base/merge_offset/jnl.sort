@@ -1,0 +1,66 @@
+@pv@ 9 @db.rev@ @//import/branches/copy/src/file.txt@ 3 1 1 1015 1363875445 1363875445 36866C298713D2BAE568900B8064EE23 206 0 0 @//import/branches/copy/src/file.txt@ @1.1015@ 1 
+@pv@ 9 @db.rev@ @//import/branches/copy/src/file.txt@ 2 1 4 1013 1363873509 1363873196 B4C779EE8C962F5F6DF986FA7BA26E5C 200 0 1 @//import/trunk/src/file.txt@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/branches/copy/src/file.txt@ 1 1 3 1002 1363872334 1363872334 00000000000000000000000000000000 -1 0 1 @//import/trunk/src/file.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/branches/merge/.svn.properties@ 3 1 1 1019 1363875985 1363875985 3F39D55069810797DA6B512482FA12F9 118 0 0 @//import/branches/merge/.svn.properties@ @1.1019@ 1 
+@pv@ 9 @db.rev@ @//import/branches/merge/.svn.properties@ 2 1 1 1016 1363875912 1363875912 44EDE88BD83DA84F4E0F0A614F1A89FC 115 0 0 @//import/branches/merge/.svn.properties@ @1.1016@ 1 
+@pv@ 9 @db.rev@ @//import/branches/merge/.svn.properties@ 1 1 0 1014 1363873570 1363873570 71F1DC7EA68715B4EAA6AE760E725187 98 0 0 @//import/branches/merge/.svn.properties@ @1.1014@ 1 
+@pv@ 9 @db.rev@ @//import/branches/merge/src/file.txt@ 4 1 1 1019 1363875985 1363875985 64B97076748BF54A00E70D19499FD997 234 0 0 @//import/branches/merge/src/file.txt@ @1.1019@ 1 
+@pv@ 9 @db.rev@ @//import/branches/merge/src/file.txt@ 3 1 1 1016 1363875912 1363875912 AF616688975AA92D7732AA1238E86E89 228 0 0 @//import/branches/merge/src/file.txt@ @1.1016@ 1 
+@pv@ 9 @db.rev@ @//import/branches/merge/src/file.txt@ 2 1 1 1014 1363873570 1363873570 6738373A8CBF3AD60BF21A43B4A7DC17 182 0 0 @//import/branches/merge/src/file.txt@ @1.1014@ 1 
+@pv@ 9 @db.rev@ @//import/branches/merge/src/file.txt@ 1 1 3 1002 1363872334 1363872334 00000000000000000000000000000000 -1 0 1 @//import/trunk/src/file.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file.txt@ 6 1 1 1018 1363875959 1363875959 D572D19043E0CFF6B2E65685148874B8 212 0 0 @//import/trunk/src/file.txt@ @1.1018@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file.txt@ 5 1 1 1017 1363875945 1363875945 E066A021F868D4450DF3E6BECF82BD77 206 0 0 @//import/trunk/src/file.txt@ @1.1017@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file.txt@ 4 1 1 1005 1363873196 1363873196 00000000000000000000000000000000 -1 0 1 @//import/trunk/src/file.txt@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file.txt@ 3 1 1 1004 1363873183 1363873183 00000000000000000000000000000000 -1 0 1 @//import/trunk/src/file.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file.txt@ 2 1 1 1003 1363873172 1363873172 00000000000000000000000000000000 -1 0 1 @//import/trunk/src/file.txt@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file.txt@ 1 1 0 1001 1363872228 1363872228 00000000000000000000000000000000 -1 0 0 @//import/trunk/src/file.txt@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/branches/copy/src/file.txt@ @//import/branches/merge/src/file.txt@ 2 3 2 3 10 1016 
+@pv@ 0 @db.integed@ @//import/branches/copy/src/file.txt@ @//import/trunk/src/file.txt@ 0 1 0 1 2 1002 
+@pv@ 0 @db.integed@ @//import/branches/copy/src/file.txt@ @//import/trunk/src/file.txt@ 0 4 1 2 4 1013 
+@pv@ 0 @db.integed@ @//import/branches/merge/src/file.txt@ @//import/branches/copy/src/file.txt@ 2 3 2 3 12 1016 
+@pv@ 0 @db.integed@ @//import/branches/merge/src/file.txt@ @//import/trunk/src/file.txt@ 0 1 0 1 2 1002 
+@pv@ 0 @db.integed@ @//import/branches/merge/src/file.txt@ @//import/trunk/src/file.txt@ 3 4 1 2 0 1014 
+@pv@ 0 @db.integed@ @//import/branches/merge/src/file.txt@ @//import/trunk/src/file.txt@ 5 6 3 4 0 1019 
+@pv@ 0 @db.integed@ @//import/trunk/src/file.txt@ @//import/branches/copy/src/file.txt@ 0 1 0 1 3 1002 
+@pv@ 0 @db.integed@ @//import/trunk/src/file.txt@ @//import/branches/copy/src/file.txt@ 1 2 0 4 5 1013 
+@pv@ 0 @db.integed@ @//import/trunk/src/file.txt@ @//import/branches/merge/src/file.txt@ 0 1 0 1 3 1002 
+@pv@ 0 @db.integed@ @//import/trunk/src/file.txt@ @//import/branches/merge/src/file.txt@ 1 2 3 4 10 1014 
+@pv@ 0 @db.integed@ @//import/trunk/src/file.txt@ @//import/branches/merge/src/file.txt@ 3 4 5 6 10 1019 
+@pv@ 2 @db.change@ 1019 1019 @svn-client@ @pallen@ 1363875985 1 @merge
+@pv@ 2 @db.change@ 1018 1018 @svn-client@ @pallen@ 1363875959 1 @edit5
+@pv@ 2 @db.change@ 1017 1017 @svn-client@ @pallen@ 1363875945 1 @edit4
+@pv@ 2 @db.change@ 1016 1016 @svn-client@ @pallen@ 1363875912 1 @tc
+@pv@ 2 @db.change@ 1015 1015 @svn-client@ @pallen@ 1363875445 1 @edit copy1
+@pv@ 2 @db.change@ 1014 1014 @svn-client@ @pallen@ 1363873570 1 @merge
+@pv@ 2 @db.change@ 1013 1013 @svn-client@ @pallen@ 1363873509 1 @copy
+@pv@ 2 @db.change@ 1012 1012 @svn-client@ @pallen@ 1363875985 1 @merge@ @//import/branches/merge/...@ 
+@pv@ 2 @db.change@ 1011 1011 @svn-client@ @pallen@ 1363875959 1 @edit5@ @//import/trunk/src/*@ 
+@pv@ 2 @db.change@ 1010 1010 @svn-client@ @pallen@ 1363875945 1 @edit4@ @//import/trunk/src/*@ 
+@pv@ 2 @db.change@ 1009 1009 @svn-client@ @pallen@ 1363875912 1 @tc@ @//import/branches/merge/...@ 
+@pv@ 2 @db.change@ 1008 1008 @svn-client@ @pallen@ 1363875445 1 @edit copy1@ @//import/branches/copy/src/*@ 
+@pv@ 2 @db.change@ 1007 1007 @svn-client@ @pallen@ 1363873570 1 @merge@ @//import/branches/merge/...@ 
+@pv@ 2 @db.change@ 1006 1006 @svn-client@ @pallen@ 1363873509 1 @copy@ @//import/branches/copy/src/*@ 
+@pv@ 2 @db.change@ 1005 1005 @svn-client@ @pallen@ 1363873196 1 @edit3@ @//import/trunk/src/*@ 
+@pv@ 2 @db.change@ 1004 1004 @svn-client@ @pallen@ 1363873183 1 @edit2@ @//import/trunk/src/*@ 
+@pv@ 2 @db.change@ 1003 1003 @svn-client@ @pallen@ 1363873172 1 @edit1@ @//import/trunk/src/*@ 
+@pv@ 2 @db.change@ 1002 1002 @svn-client@ @pallen@ 1363872334 1 @copy@ @//import/branches/...@ 
+@pv@ 2 @db.change@ 1001 1001 @svn-client@ @pallen@ 1363872228 1 @add@ @//import/trunk/src/*@ 
+@pv@ 0 @db.desc@ 1019 @merge
+@pv@ 0 @db.desc@ 1018 @edit5
+@pv@ 0 @db.desc@ 1017 @edit4
+@pv@ 0 @db.desc@ 1016 @tc
+@pv@ 0 @db.desc@ 1015 @edit copy1
+@pv@ 0 @db.desc@ 1014 @merge
+@pv@ 0 @db.desc@ 1013 @copy
+@pv@ 0 @db.desc@ 1012 @merge@ 
+@pv@ 0 @db.desc@ 1011 @edit5@ 
+@pv@ 0 @db.desc@ 1010 @edit4@ 
+@pv@ 0 @db.desc@ 1009 @tc@ 
+@pv@ 0 @db.desc@ 1008 @edit copy1@ 
+@pv@ 0 @db.desc@ 1007 @merge@ 
+@pv@ 0 @db.desc@ 1006 @copy@ 
+@pv@ 0 @db.desc@ 1005 @edit3@ 
+@pv@ 0 @db.desc@ 1004 @edit2@ 
+@pv@ 0 @db.desc@ 1003 @edit1@ 
+@pv@ 0 @db.desc@ 1002 @copy@ 
+@pv@ 0 @db.desc@ 1001 @add@ 
