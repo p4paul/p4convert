@@ -1,0 +1,70 @@
+SVN-fs-dump-format-version: 2
+
+UUID: c2c50201-d614-49ed-827f-b67c24369096
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-06-04T23:09:49.107569Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-06-04T23:10:58.296059Z
+PROPS-END
+
+Node-path: file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 5
+Text-content-md5: e1cbb0c3879af8347246f12c559a86b5
+Text-content-sha1: aa785adca3fcdfe1884ae840e13c6d294a2414e8
+Content-length: 15
+
+PROPS-END
+text
+
+
+Revision-number: 2
+Prop-content-length: 106
+Content-length: 106
+
+K 7
+svn:log
+V 6
+branch
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-06-04T23:13:21.641890Z
+PROPS-END
+
+Node-path: br
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: 
+
+
