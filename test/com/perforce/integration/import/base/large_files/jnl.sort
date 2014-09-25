@@ -1,0 +1,6 @@
+@pv@ 0 @db.desc@ 1 @add
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1328184559 1 @add
+@pv@ 9 @db.rev@ @//import/ascii-unix.txt@ 1 1 0 1 1328184559 1328184559 9C88ADEF2DC9D21600097801C9633A63 8320 0 0 @//import/ascii-unix.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/ascii-win.txt@ 1 1 0 1 1328184559 1328184559 9C88ADEF2DC9D21600097801C9633A63 8320 0 0 @//import/ascii-win.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/utf16-unix.txt@ 1 17301505 0 1 1328184559 1328184559 9C88ADEF2DC9D21600097801C9633A63 8320 0 0 @//import/utf16-unix.txt@ @1.1@ 17301505 
+@pv@ 9 @db.rev@ @//import/utf16-win.txt@ 1 17301505 0 1 1328184559 1328184559 9C88ADEF2DC9D21600097801C9633A63 8320 0 0 @//import/utf16-win.txt@ @1.1@ 17301505 
