@@ -1,0 +1,6 @@
+@pv@ 0 @db.desc@ 1 @Added a file
+@pv@ 0 @db.desc@ 2 @modified it
+@pv@ 2 @db.change@ 1 1 @svn-client@ @rooneg@ 1131566303 1 @Added a file
+@pv@ 2 @db.change@ 2 2 @svn-client@ @rooneg@ 1131566318 1 @modified it
+@pv@ 9 @db.rev@ @//import/foo.txt@ 1 1 0 1 1131566303 1131566303 26BB73556CEB32A5DF30B733C5355EE5 15 0 0 @//import/foo.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo.txt@ 2 1 1 2 1131566318 1131566318 D9BF46ECC7A555936E5115241B93258B 38 0 0 @//import/foo.txt@ @1.2@ 1 
