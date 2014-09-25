@@ -1,0 +1,450 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 2b575f21-0c9b-4ec2-9228-cbe654b53b48
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-03-11T16:55:11.187946Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:01:35.750072Z
+PROPS-END
+
+Node-path: branches
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/src
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/src/file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 176
+Text-content-md5: ef1eb42f4c2fef50c8f833722a1c2ccb
+Text-content-sha1: 36871809464fd2cc701764ded04f5add01a3b6f2
+Content-length: 186
+
+PROPS-END
+A test file
+
+func 1 {
+	line -------
+	line -------
+	line -------
+	line -------
+}
+
+func 2 {
+	line -------
+	line -------
+	line -------
+}
+
+func 3 {
+	line -------
+	line -------
+}
+
+
+
+
+Revision-number: 2
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+copy
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:05:26.596561Z
+PROPS-END
+
+Node-path: branches/1.0
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk
+
+
+Revision-number: 3
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 5
+edit1
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:06:32.371353Z
+PROPS-END
+
+Node-path: trunk/src/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 190
+Text-content-md5: 404b22057410a2c2ee38464533c72c9f
+Text-content-sha1: f6fe2dbe60da79dbc7bfda6019f0905557bc3c33
+Content-length: 190
+
+A test file
+
+func 1 {
+	line ------- edit 1
+	line ------- edit 1
+	line -------
+	line -------
+}
+
+func 2 {
+	line -------
+	line -------
+	line -------
+}
+
+func 3 {
+	line -------
+	line -------
+}
+
+
+
+
+Revision-number: 4
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 5
+edit2
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:06:47.161194Z
+PROPS-END
+
+Node-path: trunk/src/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 197
+Text-content-md5: 2709573e74b523c3d9a0386c2a5b8052
+Text-content-sha1: ef8497c14e780166ab250294b925d6124d83359a
+Content-length: 197
+
+A test file
+
+func 1 {
+	line ------- edit 1
+	line ------- edit 1
+	line -------
+	line -------
+}
+
+func 2 {
+	line -------
+	line ------- edit 2
+	line -------
+}
+
+func 3 {
+	line -------
+	line -------
+}
+
+
+
+
+Revision-number: 5
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 5
+edit3
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:07:00.010422Z
+PROPS-END
+
+Node-path: trunk/src/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 204
+Text-content-md5: 128a3e0bf352db15d1a004b760b72a48
+Text-content-sha1: b929c03dd6ea6f5ca199fa3180fdee7ab0ad17eb
+Content-length: 204
+
+A test file
+
+func 1 {
+	line ------- edit 1
+	line ------- edit 1
+	line -------
+	line -------
+}
+
+func 2 {
+	line -------
+	line ------- edit 2
+	line -------
+}
+
+func 3 {
+	line ------- edit 3
+	line -------
+}
+
+
+
+
+Revision-number: 6
+Prop-content-length: 112
+Content-length: 112
+
+K 7
+svn:log
+V 11
+4:HEAD -- U
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:10:01.041925Z
+PROPS-END
+
+Node-path: branches/1.0
+Node-kind: dir
+Node-action: change
+Prop-content-length: 42
+Content-length: 42
+
+K 13
+svn:mergeinfo
+V 8
+/trunk:5
+PROPS-END
+
+
+Node-path: branches/1.0/src/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 183
+Text-content-md5: e3f1973aa09f68a116f626b230c1e425
+Text-content-sha1: e4cc80ef45a4f577ffcaa1362dd40cafaa539cc1
+Content-length: 183
+
+A test file
+
+func 1 {
+	line -------
+	line -------
+	line -------
+	line -------
+}
+
+func 2 {
+	line -------
+	line -------
+	line -------
+}
+
+func 3 {
+	line ------- edit 3
+	line -------
+}
+
+
+
+
+Revision-number: 7
+Prop-content-length: 108
+Content-length: 108
+
+K 7
+svn:log
+V 8
+3:4 -- U
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:10:36.927055Z
+PROPS-END
+
+Node-path: branches/1.0
+Node-kind: dir
+Node-action: change
+Prop-content-length: 45
+Content-length: 45
+
+K 13
+svn:mergeinfo
+V 10
+/trunk:4-5
+PROPS-END
+
+
+Node-path: branches/1.0/src/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 190
+Text-content-md5: b221894ddd37f69de2e01e0c7b4ff289
+Text-content-sha1: 365b8ccd08660e4b13dcdc6e08764eefc8f58c69
+Content-length: 190
+
+A test file
+
+func 1 {
+	line -------
+	line -------
+	line -------
+	line -------
+}
+
+func 2 {
+	line -------
+	line ------- edit 2
+	line -------
+}
+
+func 3 {
+	line ------- edit 3
+	line -------
+}
+
+
+
+
+Revision-number: 8
+Prop-content-length: 108
+Content-length: 108
+
+K 7
+svn:log
+V 8
+2:3 -- U
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-03-11T17:10:56.822774Z
+PROPS-END
+
+Node-path: branches/1.0
+Node-kind: dir
+Node-action: change
+Prop-content-length: 45
+Content-length: 45
+
+K 13
+svn:mergeinfo
+V 10
+/trunk:3-5
+PROPS-END
+
+
+Node-path: branches/1.0/src/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 204
+Text-content-md5: 128a3e0bf352db15d1a004b760b72a48
+Text-content-sha1: b929c03dd6ea6f5ca199fa3180fdee7ab0ad17eb
+Content-length: 204
+
+A test file
+
+func 1 {
+	line ------- edit 1
+	line ------- edit 1
+	line -------
+	line -------
+}
+
+func 2 {
+	line -------
+	line ------- edit 2
+	line -------
+}
+
+func 3 {
+	line ------- edit 3
+	line -------
+}
+
+
+
+
