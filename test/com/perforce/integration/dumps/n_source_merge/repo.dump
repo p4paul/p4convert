@@ -1,0 +1,199 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 7ee014b1-c12d-4a38-a8ec-f256b4404a2f
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2012-09-24T10:26:35.395396Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-09-24T10:27:57.208870Z
+PROPS-END
+
+Node-path: branches
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 5
+Text-content-md5: 5b4bd9815cdb17b8ceae19eb1810c34c
+Text-content-sha1: 6bfa09d82ce3e898ad4641ae13dd4fdb9cf0d76b
+Content-length: 15
+
+PROPS-END
+line
+
+
+Revision-number: 2
+Prop-content-length: 102
+Content-length: 102
+
+K 7
+svn:log
+V 2
+br
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-09-24T10:28:53.556612Z
+PROPS-END
+
+Node-path: branches/a
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk
+
+
+Node-path: branches/b
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk
+
+
+Revision-number: 3
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+edit
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-09-24T10:32:08.720850Z
+PROPS-END
+
+Node-path: branches/a/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 12
+Text-content-md5: 5f26c12dfc27b26f7fe4430962e063f5
+Text-content-sha1: b25c7092c51821076b77757c192b188abb5fd1d6
+Content-length: 12
+
+line
+line a
+
+
+Revision-number: 4
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+edit
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-09-24T10:32:15.751448Z
+PROPS-END
+
+Node-path: branches/b/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 12
+Text-content-md5: 0fb23e156f48c8e75e89eed164783d59
+Text-content-sha1: b12818c88623c824e956febf06b63c2df61d10f1
+Content-length: 12
+
+line
+line b
+
+
+Revision-number: 5
+Prop-content-length: 115
+Content-length: 115
+
+K 7
+svn:log
+V 14
+a in, b tc = G
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2012-09-24T10:33:54.726053Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: change
+Prop-content-length: 66
+Content-length: 66
+
+K 13
+svn:mergeinfo
+V 31
+/branches/a:2-4
+/branches/b:2-4
+PROPS-END
+
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 12
+Text-content-md5: 0fb23e156f48c8e75e89eed164783d59
+Text-content-sha1: b12818c88623c824e956febf06b63c2df61d10f1
+Content-length: 12
+
+line
+line b
+
+
