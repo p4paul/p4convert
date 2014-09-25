@@ -1,0 +1,95 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @add@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1338282176 1 @add@ 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 1 1 0 1 1338282176 1338282176 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/foo.txt@ 1 0 
+@pv@ 0 @db.desc@ 2 @edit@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1338282193 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 2 1 1 2 1338282193 1338282193 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/trunk/foo.txt@ 2 1 
+@pv@ 0 @db.desc@ 3 @br 1.0@ 
+@pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1338282249 1 @br 1.0@ 
+@pv@ 0 @db.integed@ @//import/tags/1.0/foo.txt@ @//import/trunk/foo.txt@ 0 2 0 1 2 3 
+@pv@ 0 @db.integed@ @//import/trunk/foo.txt@ @//import/tags/1.0/foo.txt@ 0 1 0 2 3 3 
+@pv@ 3 @db.rev@ @//import/tags/1.0/foo.txt@ 1 1 3 3 1338282249 1338282249 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/tags/1.0/foo.txt@ 1 3 
+@pv@ 0 @db.desc@ 4 @edit@ 
+@pv@ 0 @db.change@ 4 4 @svn-client@ @pallen@ 1338282300 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/tags/1.0/foo.txt@ 2 1 1 4 1338282300 1338282300 00000000000000000000000000000000 @//import/tags/1.0/foo.txt@ @1.4@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/tags/1.0/foo.txt@ 2 1 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 3 1 1 4 1338282300 1338282300 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.4@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/trunk/foo.txt@ 3 1 
+@pv@ 0 @db.desc@ 5 @edit@ 
+@pv@ 0 @db.change@ 5 5 @svn-client@ @pallen@ 1338282376 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/tags/1.0/foo.txt@ 3 1 1 5 1338282376 1338282376 00000000000000000000000000000000 @//import/tags/1.0/foo.txt@ @1.5@ 1 
+@pv@ 0 @db.revcx@ 5 @//import/tags/1.0/foo.txt@ 3 1 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 4 1 1 5 1338282376 1338282376 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.5@ 1 
+@pv@ 0 @db.revcx@ 5 @//import/trunk/foo.txt@ 4 1 
+@pv@ 0 @db.desc@ 6 @merge:(tf)@ 
+@pv@ 0 @db.change@ 6 6 @svn-client@ @pallen@ 1338282619 1 @merge:(tf)@ 
+@pv@ 3 @db.rev@ @//import/trunk/.svn.properties@ 1 1 0 6 1338282619 1338282619 00000000000000000000000000000000 @//import/trunk/.svn.properties@ @1.6@ 1 
+@pv@ 0 @db.revcx@ 6 @//import/trunk/.svn.properties@ 1 0 
+@pv@ 0 @db.integed@ @//import/trunk/foo.txt@ @//import/tags/1.0/foo.txt@ 0 3 4 5 4 6 
+@pv@ 0 @db.integed@ @//import/tags/1.0/foo.txt@ @//import/trunk/foo.txt@ 4 5 0 3 5 6 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 5 1 4 6 1338282619 1338282619 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.6@ 1 
+@pv@ 0 @db.revcx@ 6 @//import/trunk/foo.txt@ 5 4 
+@pv@ 0 @db.desc@ 7 @edit@ 
+@pv@ 0 @db.change@ 7 7 @svn-client@ @pallen@ 1338283060 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 6 1 1 7 1338283060 1338283060 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.7@ 1 
+@pv@ 0 @db.revcx@ 7 @//import/trunk/foo.txt@ 6 1 
+@pv@ 0 @db.desc@ 8 @edit@ 
+@pv@ 0 @db.change@ 8 8 @svn-client@ @pallen@ 1338283112 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/tags/1.0/foo.txt@ 4 1 1 8 1338283112 1338283112 00000000000000000000000000000000 @//import/tags/1.0/foo.txt@ @1.8@ 1 
+@pv@ 0 @db.revcx@ 8 @//import/tags/1.0/foo.txt@ 4 1 
+@pv@ 0 @db.desc@ 9 @merge@ 
+@pv@ 0 @db.change@ 9 9 @svn-client@ @pallen@ 1338283228 1 @merge@ 
+@pv@ 3 @db.rev@ @//import/trunk/.svn.properties@ 2 1 1 9 1338283228 1338283228 00000000000000000000000000000000 @//import/trunk/.svn.properties@ @1.9@ 1 
+@pv@ 0 @db.revcx@ 9 @//import/trunk/.svn.properties@ 2 1 
+@pv@ 0 @db.integed@ @//import/trunk/foo.txt@ @//import/tags/1.0/foo.txt@ 0 4 6 7 12 9 
+@pv@ 0 @db.integed@ @//import/tags/1.0/foo.txt@ @//import/trunk/foo.txt@ 6 7 0 4 10 9 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 7 1 4 9 1338283228 1338283228 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.9@ 1 
+@pv@ 0 @db.revcx@ 9 @//import/trunk/foo.txt@ 7 4 
+@pv@ 0 @db.desc@ 10 @diverge@ 
+@pv@ 0 @db.change@ 10 10 @svn-client@ @pallen@ 1348065791 1 @diverge@ 
+@pv@ 3 @db.rev@ @//import/tags/1.0/foo.txt@ 5 1 1 10 1348065791 1348065791 00000000000000000000000000000000 @//import/tags/1.0/foo.txt@ @1.10@ 1 
+@pv@ 0 @db.revcx@ 10 @//import/tags/1.0/foo.txt@ 5 1 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 8 1 1 10 1348065791 1348065791 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.10@ 1 
+@pv@ 0 @db.revcx@ 10 @//import/trunk/foo.txt@ 8 1 
+@pv@ 0 @db.desc@ 11 @option mc@ 
+@pv@ 0 @db.change@ 11 11 @svn-client@ @pallen@ 1348066003 1 @option mc@ 
+@pv@ 3 @db.rev@ @//import/trunk/.svn.properties@ 3 1 1 11 1348066003 1348066003 00000000000000000000000000000000 @//import/trunk/.svn.properties@ @1.11@ 1 
+@pv@ 0 @db.revcx@ 11 @//import/trunk/.svn.properties@ 3 1 
+@pv@ 0 @db.desc@ 12 @mc@ 
+@pv@ 0 @db.change@ 12 12 @svn-client@ @pallen@ 1348066428 1 @mc@ 
+@pv@ 3 @db.rev@ @//import/tags/1.0/.svn.properties@ 1 1 0 12 1348066428 1348066428 00000000000000000000000000000000 @//import/tags/1.0/.svn.properties@ @1.12@ 1 
+@pv@ 0 @db.revcx@ 12 @//import/tags/1.0/.svn.properties@ 1 0 
+@pv@ 0 @db.desc@ 13 @edit@ 
+@pv@ 0 @db.change@ 13 13 @svn-client@ @pallen@ 1348066462 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 9 1 1 13 1348066462 1348066462 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.13@ 1 
+@pv@ 0 @db.revcx@ 13 @//import/trunk/foo.txt@ 9 1 
+@pv@ 0 @db.desc@ 14 @tc@ 
+@pv@ 0 @db.change@ 14 14 @svn-client@ @pallen@ 1348066525 1 @tc@ 
+@pv@ 3 @db.rev@ @//import/tags/1.0/.svn.properties@ 2 1 1 14 1348066525 1348066525 00000000000000000000000000000000 @//import/tags/1.0/.svn.properties@ @1.14@ 1 
+@pv@ 0 @db.revcx@ 14 @//import/tags/1.0/.svn.properties@ 2 1 
+@pv@ 0 @db.integed@ @//import/tags/1.0/foo.txt@ @//import/trunk/foo.txt@ 1 9 5 6 12 14 
+@pv@ 0 @db.integed@ @//import/trunk/foo.txt@ @//import/tags/1.0/foo.txt@ 5 6 1 9 10 14 
+@pv@ 3 @db.rev@ @//import/tags/1.0/foo.txt@ 6 1 4 14 1348066525 1348066525 00000000000000000000000000000000 @//import/tags/1.0/foo.txt@ @1.14@ 1 
+@pv@ 0 @db.revcx@ 14 @//import/tags/1.0/foo.txt@ 6 4 
+@pv@ 0 @db.desc@ 15 @edit@ 
+@pv@ 0 @db.change@ 15 15 @svn-client@ @pallen@ 1348066608 1 @edit@ 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 10 1 1 15 1348066608 1348066608 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.15@ 1 
+@pv@ 0 @db.revcx@ 15 @//import/trunk/foo.txt@ 10 1 
+@pv@ 0 @db.desc@ 16 @div@ 
+@pv@ 0 @db.change@ 16 16 @svn-client@ @pallen@ 1348271799 1 @div@ 
+@pv@ 3 @db.rev@ @//import/tags/1.0/foo.txt@ 7 1 1 16 1348271799 1348271799 00000000000000000000000000000000 @//import/tags/1.0/foo.txt@ @1.16@ 1 
+@pv@ 0 @db.revcx@ 16 @//import/tags/1.0/foo.txt@ 7 1 
+@pv@ 0 @db.desc@ 17 @mc@ 
+@pv@ 0 @db.change@ 17 17 @svn-client@ @pallen@ 1348272034 1 @mc@ 
+@pv@ 3 @db.rev@ @//import/trunk/.svn.properties@ 4 1 1 17 1348272034 1348272034 00000000000000000000000000000000 @//import/trunk/.svn.properties@ @1.17@ 1 
+@pv@ 0 @db.revcx@ 17 @//import/trunk/.svn.properties@ 4 1 
+@rv@ 1 @db.counters@ @change@ @17@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 
