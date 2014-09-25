@@ -1,0 +1,34 @@
+A test file
+
+func 1 {
+	line -------
+	line -------
+	line -------
+	line -------
+}
+
+func 2 {
+	line ------- edit2
+	line -------
+	line ------- edit 2
+}
+
+func 3 {
+	line -------
+	line ------- edit3
+}
+
+func 4 {
+	line -------
+	line ------- edit6
+}
+
+func 5 {
+	line -------
+	line ------- edit7
+	line ------- 
+	line ------- 
+	line ------- 
+}
+
+
