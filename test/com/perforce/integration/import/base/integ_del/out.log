@@ -1,0 +1,31 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - tags
+   A:D - trunk
+   A:F - trunk/file.txt
+rev: 2 => @2
+   B:D - tags/1.0
+rev: 3 => @3
+   B:D - tags/1.1
+   R:D - tags/1.0
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 3
+  Converted revs     : 3
+  Branches (dir)     : 2
+  Integrates (dir)   : 0
+  Archive revisions  : 1
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
