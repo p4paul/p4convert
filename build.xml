@@ -120,8 +120,7 @@
 		</jar>
 	</target>
 
-
-
+	
 
 	<!--RULE: run generated jar-->
 	<target name="run" depends="jar">
@@ -134,19 +133,7 @@
 		</java>
 	</target>
 
-	<!--RULE: run generated jar in GUI mode-->
-	<target name="gui" depends="jar">
-		<java fork="true" classname="${main.class}">
-			<classpath>
-				<path id="svn2p4.gui.id" location="${dist.dir}/${jar.name}.jar" />
-			</classpath>
-			<jvmarg value="-Dfile.encoding=UTF-8" />
-			<arg line="--config SVN" />
-		</java>
-	</target>
-
-
-
+	
 
 	<!--RULE: check args for individual tests-->
 	<target name="test-arg" unless="case">
@@ -251,7 +238,56 @@
 
 		<fail if="junit.ok" message="Unit test(s) failed.  See reports!" />
 	</target>
+	
+	<!--RULE: junit tests-->
+	<target name="svn" depends="jar">
+		<mkdir dir="${junit.dir}" />
+		<junit fork="yes" printsummary="yes" haltonfailure="no" showoutput="no" failureproperty="junit.ok">
+			<classpath>
+				<path id="svn2p4.junit.id" location="${dist.dir}/${jar.name}.jar" />
+			</classpath>
+			<jvmarg value="-Dfile.encoding=UTF-8" />
 
+			<test name="com.perforce.integration.IntegrationTests" todir="${junit.dir}" />
+			<test name="com.perforce.integration.ImportTests" todir="${junit.dir}" />
+
+			<formatter type="xml" />
+		</junit>
+
+		<junitreport todir="${junit.dir}">
+			<fileset dir="${junit.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="${junit.dir}" />
+		</junitreport>
+
+		<fail if="junit.ok" message="Unit test(s) failed.  See reports!" />
+	</target>
+
+	<!--RULE: junit tests-->
+	<target name="cvs" depends="jar">
+		<mkdir dir="${junit.dir}" />
+		<junit fork="yes" printsummary="yes" haltonfailure="no" showoutput="no" failureproperty="junit.ok">
+			<classpath>
+				<path id="svn2p4.junit.id" location="${dist.dir}/${jar.name}.jar" />
+			</classpath>
+			<jvmarg value="-Dfile.encoding=UTF-8" />
+
+			<test name="com.perforce.cvs.integration.CvsIntegrationTests" todir="${junit.dir}" />
+			<test name="com.perforce.cvs.integration.CvsImportTests" todir="${junit.dir}" />
+
+			<formatter type="xml" />
+		</junit>
+
+		<junitreport todir="${junit.dir}">
+			<fileset dir="${junit.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="${junit.dir}" />
+		</junitreport>
+
+		<fail if="junit.ok" message="Unit test(s) failed.  See reports!" />
+	</target>
 
 	<!--RULE: default-->
 	<target name="main" depends="jar" />
