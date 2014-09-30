@@ -1,5 +1,6 @@
 package com.perforce.cvs.parser;
 
+import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +13,10 @@ public class RcsDeltaAction {
 	private int length;
 	private RcsObjectBlock block = new RcsObjectBlock();
 
-	public RcsDeltaAction(String str) {
+	public RcsDeltaAction(ByteArrayOutputStream buf) {
+		//TODO may need to use a Charset for translation?
+		String str = buf.toString();
+
 		Pattern r = Pattern.compile("^(a|d)(\\d+) (\\d+)");
 		Matcher m = r.matcher(str);
 		if (m.find()) {
@@ -27,11 +31,11 @@ public class RcsDeltaAction {
 			length = Integer.parseInt(m.group(3));
 		}
 	}
-	
-	public void addLine(String line) {
+
+	public void addLine(ByteArrayOutputStream line) {
 		block.add(line);
 	}
-	
+
 	public RcsObjectBlock getBlock() {
 		return block;
 	}
@@ -47,7 +51,7 @@ public class RcsDeltaAction {
 	public int getLength() {
 		return length;
 	}
-	
+
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(action + ":" + line + ":" + length);

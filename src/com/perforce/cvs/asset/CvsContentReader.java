@@ -1,5 +1,6 @@
 package com.perforce.cvs.asset;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -116,7 +117,7 @@ public class CvsContentReader {
 		List<RcsDeltaAction> list = new ArrayList<RcsDeltaAction>();
 
 		RcsDeltaAction last = null;
-		for (String d : delta) {
+		for (ByteArrayOutputStream d : delta) {
 			RcsDeltaAction act = new RcsDeltaAction(d);
 			switch (act.getAction()) {
 			case ADD:

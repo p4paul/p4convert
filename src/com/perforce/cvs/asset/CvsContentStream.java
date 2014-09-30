@@ -17,10 +17,10 @@ public class CvsContentStream extends ContentStream {
 
 	private ScanContentStream scan = new ScanContentStream();
 
-	private Iterator<String> blockIterator;
+	private Iterator<ByteArrayOutputStream> blockIterator;
 	private byte[] remainder;
 
-	private Iterator<String> markIterator;
+	private Iterator<ByteArrayOutputStream> markIterator;
 	private byte[] markRemainder;
 
 	public CvsContentStream(Content content) {
@@ -36,8 +36,8 @@ public class CvsContentStream extends ContentStream {
 			ByteArrayOutputStream bs = new ByteArrayOutputStream();
 
 			do {
-				String line = blockIterator.next();
-				byte[] bytes = line.getBytes();
+				ByteArrayOutputStream line = blockIterator.next();
+				byte[] bytes = line.toByteArray();
 				if (count + bytes.length > len) {
 					int part = len - count;
 					bs.write(bytes, 0, part);

@@ -1,15 +1,16 @@
 package com.perforce.cvs.parser.rcstypes;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class RcsObjectBlock implements Iterable<String> {
+public class RcsObjectBlock implements Iterable<ByteArrayOutputStream> {
 
-	private ArrayList<String> lines = new ArrayList<String>();
+	private ArrayList<ByteArrayOutputStream> lines = new ArrayList<ByteArrayOutputStream>();
 
 	public RcsObjectBlock() {
 	}
-	
+
 	public RcsObjectBlock(RcsObjectBlock block) {
 		lines.addAll(block.getLines());
 	}
@@ -18,7 +19,7 @@ public class RcsObjectBlock implements Iterable<String> {
 		return lines.size();
 	}
 
-	public void add(String line) {
+	public void add(ByteArrayOutputStream line) {
 		lines.add(line);
 	}
 
@@ -34,8 +35,8 @@ public class RcsObjectBlock implements Iterable<String> {
 	}
 
 	public void clean() {
-		ArrayList<String> clean = new ArrayList<String>();
-		for (String line : lines) {
+		ArrayList<ByteArrayOutputStream> clean = new ArrayList<ByteArrayOutputStream>();
+		for (ByteArrayOutputStream line : lines) {
 			if (line != null) {
 				clean.add(line);
 			}
@@ -46,7 +47,7 @@ public class RcsObjectBlock implements Iterable<String> {
 	public String toString() {
 		StringBuffer sb = new StringBuffer("\n");
 		int p = 1;
-		for (String line : lines) {
+		for (ByteArrayOutputStream line : lines) {
 			if (line != null) {
 				sb.append(p);
 				sb.append(": ");
@@ -58,12 +59,12 @@ public class RcsObjectBlock implements Iterable<String> {
 		return sb.toString();
 	}
 
-	public ArrayList<String> getLines() {
+	public ArrayList<ByteArrayOutputStream> getLines() {
 		return lines;
 	}
 
 	@Override
-	public Iterator<String> iterator() {
+	public Iterator<ByteArrayOutputStream> iterator() {
 		return lines.iterator();
 	}
 }

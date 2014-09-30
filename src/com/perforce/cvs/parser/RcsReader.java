@@ -1,8 +1,8 @@
 package com.perforce.cvs.parser;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,16 +28,13 @@ public class RcsReader {
 	private RcsObject rcsDesc;
 	private Map<String, RcsObjectDelta> rcsDeltas = new HashMap<String, RcsObjectDelta>();
 
-	private RandomAccessFile rf;
+	private CvsLineReader cvsLineReader;
 
 	public RcsReader(File file) throws Exception {
 		rcsFile = file;
 		rcsPath = parseBasePath();
 		rcsAdmin = new RcsObjectAdmin();
-
-		// TODO Charset charset = Charset.forName("US-ASCII");
-		// br = Files.newBufferedReader(file.toPath(), charset);
-		rf = new RandomAccessFile(file.toString(), "r");
+		cvsLineReader = new CvsLineReader(rcsFile.toString());
 
 		parseRcsAdmin();
 
@@ -80,7 +77,7 @@ public class RcsReader {
 
 			rcsObject = parseRcsDeltas();
 		}
-		rf.close();
+		cvsLineReader.close();
 	}
 
 	public RcsObjectAdmin getAdmin() {
@@ -142,7 +139,7 @@ public class RcsReader {
 	}
 
 	private String getLine() throws IOException {
-		String line = rf.readLine();
+		String line = cvsLineReader.getLine();
 		return line;
 	}
 
@@ -278,44 +275,81 @@ public class RcsReader {
 		return log.toString();
 	}
 
+	/**
+	 * Check the buffer starts with an '@' and return a buffer less the starting
+	 * '@', else null.
+	 * 
+	 * @param buf
+	 * @return
+	 */
+	private ByteArrayOutputStream startAtpersand(ByteArrayOutputStream buf) {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte[] b = buf.toByteArray();
+		if (b[0] == '@') {
+			out.write(b, 1, buf.size() - 1);
+			return out;
+		} else {
+			return null;
+		}
+	}
+
+	private ByteArrayOutputStream decodeAtpersand(ByteArrayOutputStream buf) {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte last = '\0';
+		for (byte b : buf.toByteArray()) {
+			if (b == '@' && last == '@') {
+				// don't write
+			} else {
+				out.write(b);
+			}
+			last = b;
+		}
+		return out;
+	}
+
+	private boolean endAtpersand(ByteArrayOutputStream buf) {
+		int size = buf.size();
+
+		// exit early if less than 2 chars
+		if (size < 2) {
+			return false;
+		}
+
+		byte[] b = buf.toByteArray();
+		if (b[size - 2] == '@' && b[size - 1] == '\n') {
+			return true;
+		}
+		return false;
+	}
+
 	private RcsObjectBlock parseText() throws Exception {
 		RcsObjectBlock lines = new RcsObjectBlock();
 
-		long position = rf.getFilePointer();
-		long length = 0;
-
-		String line = getLine();
-		if (!line.startsWith("@"))
+		// check and remove starting '@'
+		ByteArrayOutputStream line = cvsLineReader.getData();
+		line = startAtpersand(line);
+		if (line == null)
 			return null;
 
-		// remove starting '@'
-		line = line.substring(1);
-
 		while (line != null) {
-			// end check for terminating '@'
-			String end = line.replaceAll("@@", "");
+			// replace '@@' with '@'
+			ByteArrayOutputStream clean = new ByteArrayOutputStream();
+			clean = decodeAtpersand(line);
 
-			// exit if ending with '@'
-			if (end.endsWith("@")) {
-				// add line to lines
-				line = line.replaceAll("@@", "@");
-				line = line.substring(0, line.length() - 1);
-				if (!"".equals(line)) {
-					lines.add(line);
+			// exit if ending with '@\n'
+			if (endAtpersand(clean)) {
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				// copy buffer, but trim ending '@\n' chars
+				out.write(clean.toByteArray(), 0, clean.size() - 2);
+				if (out.size() > 0) {
+					lines.add(out);
 				}
-				line = getLine();
-				length = rf.getFilePointer() - position;
 				break;
 			} else {
-				// add line to lines
-				line = line.replaceAll("@@", "@");
-				lines.add(line + "\n");
-				line = getLine();
+				lines.add(clean);
 			}
-		}
-
-		if (logger.isTraceEnabled()) {
-			logger.trace("pos:" + position + " len:" + length);
+			// get next line;
+			line = cvsLineReader.getData();
 		}
 		return lines;
 	}
