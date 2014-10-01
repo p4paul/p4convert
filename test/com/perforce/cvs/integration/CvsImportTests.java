@@ -145,6 +145,12 @@ public class CvsImportTests {
 		// TODO testCase("CVScluster01");
 	}
 
+	@Test
+	public void case032() throws Exception {
+		Config.set(CFG.CVS_MODULE, "binary-file");
+		testCase("CVScluster01");
+	}
+
 	// keyword expansion
 	// single revision
 

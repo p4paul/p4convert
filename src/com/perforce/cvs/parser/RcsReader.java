@@ -298,11 +298,13 @@ public class RcsReader {
 		byte last = '\0';
 		for (byte b : buf.toByteArray()) {
 			if (b == '@' && last == '@') {
-				// don't write
+				// don't write and invalidate last char to process @@@@ -> @@
+				last = '\0';
 			} else {
 				out.write(b);
+				last = b;
 			}
-			last = b;
+			
 		}
 		return out;
 	}

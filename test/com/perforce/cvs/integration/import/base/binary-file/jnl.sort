@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/main/logo.png@ 1 65537 0 1 1411027655 1411027655 4191904288B6FA787AC81D243DA9E3AA 3550 0 0 @//import/main/logo.png@ @1.1@ 65537 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1411027655 1 @added
+@pv@ 0 @db.desc@ 1 @added
