@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/trunk/utf32.txt@ 1 524289 0 2 1339778129 1339778129 56213BF939AAC4A08979A6DC5B3E9727 38 0 0 @//import/trunk/utf32.txt@ @1.2@ 524289 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1339778129 1 @add
+@pv@ 0 @db.desc@ 2 @add
