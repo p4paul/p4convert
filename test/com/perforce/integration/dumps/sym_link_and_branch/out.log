@@ -1,0 +1,28 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - trunk
+   A:F - trunk/link.txt
+   A:F - trunk/real.txt
+rev: 2 => @2
+   B:D - br.1
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 2
+  Converted revs     : 2
+  Branches (dir)     : 1
+  Integrates (dir)   : 0
+  Archive revisions  : 2
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
