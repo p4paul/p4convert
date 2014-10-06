@@ -1,0 +1,15 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @add file@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @Administrator@ 1321887456 1 @add file@ 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 1 131073 0 1 1321887456 1321887456 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.1@ 131073 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/foo.txt@ 1 0 
+@pv@ 0 @db.desc@ 2 @Change Case@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @Administrator@ 1321887912 1 @Change Case@ 
+@pv@ 3 @db.rev@ @//import/trunk/foo.txt@ 2 131073 1 2 1321887912 1321887912 00000000000000000000000000000000 @//import/trunk/foo.txt@ @1.1@ 131073 
+@pv@ 0 @db.revcx@ 2 @//import/trunk/foo.txt@ 2 1 
+@rv@ 1 @db.counters@ @change@ @2@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

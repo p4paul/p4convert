@@ -1,0 +1,89 @@
+SVN-fs-dump-format-version: 2
+
+UUID: b3130790-1450-11e1-b20c-7bd4fec61b4a
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2011-11-21T14:54:23.228352Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 116
+Content-length: 116
+
+K 7
+svn:log
+V 8
+add file
+K 10
+svn:author
+V 13
+Administrator
+K 8
+svn:date
+V 27
+2011-11-21T14:57:36.425780Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/foo.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 36
+Text-content-length: 10
+Text-content-md5: 22768ff28d28f5382d6203ca09ac5289
+Text-content-sha1: 50c81d4eb678c486dff12653401ed4e74cafc028
+Content-length: 46
+
+K 14
+svn:executable
+V 1
+*
+PROPS-END
+Content 
+
+
+Revision-number: 2
+Prop-content-length: 120
+Content-length: 120
+
+K 7
+svn:log
+V 11
+Change Case
+K 10
+svn:author
+V 13
+Administrator
+K 8
+svn:date
+V 27
+2011-11-21T15:05:12.229368Z
+PROPS-END
+
+Node-path: trunk/Foo.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk/foo.txt
+Text-copy-source-md5: 22768ff28d28f5382d6203ca09ac5289
+Text-copy-source-sha1: 50c81d4eb678c486dff12653401ed4e74cafc028
+
+
+Node-path: trunk/foo.txt
+Node-action: delete
+
+

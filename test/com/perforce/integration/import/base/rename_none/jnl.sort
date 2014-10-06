@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/trunk/foo.txt@ 1 131073 0 1 1321887456 1321887456 B0B037E293A83A93BFA291711416515F 9 0 0 @//import/trunk/foo.txt@ @1.1@ 131073 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @Administrator@ 1321887456 1 @add file
+@pv@ 0 @db.desc@ 1 @add file
