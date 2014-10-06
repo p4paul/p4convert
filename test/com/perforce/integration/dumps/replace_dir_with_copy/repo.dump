@@ -1,0 +1,164 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 42bcd98c-2b5e-444d-955f-cf00dab76642
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2014-05-06T19:57:05.674373Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 112
+Content-length: 112
+
+K 10
+svn:author
+V 9
+test-user
+K 8
+svn:date
+V 27
+2014-05-06T19:57:06.112316Z
+K 7
+svn:log
+V 9
+Add stuff
+PROPS-END
+
+Node-path: src1
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: src1/dir
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: src1/dir/file
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: src1/foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: src2
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: src2/bar
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 112
+Content-length: 112
+
+K 10
+svn:author
+V 9
+test-user
+K 8
+svn:date
+V 27
+2014-05-06T19:57:06.682546Z
+K 7
+svn:log
+V 9
+Copy src1
+PROPS-END
+
+Node-path: dst
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: src1
+
+
+Revision-number: 3
+Prop-content-length: 112
+Content-length: 112
+
+K 10
+svn:author
+V 9
+test-user
+K 8
+svn:date
+V 27
+2014-05-06T19:57:07.287387Z
+K 7
+svn:log
+V 9
+Copy src2
+PROPS-END
+
+Node-path: 
+Node-kind: dir
+Node-action: change
+Prop-content-length: 26
+Content-length: 26
+
+K 3
+foo
+V 3
+bar
+PROPS-END
+
+
+Node-path: dst
+Node-kind: dir
+Node-action: delete
+
+Node-path: dst
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 2
+Node-copyfrom-path: src2
+
+
+
+
