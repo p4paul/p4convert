@@ -1,0 +1,19 @@
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 8
+  Converted revs     : 8
+  Branches (dir)     : 1
+  Integrates (dir)   : 0
+  Archive revisions  : 7
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Subversion users   : Last access date
+     meresse	  16-Nov-2010 12:57
+

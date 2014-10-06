@@ -1,0 +1,49 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - branches
+   A:D - tags
+   A:D - trunk
+rev: 2 => @2
+   A:F - trunk/test.txt
+rev: 3 => @3
+   A:D - branches/b1
+   A:F - branches/b1/test.txt
+rev: 4 => @4
+   E:F - branches/b1/test.txt
+rev: 5 => @5
+   A:D - trunk/Main
+   A:F - trunk/Main/test.txt
+rev: 6 => @6
+   R:F - trunk/test.txt
+   B:F - trunk/test.txt
+   overlayed rev: trunk/test.txt
+      Current credit  REV:E_into FWD:E_from
+rev: 7 => @7
+   B:D - branches/b1/Main
+   R:F - branches/b1/test.txt
+   B:F - branches/b1/test.txt
+   overlayed rev: branches/b1/test.txt
+      Current credit  REV:E_into FWD:E_from
+rev: 8 => @8
+   E:F - branches/b1/test.txt
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 8
+  Converted revs     : 8
+  Branches (dir)     : 1
+  Integrates (dir)   : 0
+  Archive revisions  : 7
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+

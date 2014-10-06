@@ -1,0 +1,309 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 5efbe2e6-2a95-0410-b0a7-f35eaa41ff5d
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-11-16T12:43:21.657737Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:43:54.613077Z
+PROPS-END
+
+Node-path: branches
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: tags
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:45:41.915257Z
+PROPS-END
+
+Node-path: trunk/test.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 11
+Text-content-md5: c9221580f75fb80cf12892d4968e7f15
+Content-length: 21
+
+PROPS-END
+line trunk
+
+
+Revision-number: 3
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:46:31.986329Z
+PROPS-END
+
+Node-path: branches/b1
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/b1/test.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 03a3e2bbc26ae5819fa815ca2d15c18d
+Content-length: 18
+
+PROPS-END
+line b1
+
+
+Revision-number: 4
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:52:29.354415Z
+PROPS-END
+
+Node-path: branches/b1/test.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 18
+Text-content-md5: c072dee993ceb8ffa8a7e1ae33d730d9
+Content-length: 18
+
+line b1
+line b1.1
+
+
+Revision-number: 5
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:54:46.090104Z
+PROPS-END
+
+Node-path: trunk/main
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/main/test.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 16
+Text-content-md5: 6074cc9282bc625b28d41585d05b0146
+Content-length: 26
+
+PROPS-END
+line trunk Main
+
+
+Revision-number: 6
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:55:41.445843Z
+PROPS-END
+
+Node-path: trunk/test.txt
+Node-kind: file
+Node-action: delete
+
+Node-path: trunk/test.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 5
+Node-copyfrom-path: trunk/main/test.txt
+Text-content-length: 29
+Text-content-md5: b537f90779e1b0ed05ca2bc47c1b639b
+Content-length: 29
+
+line trunk Main
+line trunk 2
+
+
+
+
+Revision-number: 7
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:56:38.145991Z
+PROPS-END
+
+Node-path: branches/b1/main
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 6
+Node-copyfrom-path: trunk/main
+
+
+Node-path: branches/b1/test.txt
+Node-kind: file
+Node-action: delete
+
+Node-path: branches/b1/test.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 6
+Node-copyfrom-path: trunk/test.txt
+Text-content-length: 41
+Text-content-md5: 5bb851f06e3590d751a044855dabe5e9
+Content-length: 41
+
+line trunk Main
+line trunk 2
+line b1 new
+
+
+
+
+Revision-number: 8
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+test
+K 10
+svn:author
+V 7
+meresse
+K 8
+svn:date
+V 27
+2010-11-16T12:57:14.011648Z
+PROPS-END
+
+Node-path: branches/b1/test.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 59
+Text-content-md5: cf8f884e20550b8b0b5c13af10f74c48
+Content-length: 59
+
+line trunk Main
+line trunk 2
+line b1 new
+line b1 new again
+
+
