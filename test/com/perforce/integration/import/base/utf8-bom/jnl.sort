@@ -1,0 +1,3 @@
+@pv@ 0 @db.desc@ 1 @text with bom
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1279810409 1 @text with bom
+@pv@ 9 @db.rev@ @//import/utf8-bom.txt@ 1 1 0 1 1279810409 1279810409 8B80A4ED08D6C5C7BCA97C6ECB6F22C7 8 0 0 @//import/utf8-bom.txt@ @1.1@ 1 

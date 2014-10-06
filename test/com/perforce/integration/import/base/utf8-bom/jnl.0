@@ -1,0 +1,11 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @text with bom@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1279810409 1 @text with bom@ 
+@pv@ 3 @db.rev@ @//import/utf8-bom.txt@ 1 257 0 1 1279810409 1279810409 8B80A4ED08D6C5C7BCA97C6ECB6F22C7 @//import/utf8-bom.txt@ @1.1@ 257 
+@pv@ 0 @db.revcx@ 1 @//import/utf8-bom.txt@ 1 0 
+@rv@ 1 @db.counters@ @change@ @2@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

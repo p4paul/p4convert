@@ -1,0 +1,45 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 5a2a1b76-95d5-4bd1-9e37-1fc82c1de5dc
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-07-22T14:50:26.440420Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 114
+Content-length: 114
+
+K 7
+svn:log
+V 13
+text with bom
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-07-22T14:53:29.931283Z
+PROPS-END
+
+Node-path: utf8-bom.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 8b80a4ed08d6c5c7bca97c6ecb6f22c7
+Text-content-sha1: a86d9018d7a580c04d1a3c3138aaa9f8f8e3b7ad
+Content-length: 18
+
+PROPS-END
+﻿Test
+
+
