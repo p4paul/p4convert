@@ -1,0 +1,6 @@
+@pv@ 9 @db.rev@ @//import/trunk/file.txt@ 2 1 1 2 1349101825 1349101825 D3B07384D113EDEC49EAA6238AD5FF00 4 0 0 @//import/trunk/file.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/file.txt@ 1 1 0 1 1349101721 1349101721 D3B07384D113EDEC49EAA6238AD5FF00 4 0 0 @//import/trunk/file.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1349101825 1 @ps
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1349101721 1 @add
+@pv@ 0 @db.desc@ 2 @ps
+@pv@ 0 @db.desc@ 1 @add
