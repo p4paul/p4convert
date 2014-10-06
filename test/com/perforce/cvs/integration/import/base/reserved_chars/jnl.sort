@@ -1,0 +1,114 @@
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 13 1 1 21 1382441644 1382441644 8E12F204A29100CCC495319F3E80BD4F 12990 0 0 @//import/main/PLIST-sr%40Latn@ @1.21@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 12 1 1 19 1326751860 1326751860 D808315C6A06E5058CEA39D40C68C34A 12815 0 0 @//import/main/PLIST-sr%40Latn@ @1.19@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 11 1 1 17 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 0 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 10 1 1 15 1180298321 1180298321 BC73CC1D495BF31DD10E9FD744BAF336 12798 0 0 @//import/main/PLIST-sr%40Latn@ @1.15@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 9 1 1 13 1170005000 1170005000 ADB215C8EB3683E944B576729A1734B7 13008 0 0 @//import/main/PLIST-sr%40Latn@ @1.13@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 8 1 1 11 1149338850 1149338850 40D75DC26CBE70C2E5F4A9441CD4BFBA 12938 0 0 @//import/main/PLIST-sr%40Latn@ @1.11@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 7 1 1 10 1143894823 1143894823 9242ED6777567ABEB4E0EF009C678086 13002 0 0 @//import/main/PLIST-sr%40Latn@ @1.10@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 6 1 1 8 1134398276 1134398276 88E4FB6E6687B73257854C3EACA6BD70 12973 0 0 @//import/main/PLIST-sr%40Latn@ @1.8@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 5 1 1 7 1133476059 1133476059 CE9E75778B458798B92137BEA2C2915A 12811 0 0 @//import/main/PLIST-sr%40Latn@ @1.7@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 4 1 1 5 1124185794 1124185794 8AB6E459294A739ABC6E245D213FF8F4 12815 0 0 @//import/main/PLIST-sr%40Latn@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 3 1 1 4 1122540461 1122540461 F85AB279A62BE262E4278E442D2D01D4 12793 0 0 @//import/main/PLIST-sr%40Latn@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 2 1 1 3 1118948861 1118948861 970A32E203663EBACE519256E51B0B19 12813 0 0 @//import/main/PLIST-sr%40Latn@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/main/PLIST-sr%40Latn@ 1 1 0 1 1110236994 1110236994 90F666A402D67E490122007BB5ED080F 15518 0 0 @//import/main/PLIST-sr%40Latn@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_3_7/PLIST-sr%40Latn@ 1 1 3 2 1110236994 1110236994 90F666A402D67E490122007BB5ED080F 15518 0 1 @//import/main/PLIST-sr%40Latn@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_3_8/PLIST-sr%40Latn@ 1 1 3 6 1124185794 1124185794 8AB6E459294A739ABC6E245D213FF8F4 12815 0 1 @//import/main/PLIST-sr%40Latn@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_3_9/PLIST-sr%40Latn@ 1 1 3 9 1134398276 1134398276 88E4FB6E6687B73257854C3EACA6BD70 12973 0 1 @//import/main/PLIST-sr%40Latn@ @1.8@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_0/PLIST-sr%40Latn@ 1 1 3 12 1149338850 1149338850 40D75DC26CBE70C2E5F4A9441CD4BFBA 12938 0 1 @//import/main/PLIST-sr%40Latn@ @1.11@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_1/PLIST-sr%40Latn@ 1 1 3 14 1170005000 1170005000 ADB215C8EB3683E944B576729A1734B7 13008 0 1 @//import/main/PLIST-sr%40Latn@ @1.13@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_2/PLIST-sr%40Latn@ 1 1 3 16 1180298321 1180298321 BC73CC1D495BF31DD10E9FD744BAF336 12798 0 1 @//import/main/PLIST-sr%40Latn@ @1.15@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_3/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_4/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_5/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_6/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_7/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_8/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_9/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_0/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 D191FE7F7737DC746F3ED9561A35963B 12784 0 1 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_1/PLIST-sr%40Latn@ 1 1 3 20 1326751860 1326751860 D808315C6A06E5058CEA39D40C68C34A 12815 0 1 @//import/main/PLIST-sr%40Latn@ @1.19@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_2/PLIST-sr%40Latn@ 1 1 3 20 1326751860 1326751860 D808315C6A06E5058CEA39D40C68C34A 12815 0 1 @//import/main/PLIST-sr%40Latn@ @1.19@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_3/PLIST-sr%40Latn@ 1 1 3 20 1326751860 1326751860 D808315C6A06E5058CEA39D40C68C34A 12815 0 1 @//import/main/PLIST-sr%40Latn@ @1.19@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_4/PLIST-sr%40Latn@ 1 1 3 20 1326751860 1326751860 D808315C6A06E5058CEA39D40C68C34A 12815 0 1 @//import/main/PLIST-sr%40Latn@ @1.19@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_5/PLIST-sr%40Latn@ 1 1 3 22 1382441644 1382441644 8E12F204A29100CCC495319F3E80BD4F 12990 0 1 @//import/main/PLIST-sr%40Latn@ @1.21@ 1 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_3_7/PLIST-sr%40Latn@ 0 1 0 1 3 2 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_3_8/PLIST-sr%40Latn@ 0 1 0 4 3 6 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_3_9/PLIST-sr%40Latn@ 0 1 0 6 3 9 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_0/PLIST-sr%40Latn@ 0 1 0 8 3 12 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_1/PLIST-sr%40Latn@ 0 1 0 9 3 14 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_2/PLIST-sr%40Latn@ 0 1 0 10 3 16 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_3/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_4/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_5/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_6/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_7/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_8/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_9/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_0/PLIST-sr%40Latn@ 0 1 0 11 3 18 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_1/PLIST-sr%40Latn@ 0 1 0 12 3 20 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_2/PLIST-sr%40Latn@ 0 1 0 12 3 20 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_3/PLIST-sr%40Latn@ 0 1 0 12 3 20 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_4/PLIST-sr%40Latn@ 0 1 0 12 3 20 
+@pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_5/PLIST-sr%40Latn@ 0 1 0 13 3 22 
+@pv@ 0 @db.integed@ @//import/OPENBSD_3_7/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/OPENBSD_3_8/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 4 0 1 2 6 
+@pv@ 0 @db.integed@ @//import/OPENBSD_3_9/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 6 0 1 2 9 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_0/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 8 0 1 2 12 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_1/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 9 0 1 2 14 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_2/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 10 0 1 2 16 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_3/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_4/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_5/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_6/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_7/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_8/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_9/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_0/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_1/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 12 0 1 2 20 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_2/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 12 0 1 2 20 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_3/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 12 0 1 2 20 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_4/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 12 0 1 2 20 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_5/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 13 0 1 2 22 
+@pv@ 2 @db.change@ 22 22 @svn-client@ @branch@ 1382441644 1 @Branch: 
+@pv@ 2 @db.change@ 21 21 @svn-client@ @zhuk@ 1382441644 1 @Do a massive change on the plac@ @//import/main/*@ 
+@pv@ 2 @db.change@ 20 20 @svn-client@ @branch@ 1326751860 1 @Branch: 
+@pv@ 2 @db.change@ 19 19 @svn-client@ @espie@ 1326751860 1 @don't use flavors for independe@ @//import/main/*@ 
+@pv@ 2 @db.change@ 18 18 @svn-client@ @branch@ 1193262737 1 @Branch: 
+@pv@ 2 @db.change@ 17 17 @svn-client@ @espie@ 1193262737 1 @update to 3.5.8
+@pv@ 2 @db.change@ 16 16 @svn-client@ @branch@ 1180298321 1 @Branch: 
+@pv@ 2 @db.change@ 15 15 @svn-client@ @espie@ 1180298321 1 @update to 3.5.7
+@pv@ 2 @db.change@ 14 14 @svn-client@ @branch@ 1170005000 1 @Branch: 
+@pv@ 2 @db.change@ 13 13 @svn-client@ @espie@ 1170005000 1 @3.5.6
+@pv@ 2 @db.change@ 12 12 @svn-client@ @branch@ 1149338850 1 @Branch: 
+@pv@ 2 @db.change@ 11 11 @svn-client@ @espie@ 1149338850 1 @minor update to 3.5.3, integrat@ @//import/main/*@ 
+@pv@ 2 @db.change@ 10 10 @svn-client@ @espie@ 1143894823 1 @3.5.2
+@pv@ 2 @db.change@ 9 9 @svn-client@ @branch@ 1134398276 1 @Branch: 
+@pv@ 2 @db.change@ 8 8 @svn-client@ @espie@ 1134398276 1 @sr@@Latn package contains the sa@ @//import/main/*@ 
+@pv@ 2 @db.change@ 7 7 @svn-client@ @espie@ 1133476059 1 @some i18n3
+@pv@ 2 @db.change@ 6 6 @svn-client@ @branch@ 1124185794 1 @Branch: 
+@pv@ 2 @db.change@ 5 5 @svn-client@ @espie@ 1124185794 1 @conflicts from the past: histor@ @//import/main/*@ 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @espie@ 1122540461 1 @KDE 3.4.2
+@pv@ 2 @db.change@ 3 3 @svn-client@ @espie@ 1118948861 1 @forgot commit
+@pv@ 2 @db.change@ 2 2 @svn-client@ @branch@ 1110236994 1 @Branch: 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @espie@ 1110236994 1 @bring back i18n3 packages from @ @//import/main/*@ 
+@pv@ 0 @db.desc@ 22 @Branch: 
+@pv@ 0 @db.desc@ 21 @Do a massive change on the placement of some KDE3 apps data:
+@pv@ 0 @db.desc@ 20 @Branch: 
+@pv@ 0 @db.desc@ 19 @don't use flavors for independent builds. dpb happy
+@pv@ 0 @db.desc@ 18 @Branch: 
+@pv@ 0 @db.desc@ 17 @update to 3.5.8
+@pv@ 0 @db.desc@ 16 @Branch: 
+@pv@ 0 @db.desc@ 15 @update to 3.5.7
+@pv@ 0 @db.desc@ 14 @Branch: 
+@pv@ 0 @db.desc@ 13 @3.5.6
+@pv@ 0 @db.desc@ 12 @Branch: 
+@pv@ 0 @db.desc@ 11 @minor update to 3.5.3, integrate libidn support (some more changes to come
+@pv@ 0 @db.desc@ 10 @3.5.2
+@pv@ 0 @db.desc@ 9 @Branch: 
+@pv@ 0 @db.desc@ 8 @sr@@Latn package contains the same sound as the sr package, so remove them
+@pv@ 0 @db.desc@ 7 @some i18n3
+@pv@ 0 @db.desc@ 6 @Branch: 
+@pv@ 0 @db.desc@ 5 @conflicts from the past: history since 3.7.
+@pv@ 0 @db.desc@ 4 @KDE 3.4.2
+@pv@ 0 @db.desc@ 3 @forgot commit
+@pv@ 0 @db.desc@ 2 @Branch: 
+@pv@ 0 @db.desc@ 1 @bring back i18n3 packages from the dead, but build them all at once.
