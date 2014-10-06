@@ -1,0 +1,7 @@
+@pv@ 0 @db.desc@ 1 @add
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1276849879 1 @add
+@pv@ 9 @db.rev@ @//import/trunk/ascii-unix.txt@ 1 1 0 1 1276849879 1276849879 C81B7640F1E48D0AB20334808355C664 29 0 0 @//import/trunk/ascii-unix.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/ascii-win.txt@ 1 1 0 1 1276849879 1276849879 F48D60097C3BFCFCCE5BD1D602435E6E 28 0 0 @//import/trunk/ascii-win.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/unicode_files.tar.gz@ 1 65537 0 1 1276849879 1276849879 3009045DF4DCA327790D4AEBA776C26E 300 0 0 @//import/trunk/unicode_files.tar.gz@ @1.1@ 65537 
+@pv@ 9 @db.rev@ @//import/trunk/utf16-unix.txt@ 1 17301505 0 1 1276849879 1276849879 2AFEB68D24BCF6A198990100EAB25089 29 0 0 @//import/trunk/utf16-unix.txt@ @1.1@ 17301505 
+@pv@ 9 @db.rev@ @//import/trunk/utf16-win.txt@ 1 17301505 0 1 1276849879 1276849879 0C9991FEBCEDFDB3E4E761DA5C6D4E2B 28 0 0 @//import/trunk/utf16-win.txt@ @1.1@ 17301505 

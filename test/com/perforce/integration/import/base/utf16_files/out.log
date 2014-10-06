@@ -1,0 +1,29 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - trunk
+   A:F - trunk/ascii-unix.txt
+   A:F - trunk/ascii-win.txt
+   A:F - trunk/unicode_files.tar.gz
+   A:F - trunk/utf16-unix.txt
+   A:F - trunk/utf16-win.txt
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 1
+  Converted revs     : 1
+  Branches (dir)     : 0
+  Integrates (dir)   : 0
+  Archive revisions  : 5
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+

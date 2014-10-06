@@ -1,0 +1,19 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @add@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1276849879 1 @add@ 
+@pv@ 3 @db.rev@ @//import/trunk/utf16-win.txt@ 1 257 0 1 1276849879 1276849879 6B7604D8677F9CFD22BBF757B38B1AB0 @//import/trunk/utf16-win.txt@ @1.1@ 257 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/utf16-win.txt@ 1 0 
+@pv@ 3 @db.rev@ @//import/trunk/unicode_files.tar.gz@ 1 257 0 1 1276849879 1276849879 3009045DF4DCA327790D4AEBA776C26E @//import/trunk/unicode_files.tar.gz@ @1.1@ 257 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/unicode_files.tar.gz@ 1 0 
+@pv@ 3 @db.rev@ @//import/trunk/ascii-unix.txt@ 1 1 0 1 1276849879 1276849879 00000000000000000000000000000000 @//import/trunk/ascii-unix.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/ascii-unix.txt@ 1 0 
+@pv@ 3 @db.rev@ @//import/trunk/utf16-unix.txt@ 1 257 0 1 1276849879 1276849879 628C8BB786A77B56A411B7075B3EF98C @//import/trunk/utf16-unix.txt@ @1.1@ 257 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/utf16-unix.txt@ 1 0 
+@pv@ 3 @db.rev@ @//import/trunk/ascii-win.txt@ 1 1 0 1 1276849879 1276849879 00000000000000000000000000000000 @//import/trunk/ascii-win.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/trunk/ascii-win.txt@ 1 0 
+@rv@ 1 @db.counters@ @change@ @2@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 
