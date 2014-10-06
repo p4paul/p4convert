@@ -1,0 +1,6 @@
+@pv@ 9 @db.rev@ @//depot/projX/MAIN/foo.txt@ 1 0 0 1 1373376520 1373376507 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//depot/projX/MAIN/foo.txt@ @1.1@ 0 
+@pv@ 9 @db.rev@ @//depot/trunk/file.txt@ 1 1 0 2 1373377381 1373377381 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//depot/trunk/file.txt@ @1.2@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1373377381 1 @add
+@pv@ 2 @db.change@ 1 1 @pallen.ws@ @pallen@ 1373376520 1 @foo@ @//depot/projX/MAIN/*@ 
+@pv@ 0 @db.desc@ 2 @add
+@pv@ 0 @db.desc@ 1 @foo@ 
