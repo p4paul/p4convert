@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/foo@ 1 1 0 1 1376306376 1376306376 CD589BD377879EE85F435FD00D435A73 9 0 0 @//import/foo@ @1.1@ 1 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1376306376 1 @Add foo
+@pv@ 0 @db.desc@ 1 @Add foo
