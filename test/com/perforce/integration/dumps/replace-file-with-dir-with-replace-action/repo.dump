@@ -1,0 +1,88 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 92a26ede-7d9d-451b-be12-1557995a570f
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-08-05T19:50:09.773056Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 124
+Content-length: 124
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-05T19:50:10.184533Z
+K 7
+svn:log
+V 20
+Create initial setup
+PROPS-END
+
+Node-path: dir
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+Node-path: dir/file
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 128
+Content-length: 128
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-05T19:50:10.646554Z
+K 7
+svn:log
+V 24
+Replace symlink with dir
+PROPS-END
+
+Node-path: foo
+Node-kind: dir
+Node-action: replace
+Node-copyfrom-rev: 1
+Node-copyfrom-path: dir
+
