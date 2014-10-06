@@ -1,0 +1,8 @@
+@pv@ 9 @db.rev@ @//import/bar@ 1 262145 0 2 1370899063 1370899063 ACBD18DB4CC2F85CEDEF654FCCC4A4D8 3 0 0 @//import/bar@ @1.2@ 262145 
+@pv@ 9 @db.rev@ @//import/foo/file1@ 2 1 1 2 1370899063 1370899063 68BA00EB6995AEECB19773A27BF81B3D 9 0 0 @//import/foo/file1@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/foo/file1@ 1 1 0 1 1370899062 1370899062 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/foo/file1@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo/file2@ 1 1 0 1 1370899062 1370899062 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/foo/file2@ @1.1@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @emosenkis@ 1370899063 1 @Create bar as symlink to foo, t@ @//import/...@ 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @emosenkis@ 1370899062 1 @Create foo
+@pv@ 0 @db.desc@ 2 @Create bar as symlink to foo, then edit file in foo
+@pv@ 0 @db.desc@ 1 @Create foo
