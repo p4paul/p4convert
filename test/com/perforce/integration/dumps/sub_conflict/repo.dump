@@ -1,0 +1,168 @@
+SVN-fs-dump-format-version: 2
+
+UUID: bc575398-1042-48ff-8f43-433e1420bbf1
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-10-04T10:37:27.100172Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-10-04T10:39:28.118027Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: f75b8179e4bbe7e2b4a074dcef62de95
+Text-content-sha1: 7fe70820e08a1aac0ef224d9c66ab66831cc4ab1
+Content-length: 18
+
+PROPS-END
+content
+
+
+Revision-number: 2
+Prop-content-length: 108
+Content-length: 108
+
+K 7
+svn:log
+V 8
+add from
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-10-04T10:39:56.227943Z
+PROPS-END
+
+Node-path: trunk/file.lib
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk/file.txt
+
+
+Revision-number: 3
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+edit
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-10-04T10:40:56.227943Z
+PROPS-END
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 18
+Content-length: 18
+
+Content
+.txt  edit
+
+
+Node-path: trunk/file.lib
+Node-kind: file
+Node-action: change
+Text-content-length: 18
+Content-length: 18
+
+Content
+.lib  edit
+
+
+Revision-number: 4
+Prop-content-length: 105
+Content-length: 105
+
+K 7
+svn:log
+V 4
+edit
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-10-04T10:40:56.227943Z
+PROPS-END
+
+Node-path: trunk/file.inc
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 2
+Node-copyfrom-path: trunk/file.lib
+
+
+Node-path: trunk/file.lib
+Node-kind: file
+Node-action: delete
+
+Node-path: trunk/file.lib
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 3
+Node-copyfrom-path: trunk/file.txt
+Text-content-length: 28
+Content-length: 28
+
+Content
+dirty edit 01 --/-.-
+
+
+
+Node-path: trunk/file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 28
+Content-length: 28
+
+Content
+dirty edit 02 --/-.-
+
