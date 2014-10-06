@@ -1,0 +1,405 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 64dceff7-fcf4-4af6-b4bb-ce799a9a6bdd
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-02-06T09:27:08.293420Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T09:37:10.621712Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/source
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/source/file001.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Node-path: trunk/source/file002.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Node-path: trunk/source/sub
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/source/sub/file010.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Node-path: trunk/source/sub/file020.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Node-path: trunk/source/sub/file030.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Node-path: trunk/source/sub/file040.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Revision-number: 2
+Prop-content-length: 107
+Content-length: 107
+
+K 7
+svn:log
+V 7
+br+edit
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T09:40:42.179559Z
+PROPS-END
+
+Node-path: trunk/work
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk/source
+
+
+Node-path: trunk/work/file001.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 12
+Text-content-md5: 46ae77fb6baeb790dab31122d34c25b1
+Text-content-sha1: 0752713728483360cece42dbd52a83d76104caa6
+Content-length: 12
+
+Content
+EDIT
+
+Node-path: trunk/work/sub/file010.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 16
+Text-content-md5: 0bb0e397a9e11fa65c3a0905de15af50
+Text-content-sha1: 8ed959d2d63f7d8819f0a07760594d31c40ac170
+Content-length: 16
+
+Content
+EDIT SUB
+
+Revision-number: 3
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+mod
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T09:43:53.342734Z
+PROPS-END
+
+Node-path: trunk/work/sub/file050.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Revision-number: 4
+Prop-content-length: 106
+Content-length: 106
+
+K 7
+svn:log
+V 6
+remove
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T09:44:45.746399Z
+PROPS-END
+
+Node-path: trunk/work/sub/file040.txt
+Node-action: delete
+
+
+Node-path: trunk/work/file002.txt
+Node-action: delete
+
+
+Revision-number: 5
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+copy
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T10:48:14.524584Z
+PROPS-END
+
+Node-path: trunk/work
+Node-kind: dir
+Node-action: delete
+
+Node-path: trunk/work
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 4
+Node-copyfrom-path: trunk/source
+
+
+
+
+Revision-number: 6
+Prop-content-length: 106
+Content-length: 106
+
+K 7
+svn:log
+V 6
+delete
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T11:29:12.712406Z
+PROPS-END
+
+Node-path: trunk/work
+Node-action: delete
+
+
+Revision-number: 7
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+link
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T11:30:03.895214Z
+PROPS-END
+
+Node-path: trunk/work
+Node-kind: file
+Node-action: add
+Prop-content-length: 33
+Text-content-length: 12
+Text-content-md5: b07ca938f593af19975d84f9e3d77dbe
+Text-content-sha1: a6c53fc55dc640e3fc04fc759f3fec929f3286cc
+Content-length: 45
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link source/
+
+Revision-number: 8
+Prop-content-length: 108
+Content-length: 108
+
+K 7
+svn:log
+V 8
+del link
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T11:30:40.386768Z
+PROPS-END
+
+Node-path: trunk/work
+Node-action: delete
+
+
+Revision-number: 9
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+copy
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T11:31:04.719883Z
+PROPS-END
+
+Node-path: trunk/work
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 8
+Node-copyfrom-path: trunk/source
+
+
+Revision-number: 10
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+copy
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-02-06T11:48:14.524584Z
+PROPS-END
+
+Node-path: trunk/work
+Node-action: delete
+
+Node-path: trunk/work
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 4
+Node-copyfrom-path: trunk/source
+
+
+
+
