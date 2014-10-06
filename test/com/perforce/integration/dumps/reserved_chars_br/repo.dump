@@ -1,0 +1,158 @@
+SVN-fs-dump-format-version: 2
+
+UUID: e4f0d19a-3d39-11e1-908c-df6346d2cb8d
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2012-01-12T16:24:26.265329Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 111
+Content-length: 111
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 13
+Administrator
+K 8
+svn:date
+V 27
+2012-01-12T16:26:49.059435Z
+PROPS-END
+
+Node-path: #file.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 7
+Text-content-md5: f15c1cae7882448b3fb0404682e17e61
+Text-content-sha1: 4f9be057f0ea5d2ba72fd2c810e8d7b9aa98b469
+Content-length: 17
+
+PROPS-END
+Content
+
+Revision-number: 2
+Prop-content-length: 112
+Content-length: 112
+
+K 7
+svn:log
+V 4
+edit
+K 10
+svn:author
+V 13
+Administrator
+K 8
+svn:date
+V 27
+2012-01-12T16:27:09.917555Z
+PROPS-END
+
+Node-path: #file.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 13
+Text-content-md5: 9295a436e458ccfd8e734364d2584a72
+Text-content-sha1: 7704d230f812ab5293b7ddeb5391904d78dd8ab4
+Content-length: 13
+
+Content
+EDIT
+
+Revision-number: 3
+Prop-content-length: 114
+Content-length: 114
+
+K 7
+svn:log
+V 6
+rename
+K 10
+svn:author
+V 13
+Administrator
+K 8
+svn:date
+V 27
+2012-01-12T16:27:46.228196Z
+PROPS-END
+
+Node-path: #file_new.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 2
+Node-copyfrom-path: #file.txt
+Text-copy-source-md5: 9295a436e458ccfd8e734364d2584a72
+Text-copy-source-sha1: 7704d230f812ab5293b7ddeb5391904d78dd8ab4
+
+
+Node-path: #file.txt
+Node-action: delete
+
+
+Revision-number: 4
+Prop-content-length: 123
+Content-length: 123
+
+K 7
+svn:log
+V 14
+add branch dir
+K 10
+svn:author
+V 13
+Administrator
+K 8
+svn:date
+V 27
+2012-01-12T16:32:08.704360Z
+PROPS-END
+
+Node-path: branch
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 5
+Prop-content-length: 114
+Content-length: 114
+
+K 7
+svn:log
+V 6
+branch
+K 10
+svn:author
+V 13
+Administrator
+K 8
+svn:date
+V 27
+2012-01-12T16:33:17.407568Z
+PROPS-END
+
+Node-path: branch/#file_new.txt
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 4
+Node-copyfrom-path: #file_new.txt
+Text-copy-source-md5: 9295a436e458ccfd8e734364d2584a72
+Text-copy-source-sha1: 7704d230f812ab5293b7ddeb5391904d78dd8ab4
+
+
