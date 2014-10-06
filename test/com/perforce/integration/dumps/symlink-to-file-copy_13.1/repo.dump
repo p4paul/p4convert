@@ -1,0 +1,111 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 142a2867-40e2-4f5b-914f-5d3ca8504f5e
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-08-27T14:50:00.078596Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 115
+Content-length: 115
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-27T14:50:00.465018Z
+K 7
+svn:log
+V 11
+Create file
+PROPS-END
+
+Node-path: bar
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 127
+Content-length: 127
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-27T14:50:00.936658Z
+K 7
+svn:log
+V 23
+Convert file to symlink
+PROPS-END
+
+Node-path: bar
+Node-kind: file
+Node-action: replace
+Prop-content-length: 33
+Text-content-length: 25
+Text-content-md5: f6ea2a3763137b4666a47c645f2e4e1d
+Text-content-sha1: c4c8fbbf7384426957511b4d29749b0a82d32a08
+Content-length: 58
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link ../../ogiieh/goergbo
+
+Revision-number: 3
+Prop-content-length: 127
+Content-length: 127
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-08-27T14:50:01.448542Z
+K 7
+svn:log
+V 23
+Convert symlink to file
+PROPS-END
+
+Node-path: bar
+Node-kind: file
+Node-action: delete
+
+Node-path: bar
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: bar
+Text-copy-source-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-copy-source-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+
+
+
+

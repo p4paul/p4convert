@@ -1,0 +1,9 @@
+@pv@ 9 @db.rev@ @//import/bar@ 3 1 4 3 1377615001 1377615000 D41D8CD98F00B204E9800998ECF8427E 0 0 1 @//import/bar@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/bar@ 2 262145 1 2 1377615000 1377615000 1EF794B6EEF31E2EA1B34BA088C26142 20 0 0 @//import/bar@ @1.2@ 262145 
+@pv@ 9 @db.rev@ @//import/bar@ 1 1 0 1 1377615000 1377615000 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/bar@ @1.1@ 1 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @emosenkis@ 1377615001 1 @Convert symlink to file
+@pv@ 2 @db.change@ 2 2 @svn-client@ @emosenkis@ 1377615000 1 @Convert file to symlink
+@pv@ 2 @db.change@ 1 1 @svn-client@ @emosenkis@ 1377615000 1 @Create file
+@pv@ 0 @db.desc@ 3 @Convert symlink to file
+@pv@ 0 @db.desc@ 2 @Convert file to symlink
+@pv@ 0 @db.desc@ 1 @Create file
