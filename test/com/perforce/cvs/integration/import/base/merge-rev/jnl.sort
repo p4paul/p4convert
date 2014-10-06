@@ -1,0 +1,593 @@
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 168 1 1 181 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 0 @//import/main/checkout.c@ @1.181@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 167 1 1 179 1280526438 1280526438 8421C8381E29D3D4A30322EE5ECEADEA 15096 0 0 @//import/main/checkout.c@ @1.179@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 166 1 1 178 1279921565 1279921565 BBBDEAC96D026F287F13FAB49FBE00F5 15045 0 0 @//import/main/checkout.c@ @1.178@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 165 1 1 176 1245615781 1245615781 BB39965CB3B3223E955A4CDBC283369A 15049 0 0 @//import/main/checkout.c@ @1.176@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 164 1 1 175 1239000356 1239000356 0C9752A820FCA53D3DDC6E5DEAEE4CA3 15041 0 0 @//import/main/checkout.c@ @1.175@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 163 1 1 174 1238138937 1238138937 97ACCF1D9646A150EFC5D4AECE68C47E 15019 0 0 @//import/main/checkout.c@ @1.174@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 162 1 1 173 1238017833 1238017833 46C6F60B7F986AC1ACB15B8923D8F41E 14899 0 0 @//import/main/checkout.c@ @1.173@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 161 1 1 172 1237367649 1237367649 0B708376CAC4AE8F25885EE3148BC303 14864 0 0 @//import/main/checkout.c@ @1.172@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 160 1 1 170 1235424728 1235424728 3A2F158A8DF4B3AE0BC4327F5B0D9E59 14840 0 0 @//import/main/checkout.c@ @1.170@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 159 1 1 169 1235227853 1235227853 64BB6DE1DBB7BE91F8B4E70611D89E14 14562 0 0 @//import/main/checkout.c@ @1.169@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 158 1 1 168 1235223858 1235223858 D897F882D34D8ECE97C9EDE2A0D939A6 14508 0 0 @//import/main/checkout.c@ @1.168@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 157 1 1 167 1233164413 1233164413 3B6684004AE769FA9F73570E3A9663F6 14494 0 0 @//import/main/checkout.c@ @1.167@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 156 1 1 165 1215520198 1215520198 46F39C76B7DC8F359D4B4863A1F193C3 14292 0 0 @//import/main/checkout.c@ @1.165@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 155 1 1 164 1213418048 1213418048 667D50B145C70413E7C5CC93A75F23B3 14308 0 0 @//import/main/checkout.c@ @1.164@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 154 1 1 163 1213415909 1213415909 FB983FA1A991E972801094DFBFD076A9 14284 0 0 @//import/main/checkout.c@ @1.163@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 153 1 1 162 1213413555 1213413555 69154B36EE33BBF081D527E8BFDBB831 14049 0 0 @//import/main/checkout.c@ @1.162@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 152 1 1 161 1213289748 1213289748 36CC04DC01F6D9075B57D9818EF17050 14081 0 0 @//import/main/checkout.c@ @1.161@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 151 1 1 160 1213254974 1213254974 E7AC08BD88E3A13F680E4C5E21AA3812 14099 0 0 @//import/main/checkout.c@ @1.160@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 150 1 1 159 1213219490 1213219490 6EF27BA0820F1B111F2904E184B8A78D 13985 0 0 @//import/main/checkout.c@ @1.159@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 149 1 1 158 1213150753 1213150753 CEC0003E1DF1E6E507BBA7CB3FA8BAFE 14004 0 0 @//import/main/checkout.c@ @1.158@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 148 1 1 157 1213129817 1213129817 30A8BA84F961DD7764939792C48494E8 13963 0 0 @//import/main/checkout.c@ @1.157@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 147 1 1 156 1213059634 1213059634 B69A4F7874100BA73F2DEA447BB86AB8 13715 0 0 @//import/main/checkout.c@ @1.156@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 146 1 1 155 1212961736 1212961736 BC42A03A13D23EC722F8ACEA70A22CDB 13707 0 0 @//import/main/checkout.c@ @1.155@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 145 1 1 154 1212894187 1212894187 CE0F792A1D4870723E6C029B938845DB 13744 0 0 @//import/main/checkout.c@ @1.154@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 144 1 1 153 1211471101 1211471101 B38BDADF6C7244415552312F1F60D05F 13784 0 0 @//import/main/checkout.c@ @1.153@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 143 1 1 152 1205032492 1205032492 2C4C6EA57CA3ED46ECD3FE1B08A438A0 13784 0 0 @//import/main/checkout.c@ @1.152@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 142 1 1 151 1205007994 1205007994 250B2079E2A85A17E6A7E506FD39F96A 13781 0 0 @//import/main/checkout.c@ @1.151@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 141 1 1 149 1204321437 1204321437 2635360C7D891E56B6CB2AE5DC55D3AC 13514 0 0 @//import/main/checkout.c@ @1.149@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 140 1 1 148 1204151644 1204151644 2650E03C5793EDB9A9DC461BCCE10372 13498 0 0 @//import/main/checkout.c@ @1.148@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 139 1 1 147 1203883445 1203883445 CA79B69E8CD271DDDD90089B5738CB9C 13451 0 0 @//import/main/checkout.c@ @1.147@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 138 1 1 146 1202652532 1202652532 75F3B964612B77AD261175AAC65F28D1 13344 0 0 @//import/main/checkout.c@ @1.146@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 137 1 1 145 1202648468 1202648468 31F6D1D2BA04F490725067880E29D30E 13405 0 0 @//import/main/checkout.c@ @1.145@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 136 1 1 144 1202638902 1202638902 D7887AC64E76BAD476F9D5380A279CD2 13433 0 0 @//import/main/checkout.c@ @1.144@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 135 1 1 143 1202587440 1202587440 CF12B126B880DFD4A071A0BAE3637889 13430 0 0 @//import/main/checkout.c@ @1.143@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 134 1 1 142 1202576503 1202576503 92DFD326B1A771B9DB2887158F44128E 13382 0 0 @//import/main/checkout.c@ @1.142@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 133 1 1 141 1202561303 1202561303 16104902001A6DDBC743F1E8DA402044 13145 0 0 @//import/main/checkout.c@ @1.141@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 132 1 1 140 1202559633 1202559633 C8E52C74547148F05E682D9561CF4AD1 12945 0 0 @//import/main/checkout.c@ @1.140@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 131 1 1 139 1202555822 1202555822 AB8FCAA92129684B6BB506EA3EA39DDC 12812 0 0 @//import/main/checkout.c@ @1.139@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 130 1 1 138 1202370600 1202370600 EAA18E81AEF3D1CCF5ACC5CFC0602AD9 12716 0 0 @//import/main/checkout.c@ @1.138@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 129 1 1 137 1202337802 1202337802 75ABE9AAE1B4A137C23B956B3EF2B687 12696 0 0 @//import/main/checkout.c@ @1.137@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 128 1 1 136 1202164600 1202164600 CF340926BA600FE3F5DE79409A590E7A 12649 0 0 @//import/main/checkout.c@ @1.136@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 127 1 1 135 1202160557 1202160557 4D43F406634D8FBDE1DA026E7D4CFA2B 12647 0 0 @//import/main/checkout.c@ @1.135@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 126 1 1 134 1202152112 1202152112 8BE9EAF0DEDFA53286AFDB32A19AA906 12499 0 0 @//import/main/checkout.c@ @1.134@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 125 1 1 133 1202137652 1202137652 DB021BEF4575CDB675D8C4B51773DB37 12396 0 0 @//import/main/checkout.c@ @1.133@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 124 1 1 132 1202081681 1202081681 E95D35A3A67B358D696ECF2B87B44D2E 11812 0 0 @//import/main/checkout.c@ @1.132@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 123 1 1 131 1202079028 1202079028 3A55F60C61B97A0949E3B87390139595 11767 0 0 @//import/main/checkout.c@ @1.131@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 122 1 1 130 1202068897 1202068897 98189D4A35C5E70C0970340A14121FF1 10901 0 0 @//import/main/checkout.c@ @1.130@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 121 1 1 129 1202068664 1202068664 FB9F9AEF6A8137DA7DFA26BEA75851B7 10827 0 0 @//import/main/checkout.c@ @1.129@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 120 1 1 128 1202064152 1202064152 B2608DDD61C72259D1CDC0C22803EAFA 10757 0 0 @//import/main/checkout.c@ @1.128@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 119 1 1 127 1202059214 1202059214 76EF6FB475A551F820573076B9070028 10545 0 0 @//import/main/checkout.c@ @1.127@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 118 1 1 126 1202052010 1202052010 B3CCCBAA9CCCF7DE11087E0CF122BC9C 10342 0 0 @//import/main/checkout.c@ @1.126@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 117 1 1 125 1202051284 1202051284 9A8FA744F0624C946973F8463AE851FE 10321 0 0 @//import/main/checkout.c@ @1.125@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 116 1 1 124 1201980748 1201980748 53D304D60C09E6000348517A26FBB65C 10297 0 0 @//import/main/checkout.c@ @1.124@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 115 1 1 123 1201809100 1201809100 A71A0C75998D2E33C2868D79DBE45C35 10248 0 0 @//import/main/checkout.c@ @1.123@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 114 1 1 122 1201808945 1201808945 BB97ED8573908326214070B41893A434 10240 0 0 @//import/main/checkout.c@ @1.122@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 113 1 1 121 1201808339 1201808339 E4DF225E3EE7D5ADC9336BB29FDF9684 10281 0 0 @//import/main/checkout.c@ @1.121@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 112 1 1 120 1201774505 1201774505 C0D6C5AC6EEC68E8B47210F3BD7858A3 9515 0 0 @//import/main/checkout.c@ @1.120@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 111 1 1 119 1201556109 1201556109 26B690EE140E024A75AE9A057A501A6B 9376 0 0 @//import/main/checkout.c@ @1.119@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 110 1 1 118 1201552267 1201552267 02F708D4556A32529210E3B568847FE4 9341 0 0 @//import/main/checkout.c@ @1.118@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 109 1 1 117 1201080848 1201080848 1E074E0E16E281AB873B0E0673D88BCA 9283 0 0 @//import/main/checkout.c@ @1.117@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 108 1 1 116 1200933406 1200933406 7AAC06D6C8E6346699D03CFD4B300563 9111 0 0 @//import/main/checkout.c@ @1.116@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 107 1 1 115 1199959702 1199959702 5958C4EF0527F7197C99A7563C90573C 8974 0 0 @//import/main/checkout.c@ @1.115@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 106 1 1 114 1199958844 1199958844 51ACD837EAE8B10516B02AC6C28149F7 9008 0 0 @//import/main/checkout.c@ @1.114@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 105 1 1 113 1190546364 1190546364 B7F1EF4B47A4B7896FAD59B76C6C9FD4 9008 0 0 @//import/main/checkout.c@ @1.113@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 104 1 1 112 1190476882 1190476882 A24C20E2ABEB3F69D5D4B1CB7752E101 9026 0 0 @//import/main/checkout.c@ @1.112@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 103 1 1 111 1190475029 1190475029 AE0575D6B7D7FF7C6427C89DB415B15E 8931 0 0 @//import/main/checkout.c@ @1.111@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 102 1 1 110 1189369446 1189369446 7FE3B19236893A53653C817ABE00E863 8842 0 0 @//import/main/checkout.c@ @1.110@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 101 1 1 109 1189206304 1189206304 359EED706CC7549B8652FEBCF1FEB2A4 8788 0 0 @//import/main/checkout.c@ @1.109@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 100 1 1 108 1189193765 1189193765 853999C2C9609638F0123A9AF8D8CCF6 8737 0 0 @//import/main/checkout.c@ @1.108@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 99 1 1 106 1185353124 1185353124 3E2374A0207535BDE37E7D3F1ECE029C 8418 0 0 @//import/main/checkout.c@ @1.106@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 98 1 1 105 1184746647 1184746647 D1E1231BC9FF1F23980294D94F355788 8361 0 0 @//import/main/checkout.c@ @1.105@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 97 1 1 104 1183468962 1183468962 06A2F53DF0B136F4A2100F8B33C93E62 8306 0 0 @//import/main/checkout.c@ @1.104@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 96 1 1 103 1183066689 1183066689 582E5796B61F151EC1C78933D44A0CE3 8365 0 0 @//import/main/checkout.c@ @1.103@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 95 1 1 102 1182916696 1182916696 04932B0087595F9FD21D43E7C42073D6 8324 0 0 @//import/main/checkout.c@ @1.102@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 94 1 1 101 1182189253 1182189253 0FB1A423260A2D75254FA173000B77FA 8150 0 0 @//import/main/checkout.c@ @1.101@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 93 1 1 100 1180720067 1180720067 ED04E145CC94C87FA478924EE458CE6C 8093 0 0 @//import/main/checkout.c@ @1.100@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 92 1 1 98 1172126529 1172126529 EF67A05BD72E8295EED85CCC343A99D8 7855 0 0 @//import/main/checkout.c@ @1.98@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 91 1 1 97 1171794645 1171794645 5284FBFA86D7416F8727FD315B57951C 7745 0 0 @//import/main/checkout.c@ @1.97@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 90 1 1 96 1171736623 1171736623 3752CFA10933B3EB82B97D59A49B360F 7766 0 0 @//import/main/checkout.c@ @1.96@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 89 1 1 95 1170277655 1170277655 84E60E82BB05D7F5744D860AF10C1309 7827 0 0 @//import/main/checkout.c@ @1.95@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 88 1 1 94 1170027582 1170027582 18D504EF13E2756F7D1007C0DFD8527D 8070 0 0 @//import/main/checkout.c@ @1.94@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 87 1 1 93 1169949885 1169949885 559BCDA3822D28D83172CDD9125F28D8 8138 0 0 @//import/main/checkout.c@ @1.93@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 86 1 1 92 1169848751 1169848751 B1B927FC2D69E11920CD1B7035869CAD 7621 0 0 @//import/main/checkout.c@ @1.92@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 85 1 1 91 1169848097 1169848097 91C729165C3E41F43142736E38AE88ED 7571 0 0 @//import/main/checkout.c@ @1.91@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 84 1 1 90 1169810384 1169810384 9EEA6BCE8B638C4A32DDA7449D5B2FD1 7199 0 0 @//import/main/checkout.c@ @1.90@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 83 1 1 89 1169767352 1169767352 A8600ACC50EEFBAB3ADEEDBD97500762 7252 0 0 @//import/main/checkout.c@ @1.89@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 82 1 1 88 1169110148 1169110148 32E2029DD8E25D69D5C9936709BBDC36 7225 0 0 @//import/main/checkout.c@ @1.88@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 81 1 1 87 1169073590 1169073590 D627EC5100A17863405AAC5814ECEE04 7287 0 0 @//import/main/checkout.c@ @1.87@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 80 1 1 86 1169066330 1169066330 0FB031CEC0875197ABE202B8503CD8AD 7293 0 0 @//import/main/checkout.c@ @1.86@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 79 1 1 85 1169056490 1169056490 2C3A561C3BC20F0D7460C8AC23E12299 7213 0 0 @//import/main/checkout.c@ @1.85@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 78 1 1 84 1168936426 1168936426 310732BA833830529970C636DD445948 6591 0 0 @//import/main/checkout.c@ @1.84@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 77 1 1 83 1168935447 1168935447 AC174A0F6A726A9E92C3167E561D3602 6610 0 0 @//import/main/checkout.c@ @1.83@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 76 1 1 82 1168813246 1168813246 606AFD6268BD067E3893AAA347C73508 6503 0 0 @//import/main/checkout.c@ @1.82@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 75 1 1 81 1168800295 1168800295 2AFD1D8F90B0E2A4CFDBC23BB9C5B111 6431 0 0 @//import/main/checkout.c@ @1.81@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 74 1 1 80 1168703775 1168703775 FFAD8142DA3E32A465010124C5BBD449 6784 0 0 @//import/main/checkout.c@ @1.80@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 73 1 1 79 1168703159 1168703159 0CA2BF9BE07A8CCDC972AC7D379F7E1F 6764 0 0 @//import/main/checkout.c@ @1.79@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 72 1 1 78 1168702174 1168702174 E85B4AFB3867DBC3B5A34370E9CB90B0 6773 0 0 @//import/main/checkout.c@ @1.78@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 71 1 1 77 1168646171 1168646171 3ABF4DB0544C9FED62BB79C0C77DCDCC 6411 0 0 @//import/main/checkout.c@ @1.77@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 70 1 1 76 1168644721 1168644721 35976479D31A5C962911163BB50400A6 6728 0 0 @//import/main/checkout.c@ @1.76@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 69 1 1 75 1167863310 1167863310 C8A75CDF9581D04A011C9A1D9890520A 6580 0 0 @//import/main/checkout.c@ @1.75@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 68 1 1 74 1167857306 1167857306 B7EDBEC7EFAE01836C9E687F01B6A278 6660 0 0 @//import/main/checkout.c@ @1.74@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 67 1 1 73 1166788310 1166788310 1D6381FC63503011711C7D41525973A3 6510 0 0 @//import/main/checkout.c@ @1.73@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 66 1 1 71 1152293837 1152293837 21EC8FC0A1C6479CA7F95696D9EB353D 6540 0 0 @//import/main/checkout.c@ @1.71@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 65 1 1 70 1151785846 1151785846 E1461B0033E24F65D835C0B865FEDF93 5783 0 0 @//import/main/checkout.c@ @1.70@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 64 1 1 69 1150693517 1150693517 56D8A23841AC1A3307693BA6FF193BAD 5622 0 0 @//import/main/checkout.c@ @1.69@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 63 1 1 68 1150466862 1150466862 9F2797FABED9A35BF08FB09B3BD49E42 5638 0 0 @//import/main/checkout.c@ @1.68@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 62 1 1 67 1150316933 1150316933 5E8D85717C1E61DE7908C73BC901ED8F 5677 0 0 @//import/main/checkout.c@ @1.67@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 61 1 1 66 1149577126 1149577126 D56C375E9346FF2AF472C0CA4863CEEA 5801 0 0 @//import/main/checkout.c@ @1.66@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 60 1 1 65 1149361633 1149361633 E689C9EFBE5FCD926B649FE39683740B 5061 0 0 @//import/main/checkout.c@ @1.65@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 59 1 1 64 1149114359 1149114359 2B15B7D5A179298ECCD5A6313E5B11B6 4822 0 0 @//import/main/checkout.c@ @1.64@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 58 1 1 63 1148779468 1148779468 F755A6AADBEF4393468EB98210EBAC55 4634 0 0 @//import/main/checkout.c@ @1.63@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 57 1 1 62 1148746201 1148746201 202E66E6EDCF8C441BD618C62C283223 4544 0 0 @//import/main/checkout.c@ @1.62@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 56 1 1 61 1148742867 1148742867 FB2FFF476887095BD495AC0DB8EBA35B 4504 0 0 @//import/main/checkout.c@ @1.61@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 55 1 1 60 1148709572 1148709572 B6DCAD4FA6CEA0DBD4AFF1594795BC0F 4462 0 0 @//import/main/checkout.c@ @1.60@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 54 1 1 59 1148707225 1148707225 3BD5CA292AF30D751261122F2747FF0B 4416 0 0 @//import/main/checkout.c@ @1.59@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 53 1 1 58 1148700630 1148700630 13FAEA6F556BBFE364E598D65F8DB814 4286 0 0 @//import/main/checkout.c@ @1.58@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 52 1 1 57 1144982735 1144982735 3E7DDA684AD74B74439E7A4AD6D06A3A 8094 0 0 @//import/main/checkout.c@ @1.57@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 51 1 1 56 1143207267 1143207267 2CA3ACE17900989579AA54EDFF2517FC 8112 0 0 @//import/main/checkout.c@ @1.56@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 50 1 1 54 1138715720 1138715720 B7781F506601774A8869AECC09EDC45D 8104 0 0 @//import/main/checkout.c@ @1.54@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 49 1 1 53 1138643927 1138643927 4A5113966D6E7274EB86E73433662782 8271 0 0 @//import/main/checkout.c@ @1.53@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 48 1 1 52 1138366588 1138366588 EE041860217D1F0648A616E151C8BF30 8269 0 0 @//import/main/checkout.c@ @1.52@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 47 1 1 51 1138365921 1138365921 D8B8BAD8FFF9995BBED70F8E3CA15890 8356 0 0 @//import/main/checkout.c@ @1.51@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 46 1 1 50 1138359203 1138359203 AA142586AFB16147016365C3C1DE1DA0 8351 0 0 @//import/main/checkout.c@ @1.50@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 45 1 1 49 1138191373 1138191373 D176D3161C1E72133C84D74E12D705C9 8393 0 0 @//import/main/checkout.c@ @1.49@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 44 1 1 48 1136189516 1136189516 FEF1BEC566A0328078F50EC2F5820893 8250 0 0 @//import/main/checkout.c@ @1.48@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 43 1 1 47 1135965061 1135965061 BC9FF6E0B1BE222DB9479D857E3C43A7 8373 0 0 @//import/main/checkout.c@ @1.47@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 42 1 1 46 1135908208 1135908208 152E0EFB99B5CAB3E73F67A720CAAAF6 8373 0 0 @//import/main/checkout.c@ @1.46@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 41 1 1 45 1133571728 1133571728 55AD8014895802B6F2ECFA4DB5A689A3 8869 0 0 @//import/main/checkout.c@ @1.45@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 40 1 1 44 1126803670 1126803670 5CF2BFD744756A8BA7B4DA77D8D4FDCA 6598 0 0 @//import/main/checkout.c@ @1.44@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 39 1 1 42 1122293143 1122293143 EF443B7963F09290A152060A6F9F9BAC 6577 0 0 @//import/main/checkout.c@ @1.42@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 38 1 1 41 1122227285 1122227285 E5EEE725C9322755D67CF458DCB14AA8 6591 0 0 @//import/main/checkout.c@ @1.41@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 37 1 1 40 1120812883 1120812883 4C688B67B3EE3ADBD706551CA6D32F89 6572 0 0 @//import/main/checkout.c@ @1.40@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 36 1 1 39 1120811049 1120811049 403368A09D8297740B4970A741AF6CE2 6318 0 0 @//import/main/checkout.c@ @1.39@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 35 1 1 38 1120746477 1120746477 AB63D34A55B39ECCC1583CD58332A551 6420 0 0 @//import/main/checkout.c@ @1.38@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 34 1 1 37 1119948894 1119948894 28705688FC874D559000538521615DF0 6421 0 0 @//import/main/checkout.c@ @1.37@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 33 1 1 36 1118648439 1118648439 F8F6D84E568A8B77E54442CDA70A4178 6292 0 0 @//import/main/checkout.c@ @1.36@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 32 1 1 35 1118307710 1118307710 C19486EC500F70B8A3A469359B2AFF81 5418 0 0 @//import/main/checkout.c@ @1.35@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 31 1 1 34 1118301879 1118301879 446AB535FFDD2C651D44E694D1B7E014 5378 0 0 @//import/main/checkout.c@ @1.34@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 30 1 1 33 1118158464 1118158464 BE41B077AEEA681BE0A23DA06D1AD273 5374 0 0 @//import/main/checkout.c@ @1.33@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 29 1 1 32 1118157205 1118157205 26059F929A93445D9424D3A21844FFF9 5372 0 0 @//import/main/checkout.c@ @1.32@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 28 1 1 31 1117529927 1117529927 B864D494F669257BE08676ECD0BBED3B 5249 0 0 @//import/main/checkout.c@ @1.31@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 27 1 1 30 1117528000 1117528000 0DA285720613C8697FEE5063CC7ECBD8 5267 0 0 @//import/main/checkout.c@ @1.30@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 26 1 1 29 1117438761 1117438761 C416F60FD64837D679AB728BE01194FA 5269 0 0 @//import/main/checkout.c@ @1.29@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 25 1 1 28 1117388924 1117388924 C1175DC023CDBCD630D5032F22837ECF 5291 0 0 @//import/main/checkout.c@ @1.28@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 24 1 1 27 1117076840 1117076840 064BFDB52BF27156FB0FD53077485103 5251 0 0 @//import/main/checkout.c@ @1.27@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 23 1 1 26 1116965083 1116965083 1E4AC5E9C21FF4455FD1228575DF3F72 5187 0 0 @//import/main/checkout.c@ @1.26@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 22 1 1 25 1116907945 1116907945 55935D0912FC68F5E466F70AB6E94405 4868 0 0 @//import/main/checkout.c@ @1.25@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 21 1 1 24 1116869435 1116869435 F576413FE48E64DE60322F9F67D4D2F4 4026 0 0 @//import/main/checkout.c@ @1.24@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 20 1 1 23 1116613609 1116613609 10ECD7232FC0D0278FFBCDB64DBF6003 3901 0 0 @//import/main/checkout.c@ @1.23@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 19 1 1 22 1116566024 1116566024 BCB0B1506E4E5F7D20AF1C876F605FB5 3829 0 0 @//import/main/checkout.c@ @1.22@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 18 1 1 21 1113317920 1113317920 CA58645C8AAE1480BCCECA4426941FF5 3664 0 0 @//import/main/checkout.c@ @1.21@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 17 1 1 20 1113242578 1113242578 99681D289502C9DE3A0B82D11E45795A 3580 0 0 @//import/main/checkout.c@ @1.20@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 16 1 1 19 1113242187 1113242187 FE95B73192F5A572293565F94E0DB160 3600 0 0 @//import/main/checkout.c@ @1.19@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 15 1 1 18 1112549570 1112549570 0B685C07770CB11E69FBE1398790B677 3630 0 0 @//import/main/checkout.c@ @1.18@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 14 1 1 17 1112204584 1112204584 7989BF2669C443E5DE18A6E56C6AA5B8 3664 0 0 @//import/main/checkout.c@ @1.17@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 13 1 1 15 1109110320 1109110320 24044B255876E41A8521D3B12B947B3D 4210 0 0 @//import/main/checkout.c@ @1.15@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 12 1 1 14 1102986711 1102986711 74F31EDFC2B7132BF2C8F088D56BEBC0 3125 0 0 @//import/main/checkout.c@ @1.14@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 11 1 1 13 1102439456 1102439456 1F7054AD10499E39F615C96C6256D353 3063 0 0 @//import/main/checkout.c@ @1.13@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 10 1 1 12 1101485113 1101485113 95CCA4670482056012C5D0A6754B6326 3024 0 0 @//import/main/checkout.c@ @1.12@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 9 1 1 11 1092344626 1092344626 82FE3BB6DCBB97843FC7AB2C5B5EB716 2657 0 0 @//import/main/checkout.c@ @1.11@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 8 1 1 10 1091797719 1091797719 06F2F177E78E5D23BF5CCE3964D320A9 2440 0 0 @//import/main/checkout.c@ @1.10@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 7 1 1 9 1091508987 1091508987 B8AB653E512FBC0A2532632E7AB5C4CA 2431 0 0 @//import/main/checkout.c@ @1.9@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 6 1 1 8 1091211247 1091211247 D92ED5018C0F56ECFF8F64048D91CA59 2442 0 0 @//import/main/checkout.c@ @1.8@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 5 1 1 7 1091152162 1091152162 BF3D1F91F439A771EA2B5B7389E5436B 2278 0 0 @//import/main/checkout.c@ @1.7@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 4 1 1 6 1091125965 1091125965 BA5CF86A23C6BC18E50A527661CEE6A0 2267 0 0 @//import/main/checkout.c@ @1.6@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 3 1 1 5 1090980089 1090980089 0F04F53A7410FF3FA150562D82F9386F 2303 0 0 @//import/main/checkout.c@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 2 1 1 4 1090863030 1090863030 135D24ED47E7C732251DF463C12F4BCB 2295 0 0 @//import/main/checkout.c@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/main/checkout.c@ 1 1 0 1 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 0 @//import/main/checkout.c@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_3_7/checkout.c@ 1 1 3 16 1109110320 1109110320 24044B255876E41A8521D3B12B947B3D 4210 0 1 @//import/main/checkout.c@ @1.15@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_3_8/checkout.c@ 1 1 3 43 1122293143 1122293143 EF443B7963F09290A152060A6F9F9BAC 6577 0 1 @//import/main/checkout.c@ @1.42@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_3_9/checkout.c@ 1 1 3 55 1138715720 1138715720 B7781F506601774A8869AECC09EDC45D 8104 0 1 @//import/main/checkout.c@ @1.54@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_0/checkout.c@ 1 1 3 72 1152293837 1152293837 21EC8FC0A1C6479CA7F95696D9EB353D 6540 0 1 @//import/main/checkout.c@ @1.71@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_1/checkout.c@ 1 1 3 99 1172126529 1172126529 EF67A05BD72E8295EED85CCC343A99D8 7855 0 1 @//import/main/checkout.c@ @1.98@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_2/checkout.c@ 1 1 3 107 1185353124 1185353124 3E2374A0207535BDE37E7D3F1ECE029C 8418 0 1 @//import/main/checkout.c@ @1.106@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_3/checkout.c@ 1 1 3 150 1204321437 1204321437 2635360C7D891E56B6CB2AE5DC55D3AC 13514 0 1 @//import/main/checkout.c@ @1.149@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_4/checkout.c@ 1 1 3 166 1215520198 1215520198 46F39C76B7DC8F359D4B4863A1F193C3 14292 0 1 @//import/main/checkout.c@ @1.165@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_5/checkout.c@ 1 1 3 171 1235424728 1235424728 3A2F158A8DF4B3AE0BC4327F5B0D9E59 14840 0 1 @//import/main/checkout.c@ @1.170@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_6/checkout.c@ 1 1 3 177 1245615781 1245615781 BB39965CB3B3223E955A4CDBC283369A 15049 0 1 @//import/main/checkout.c@ @1.176@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_7/checkout.c@ 1 1 3 177 1245615781 1245615781 BB39965CB3B3223E955A4CDBC283369A 15049 0 1 @//import/main/checkout.c@ @1.176@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_8/checkout.c@ 1 1 3 180 1280526438 1280526438 8421C8381E29D3D4A30322EE5ECEADEA 15096 0 1 @//import/main/checkout.c@ @1.179@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_4_9/checkout.c@ 1 1 3 180 1280526438 1280526438 8421C8381E29D3D4A30322EE5ECEADEA 15096 0 1 @//import/main/checkout.c@ @1.179@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_0/checkout.c@ 1 1 3 180 1280526438 1280526438 8421C8381E29D3D4A30322EE5ECEADEA 15096 0 1 @//import/main/checkout.c@ @1.179@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_1/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_2/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_3/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_4/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
+@pv@ 9 @db.rev@ @//import/OPENBSD_5_5/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
+@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 4 3 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 1 @//import/main/checkout.c@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 0 2 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 0 @//import/OpenCVS/checkout.c@ @1.2@ 1 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_7/checkout.c@ 0 1 0 13 3 16 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_8/checkout.c@ 0 1 0 39 3 43 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_9/checkout.c@ 0 1 0 50 3 55 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_0/checkout.c@ 0 1 0 66 3 72 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_1/checkout.c@ 0 1 0 92 3 99 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_2/checkout.c@ 0 1 0 99 3 107 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_3/checkout.c@ 0 1 0 141 3 150 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_4/checkout.c@ 0 1 0 156 3 166 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_5/checkout.c@ 0 1 0 160 3 171 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_6/checkout.c@ 0 1 0 165 3 177 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_7/checkout.c@ 0 1 0 165 3 177 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_8/checkout.c@ 0 1 0 167 3 180 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_9/checkout.c@ 0 1 0 167 3 180 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_0/checkout.c@ 0 1 0 167 3 180 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_1/checkout.c@ 0 1 0 168 3 182 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_2/checkout.c@ 0 1 0 168 3 182 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_3/checkout.c@ 0 1 0 168 3 182 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_4/checkout.c@ 0 1 0 168 3 182 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_5/checkout.c@ 0 1 0 168 3 182 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 1 2 0 1 5 3 
+@pv@ 0 @db.integed@ @//import/OPENBSD_3_7/checkout.c@ @//import/main/checkout.c@ 0 13 0 1 2 16 
+@pv@ 0 @db.integed@ @//import/OPENBSD_3_8/checkout.c@ @//import/main/checkout.c@ 0 39 0 1 2 43 
+@pv@ 0 @db.integed@ @//import/OPENBSD_3_9/checkout.c@ @//import/main/checkout.c@ 0 50 0 1 2 55 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_0/checkout.c@ @//import/main/checkout.c@ 0 66 0 1 2 72 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_1/checkout.c@ @//import/main/checkout.c@ 0 92 0 1 2 99 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_2/checkout.c@ @//import/main/checkout.c@ 0 99 0 1 2 107 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_3/checkout.c@ @//import/main/checkout.c@ 0 141 0 1 2 150 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_4/checkout.c@ @//import/main/checkout.c@ 0 156 0 1 2 166 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_5/checkout.c@ @//import/main/checkout.c@ 0 160 0 1 2 171 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_6/checkout.c@ @//import/main/checkout.c@ 0 165 0 1 2 177 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_7/checkout.c@ @//import/main/checkout.c@ 0 165 0 1 2 177 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_8/checkout.c@ @//import/main/checkout.c@ 0 167 0 1 2 180 
+@pv@ 0 @db.integed@ @//import/OPENBSD_4_9/checkout.c@ @//import/main/checkout.c@ 0 167 0 1 2 180 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_0/checkout.c@ @//import/main/checkout.c@ 0 167 0 1 2 180 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_1/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_2/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_3/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_4/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
+@pv@ 0 @db.integed@ @//import/OPENBSD_5_5/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
+@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 1 2 4 3 
+@pv@ 2 @db.change@ 182 182 @svn-client@ @branch@ 1324994341 1 @Branch: 
+@pv@ 2 @db.change@ 181 181 @svn-client@ @nicm@ 1324994341 1 @Move some global variables/stat@ @//import/main/*@ 
+@pv@ 2 @db.change@ 180 180 @svn-client@ @branch@ 1280526438 1 @Branch: 
+@pv@ 2 @db.change@ 179 179 @svn-client@ @ray@ 1280526438 1 @Check date_parse return values.@ @//import/main/*@ 
+@pv@ 2 @db.change@ 178 178 @svn-client@ @ray@ 1279921565 1 @Reduce variable/function name a@ @//import/main/*@ 
+@pv@ 2 @db.change@ 177 177 @svn-client@ @branch@ 1245615781 1 @Branch: 
+@pv@ 2 @db.change@ 176 176 @svn-client@ @sthen@ 1245615781 1 @Use correct synopses for checko@ @//import/main/*@ 
+@pv@ 2 @db.change@ 175 175 @svn-client@ @joris@ 1239000356 1 @make sure we handle allowed opt@ @//import/main/*@ 
+@pv@ 2 @db.change@ 174 174 @svn-client@ @joris@ 1238138937 1 @make sure that when we try to s@ @//import/main/*@ 
+@pv@ 2 @db.change@ 173 173 @svn-client@ @joris@ 1238017833 1 @switch our file and directory l@ @//import/main/*@ 
+@pv@ 2 @db.change@ 172 172 @svn-client@ @joris@ 1237367649 1 @be carefull when trying to acce@ @//import/main/*@ 
+@pv@ 2 @db.change@ 171 171 @svn-client@ @branch@ 1235424728 1 @Branch: 
+@pv@ 2 @db.change@ 170 170 @svn-client@ @joris@ 1235424728 1 @we no longer push out Set-stick@ @//import/main/*@ 
+@pv@ 2 @db.change@ 169 169 @svn-client@ @joris@ 1235227853 1 @use FILE_ON_DISK flags when we @ @//import/main/*@ 
+@pv@ 2 @db.change@ 168 168 @svn-client@ @joris@ 1235223858 1 @use file_flags for 2 more reaso@ @//import/main/*@ 
+@pv@ 2 @db.change@ 167 167 @svn-client@ @pyr@ 1233164413 1 @enable -d for the export comman@ @//import/main/*@ 
+@pv@ 2 @db.change@ 166 166 @svn-client@ @branch@ 1215520198 1 @Branch: 
+@pv@ 2 @db.change@ 165 165 @svn-client@ @joris@ 1215520198 1 @use cf->fd in cvs_remote_sendfi@ @//import/main/*@ 
+@pv@ 2 @db.change@ 164 164 @svn-client@ @tobias@ 1213418048 1 @Conforming to RCS specification@ @//import/main/*@ 
+@pv@ 2 @db.change@ 163 163 @svn-client@ @tobias@ 1213415909 1 @Added support for sticky date s@ @//import/main/*@ 
+@pv@ 2 @db.change@ 162 162 @svn-client@ @joris@ 1213413555 1 @don't always re-open the same C@ @//import/main/*@ 
+@pv@ 2 @db.change@ 161 161 @svn-client@ @tobias@ 1213289748 1 @Fixed a memory leak in export n@ @//import/main/*@ 
+@pv@ 2 @db.change@ 160 160 @svn-client@ @joris@ 1213254974 1 @completely kill the need for TM@ @//import/main/*@ 
+@pv@ 2 @db.change@ 159 159 @svn-client@ @joris@ 1213219490 1 @always enter cvs_update_leavedi@ @//import/main/*@ 
+@pv@ 2 @db.change@ 158 158 @svn-client@ @tobias@ 1213150753 1 @Avoid possible NULL pointer der@ @//import/main/*@ 
+@pv@ 2 @db.change@ 157 157 @svn-client@ @joris@ 1213129817 1 @properly inherit file permissio@ @//import/main/*@ 
+@pv@ 2 @db.change@ 156 156 @svn-client@ @joris@ 1213059634 1 @New trigger framework that allo@ @//import/main/*@ 
+@pv@ 2 @db.change@ 155 155 @svn-client@ @joris@ 1212961736 1 @simplification from igor
+@pv@ 2 @db.change@ 154 154 @svn-client@ @tobias@ 1212894187 1 @Avoid memory leaks in directory@ @//import/main/*@ 
+@pv@ 2 @db.change@ 153 153 @svn-client@ @tobias@ 1211471101 1 @expension -> expansion
+@pv@ 2 @db.change@ 152 152 @svn-client@ @joris@ 1205032492 1 @proper repository locking:
+@pv@ 2 @db.change@ 151 151 @svn-client@ @joris@ 1205007994 1 @add checkout/update -j support.@ @//import/main/*@ 
+@pv@ 2 @db.change@ 150 150 @svn-client@ @branch@ 1204321437 1 @Branch: 
+@pv@ 2 @db.change@ 149 149 @svn-client@ @joris@ 1204321437 1 @handle file permissions and own@ @//import/main/*@ 
+@pv@ 2 @db.change@ 148 148 @svn-client@ @joris@ 1204151644 1 @prevent file races
+@pv@ 2 @db.change@ 147 147 @svn-client@ @tobias@ 1203883445 1 @Properly handle return value of@ @//import/main/*@ 
+@pv@ 2 @db.change@ 146 146 @svn-client@ @xsa@ 1202652532 1 @+ #define CVS_DATE_FMT   "%Y.%m@ @//import/main/*@ 
+@pv@ 2 @db.change@ 145 145 @svn-client@ @tobias@ 1202648468 1 @Respond with "Updated" instead @ @//import/main/*@ 
+@pv@ 2 @db.change@ 144 144 @svn-client@ @joris@ 1202638902 1 @properly initialize cvs_specifi@ @//import/main/*@ 
+@pv@ 2 @db.change@ 143 143 @svn-client@ @xsa@ 1202587440 1 @Introduce cvs_ent_line_str() - @ @//import/main/*@ 
+@pv@ 2 @db.change@ 142 142 @svn-client@ @tobias@ 1202576503 1 @Support for checkout -D extende@ @//import/main/*@ 
+@pv@ 2 @db.change@ 141 141 @svn-client@ @joris@ 1202561303 1 @remote improvements:
+@pv@ 2 @db.change@ 140 140 @svn-client@ @tobias@ 1202559633 1 @Get in proper support for check@ @//import/main/*@ 
+@pv@ 2 @db.change@ 139 139 @svn-client@ @tobias@ 1202555822 1 @Get in initial support for chec@ @//import/main/*@ 
+@pv@ 2 @db.change@ 138 138 @svn-client@ @xsa@ 1202370600 1 @exit() needs stdlib.h
+@pv@ 2 @db.change@ 137 137 @svn-client@ @joris@ 1202337802 1 @lets do co -c as well (list ava@ @//import/main/*@ 
+@pv@ 2 @db.change@ 136 136 @svn-client@ @joris@ 1202164600 1 @CVSROOT/modules:
+@pv@ 2 @db.change@ 135 135 @svn-client@ @joris@ 1202160557 1 @implement -n for checkout:
+@pv@ 2 @db.change@ 134 134 @svn-client@ @joris@ 1202152112 1 @more CVSROOT/modules stuff:
+@pv@ 2 @db.change@ 133 133 @svn-client@ @tobias@ 1202137652 1 @Added -k flag support for all c@ @//import/main/*@ 
+@pv@ 2 @db.change@ 132 132 @svn-client@ @joris@ 1202081681 1 @shuffle some stuff around so we@ @//import/main/*@ 
+@pv@ 2 @db.change@ 131 131 @svn-client@ @joris@ 1202079028 1 @more CVSROOT/module stuff:
+@pv@ 2 @db.change@ 130 130 @svn-client@ @joris@ 1202068897 1 @dont forget to send the -d flag@ @//import/main/*@ 
+@pv@ 2 @db.change@ 129 129 @svn-client@ @joris@ 1202068664 1 @respect any -l option that migh@ @//import/main/*@ 
+@pv@ 2 @db.change@ 128 128 @svn-client@ @joris@ 1202064152 1 @with the recent changes for CVS@ @//import/main/*@ 
+@pv@ 2 @db.change@ 127 127 @svn-client@ @joris@ 1202059214 1 @better CVSROOT/module support, @ @//import/main/*@ 
+@pv@ 2 @db.change@ 126 126 @svn-client@ @tobias@ 1202052010 1 @cvs_update_leavedir is only use@ @//import/main/*@ 
+@pv@ 2 @db.change@ 125 125 @svn-client@ @tobias@ 1202051284 1 @(f)utimes takes sys/time.h
+@pv@ 2 @db.change@ 124 124 @svn-client@ @joris@ 1201980748 1 @initial CVSROOT/modules support@ @//import/main/*@ 
+@pv@ 2 @db.change@ 123 123 @svn-client@ @xsa@ 1201809100 1 @Make use of CVS_REV_BUFSZ every@ @//import/main/*@ 
+@pv@ 2 @db.change@ 122 122 @svn-client@ @xsa@ 1201808945 1 @Rename `stickytag' variable to @ @//import/main/*@ 
+@pv@ 2 @db.change@ 121 121 @svn-client@ @tobias@ 1201808339 1 @We have to carefully check if a@ @//import/main/*@ 
+@pv@ 2 @db.change@ 120 120 @svn-client@ @tobias@ 1201774505 1 @Replaced the unused cvs_command@ @//import/main/*@ 
+@pv@ 2 @db.change@ 119 119 @svn-client@ @tobias@ 1201556109 1 @Actually support checkout's -l.@ @//import/main/*@ 
+@pv@ 2 @db.change@ 118 118 @svn-client@ @tobias@ 1201552267 1 @Properly handle -R -- although @ @//import/main/*@ 
+@pv@ 2 @db.change@ 117 117 @svn-client@ @tobias@ 1201080848 1 @Don't reset the sticky tag of a@ @//import/main/*@ 
+@pv@ 2 @db.change@ 116 116 @svn-client@ @tobias@ 1200933406 1 @Fixed export to be fully functi@ @//import/main/*@ 
+@pv@ 2 @db.change@ 115 115 @svn-client@ @tobias@ 1199959702 1 @another strcspn() round
+@pv@ 2 @db.change@ 114 114 @svn-client@ @tobias@ 1199958844 1 @Our keyword expansion had a big@ @//import/main/*@ 
+@pv@ 2 @db.change@ 113 113 @svn-client@ @joris@ 1190546364 1 @make sure when running update -@ @//import/main/*@ 
+@pv@ 2 @db.change@ 112 112 @svn-client@ @joris@ 1190476882 1 @better branching/sticky tag sup@ @//import/main/*@ 
+@pv@ 2 @db.change@ 111 111 @svn-client@ @tobias@ 1190475029 1 @Support for checkout with a loc@ @//import/main/*@ 
+@pv@ 2 @db.change@ 110 110 @svn-client@ @tobias@ 1189369446 1 @Added support for checkout -p w@ @//import/main/*@ 
+@pv@ 2 @db.change@ 109 109 @svn-client@ @joris@ 1189206304 1 @Sprinkle some magic so checkout@ @//import/main/*@ 
+@pv@ 2 @db.change@ 108 108 @svn-client@ @tobias@ 1189193765 1 @Added support for single file c@ @//import/main/*@ 
+@pv@ 2 @db.change@ 107 107 @svn-client@ @branch@ 1185353124 1 @Branch: 
+@pv@ 2 @db.change@ 106 106 @svn-client@ @xsa@ 1185353124 1 @Correctly handle the export com@ @//import/main/*@ 
+@pv@ 2 @db.change@ 105 105 @svn-client@ @xsa@ 1184746647 1 @Support -r for the export comma@ @//import/main/*@ 
+@pv@ 2 @db.change@ 104 104 @svn-client@ @joris@ 1183468962 1 @Rework the way opencvs works in@ @//import/main/*@ 
+@pv@ 2 @db.change@ 103 103 @svn-client@ @xsa@ 1183066689 1 @Sync revisions and time buffers@ @//import/main/*@ 
+@pv@ 2 @db.change@ 102 102 @svn-client@ @joris@ 1182916696 1 @We were missing the needed clue@ @//import/main/*@ 
+@pv@ 2 @db.change@ 101 101 @svn-client@ @joris@ 1182189253 1 @first stab at history stuff for@ @//import/main/*@ 
+@pv@ 2 @db.change@ 100 100 @svn-client@ @niallo@ 1180720067 1 @add support for local and remot@ @//import/main/*@ 
+@pv@ 2 @db.change@ 99 99 @svn-client@ @branch@ 1172126529 1 @Branch: 
+@pv@ 2 @db.change@ 98 98 @svn-client@ @otto@ 1172126529 1 @general includes cleanup sweep.@ @//import/main/*@ 
+@pv@ 2 @db.change@ 97 97 @svn-client@ @otto@ 1171794645 1 @an erroneous free() crept in du@ @//import/main/*@ 
+@pv@ 2 @db.change@ 96 96 @svn-client@ @xsa@ 1171736623 1 @cvs_path_cat() removal since we@ @//import/main/*@ 
+@pv@ 2 @db.change@ 95 95 @svn-client@ @xsa@ 1170277655 1 @snprintf() -> xsnprintf()
+@pv@ 2 @db.change@ 94 94 @svn-client@ @joris@ 1170027582 1 @hey look, i found another debug@ @//import/main/*@ 
+@pv@ 2 @db.change@ 93 93 @svn-client@ @joris@ 1169949885 1 @add merging support in both loc@ @//import/main/*@ 
+@pv@ 2 @db.change@ 92 92 @svn-client@ @otto@ 1169848751 1 @more fixe size buffers on the s@ @//import/main/*@ 
+@pv@ 2 @db.change@ 91 91 @svn-client@ @xsa@ 1169848097 1 @- support [-k mode] for the add@ @//import/main/*@ 
+@pv@ 2 @db.change@ 90 90 @svn-client@ @joris@ 1169810384 1 @Handle CVS/Entries and file tim@ @//import/main/*@ 
+@pv@ 2 @db.change@ 89 89 @svn-client@ @joris@ 1169767352 1 @when acting as a server - immed@ @//import/main/*@ 
+@pv@ 2 @db.change@ 88 88 @svn-client@ @xsa@ 1169110148 1 @put functions protos at the rig@ @//import/main/*@ 
+@pv@ 2 @db.change@ 87 87 @svn-client@ @thib@ 1169073590 1 @on checkout, only create the mo@ @//import/main/*@ 
+@pv@ 2 @db.change@ 86 86 @svn-client@ @xsa@ 1169066330 1 @send -l Argument to server when@ @//import/main/*@ 
+@pv@ 2 @db.change@ 85 85 @svn-client@ @joris@ 1169056490 1 @add support for remote checkout@ @//import/main/*@ 
+@pv@ 2 @db.change@ 84 84 @svn-client@ @xsa@ 1168936426 1 @better, share -l and -R flags b@ @//import/main/*@ 
+@pv@ 2 @db.change@ 83 83 @svn-client@ @xsa@ 1168935447 1 @handle -l and -R for checkout t@ @//import/main/*@ 
+@pv@ 2 @db.change@ 82 82 @svn-client@ @xsa@ 1168813246 1 @reset sticky tags with -A; OK j@ @//import/main/*@ 
+@pv@ 2 @db.change@ 81 81 @svn-client@ @joris@ 1168800295 1 @replace checkout_write_revision@ @//import/main/*@ 
+@pv@ 2 @db.change@ 80 80 @svn-client@ @joris@ 1168703775 1 @plug 3 memleaks
+@pv@ 2 @db.change@ 79 79 @svn-client@ @joris@ 1168703159 1 @remove BUF * argument from cvs_@ @//import/main/*@ 
+@pv@ 2 @db.change@ 78 78 @svn-client@ @joris@ 1168702174 1 @- remote update now works again@ @//import/main/*@ 
+@pv@ 2 @db.change@ 77 77 @svn-client@ @joris@ 1168646171 1 @simplify after recent rcs API c@ @//import/main/*@ 
+@pv@ 2 @db.change@ 76 76 @svn-client@ @niallo@ 1168644721 1 @major re-work of the RCS api.  @ @//import/main/*@ 
+@pv@ 2 @db.change@ 75 75 @svn-client@ @joris@ 1167863310 1 @add support for 'remove' in a r@ @//import/main/*@ 
+@pv@ 2 @db.change@ 74 74 @svn-client@ @joris@ 1167857306 1 @if we are commiting a file, do @ @//import/main/*@ 
+@pv@ 2 @db.change@ 73 73 @svn-client@ @xsa@ 1166788310 1 @snprintf() -> cvs_path_cat();
+@pv@ 2 @db.change@ 72 72 @svn-client@ @branch@ 1152293837 1 @Branch: 
+@pv@ 2 @db.change@ 71 71 @svn-client@ @joris@ 1152293837 1 @first part of opencvs remote, f@ @//import/main/*@ 
+@pv@ 2 @db.change@ 70 70 @svn-client@ @reyk@ 1151785846 1 @implement the -p (dump) flag fo@ @//import/main/*@ 
+@pv@ 2 @db.change@ 69 69 @svn-client@ @joris@ 1150693517 1 @kill local and remote callback @ @//import/main/*@ 
+@pv@ 2 @db.change@ 68 68 @svn-client@ @joris@ 1150466862 1 @in preparation for the new remo@ @//import/main/*@ 
+@pv@ 2 @db.change@ 67 67 @svn-client@ @joris@ 1150316933 1 @simplify cvs_hack_time() and th@ @//import/main/*@ 
+@pv@ 2 @db.change@ 66 66 @svn-client@ @xsa@ 1149577126 1 @more bits for the export comman@ @//import/main/*@ 
+@pv@ 2 @db.change@ 65 65 @svn-client@ @joris@ 1149361633 1 @add support for update -A and u@ @//import/main/*@ 
+@pv@ 2 @db.change@ 64 64 @svn-client@ @joris@ 1149114359 1 @add support for the export comm@ @//import/main/*@ 
+@pv@ 2 @db.change@ 63 63 @svn-client@ @joris@ 1148779468 1 @enable merging on update. if yo@ @//import/main/*@ 
+@pv@ 2 @db.change@ 62 62 @svn-client@ @joris@ 1148746201 1 @support the -d flag for update.@ @//import/main/*@ 
+@pv@ 2 @db.change@ 61 61 @svn-client@ @joris@ 1148742867 1 @allow commands to respect the -@ @//import/main/*@ 
+@pv@ 2 @db.change@ 60 60 @svn-client@ @joris@ 1148709572 1 @correctly expand keywords when @ @//import/main/*@ 
+@pv@ 2 @db.change@ 59 59 @svn-client@ @joris@ 1148707225 1 @pruning (-P) support for both t@ @//import/main/*@ 
+@pv@ 2 @db.change@ 58 58 @svn-client@ @joris@ 1148700630 1 @commit the new opencvs code, i @ @//import/main/*@ 
+@pv@ 2 @db.change@ 57 57 @svn-client@ @deraadt@ 1144982735 1 @remove a metric buttload of exc@ @//import/main/*@ 
+@pv@ 2 @db.change@ 56 56 @svn-client@ @ray@ 1143207267 1 @Remove unused variables, better@ @//import/main/*@ 
+@pv@ 2 @db.change@ 55 55 @svn-client@ @branch@ 1138715720 1 @Branch: 
+@pv@ 2 @db.change@ 54 54 @svn-client@ @xsa@ 1138715720 1 @errors in cvs_checkout_init() a@ @//import/main/*@ 
+@pv@ 2 @db.change@ 53 53 @svn-client@ @xsa@ 1138643927 1 @strerror() -> rcs_errstr() when@ @//import/main/*@ 
+@pv@ 2 @db.change@ 52 52 @svn-client@ @xsa@ 1138366588 1 @cvs_mkadmin() cannot return < 0@ @//import/main/*@ 
+@pv@ 2 @db.change@ 51 51 @svn-client@ @xsa@ 1138365921 1 @errors handling cleaning here t@ @//import/main/*@ 
+@pv@ 2 @db.change@ 50 50 @svn-client@ @xsa@ 1138359203 1 @errors handling cleaning here t@ @//import/main/*@ 
+@pv@ 2 @db.change@ 49 49 @svn-client@ @xsa@ 1138191373 1 @use cvs_rcs_getpath() here too @ @//import/main/*@ 
+@pv@ 2 @db.change@ 48 48 @svn-client@ @xsa@ 1136189516 1 @#include's cleanup; ok joris@@ n@ @//import/main/*@ 
+@pv@ 2 @db.change@ 47 47 @svn-client@ @reyk@ 1135965061 1 @knf
+@pv@ 2 @db.change@ 46 46 @svn-client@ @joris@ 1135908208 1 @major cleanup of the functions @ @//import/main/*@ 
+@pv@ 2 @db.change@ 45 45 @svn-client@ @joris@ 1133571728 1 @add very basic support for the @ @//import/main/*@ 
+@pv@ 2 @db.change@ 44 44 @svn-client@ @xsa@ 1126803670 1 @check in cvs_mkadmin() wether w@ @//import/main/*@ 
+@pv@ 2 @db.change@ 43 43 @svn-client@ @branch@ 1122293143 1 @Branch: 
+@pv@ 2 @db.change@ 42 42 @svn-client@ @xsa@ 1122293143 1 @KNF;
+@pv@ 2 @db.change@ 41 41 @svn-client@ @xsa@ 1122227285 1 @some more `if (!var)' cleanup;
+@pv@ 2 @db.change@ 40 40 @svn-client@ @joris@ 1120812883 1 @
+@pv@ 2 @db.change@ 39 39 @svn-client@ @joris@ 1120811049 1 @
+@pv@ 2 @db.change@ 38 38 @svn-client@ @joris@ 1120746477 1 @
+@pv@ 2 @db.change@ 37 37 @svn-client@ @xsa@ 1119948894 1 @send date;
+@pv@ 2 @db.change@ 36 36 @svn-client@ @xsa@ 1118648439 1 @`export' command first bits .. @ @//import/main/*@ 
+@pv@ 2 @db.change@ 35 35 @svn-client@ @xsa@ 1118307710 1 @-D implies pruning directories,@ @//import/main/*@ 
+@pv@ 2 @db.change@ 34 34 @svn-client@ @xsa@ 1118301879 1 @LP_ERR -> LP_ABORT to match gnu@ @//import/main/*@ 
+@pv@ 2 @db.change@ 33 33 @svn-client@ @xsa@ 1118158464 1 @silly me. do not abuse the copy@ @//import/main/*@ 
+@pv@ 2 @db.change@ 32 32 @svn-client@ @xsa@ 1118157205 1 @enable -P option .. joris@@ ok
+@pv@ 2 @db.change@ 31 31 @svn-client@ @xsa@ 1117529927 1 @headers ordering (alphabeticall@ @//import/main/*@ 
+@pv@ 2 @db.change@ 30 30 @svn-client@ @xsa@ 1117528000 1 @remove LP_ERROR log priority le@ @//import/main/*@ 
+@pv@ 2 @db.change@ 29 29 @svn-client@ @xsa@ 1117438761 1 @dont return CVS_EX_USAGE when n@ @//import/main/*@ 
+@pv@ 2 @db.change@ 28 28 @svn-client@ @xsa@ 1117388924 1 @-r implies -P (Prune empty dire@ @//import/main/*@ 
+@pv@ 2 @db.change@ 27 27 @svn-client@ @joris@ 1117076840 1 @
+@pv@ 2 @db.change@ 26 26 @svn-client@ @joris@ 1116965083 1 @
+@pv@ 2 @db.change@ 25 25 @svn-client@ @jfb@ 1116907945 1 @Merge the cvs_cmd and cvs_cmd_i@ @//import/main/*@ 
+@pv@ 2 @db.change@ 24 24 @svn-client@ @xsa@ 1116869435 1 @add -f flag; ok joris@@
+@pv@ 2 @db.change@ 23 23 @svn-client@ @xsa@ 1116613609 1 @first bits of the `cvs -n' opti@ @//import/main/*@ 
+@pv@ 2 @db.change@ 22 22 @svn-client@ @joris@ 1116566024 1 @
+@pv@ 2 @db.change@ 21 21 @svn-client@ @joris@ 1113317920 1 @
+@pv@ 2 @db.change@ 20 20 @svn-client@ @joris@ 1113242578 1 @
+@pv@ 2 @db.change@ 19 19 @svn-client@ @joris@ 1113242187 1 @
+@pv@ 2 @db.change@ 18 18 @svn-client@ @xsa@ 1112549570 1 @first round of EX_* exit codes @ @//import/main/*@ 
+@pv@ 2 @db.change@ 17 17 @svn-client@ @joris@ 1112204584 1 @
+@pv@ 2 @db.change@ 16 16 @svn-client@ @branch@ 1109110320 1 @Branch: 
+@pv@ 2 @db.change@ 15 15 @svn-client@ @jfb@ 1109110320 1 @- support -c and -s to retrieve@ @//import/main/*@ 
+@pv@ 2 @db.change@ 14 14 @svn-client@ @jfb@ 1102986711 1 @cleaner error handling on conne@ @//import/main/*@ 
+@pv@ 2 @db.change@ 13 13 @svn-client@ @tedu@ 1102439456 1 @less whitespace, more pretty.  @ @//import/main/*@ 
+@pv@ 2 @db.change@ 12 12 @svn-client@ @jfb@ 1101485113 1 @Match more closely the data sen@ @//import/main/*@ 
+@pv@ 2 @db.change@ 11 11 @svn-client@ @jfb@ 1092344626 1 @Add error checking and move the@ @//import/main/*@ 
+@pv@ 2 @db.change@ 10 10 @svn-client@ @jfb@ 1091797719 1 @Start using the global files li@ @//import/main/*@ 
+@pv@ 2 @db.change@ 9 9 @svn-client@ @jfb@ 1091508987 1 @Don't MKADMIN on cvs_file_get()@ @//import/main/*@ 
+@pv@ 2 @db.change@ 8 8 @svn-client@ @jfb@ 1091211247 1 @Fix
+@pv@ 2 @db.change@ 7 7 @svn-client@ @jfb@ 1091152162 1 @Move to the new API for the cli@ @//import/main/*@ 
+@pv@ 2 @db.change@ 6 6 @svn-client@ @jfb@ 1091125965 1 @Don't export `cvs_root'
+@pv@ 2 @db.change@ 5 5 @svn-client@ @jfb@ 1090980089 1 @Pass the appropriate argument t@ @//import/main/*@ 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @jfb@ 1090863030 1 @* make checkout work in remote @ @//import/main/*@ 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @branch@ 1089756160 1 @Branch: 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ @//import/OpenCVS/*@ 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @jfb@ 1089756160 1 @Initial revision
+@pv@ 0 @db.desc@ 182 @Branch: 
+@pv@ 0 @db.desc@ 181 @Move some global variables/statics to locals, from Michael W
+@pv@ 0 @db.desc@ 180 @Branch: 
+@pv@ 0 @db.desc@ 179 @Check date_parse return values.
+@pv@ 0 @db.desc@ 178 @Reduce variable/function name and whitespace differences between
+@pv@ 0 @db.desc@ 177 @Branch: 
+@pv@ 0 @db.desc@ 176 @Use correct synopses for checkout and export when an invalid -k option
+@pv@ 0 @db.desc@ 175 @make sure we handle allowed options in cvs_export() instead
+@pv@ 0 @db.desc@ 174 @make sure that when we try to send a Set-sticky to the client,
+@pv@ 0 @db.desc@ 173 @switch our file and directory lists to RB trees (see tree(3)),
+@pv@ 0 @db.desc@ 172 @be carefull when trying to access cf->file_rcs in cvs_checkout_file()
+@pv@ 0 @db.desc@ 171 @Branch: 
+@pv@ 0 @db.desc@ 170 @we no longer push out Set-sticky to the client when writing
+@pv@ 0 @db.desc@ 169 @use FILE_ON_DISK flags when we need to verify if a file
+@pv@ 0 @db.desc@ 168 @use file_flags for 2 more reasons:
+@pv@ 0 @db.desc@ 167 @enable -d for the export command.
+@pv@ 0 @db.desc@ 166 @Branch: 
+@pv@ 0 @db.desc@ 165 @use cf->fd in cvs_remote_sendfile() instead of using a local
+@pv@ 0 @db.desc@ 164 @Conforming to RCS specification, it is possible but unlikely to encounter
+@pv@ 0 @db.desc@ 163 @Added support for sticky date set in CVS/Tag and CVS/Entries per directory.
+@pv@ 0 @db.desc@ 162 @don't always re-open the same CVS/Entries file, instead keep the
+@pv@ 0 @db.desc@ 161 @Fixed a memory leak in export noticed by joris.
+@pv@ 0 @db.desc@ 160 @completely kill the need for TMP_DIR when running checkout,
+@pv@ 0 @db.desc@ 159 @always enter cvs_update_leavedir()
+@pv@ 0 @db.desc@ 158 @Avoid possible NULL pointer dereferences by using reentrant versions
+@pv@ 0 @db.desc@ 157 @properly inherit file permissions.
+@pv@ 0 @db.desc@ 156 @New trigger framework that allows us to run the required scripts
+@pv@ 0 @db.desc@ 155 @simplification from igor
+@pv@ 0 @db.desc@ 154 @Avoid memory leaks in directory tag handling by always allocating and
+@pv@ 0 @db.desc@ 153 @expension -> expansion
+@pv@ 0 @db.desc@ 152 @proper repository locking:
+@pv@ 0 @db.desc@ 151 @add checkout/update -j support.
+@pv@ 0 @db.desc@ 150 @Branch: 
+@pv@ 0 @db.desc@ 149 @handle file permissions and owners properly.
+@pv@ 0 @db.desc@ 148 @prevent file races
+@pv@ 0 @db.desc@ 147 @Properly handle return value of dirname().
+@pv@ 0 @db.desc@ 146 @+ #define CVS_DATE_FMT   "%Y.%m.%d.%H.%M.%S"
+@pv@ 0 @db.desc@ 145 @Respond with "Updated" instead of "Checked-in" on server-side if a client
+@pv@ 0 @db.desc@ 144 @properly initialize cvs_specified_date so we dont end up with
+@pv@ 0 @db.desc@ 143 @Introduce cvs_ent_line_str() - formats CVS/Entries lines.
+@pv@ 0 @db.desc@ 142 @Support for checkout -D extended:
+@pv@ 0 @db.desc@ 141 @remote improvements:
+@pv@ 0 @db.desc@ 140 @Get in proper support for checkout/update -A when it comes to keyword
+@pv@ 0 @db.desc@ 139 @Get in initial support for checkout -D.  Works fine with -r support right
+@pv@ 0 @db.desc@ 138 @exit() needs stdlib.h
+@pv@ 0 @db.desc@ 137 @lets do co -c as well (list available modules) and do it in 1/6th of the
+@pv@ 0 @db.desc@ 136 @CVSROOT/modules:
+@pv@ 0 @db.desc@ 135 @implement -n for checkout:
+@pv@ 0 @db.desc@ 134 @more CVSROOT/modules stuff:
+@pv@ 0 @db.desc@ 133 @Added -k flag support for all commands which support it.
+@pv@ 0 @db.desc@ 132 @shuffle some stuff around so we dont end up doing the same things
+@pv@ 0 @db.desc@ 131 @more CVSROOT/module stuff:
+@pv@ 0 @db.desc@ 130 @dont forget to send the -d flag to our server as well if it
+@pv@ 0 @db.desc@ 129 @respect any -l option that might have been set in CVSROOT/modules;
+@pv@ 0 @db.desc@ 128 @with the recent changes for CVSROOT/modules we can now support the
+@pv@ 0 @db.desc@ 127 @better CVSROOT/module support, includes remote support and modules
+@pv@ 0 @db.desc@ 126 @cvs_update_leavedir is only useful if dirs have to be pruned.
+@pv@ 0 @db.desc@ 125 @(f)utimes takes sys/time.h
+@pv@ 0 @db.desc@ 124 @initial CVSROOT/modules support, only does aliases at the moment (-a).
+@pv@ 0 @db.desc@ 123 @Make use of CVS_REV_BUFSZ everywhere for `sticky'.
+@pv@ 0 @db.desc@ 122 @Rename `stickytag' variable to `sticky' for consistency with rest of the code.
+@pv@ 0 @db.desc@ 121 @We have to carefully check if a checkout command is run with a valid
+@pv@ 0 @db.desc@ 120 @Replaced the unused cvs_command variable cmd_req with cmd_flags, which states
+@pv@ 0 @db.desc@ 119 @Actually support checkout's -l.
+@pv@ 0 @db.desc@ 118 @Properly handle -R -- although it is default, it may be overwritten mit -l
+@pv@ 0 @db.desc@ 117 @Don't reset the sticky tag of a file in CVS/Entries if it is not requested.
+@pv@ 0 @db.desc@ 116 @Fixed export to be fully functional and compliant to GNU cvs in local and
+@pv@ 0 @db.desc@ 115 @another strcspn() round
+@pv@ 0 @db.desc@ 114 @Our keyword expansion had a big flaw, due to this construction:
+@pv@ 0 @db.desc@ 113 @make sure when running update -r on existing files to overwrite
+@pv@ 0 @db.desc@ 112 @better branching/sticky tag support, no branch commits yet though.
+@pv@ 0 @db.desc@ 111 @Support for checkout with a local repository already in place.
+@pv@ 0 @db.desc@ 110 @Added support for checkout -p with local repository.
+@pv@ 0 @db.desc@ 109 @Sprinkle some magic so checkout/update -p works
+@pv@ 0 @db.desc@ 108 @Added support for single file checkout.
+@pv@ 0 @db.desc@ 107 @Branch: 
+@pv@ 0 @db.desc@ 106 @Correctly handle the export command when writing to history file.
+@pv@ 0 @db.desc@ 105 @Support -r for the export command.
+@pv@ 0 @db.desc@ 104 @Rework the way opencvs works in relation to files in the Attic/:
+@pv@ 0 @db.desc@ 103 @Sync revisions and time buffers size to be consistent with each others.
+@pv@ 0 @db.desc@ 102 @We were missing the needed clue/magic to have our remote setup
+@pv@ 0 @db.desc@ 101 @first stab at history stuff for opencvs, currently only writes
+@pv@ 0 @db.desc@ 100 @add support for local and remote branch checkout.  for example,
+@pv@ 0 @db.desc@ 99 @Branch: 
+@pv@ 0 @db.desc@ 98 @general includes cleanup sweep. ok joris@@ niallo@@
+@pv@ 0 @db.desc@ 97 @an erroneous free() crept in due to a merge error
+@pv@ 0 @db.desc@ 96 @cvs_path_cat() removal since we can now easily handle that
+@pv@ 0 @db.desc@ 95 @snprintf() -> xsnprintf()
+@pv@ 0 @db.desc@ 94 @hey look, i found another debug printf from my merging stuff!
+@pv@ 0 @db.desc@ 93 @add merging support in both local and remote sides.
+@pv@ 0 @db.desc@ 92 @more fixe size buffers on the stack. ok xsa@@ joris@@
+@pv@ 0 @db.desc@ 91 @- support [-k mode] for the add command
+@pv@ 0 @db.desc@ 90 @Handle CVS/Entries and file timestamp correctly so we do
+@pv@ 0 @db.desc@ 89 @when acting as a server - immediatly after we checkout a file
+@pv@ 0 @db.desc@ 88 @put functions protos at the right place.
+@pv@ 0 @db.desc@ 87 @on checkout, only create the module path if we find the module.
+@pv@ 0 @db.desc@ 86 @send -l Argument to server when appropriate.
+@pv@ 0 @db.desc@ 85 @add support for remote checkout in both our client and server,
+@pv@ 0 @db.desc@ 84 @better, share -l and -R flags between checkout and export cmds.
+@pv@ 0 @db.desc@ 83 @handle -l and -R for checkout too.
+@pv@ 0 @db.desc@ 82 @reset sticky tags with -A; OK joris@@.
+@pv@ 0 @db.desc@ 81 @replace checkout_write_revision() with rcs_rev_write_stmp()
+@pv@ 0 @db.desc@ 80 @plug 3 memleaks
+@pv@ 0 @db.desc@ 79 @remove BUF * argument from cvs_checkout_file() it will
+@pv@ 0 @db.desc@ 78 @- remote update now works again, with new rcs api
+@pv@ 0 @db.desc@ 77 @simplify after recent rcs API changes.
+@pv@ 0 @db.desc@ 76 @major re-work of the RCS api.  this results in 100x performance improvements in some places and much
+@pv@ 0 @db.desc@ 75 @add support for 'remove' in a remote setup.
+@pv@ 0 @db.desc@ 74 @if we are commiting a file, do not let the server resend it
+@pv@ 0 @db.desc@ 73 @snprintf() -> cvs_path_cat();
+@pv@ 0 @db.desc@ 72 @Branch: 
+@pv@ 0 @db.desc@ 71 @first part of opencvs remote, fairly useable on existing trees
+@pv@ 0 @db.desc@ 70 @implement the -p (dump) flag for cvs update
+@pv@ 0 @db.desc@ 69 @kill local and remote callback and just have one called fileproc.
+@pv@ 0 @db.desc@ 68 @in preparation for the new remote code, proto.h becomes obsolete.
+@pv@ 0 @db.desc@ 67 @simplify cvs_hack_time() and the way it is called;
+@pv@ 0 @db.desc@ 66 @more bits for the export command to work correctly. OK joris@@.
+@pv@ 0 @db.desc@ 65 @add support for update -A and update -r<rev>.
+@pv@ 0 @db.desc@ 64 @add support for the export command.
+@pv@ 0 @db.desc@ 63 @enable merging on update. if your file in your working copy
+@pv@ 0 @db.desc@ 62 @support the -d flag for update.
+@pv@ 0 @db.desc@ 61 @allow commands to respect the -l flag, if the -l flag is
+@pv@ 0 @db.desc@ 60 @correctly expand keywords when checking out files
+@pv@ 0 @db.desc@ 59 @pruning (-P) support for both the update and checkout commands;
+@pv@ 0 @db.desc@ 58 @commit the new opencvs code, i have been hacking on
+@pv@ 0 @db.desc@ 57 @remove a metric buttload of excessive ()
+@pv@ 0 @db.desc@ 56 @Remove unused variables, better integer types, prevent fallthroughs.
+@pv@ 0 @db.desc@ 55 @Branch: 
+@pv@ 0 @db.desc@ 54 @errors in cvs_checkout_init() are definitly fatal.
+@pv@ 0 @db.desc@ 53 @strerror() -> rcs_errstr() when passing rcs_errno as argument;
+@pv@ 0 @db.desc@ 52 @cvs_mkadmin() cannot return < 0 anymore;
+@pv@ 0 @db.desc@ 51 @errors handling cleaning here too;
+@pv@ 0 @db.desc@ 50 @errors handling cleaning here too;
+@pv@ 0 @db.desc@ 49 @use cvs_rcs_getpath() here too + some strings cleanup whilst here.
+@pv@ 0 @db.desc@ 48 @#include's cleanup; ok joris@@ niallo@@.
+@pv@ 0 @db.desc@ 47 @knf
+@pv@ 0 @db.desc@ 46 @major cleanup of the functions handling the remote cvs protocol.
+@pv@ 0 @db.desc@ 45 @add very basic support for the following stuff:
+@pv@ 0 @db.desc@ 44 @check in cvs_mkadmin() wether we need to create or not the
+@pv@ 0 @db.desc@ 43 @Branch: 
+@pv@ 0 @db.desc@ 42 @KNF;
+@pv@ 0 @db.desc@ 41 @some more `if (!var)' cleanup;
+@pv@ 0 @db.desc@ 40 @
+@pv@ 0 @db.desc@ 39 @
+@pv@ 0 @db.desc@ 38 @
+@pv@ 0 @db.desc@ 37 @send date;
+@pv@ 0 @db.desc@ 36 @`export' command first bits .. ok joris
+@pv@ 0 @db.desc@ 35 @-D implies pruning directories, as already does -r; ok joris
+@pv@ 0 @db.desc@ 34 @LP_ERR -> LP_ABORT to match gnu/usr.bin/cvs output; okay joris@@.
+@pv@ 0 @db.desc@ 33 @silly me. do not abuse the copy/paste skills i have ...
+@pv@ 0 @db.desc@ 32 @enable -P option .. joris@@ ok
+@pv@ 0 @db.desc@ 31 @headers ordering (alphabetically) and cleanup, from mbalmer@@ and myself;
+@pv@ 0 @db.desc@ 30 @remove LP_ERROR log priority level and rather use LP_ERR as they are both
+@pv@ 0 @db.desc@ 29 @dont return CVS_EX_USAGE when not needed; ok joris@@
+@pv@ 0 @db.desc@ 28 @-r implies -P (Prune empty directories);
+@pv@ 0 @db.desc@ 27 @
+@pv@ 0 @db.desc@ 26 @
+@pv@ 0 @db.desc@ 25 @Merge the cvs_cmd and cvs_cmd_info structures and add the necessary
+@pv@ 0 @db.desc@ 24 @add -f flag; ok joris@@
+@pv@ 0 @db.desc@ 23 @first bits of the `cvs -n' option; ok jfb joris
+@pv@ 0 @db.desc@ 22 @
+@pv@ 0 @db.desc@ 21 @
+@pv@ 0 @db.desc@ 20 @
+@pv@ 0 @db.desc@ 19 @
+@pv@ 0 @db.desc@ 18 @first round of EX_* exit codes removal; ok joris@@.
+@pv@ 0 @db.desc@ 17 @
+@pv@ 0 @db.desc@ 16 @Branch: 
+@pv@ 0 @db.desc@ 15 @- support -c and -s to retrieve the module list
+@pv@ 0 @db.desc@ 14 @cleaner error handling on connection setup and in case of connection
+@pv@ 0 @db.desc@ 13 @less whitespace, more pretty.  ok jfb
+@pv@ 0 @db.desc@ 12 @Match more closely the data sent by GNU CVS when dealing with multiple
+@pv@ 0 @db.desc@ 11 @Add error checking and move the protocol calls so we only send them if
+@pv@ 0 @db.desc@ 10 @Start using the global files list
+@pv@ 0 @db.desc@ 9 @Don't MKADMIN on cvs_file_get()
+@pv@ 0 @db.desc@ 8 @Fix
+@pv@ 0 @db.desc@ 7 @Move to the new API for the client-server protocol.  All functions now
+@pv@ 0 @db.desc@ 6 @Don't export `cvs_root'
+@pv@ 0 @db.desc@ 5 @Pass the appropriate argument to cvs_client_connect()
+@pv@ 0 @db.desc@ 4 @* make checkout work in remote mode (almost)
+@pv@ 0 @db.desc@ 3 @Branch: 
+@pv@ 0 @db.desc@ 2 @* initial import from the cvs-tools module
+@pv@ 0 @db.desc@ 1 @Initial revision
