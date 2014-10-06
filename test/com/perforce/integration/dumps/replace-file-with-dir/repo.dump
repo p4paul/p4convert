@@ -1,0 +1,96 @@
+SVN-fs-dump-format-version: 2
+
+UUID: d7851a91-7c0f-4c99-870b-9b244a024265
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-07-26T16:42:12.040490Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 126
+Content-length: 126
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-07-26T16:42:12.510479Z
+K 7
+svn:log
+V 22
+Add directory and file
+PROPS-END
+
+Node-path: dir
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: dir/file
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 125
+Content-length: 125
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-07-26T16:42:13.015504Z
+K 7
+svn:log
+V 21
+Replace file with dir
+PROPS-END
+
+Node-path: foo
+Node-kind: dir
+Node-action: delete
+
+Node-path: foo
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: dir
+
+
+
+
