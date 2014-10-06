@@ -1,0 +1,33 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - branches
+   A:D - tags
+   A:D - trunk
+rev: 2 => @2
+   A:F - trunk/foo.txt
+rev: 3 => @3
+   B:D - tags/a-tag-with-mods
+   E:F - tags/a-tag-with-mods/foo.txt
+   overlayed rev: tags/a-tag-with-mods/foo.txt
+      Current credit  REV:E_into FWD:E_from
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 3
+  Converted revs     : 3
+  Branches (dir)     : 1
+  Integrates (dir)   : 0
+  Archive revisions  : 2
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
