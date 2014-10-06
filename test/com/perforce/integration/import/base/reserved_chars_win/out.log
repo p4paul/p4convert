@@ -1,0 +1,27 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:F - %23file.txt
+   A:F - %25file.txt
+   A:F - %2Afile.txt
+   A:F - %40file.txt
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 1
+  Converted revs     : 1
+  Branches (dir)     : 0
+  Integrates (dir)   : 0
+  Archive revisions  : 4
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
