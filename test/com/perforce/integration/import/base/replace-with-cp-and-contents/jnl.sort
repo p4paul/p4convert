@@ -1,0 +1,9 @@
+@pv@ 9 @db.rev@ @//import/foo@ 2 1 1 2 1370459622 1370459622 CC255A285B02F117E7D2EEB6A60B7F02 3 0 0 @//import/foo@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/foo@ 1 1 0 1 1370459616 1370459616 4F98F59E877ECB84FF75EF0FAB45BAC5 3 0 0 @//import/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/foo2@ 1 1 0 1 1370459616 1370459616 E30260020BAEB0398FF07B37DD33ED16 3 0 0 @//import/foo2@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/foo@ @//import/foo2@ 0 1 1 2 6 2 
+@pv@ 0 @db.integed@ @//import/foo2@ @//import/foo@ 1 2 0 1 10 2 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @emosenkis@ 1370459622 1 @Copy over foo and edit its cont@ @//import/*@ 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @emosenkis@ 1370459616 1 @Create foo and foo2
+@pv@ 0 @db.desc@ 2 @Copy over foo and edit its contents
+@pv@ 0 @db.desc@ 1 @Create foo and foo2

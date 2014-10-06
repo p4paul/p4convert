@@ -1,0 +1,97 @@
+SVN-fs-dump-format-version: 2
+
+UUID: a34ddfa5-a4c7-4167-8958-43c3da95d02c
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-06-05T19:13:18.419860Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 123
+Content-length: 123
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-06-05T19:13:36.589549Z
+K 7
+svn:log
+V 19
+Create foo and foo2
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 3
+Text-content-md5: 4f98f59e877ecb84ff75ef0fab45bac5
+Text-content-sha1: e1d35a6f7182bfbac1c45f6bfdc12419e06e8d59
+Content-length: 13
+
+PROPS-END
+v1
+
+
+Node-path: foo2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 3
+Text-content-md5: e30260020baeb0398ff07b37dd33ed16
+Text-content-sha1: 870efcb9bdd84669a49ddd7a0b434a83bd44a935
+Content-length: 13
+
+PROPS-END
+v2
+
+
+Revision-number: 2
+Prop-content-length: 139
+Content-length: 139
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-06-05T19:13:42.344602Z
+K 7
+svn:log
+V 35
+Copy over foo and edit its contents
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: delete
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: foo2
+Text-copy-source-md5: e30260020baeb0398ff07b37dd33ed16
+Text-copy-source-sha1: 870efcb9bdd84669a49ddd7a0b434a83bd44a935
+Text-content-length: 3
+Text-content-md5: cc255a285b02f117e7d2eeb6a60b7f02
+Text-content-sha1: e73229d4c2b37acabea9583198b4642b6ea49c1f
+Content-length: 3
+
+v3
+
+
+
+
