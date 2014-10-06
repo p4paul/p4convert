@@ -1,0 +1,10 @@
+@pv@ 0 @db.counters@ @lastCheckpointAction@ 1350998498 
+@pv@ 0 @db.counters@ @upgrade@ 21 
+@ex@ 20238 1354028923
+@pv@ 3 @db.user@ @pallen@ @pallen@@svn-client@ @@ 1350998269 1350998269 @pallen@ @1EFCBA45DE8493854E6AE3EDCD35C76A@ 1 @@ 0 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 1350997999 1350998498 @svn-user@ @81D0AD523BCB50CD79CB527591194E3F@ 1 @1028CB51BB5B79DD50BCBC984B33EC8D@ 1351041465 
+@ex@ 20238 1354028923
+@pv@ 1 @db.depot@ @depot@ 0 @@ @depot/...@ 
+@ex@ 20238 1354028923
+@pv@ 3 @db.domain@ @depot@ 100 @@ @@ @@ @@ @@ 1350997999 1350997999 0 0 @Default depot@ 
+@ex@ 20238 1354028923
