@@ -1,0 +1,44 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 7f315bde-cbb6-4632-ae68-196945959fcb
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2011-11-17T10:55:12.913828Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2011-11-17T11:08:37.387468Z
+PROPS-END
+
+Node-path: winansi.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 14
+Text-content-md5: 8c8911b0d2e3069762cf5937b36c69f1
+Text-content-sha1: 4920b2383ecddd8efad34b39d22eff28661550a8
+Content-length: 24
+
+PROPS-END
+char 0x89: "‰"
+
