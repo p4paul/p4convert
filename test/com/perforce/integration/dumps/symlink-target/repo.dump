@@ -1,0 +1,128 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 781e0f8a-0233-41c2-a190-029ad46d1ab6
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-06-10T21:04:15.599774Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 114
+Content-length: 114
+
+K 7
+svn:log
+V 10
+Create foo
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-06-10T21:04:16.421754Z
+PROPS-END
+
+Node-path: foo
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: foo/file1
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: foo/file2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 132
+Content-length: 132
+
+K 7
+svn:log
+V 28
+Create bar as symlink to foo
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-06-10T21:04:16.977523Z
+PROPS-END
+
+Node-path: bar
+Node-kind: file
+Node-action: add
+Prop-content-length: 33
+Text-content-length: 8
+Text-content-md5: 1043146e49ef02cab12eef865cb34ff3
+Text-content-sha1: a38ef243b9b0aefb5462453b6c5d13b35f31c2f5
+Content-length: 41
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link foo
+
+Revision-number: 3
+Prop-content-length: 120
+Content-length: 120
+
+K 8
+svn:date
+V 27
+2013-06-10T21:04:17.448814Z
+K 7
+svn:log
+V 16
+Edit file in foo
+K 10
+svn:author
+V 9
+emosenkis
+PROPS-END
+
+Node-path: foo/file1
+Node-kind: file
+Node-action: change
+Text-content-length: 9
+Text-content-md5: 68ba00eb6995aeecb19773a27bf81b3d
+Text-content-sha1: 8021b4158aa29b21fdbee1bf44cab6e8e4c3c863
+Content-length: 9
+
+Contents
+
+
