@@ -1,0 +1,22 @@
+@pv@ 9 @db.rev@ @//import/denis/dir/file2@ 2 1 2 4 1401896764 0 00000000000000000000000000000000 -1 0 0 @//import/denis/dir/file2@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/denis/dir/file2@ 1 1 3 2 1401896554 1401895365 C796C191140B5F9CE61892FAB185F8D3 3 0 1 @//import/trunk/dir/file2@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/denis/dir/file3@ 1 1 3 4 1401896764 1401896666 33B02BC15CE9557D2DD8484D58F95AC4 4 0 1 @//import/other/dir/file3@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/denis/file1@ 2 1 1 4 1401896764 1401896764 580C72DA0717DEF2B44C4AB5D7A88F1E 8 0 0 @//import/denis/file1@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/denis/file1@ 1 1 3 2 1401896554 1401895365 102F5037FE6474019FE947B4977BB2A5 3 0 1 @//import/trunk/file1@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/other/dir/file3@ 1 1 0 3 1401896666 1401896666 33B02BC15CE9557D2DD8484D58F95AC4 4 0 0 @//import/other/dir/file3@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/dir/file2@ 1 1 0 1 1401895365 1401895365 C796C191140B5F9CE61892FAB185F8D3 3 0 0 @//import/trunk/dir/file2@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/file1@ 1 1 0 1 1401895365 1401895365 102F5037FE6474019FE947B4977BB2A5 3 0 0 @//import/trunk/file1@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/denis/dir/file2@ @//import/trunk/dir/file2@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/denis/dir/file3@ @//import/other/dir/file3@ 0 1 0 1 2 4 
+@pv@ 0 @db.integed@ @//import/denis/file1@ @//import/trunk/file1@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/other/dir/file3@ @//import/denis/dir/file3@ 0 1 0 1 3 4 
+@pv@ 0 @db.integed@ @//import/trunk/dir/file2@ @//import/denis/dir/file2@ 0 1 0 1 3 2 
+@pv@ 0 @db.integed@ @//import/trunk/file1@ @//import/denis/file1@ 0 1 0 1 3 2 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @denisexternal@ 1401896764 1 @Edit+copy
+@pv@ 2 @db.change@ 3 3 @svn-client@ @denisexternal@ 1401896666 1 @Add-other
+@pv@ 2 @db.change@ 2 2 @svn-client@ @denisexternal@ 1401896554 1 @Branch to denis
+@pv@ 2 @db.change@ 1 1 @svn-client@ @denisexternal@ 1401895365 1 @Import
+@pv@ 0 @db.desc@ 4 @Edit+copy
+@pv@ 0 @db.desc@ 3 @Add-other
+@pv@ 0 @db.desc@ 2 @Branch to denis
+@pv@ 0 @db.desc@ 1 @Import

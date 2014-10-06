@@ -1,0 +1,193 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 134f725a-d201-4fa4-98c9-25f32d5757ac
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2014-06-04T15:20:05.386020Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 114
+Content-length: 114
+
+K 10
+svn:author
+V 13
+denisexternal
+K 8
+svn:date
+V 27
+2014-06-04T15:22:45.325768Z
+K 7
+svn:log
+V 6
+Import
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/dir
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/dir/file2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 3
+Text-content-md5: c796c191140b5f9ce61892fab185f8d3
+Text-content-sha1: 6daa41ef554c4c0670dbe6b099d061f8330f2686
+Content-length: 13
+
+PROPS-END
+yy
+
+
+Node-path: trunk/file1
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 3
+Text-content-md5: 102f5037fe6474019fe947b4977bb2a5
+Text-content-sha1: ce3af7760f1289d02bf6a7ad19f3214c4e5c7c2e
+Content-length: 13
+
+PROPS-END
+xx
+
+
+Revision-number: 2
+Prop-content-length: 124
+Content-length: 124
+
+K 10
+svn:author
+V 13
+denisexternal
+K 8
+svn:date
+V 27
+2014-06-04T15:42:34.945344Z
+K 7
+svn:log
+V 15
+Branch to denis
+PROPS-END
+
+Node-path: denis
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: trunk
+
+
+Revision-number: 3
+Prop-content-length: 117
+Content-length: 117
+
+K 10
+svn:author
+V 13
+denisexternal
+K 8
+svn:date
+V 27
+2014-06-04T15:44:26.358839Z
+K 7
+svn:log
+V 9
+Add-other
+PROPS-END
+
+Node-path: other
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: other/dir
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: other/dir/file3
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 4
+Text-content-md5: 33b02bc15ce9557d2dd8484d58f95ac4
+Text-content-sha1: 131521d12231fdff3bf26788ff4ad66d068340e0
+Content-length: 14
+
+PROPS-END
+zzz
+
+
+Revision-number: 4
+Prop-content-length: 117
+Content-length: 117
+
+K 10
+svn:author
+V 13
+denisexternal
+K 8
+svn:date
+V 27
+2014-06-04T15:46:04.532072Z
+K 7
+svn:log
+V 9
+Edit+copy
+PROPS-END
+
+Node-path: denis/dir
+Node-kind: dir
+Node-action: delete
+
+Node-path: denis/dir
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 3
+Node-copyfrom-path: other/dir
+
+
+
+
+Node-path: denis/file1
+Node-kind: file
+Node-action: change
+Text-content-length: 8
+Text-content-md5: 580c72da0717def2b44c4ab5d7a88f1e
+Text-content-sha1: 1a4c189c5ac14a4d63ca08d33e7003d4ec1c7279
+Content-length: 8
+
+xx
+edit
+
+
