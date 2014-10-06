@@ -1,0 +1,137 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 89897393-474c-4ca5-9775-599a1cb3fde7
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-06-19T20:55:41.853380Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 124
+Content-length: 124
+
+K 8
+svn:date
+V 27
+2013-06-19T20:55:42.725795Z
+K 7
+svn:log
+V 20
+Create dir1 and dir2
+K 10
+svn:author
+V 9
+emosenkis
+PROPS-END
+
+Node-path: dir1
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: dir1/file1
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: dir2
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: dir2/file2
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Text-content-sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 139
+Content-length: 139
+
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-06-19T20:55:43.331708Z
+K 7
+svn:log
+V 35
+Create dir1/dir2 as symlink to dir2
+PROPS-END
+
+Node-path: dir1/dir2
+Node-kind: file
+Node-action: add
+Prop-content-length: 33
+Text-content-length: 12
+Text-content-md5: b9cfefdc08654da4f66146340f2e21ae
+Text-content-sha1: 4b6be02659198bf2f1e30841bc2893e5047e8f53
+Content-length: 45
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link ../dir2
+
+Revision-number: 3
+Prop-content-length: 121
+Content-length: 121
+
+K 7
+svn:log
+V 17
+Edit file in dir2
+K 10
+svn:author
+V 9
+emosenkis
+K 8
+svn:date
+V 27
+2013-06-19T20:55:43.836338Z
+PROPS-END
+
+Node-path: dir2/file2
+Node-kind: file
+Node-action: change
+Text-content-length: 9
+Text-content-md5: 68ba00eb6995aeecb19773a27bf81b3d
+Text-content-sha1: 8021b4158aa29b21fdbee1bf44cab6e8e4c3c863
+Content-length: 9
+
+Contents
+
+

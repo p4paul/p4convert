@@ -1,0 +1,10 @@
+@pv@ 9 @db.rev@ @//import/dir1/dir2@ 1 262145 0 2 1371675343 1371675343 14C56D99932847D052C0EAEB61552CA4 7 0 0 @//import/dir1/dir2@ @1.2@ 262145 
+@pv@ 9 @db.rev@ @//import/dir1/file1@ 1 1 0 1 1371675342 1371675342 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/dir1/file1@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/dir2/file2@ 2 1 1 3 1371675343 1371675343 68BA00EB6995AEECB19773A27BF81B3D 9 0 0 @//import/dir2/file2@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/dir2/file2@ 1 1 0 1 1371675342 1371675342 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/dir2/file2@ @1.1@ 1 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @emosenkis@ 1371675343 1 @Edit file in dir2
+@pv@ 2 @db.change@ 2 2 @svn-client@ @emosenkis@ 1371675343 1 @Create dir1/dir2 as symlink to @ @//import/dir1/*@ 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @emosenkis@ 1371675342 1 @Create dir1 and dir2
+@pv@ 0 @db.desc@ 3 @Edit file in dir2
+@pv@ 0 @db.desc@ 2 @Create dir1/dir2 as symlink to dir2
+@pv@ 0 @db.desc@ 1 @Create dir1 and dir2
