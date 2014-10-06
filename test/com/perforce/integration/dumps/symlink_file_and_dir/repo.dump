@@ -1,0 +1,153 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 6172652d-b85a-47e6-80e3-d5d596bc0440
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-12-01T23:02:36.704221Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-12-01T23:03:35.302416Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/real.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 16fed0121505838f492d0295ba547558
+Text-content-sha1: 29aa6d4895a0ca9dff96c11ccf323b392bd85c1e
+Content-length: 18
+
+PROPS-END
+Content
+
+
+Revision-number: 2
+Prop-content-length: 104
+Content-length: 104
+
+K 7
+svn:log
+V 4
+link
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-12-01T23:04:19.997280Z
+PROPS-END
+
+Node-path: trunk/sym.lnk
+Node-kind: file
+Node-action: add
+Prop-content-length: 33
+Text-content-length: 13
+Text-content-md5: 522c49ae0c35894064138b340a0dba21
+Text-content-sha1: 012260e68635cda962cf5a7bba8c7bcf46fb363f
+Content-length: 46
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link real.txt
+
+Revision-number: 3
+Prop-content-length: 113
+Content-length: 113
+
+K 7
+svn:log
+V 12
+link to file
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-12-02T23:07:43.813424Z
+PROPS-END
+
+Node-path: trunk/sym.lnk
+Node-kind: file
+Node-action: change
+Prop-content-length: 10
+Text-content-length: 12
+Text-content-md5: 65117e1280e29ec9f0ba6fd1bdb17880
+Text-content-sha1: 97ed76027ee433789e805b9f44477abe94ee5174
+Content-length: 22
+
+PROPS-END
+New Content
+
+
+Revision-number: 4
+Prop-content-length: 108
+Content-length: 108
+
+K 7
+svn:log
+V 8
+dir link
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-12-03T18:55:38.773681Z
+PROPS-END
+
+Node-path: link
+Node-kind: file
+Node-action: add
+Prop-content-length: 33
+Text-content-length: 11
+Text-content-md5: 6304298991c1ec76fdc46a4912e95f63
+Text-content-sha1: 9420f149da4d4b05a3635cbb76f25d1a1e08ae7a
+Content-length: 44
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link trunk/
+

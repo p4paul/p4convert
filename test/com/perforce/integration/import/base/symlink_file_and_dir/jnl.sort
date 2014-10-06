@@ -1,0 +1,12 @@
+@pv@ 9 @db.rev@ @//import/link@ 1 262145 0 4 1291402538 1291402538 8D0411B338C83CD8CD8AD9D9DB127101 5 0 0 @//import/link@ @1.4@ 262145 
+@pv@ 9 @db.rev@ @//import/trunk/real.txt@ 1 1 0 1 1291244615 1291244615 16FED0121505838F492D0295BA547558 8 0 0 @//import/trunk/real.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/sym.lnk@ 2 1 1 3 1291331263 1291331263 65117E1280E29EC9F0BA6FD1BDB17880 12 0 0 @//import/trunk/sym.lnk@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/sym.lnk@ 1 262145 0 2 1291244659 1291244659 44522FE891C33D92EA51478F4477BBC1 8 0 0 @//import/trunk/sym.lnk@ @1.2@ 262145 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @pallen@ 1291402538 1 @dir link
+@pv@ 2 @db.change@ 3 3 @svn-client@ @pallen@ 1291331263 1 @link to file
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1291244659 1 @link
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1291244615 1 @add
+@pv@ 0 @db.desc@ 4 @dir link
+@pv@ 0 @db.desc@ 3 @link to file
+@pv@ 0 @db.desc@ 2 @link
+@pv@ 0 @db.desc@ 1 @add
