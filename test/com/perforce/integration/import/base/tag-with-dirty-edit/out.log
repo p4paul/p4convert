@@ -1,0 +1,35 @@
+OUT:
+TEST MODE ENABLED
+rev: 0 => @1rev: 1 => @1
+   A:D - dir1
+   A:F - dir1/file.txt
+rev: 2 => @2
+   B:D - dir2
+   E:F - dir2/file.txt
+   overlayed rev: dir2/file.txt
+      Current credit  REV:E_into FWD:E_from
+   R:D - dir1
+rev: 3 => @3
+   B:D - dir3
+rev: 4 => @4
+   B:D - dir4
+
+--------------------------------------------------------------------------------
+                               Conversion Summary
+--------------------------------------------------------------------------------
+
+  Last changelist    : 4
+  Converted revs     : 4
+  Branches (dir)     : 3
+  Integrates (dir)   : 0
+  Archive revisions  : 2
+  Subversion users   : 1
+  Configuration      : [0:ALL] P 0 first
+  Script version     : alpha/TestMode
+
+--------------------------------------------------------------------------------
+
+  Saving hash maps...
+
+END
+
