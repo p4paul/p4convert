@@ -1,0 +1,100 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 10eb001f-854a-4e0f-8ae3-7fbca0007536
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-07-26T08:56:57.750246Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 137
+Content-length: 137
+
+K 7
+svn:log
+V 36
+Add foo as symlink to something fake
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-07-26T08:57:54.617220Z
+PROPS-END
+
+Node-path: bar
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 8
+Text-content-md5: 7f4a5c5e297ebe5a5e27ae32a4f3125e
+Text-content-sha1: 5e82d8a6ebeb2c2894362dd07641c49d45e626cb
+Content-length: 18
+
+PROPS-END
+I'm bar
+
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Prop-content-length: 33
+Text-content-length: 50
+Text-content-md5: e3ad3828817c074b458d6b9af7c195f0
+Text-content-sha1: 1a240f71a15d43b3a4a1a79e74ee3942ede5ea42
+Content-length: 83
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link ../../../../../../../../dir/that/doesnt/exist
+
+Revision-number: 2
+Prop-content-length: 128
+Content-length: 128
+
+K 7
+svn:log
+V 27
+Convert foo to file by copy
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2013-07-26T08:59:16.162500Z
+PROPS-END
+
+Node-path: foo
+Node-kind: file
+Node-action: delete
+
+Node-path: foo
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: bar
+Text-copy-source-md5: 7f4a5c5e297ebe5a5e27ae32a4f3125e
+Text-copy-source-sha1: 5e82d8a6ebeb2c2894362dd07641c49d45e626cb
+Text-content-length: 20
+Text-content-md5: 06e56ae3390c14ee9ef5204e2ee47013
+Text-content-sha1: e122393d932eaad9b153eb4bf7dbf2e8887b7349
+Content-length: 20
+
+former link to null
+
+
+
+

@@ -1,0 +1,19 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @Add foo as symlink to something fake@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1374829074 1 @Add foo as symlink to something@ 
+@pv@ 3 @db.rev@ @//import/foo@ 1 262145 0 1 1374829074 1374829074 00000000000000000000000000000000 @//import/foo@ @1.1@ 262145 
+@pv@ 0 @db.revcx@ 1 @//import/foo@ 1 0 
+@pv@ 3 @db.rev@ @//import/bar@ 1 1 0 1 1374829074 1374829074 00000000000000000000000000000000 @//import/bar@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/bar@ 1 0 
+@pv@ 0 @db.desc@ 2 @Convert foo to file by copy@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1374829156 1 @Convert foo to file by copy@ 
+@pv@ 0 @db.integed@ @//import/foo@ @//import/bar@ 0 1 1 2 12 2 
+@pv@ 0 @db.integed@ @//import/bar@ @//import/foo@ 1 2 0 1 10 2 
+@pv@ 3 @db.rev@ @//import/foo@ 2 1 4 2 1374829156 1374829156 00000000000000000000000000000000 @//import/foo@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/foo@ 2 4 
+@rv@ 1 @db.counters@ @change@ @2@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 
