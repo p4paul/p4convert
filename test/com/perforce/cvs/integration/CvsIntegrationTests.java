@@ -132,6 +132,20 @@ public class CvsIntegrationTests {
 	}
 	
 	@Test
+	public void case014() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "utf8-bom");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case015() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "utf8-nobom");
+		testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
