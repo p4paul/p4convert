@@ -152,6 +152,12 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "empty-rev");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case011() throws Exception {
+		Config.set(CFG.CVS_MODULE, "empty-edit");
+		testCase("CVScluster01");
+	}
 
 	@Test
 	public void case032() throws Exception {

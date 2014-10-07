@@ -126,6 +126,12 @@ public class CvsIntegrationTests {
 	}
 	
 	@Test
+	public void case011() throws Exception {
+		Config.set(CFG.CVS_MODULE, "empty-edit");
+		testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");

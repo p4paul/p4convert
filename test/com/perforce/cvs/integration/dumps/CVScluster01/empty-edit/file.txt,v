@@ -1,0 +1,75 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2014.09.09.09.15.17;	author radek;	state Exp;
+branches;
+next	1.2;
+commitid	100540EC51B179DF4A8;
+
+1.2
+date	2014.09.09.09.14.55;	author radek;	state Exp;
+branches;
+next	1.1;
+commitid	100540EC50A1796D84E;
+
+1.1
+date	2014.09.09.09.14.36;	author radek;	state Exp;
+branches;
+next	;
+commitid	100540EC4F6178EED3A;
+
+
+desc
+@@
+
+
+1.3
+log
+@edited with content
+@
+text
+@Installing the Broker 
+--------------------- 
+Unix
+
+To install P4Broker on Unix and Linux systems, download the 
+p4broker executable from the Perforce Web site to a suitable 
+directory on the host (such as /usr/local/bin). To ensure that 
+the binary is executable, set the appropriate permissions. 
+For example:
+
+     cp /tmp/p4broker /usr/local/bin chmod +x 
+     /usr/local/bin/p4broker
+@
+
+
+1.2
+log
+@edited
+@
+text
+@d1 12
+@
+
+
+1.1
+log
+@added
+@
+text
+@a0 8
+Installing the Broker 
+--------------------- 
+Unix
+
+To install P4Broker on Unix and Linux systems, download the 
+p4broker executable from the Perforce Web site to a suitable 
+directory on the host (such as /usr/local/bin). To ensure that 
+the binary is executable, set the appropriate permissions. 
+@
+
