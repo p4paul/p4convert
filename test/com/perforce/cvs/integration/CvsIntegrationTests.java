@@ -66,6 +66,20 @@ public class CvsIntegrationTests {
 	}
 	
 	@Test
+	public void case004() throws Exception {
+		Config.set(CFG.CVS_MODULE, "large-text");
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case005() throws Exception {
+		Config.set(CFG.CVS_MODULE, "rcs-deltas");
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case006() throws Exception { // TEST
 		Config.set(CFG.P4_C1_MODE, true);
 		Config.set(CFG.CVS_MODULE, "reserved_chars");
@@ -83,6 +97,18 @@ public class CvsIntegrationTests {
 	public void case008() throws Exception {
 		Config.set(CFG.P4_OFFSET, 100L);
 		Config.set(CFG.CVS_MODULE, "add-edit-del-offset");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case009() throws Exception {
+		Config.set(CFG.CVS_MODULE, "label-r1");
+		// TODO testCase("CVScluster01");
+	}
+
+	@Test
+	public void case032() throws Exception {
+		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
 	}
 	

@@ -110,13 +110,15 @@ public class CvsImportTests {
 	@Test
 	public void case004() throws Exception {
 		Config.set(CFG.CVS_MODULE, "large-text");
-		testCase("CVScluster01");
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
 	}
 
 	@Test
 	public void case005() throws Exception {
 		Config.set(CFG.CVS_MODULE, "rcs-deltas");
-		testCase("CVScluster01");
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
 	}
 
 	@Test
