@@ -146,6 +146,13 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "label-r1");
 		// TODO testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case010() throws Exception {
+		Config.set(CFG.P4_OFFSET, 100L);
+		Config.set(CFG.CVS_MODULE, "empty-rev");
+		testCase("CVScluster01");
+	}
 
 	@Test
 	public void case032() throws Exception {

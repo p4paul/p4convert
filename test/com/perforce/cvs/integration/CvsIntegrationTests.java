@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import java.io.File;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,16 +33,28 @@ public class CvsIntegrationTests {
 	// Once at start of regression tests
 	static {
 		try {
-			cwd = System.getProperty("user.dir");
-
 			Config.setDefault();
-			Config.set(CFG.P4_MODE, "CONVERT");
-			Config.set(CFG.SCM_TYPE, ScmType.CVS);
-			Config.set(CFG.P4_ROOT, "./p4_root/");
+
+			cwd = System.getProperty("user.dir");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Before
+	public void before() {
+		// Setup default test configuration
+		try {
+			Config.setDefault();
 			Config.set(CFG.TEST, true);
+			Config.set(CFG.SCM_TYPE, ScmType.CVS);
+			Config.set(CFG.P4_MODE, "CONVERT");
+			Config.set(CFG.P4_PORT, "localhost:4444");
+			Config.set(CFG.P4_ROOT, "./p4_root/");
 
 			Config.set(CFG.VERSION, "alpha/TestMode");
 			Config.set(CFG.P4_CLIENT_ROOT, "/ws");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -52,33 +65,33 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "add-edit-del");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case002() throws Exception {
 		Config.set(CFG.CVS_MODULE, "edit-textblock");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case003() throws Exception {
 		Config.set(CFG.CVS_MODULE, "empty-full");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case004() throws Exception {
 		Config.set(CFG.CVS_MODULE, "large-text");
 		// PROPRIAROTY DATA -- not released
 		// testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case005() throws Exception {
 		Config.set(CFG.CVS_MODULE, "rcs-deltas");
 		// PROPRIAROTY DATA -- not released
 		// testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case006() throws Exception { // TEST
 		Config.set(CFG.P4_C1_MODE, true);
@@ -92,14 +105,14 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "merge-rev");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case008() throws Exception {
 		Config.set(CFG.P4_OFFSET, 100L);
 		Config.set(CFG.CVS_MODULE, "add-edit-del-offset");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case009() throws Exception {
 		Config.set(CFG.CVS_MODULE, "label-r1");
@@ -107,11 +120,18 @@ public class CvsIntegrationTests {
 	}
 
 	@Test
+	public void case010() throws Exception {
+		Config.set(CFG.P4_OFFSET, 100L);
+		Config.set(CFG.CVS_MODULE, "empty-rev");
+		testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
 	}
-	
+
 	private void testCase(String cvsCluster) {
 		try {
 			String p4_root = (String) Config.get(CFG.P4_ROOT);
@@ -128,6 +148,10 @@ public class CvsIntegrationTests {
 			// Remove old server
 			String rm = "rm" + " -rf " + p4_root;
 			SystemCaller.exec(rm, true, false);
+
+			// Remove temp dir
+			String tmp = "rm" + " -rf tmp";
+			SystemCaller.exec(tmp, true, false);
 
 			// Run test case
 			CvsProcessChange process = new CvsProcessChange();
