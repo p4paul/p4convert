@@ -48,6 +48,12 @@ public class CvsIntegrationTests {
 	}
 
 	@Test
+	public void case002() throws Exception {
+		Config.set(CFG.CVS_MODULE, "edit-textblock");
+		testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case006() throws Exception { // TEST
 		Config.set(CFG.P4_C1_MODE, true);
 		Config.set(CFG.CVS_MODULE, "reserved_chars");
