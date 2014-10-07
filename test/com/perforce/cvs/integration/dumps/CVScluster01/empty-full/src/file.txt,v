@@ -1,0 +1,59 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2013.09.06.14.24.17;	author pallen;	state Exp;
+branches;
+next	1.2;
+commitid	Ys4VTOI4xrtMXn4x;
+
+1.2
+date	2013.09.06.14.23.41;	author pallen;	state Exp;
+branches;
+next	1.1;
+commitid	64ipkE6WN5MzXn4x;
+
+1.1
+date	2013.09.06.14.22.11;	author pallen;	state Exp;
+branches;
+next	;
+commitid	XKjXu9IBMBX3Xn4x;
+
+
+desc
+@@
+
+
+1.3
+log
+@back to empty file
+@
+text
+@@
+
+
+1.2
+log
+@add content to file
+@
+text
+@a0 5
+1:line ---------------------------------------------
+2:line ---------------------------------------------
+3:line ---------------------------------------------
+4:line ---------------------------------------------
+5:line ---------------------------------------------@
+
+
+1.1
+log
+@add empty file
+@
+text
+@d1 5
+@
+
