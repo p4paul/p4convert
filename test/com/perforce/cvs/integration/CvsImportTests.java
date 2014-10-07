@@ -149,7 +149,6 @@ public class CvsImportTests {
 	
 	@Test
 	public void case010() throws Exception {
-		Config.set(CFG.P4_OFFSET, 100L);
 		Config.set(CFG.CVS_MODULE, "empty-rev");
 		testCase("CVScluster01");
 	}
