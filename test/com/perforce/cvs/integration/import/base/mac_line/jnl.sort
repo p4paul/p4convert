@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/main/mac_line.txt@ 1 1 0 1 1410354153 1410354153 BBFDEDB0565F054CC55A0B06EA731E53 19 0 0 @//import/main/mac_line.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1410354153 1 @added
+@pv@ 0 @db.desc@ 1 @added

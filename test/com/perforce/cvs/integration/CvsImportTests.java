@@ -210,6 +210,24 @@ public class CvsImportTests {
 	}
 	
 	@Test
+	public void case020() throws Exception {
+		Config.set(CFG.CVS_MODULE, "win_line");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case021() throws Exception {
+		Config.set(CFG.CVS_MODULE, "nix_line");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case022() throws Exception {
+		Config.set(CFG.CVS_MODULE, "mac_line");
+		testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
