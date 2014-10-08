@@ -303,6 +303,12 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "no-author");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case034() throws Exception {
+		Config.set(CFG.CVS_MODULE, "revert");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test

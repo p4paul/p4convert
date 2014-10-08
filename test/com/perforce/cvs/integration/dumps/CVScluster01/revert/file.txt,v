@@ -1,0 +1,48 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2014.09.18.09.23.25;	author radek;	state Exp;
+branches;
+next	1.1;
+commitid	100541AA4841C5C5A14;
+
+1.1
+date	2014.09.18.09.21.19;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541AA40A1BF9C815;
+
+
+desc
+@@
+
+
+1.2
+log
+@edited
+@
+text
+@@
+
+
+1.1
+log
+@added
+@
+text
+@a0 10
+All v files are created read-only, and you should not change the permission of those files.
+The directories inside the repository should be writable by the persons that have permission
+to modify the files in each directory. This normally means that you must create a UNIX
+group (see group(5)) consisting of the persons that are to edit the files in a project, and set
+up the repository so that it is that group that owns the directory. (On some systems, you also
+need to set the set-group-ID-on-execution bit on the repository directories (see chmod(1))
+so that newly-created files and directories get the group-ID of the parent directory rather
+than that of the current process.)
+@
+

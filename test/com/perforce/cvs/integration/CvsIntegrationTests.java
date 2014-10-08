@@ -276,6 +276,12 @@ public class CvsIntegrationTests {
 		testCase("CVScluster01");
 	}
 
+	@Test
+	public void case034() throws Exception {
+		Config.set(CFG.CVS_MODULE, "revert");
+		testCase("CVScluster01");
+	}
+	
 	private void testCase(String cvsCluster) {
 		try {
 			String p4_root = (String) Config.get(CFG.P4_ROOT);

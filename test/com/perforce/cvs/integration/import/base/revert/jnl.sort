@@ -1,0 +1,6 @@
+@pv@ 9 @db.rev@ @//import/main/file.txt@ 2 1 1 2 1411032205 1411032205 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/main/file.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/main/file.txt@ 1 1 0 1 1411032079 1411032079 711A9075BB90B95DB7AAA2ADE17A8FF3 681 0 0 @//import/main/file.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @radek@ 1411032205 1 @edited
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1411032079 1 @added
+@pv@ 0 @db.desc@ 2 @edited
+@pv@ 0 @db.desc@ 1 @added
