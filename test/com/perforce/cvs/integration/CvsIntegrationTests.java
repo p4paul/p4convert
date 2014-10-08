@@ -202,7 +202,8 @@ public class CvsIntegrationTests {
 	@Test
 	public void case023() throws Exception {
 		Config.set(CFG.CVS_MODULE, "huge_file");
-		testCase("CVScluster01");
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
 	}
 	
 	@Test
@@ -232,18 +233,35 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "utf16_be_bom");
 		testCase("CVScluster01");
 	}
-	
+
+	/* TODO merge operations
 	@Test
 	public void case028() throws Exception { 
 		Config.set(CFG.CVS_MODULE, "merge-copy");
 		testCase("CVScluster01");
 	}
 	
-	/* TODO merge operations
 	@Test
 	public void case029() throws Exception { 
 		Config.set(CFG.CVS_MODULE, "merge-edit");
 		testCase("CVScluster01");
+	}
+	*/
+	
+	/* TODO support labels
+	@Test
+	public void case030() throws Exception {
+		Config.set(CFG.CVS_MODULE, "label_rev");
+		testCase("CVScluster01");
+	}
+	*/
+	
+	@Test
+	public void case031() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "bad_encoding");
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
 	}
 	
 	@Test
@@ -251,7 +269,12 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
 	}
-	*/
+	
+	@Test
+	public void case033() throws Exception {
+		Config.set(CFG.CVS_MODULE, "no-author");
+		testCase("CVScluster01");
+	}
 
 	private void testCase(String cvsCluster) {
 		try {
