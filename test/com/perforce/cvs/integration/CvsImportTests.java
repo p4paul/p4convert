@@ -335,6 +335,12 @@ public class CvsImportTests {
 		testCase("CVScluster01");
 	}
 	
+	@Test
+	public void case039() throws Exception {
+		Config.set(CFG.CVS_MODULE, "revert-from-prev-version-and-modify");
+		testCase("CVScluster01"); 
+	}
+	
 	/**
 	 * Environment test
 	 * 

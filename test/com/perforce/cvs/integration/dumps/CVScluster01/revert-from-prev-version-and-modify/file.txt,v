@@ -1,0 +1,83 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	2014.09.19.08.22.18;	author radek;	state Exp;
+branches;
+next	1.3;
+commitid	100541BE7AF1491F7FE;
+
+1.3
+date	2014.09.19.08.18.32;	author radek;	state Exp;
+branches;
+next	1.2;
+commitid	100541BE6D3142F5189;
+
+1.2
+date	2014.09.19.08.18.05;	author radek;	state Exp;
+branches;
+next	1.1;
+commitid	100541BE6B0141E6D31;
+
+1.1
+date	2014.09.19.08.17.37;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541BE69C140CE99D;
+
+
+desc
+@@
+
+
+1.4
+log
+@edited 3
+@
+text
+@If you are interested in having your repository on a different file system, you should first set (in .bash_profile or .cshrc etc) CVS_RSH to ssh.
+
+Now you can check out a project from the different filesystem with the -d option, which tells CVS to use a different repository, and the :ext to tell it to use an external location. For example:
+
+cvs -d :ext:bah@@lelandmachine:/afs/ir.stanford.edu/users/b/a/bah/cvsroot checkout cvsexample
+
+Now all your cvs commands will run through ssh to the remote system. You can avoid typing your password every time by putting the appropriate public key in your .ssh/known_hosts file. Since the remote repository location is stored in CVS/Root, you only have to type the :ext part once. 
+@
+
+
+1.3
+log
+@edited 2
+@
+text
+@d1 7
+a7 1
+third revision
+@
+
+
+1.2
+log
+@edited 1
+@
+text
+@d1 1
+a1 1
+second revision
+@
+
+
+1.1
+log
+@added
+@
+text
+@d1 1
+a1 1
+first revision
+@
+

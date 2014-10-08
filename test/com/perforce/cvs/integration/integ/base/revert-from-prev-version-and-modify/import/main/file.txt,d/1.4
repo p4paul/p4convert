@@ -1,0 +1,7 @@
+If you are interested in having your repository on a different file system, you should first set (in .bash_profile or .cshrc etc) CVS_RSH to ssh.
+
+Now you can check out a project from the different filesystem with the -d option, which tells CVS to use a different repository, and the :ext to tell it to use an external location. For example:
+
+cvs -d :ext:bah@lelandmachine:/afs/ir.stanford.edu/users/b/a/bah/cvsroot checkout cvsexample
+
+Now all your cvs commands will run through ssh to the remote system. You can avoid typing your password every time by putting the appropriate public key in your .ssh/known_hosts file. Since the remote repository location is stored in CVS/Root, you only have to type the :ext part once. 
