@@ -3,6 +3,7 @@ package com.perforce.cvs.integration;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.text.Normalizer.Form;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -172,7 +173,19 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "utf8-nobom");
 		testCase("CVScluster01");
 	}
-
+	
+	@Test
+	public void case016() throws Exception {
+		Form form = (Form) Config.get(CFG.P4_NORMALISATION);
+		if (form.equals(Form.NFD))
+			Config.set(CFG.CVS_MODULE, "utf8_path_nfd");
+		else
+			Config.set(CFG.CVS_MODULE, "utf8_path_nfc");
+		
+		// TODO Config.set(CFG.CVS_MODULE, "utf8_path_nfc_win");
+		testCase("CVScluster01");
+	}
+	
 	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");

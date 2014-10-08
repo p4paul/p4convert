@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.10.10.26.35;	author radek;	state Exp;
+branches;
+next	;
+commitid	1005410275623945461;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@Because there are 2 forms for representing (some) characters in
+Unicode, it's possible to produce different sequences of codepoints
+meaning to indicate the same sequence of characters [1].  UTF-8, the
+internal Unicode encoding of choice for Subversion, encodes codepoints
+in (a series of) bytes (octets).  Because the sequences of codepoints
+specifying a character may differ, so may the resulting UTF-8.  Hence,
+we end up with more than one way to specify the same path.@

@@ -3,6 +3,7 @@ package com.perforce.cvs.integration;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.text.Normalizer.Form;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -142,6 +143,18 @@ public class CvsIntegrationTests {
 	public void case015() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "utf8-nobom");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case016() throws Exception {
+		Form form = (Form) Config.get(CFG.P4_NORMALISATION);
+		if (form.equals(Form.NFD))
+			Config.set(CFG.CVS_MODULE, "utf8_path_nfd");
+		else
+			Config.set(CFG.CVS_MODULE, "utf8_path_nfc");
+		
+		// TODO Config.set(CFG.CVS_MODULE, "utf8_path_nfc_win");
 		testCase("CVScluster01");
 	}
 	

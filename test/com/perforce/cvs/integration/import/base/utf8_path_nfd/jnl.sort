@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/main/file.ü.txt@ 1 1 0 1 1410350108 1410350108 0775341C3240C4053C33CC16D3EBE8B1 471 0 0 @//import/main/file.ü.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1410350108 1 @added
+@pv@ 0 @db.desc@ 1 @added
