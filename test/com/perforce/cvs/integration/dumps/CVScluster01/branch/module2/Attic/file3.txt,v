@@ -1,0 +1,45 @@
+head	1.1;
+access;
+symbols
+	MODULE_2:1.1.0.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.18.10.50.22;	author radek;	state dead;
+branches
+	1.1.2.1;
+next	;
+commitid	100541AB8E5232C6D63;
+
+1.1.2.1
+date	2014.09.18.10.50.22;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541AB8E5232C6D63;
+
+
+desc
+@@
+
+
+1.1
+log
+@file file3.txt was initially added on branch MODULE_2.
+@
+text
+@@
+
+
+1.1.2.1
+log
+@added
+@
+text
+@a0 3
+ All files within a Perforce client workspace share a root directory, called the client workspace root. The workspace root is the highest-level directory of the workspace under which the managed source files reside.
+
+If you configure multiple workspaces on the same machine, keep workspace locations separate to avoid inadvertently overwriting files. Ensure that client roots are located in different folders and that their workspace views do not map depot files to overlapping locations on your workstation. 
+@
+

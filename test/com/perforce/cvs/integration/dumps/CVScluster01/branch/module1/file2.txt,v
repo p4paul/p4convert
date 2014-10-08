@@ -1,0 +1,28 @@
+head	1.1;
+access;
+symbols
+	MODULE_2:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.18.10.29.52;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541AB41121CC5B38;
+
+
+desc
+@@
+
+
+1.1
+log
+@module1 added
+@
+text
+@What is a client workspace?
+
+A Perforce client workspace is a set of directories on your workstation where you work on file revisions that are managed by Perforce. Each workspace is given a name that identifies the client workspace to the Perforce service. If no workspace name is specified (by setting the P4CLIENT environment variable) the default workspace name is the name of your workstation. To specify the effective workspace name, set the P4CLIENT environment variable. You can have multiple workspaces on your machine. 
+@

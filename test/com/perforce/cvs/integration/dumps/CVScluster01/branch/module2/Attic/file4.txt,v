@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols
+	MODULE_2:1.1.0.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.18.10.51.52;	author radek;	state dead;
+branches
+	1.1.2.1;
+next	;
+commitid	100541AB943235D8704;
+
+1.1.2.1
+date	2014.09.18.10.51.52;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541AB943235D8704;
+
+
+desc
+@@
+
+
+1.1
+log
+@file file4.txt was initially added on branch MODULE_2.
+@
+text
+@@
+
+
+1.1.2.1
+log
+@added
+@
+text
+@@
+

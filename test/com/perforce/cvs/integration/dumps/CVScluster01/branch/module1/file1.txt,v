@@ -1,0 +1,28 @@
+head	1.1;
+access;
+symbols
+	MODULE_2:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.18.10.29.52;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541AB41121CC5B38;
+
+
+desc
+@@
+
+
+1.1
+log
+@module1 added
+@
+text
+@Configuration overview
+
+Perforce is an enterprise version management system in which you connect to a shared versioning service; users sync files from the shared repository, called the depot, and edit them on your workstation in your client workspace. This chapter assumes that your system administrator has configured your organization's Perforce service. For details about setting up the versioning service, refer to the Perforce System Administrator's Guide. 
+@
