@@ -142,11 +142,13 @@ public class CvsImportTests {
 		testCase("CVScluster01", seed);
 	}
 
+	/* TODO support labels
 	@Test
 	public void case009() throws Exception {
 		Config.set(CFG.CVS_MODULE, "label-r1");
-		// TODO testCase("CVScluster01");
+		testCase("CVScluster01");
 	}
+	*/
 	
 	@Test
 	public void case010() throws Exception {
@@ -159,6 +161,20 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "empty-edit");
 		testCase("CVScluster01");
 	}
+	
+	/* CVS doesn't support symbolic links
+	@Test
+	public void case012() throws Exception {
+		Config.set(CFG.CVS_MODULE, "symlink");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case013() throws Exception {
+		Config.set(CFG.CVS_MODULE, "symlink-target");
+		testCase("CVScluster01");
+	}
+	*/
 	
 	@Test
 	public void case014() throws Exception {
@@ -183,6 +199,13 @@ public class CvsImportTests {
 			Config.set(CFG.CVS_MODULE, "utf8_path_nfc");
 		
 		// TODO Config.set(CFG.CVS_MODULE, "utf8_path_nfc_win");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case019() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "win1251");
 		testCase("CVScluster01");
 	}
 	
