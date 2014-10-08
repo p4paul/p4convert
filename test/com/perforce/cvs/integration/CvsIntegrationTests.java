@@ -289,6 +289,25 @@ public class CvsIntegrationTests {
 		testCase("CVScluster01");
 	}
 	
+	@Test
+	public void case036() throws Exception {
+		Config.set(CFG.CVS_MODULE, "username_umlaut");
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case037() throws Exception {
+		Config.set(CFG.CVS_MODULE, "username_rev_chars");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case038() throws Exception {
+		Config.set(CFG.CVS_MODULE, "username_comma");
+		testCase("CVScluster01");
+	}
+	
 	private void testCase(String cvsCluster) {
 		try {
 			String p4_root = (String) Config.get(CFG.P4_ROOT);

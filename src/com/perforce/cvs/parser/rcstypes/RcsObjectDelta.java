@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import com.perforce.common.process.ProcessUser;
 import com.perforce.cvs.parser.RcsSchema;
 
 public class RcsObjectDelta extends RcsObject {
@@ -19,7 +20,8 @@ public class RcsObjectDelta extends RcsObject {
 
 	public String getAuthor() {
 		if (containsKey(RcsSchema.AUTHOR)) {
-			return (String) get(RcsSchema.AUTHOR);
+			String user = (String) get(RcsSchema.AUTHOR);
+			return ProcessUser.filter(user);
 		} else {
 			return "unknown";
 		}

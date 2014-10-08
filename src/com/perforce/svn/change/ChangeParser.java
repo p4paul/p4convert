@@ -8,6 +8,7 @@ import java.util.TimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.process.ProcessUser;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
@@ -61,23 +62,6 @@ public class ChangeParser {
 		return user;
 	}
 
-	public static String filterUser(String user) {
-		// No choice here; any reserved characters used are purged.
-		// Remove '@' and '#', but replace ' ' with '_'
-		user = user.replace("@", "");
-		user = user.replace("#", "");
-		user = user.replace(" ", "_");
-		user = user.replace("*", "");
-		user = user.replace("%%", "");
-		user = user.replace("...", "");
-
-		if (user.isEmpty()) {
-			user = "unknown";
-		}
-
-		return user;
-	}
-
 	/**
 	 * Returns filtered user name used in Perforce. Filtering includes user map
 	 * and reserved characters.
@@ -93,7 +77,7 @@ public class ChangeParser {
 
 		// No choice here; any reserved characters used are purged.
 		// Remove '@' and '#', but replace ' ' with '_'
-		user = filterUser(user);
+		user = ProcessUser.filter(user);
 
 		if (logger.isTraceEnabled()) {
 			logger.trace("username: " + orig + " => " + user);

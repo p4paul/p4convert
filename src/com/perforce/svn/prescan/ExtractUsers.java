@@ -9,6 +9,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.process.ProcessUser;
 import com.perforce.svn.change.ChangeParser;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
@@ -28,7 +29,7 @@ public class ExtractUsers {
 			if (record.getType() == Record.Type.REVISION) {
 				String user = ChangeParser.getSubversionUser(record);
 				if (!users.containsKey(user)) {
-					String clean = ChangeParser.filterUser(user);
+					String clean = ProcessUser.filter(user);
 					users.put(user, clean);
 				}
 			}

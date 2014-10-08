@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.18.11.12.08;	author ra,dek;	state Exp;
+branches;
+next	;
+commitid	100541ABE0424F47CFB;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@Creating a branch is easy, but it's also easy to do wrong. The basic point to remember is that cvs uses tags (symbolic names, usually used for naming cut versions) in two distinct ways on branches, both as the name of the branch and the name of the revision on the branch.
+The simplest way to create a branch called branchname is to cd to a copy of the code that you want to branch, say my_prog, and say:
+
+   cvs tag branchname_0
+   cvs tag -r branchname_0 -b branchname
+which first names the branch's point of attachment (branchname_0), and then actually creates the branch. It's probably a good idea to update first to check that your version really is up-to-date; I usually say cvs -nq update. You are now ready to check out a copy of your branch.
+@
