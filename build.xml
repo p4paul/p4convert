@@ -12,6 +12,7 @@
 	<property name="bin.dir" value="bin" />
 	<property name="dist.dir" value="dist" />
 	<property name="release.dir" value="release" />
+	<property name="cvs_tmp.dir" value="tmp" />
 	<property name="ext.dir" value="ext" />
 	<property name="prop.dir" value="prop" />
 	<property name="jar.name" value="p4convert-svn" />
@@ -33,6 +34,7 @@
 		<delete dir="${dist.dir}" />
 		<delete dir="${junit.dir}" />
 		<delete dir="${release.dir}" />
+		<delete dir="${cvs_tmp.dir}" />
 	</target>
 
 
