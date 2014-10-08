@@ -1,0 +1,6 @@
+Backing up after checkpointing
+
+In order to ensure that the versioned files reflect all the information in the database after a post-crash restoration, the db.* files must be restored from a checkpoint that is at least as old as (or older than) your versioned files. For this reason, create the checkpoint before backing up the versioned files in the depot directory or directories.
+
+Although your versioned files can be newer than the data stored in your checkpoint, it is in your best interest to keep this difference to a minimum; in general, you'll want your backup script to back up your versioned files immediately after successfully completing a checkpoint.
+

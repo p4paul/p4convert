@@ -1,0 +1,86 @@
+@pv@ 1 @db.counters@ @upgrade@ @1@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @2@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @3@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @4@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @5@ 
+@pv@ 1 @db.depot@ @depot@ 0 @@ @depot/...@ 
+@pv@ 6 @db.domain@ @depot@ 100 @@ @@ @@ @@ @@ 1410436628 1410436628 0 @Default depot@ @@ @@ 0 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @6@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @7@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @8@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @9@ 
+@rv@ 1 @db.counters@ @upgrade@ @10@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @11@ 
+@rv@ 1 @db.counters@ @upgrade@ @12@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @13@ 
+@rv@ 1 @db.counters@ @upgrade@ @14@ 
+@rv@ 1 @db.counters@ @upgrade@ @15@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @16@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @17@ 
+@rv@ 1 @db.counters@ @upgrade@ @18@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @19@ 
+@ex@ 12598 1410436628
+@rv@ 1 @db.counters@ @upgrade@ @20@ 
+@rv@ 1 @db.counters@ @upgrade@ @21@ 
+@rv@ 1 @db.counters@ @upgrade@ @22@ 
+@rv@ 1 @db.counters@ @upgrade@ @23@ 
+@ex@ 12598 1410436628
+@nx@ 7 1410436628 @37@ 0 0 0 0 0 @1777@ @.@ @@ @@ @@ 
+@ex@ 12598 1410436628
+@pv@ 6 @db.user@ @radek@ @radek@@_____CLIENT_UNSET_____@ @@ 1410436726 1410436726 @radek@ @@ 0 @@ 0 0 0 0 0 
+@ex@ 12662 1410436726
+@rv@ 6 @db.user@ @radek@ @r.krzych@@polsource.com@ @@ 1410436726 1410436726 @radek@ @@ 0 @@ 0 0 0 0 0 
+@ex@ 12663 1410436726
+@pv@ 1 @db.view@ @radek_radek-Inspiron-1545_3634@ 0 0 @//radek_radek-Inspiron-1545_3634/...@ @//depot/...@ 
+@ex@ 12665 1410436738
+@pv@ 6 @db.domain@ @radek_radek-Inspiron-1545_3634@ 99 @radek-Inspiron-1545@ @/home/radek/radek_radek-Inspiron-1545_3634@ @@ @@ @radek@ 1410436738 1410436738 0 @Created by radek.
+@ @@ @@ 0 
+@ex@ 12665 1410436738
+@pv@ 10 @db.working@ @//radek_radek-Inspiron-1545_3634/utf16_be_bom.txt@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 0 65539 0 0 0 0 00000000000000000000000000000000 -1 0 0 65539 @@ 0 
+@pv@ 2 @db.locks@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 0 0 
+@ex@ 12696 1410436803
+@rv@ 10 @db.working@ @//radek_radek-Inspiron-1545_3634/utf16_be_bom.txt@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 0 65537 0 0 0 0 00000000000000000000000000000000 -1 0 0 65539 @@ 0 
+@rv@ 2 @db.locks@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 0 0 
+@ex@ 12698 1410436814
+@pv@ 1 @db.counters@ @change@ @1@ 
+@pv@ 0 @db.desc@ 1 @added
+@ 
+@pv@ 2 @db.change@ 1 1 @radek_radek-Inspiron-1545_3634@ @radek@ 1410436825 0 @added
+@ @@ 
+@pv@ 2 @db.changex@ 1 1 @radek_radek-Inspiron-1545_3634@ @radek@ 1410436825 0 @added
+@ @@ 
+@rv@ 10 @db.working@ @//radek_radek-Inspiron-1545_3634/utf16_be_bom.txt@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 0 65537 0 1 0 0 00000000000000000000000000000000 -1 0 0 65539 @@ 0 
+@rv@ 2 @db.locks@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 0 1 
+@ex@ 12699 1410436825
+@rv@ 10 @db.working@ @//radek_radek-Inspiron-1545_3634/utf16_be_bom.txt@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 0 65537 0 1 0 1 00000000000000000000000000000000 -1 0 0 65539 @@ 0 
+@rv@ 2 @db.locks@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 1 
+@ex@ 12699 1410436825
+@rv@ 10 @db.working@ @//radek_radek-Inspiron-1545_3634/utf16_be_bom.txt@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 0 65537 0 1 1410436777 1 9FA50C3FBC162B1CC7C1D41124AECEB6 1334 0 0 65539 @@ 0 
+@rv@ 2 @db.locks@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 1 
+@ex@ 12699 1410436825
+@dv@ 2 @db.changex@ 1 1 @radek_radek-Inspiron-1545_3634@ @radek@ 1410436825 1 @added
+@ @//depot/*@ 
+@rv@ 2 @db.change@ 1 1 @radek_radek-Inspiron-1545_3634@ @radek@ 1410436825 1 @added
+@ @//depot/*@ 
+@pv@ 2 @db.have@ @//radek_radek-Inspiron-1545_3634/utf16_be_bom.txt@ @//depot/utf16_be_bom.txt@ 1 65537 
+@pv@ 9 @db.rev@ @//depot/utf16_be_bom.txt@ 1 65537 0 1 1410436825 1410436777 9FA50C3FBC162B1CC7C1D41124AECEB6 1334 0 0 @//depot/utf16_be_bom.txt@ @1.1@ 65537 
+@pv@ 9 @db.revhx@ @//depot/utf16_be_bom.txt@ 1 65537 0 1 1410436825 1410436777 9FA50C3FBC162B1CC7C1D41124AECEB6 1334 0 0 @//depot/utf16_be_bom.txt@ @1.1@ 65537 
+@pv@ 0 @db.revcx@ 1 @//depot/utf16_be_bom.txt@ 1 0 
+@dv@ 2 @db.locks@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 1 
+@dv@ 10 @db.working@ @//radek_radek-Inspiron-1545_3634/utf16_be_bom.txt@ @//depot/utf16_be_bom.txt@ @radek_radek-Inspiron-1545_3634@ @radek@ 0 1 0 65537 0 1 1410436777 1 9FA50C3FBC162B1CC7C1D41124AECEB6 1334 0 0 65539 @@ 0 
+@ex@ 12699 1410436825
+@pv@ 1 @db.counters@ @maxCommitChange@ @1@ 
+@ex@ 12699 1410436825

@@ -228,6 +228,40 @@ public class CvsImportTests {
 	}
 	
 	@Test
+	public void case023() throws Exception {
+		Config.set(CFG.CVS_MODULE, "huge_file");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case024() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "utf16_le");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case025() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "utf16_le_bom");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case026() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "utf16_be");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case027() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "utf16_be_bom");
+		testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
