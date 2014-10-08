@@ -1,0 +1,67 @@
+head	1.2;
+access;
+symbols
+	my_branch:1.1.0.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2014.09.15.12.54.01;	author radek;	state Exp;
+branches;
+next	1.1;
+commitid	1005416E14D23C5C3BC;
+
+1.1
+date	2014.09.15.12.49.58;	author radek;	state dead;
+branches
+	1.1.2.1;
+next	;
+commitid	1005416E072239FD8A5;
+
+1.1.2.1
+date	2014.09.15.12.49.58;	author radek;	state Exp;
+branches;
+next	;
+commitid	1005416E072239FD8A5;
+
+
+desc
+@@
+
+
+1.2
+log
+@Results of merge from my_branch
+@
+text
+@Backing up after checkpointing
+
+In order to ensure that the versioned files reflect all the information in the database after a post-crash restoration, the db.* files must be restored from a checkpoint that is at least as old as (or older than) your versioned files. For this reason, create the checkpoint before backing up the versioned files in the depot directory or directories.
+
+Although your versioned files can be newer than the data stored in your checkpoint, it is in your best interest to keep this difference to a minimum; in general, you'll want your backup script to back up your versioned files immediately after successfully completing a checkpoint.
+@
+
+
+1.1
+log
+@file file2.txt was initially added on branch my_branch.
+@
+text
+@d1 5
+@
+
+
+1.1.2.1
+log
+@added
+@
+text
+@a0 5
+Backing up after checkpointing
+
+In order to ensure that the versioned files reflect all the information in the database after a post-crash restoration, the db.* files must be restored from a checkpoint that is at least as old as (or older than) your versioned files. For this reason, create the checkpoint before backing up the versioned files in the depot directory or directories.
+
+Although your versioned files can be newer than the data stored in your checkpoint, it is in your best interest to keep this difference to a minimum; in general, you'll want your backup script to back up your versioned files immediately after successfully completing a checkpoint.
+@
+

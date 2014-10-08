@@ -234,10 +234,24 @@ public class CvsIntegrationTests {
 	}
 	
 	@Test
+	public void case028() throws Exception { 
+		Config.set(CFG.CVS_MODULE, "merge-copy");
+		testCase("CVScluster01");
+	}
+	
+	/* TODO merge operations
+	@Test
+	public void case029() throws Exception { 
+		Config.set(CFG.CVS_MODULE, "merge-edit");
+		testCase("CVScluster01");
+	}
+	
+	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
 	}
+	*/
 
 	private void testCase(String cvsCluster) {
 		try {

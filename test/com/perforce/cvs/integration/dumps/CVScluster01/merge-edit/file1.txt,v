@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols
+	my_branch:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.16.12.06.39;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541827CB2D256ADE;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@Checkpoint files
+
+A checkpoint is a file that contains all information necessary to re-create the metadata in the Perforce database. When you create a checkpoint, the Perforce database is locked, enabling you to take an internally consistent snapshot of that database.
+
+Versioned files are backed up separately from checkpoints. This means that a checkpoint does not contain the contents of versioned files, and as such, you cannot restore any versioned files from a checkpoint. You can, however, restore all changelists, labels, jobs, and so on, from a checkpoint.
+@

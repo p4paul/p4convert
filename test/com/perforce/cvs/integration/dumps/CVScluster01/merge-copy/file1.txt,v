@@ -1,0 +1,32 @@
+head	1.1;
+access;
+symbols
+	my_branch:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.15.12.46.50;	author radek;	state Exp;
+branches;
+next	;
+commitid	1005416DFB623626394;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@Versioned file formats
+
+Versioned files are stored in subdirectories beneath your server root. Text files are stored in RCS format, with filenames of the form filename,v. There is generally one RCS-format (,v) file per text file. Binary files are stored in full in their own directories named filename,d. Depending on the Perforce file type selected by the user storing the file, there can be one or more archived binary files in each filename,d directory. If more than one file resides in a filename,d directory, each file in the directory refers to a different revision of the binary file, and is named 1.n, where n is the revision number.
+
+Perforce also supports the AppleSingle file format for Macintosh. These files are stored in full and compressed, just like other binary files. They are stored in the Mac's AppleSingle file format; if need be, the files can be copied directly from the server root, uncompressed, and used as-is on a Macintosh.
+
+Because Perforce uses compression in the depot file tree, do not assume compressibility of the data when sizing backup media. Both text and binary files are either compressed by p4d (and are denoted by the .gz suffix) before storage, or they are stored uncompressed. At most installations, if any binary files in the depot subdirectories are being stored uncompressed, they were probably incompressible to begin with. (For example, many image, music, and video file formats are incompressible.)
+@

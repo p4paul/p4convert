@@ -1,0 +1,108 @@
+head	1.3;
+access;
+symbols
+	my_branch:1.1.0.2;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2014.09.16.12.10.59;	author radek;	state Exp;
+branches;
+next	1.2;
+commitid	100541828CD2DBF8C50;
+
+1.2
+date	2014.09.16.12.10.32;	author radek;	state Exp;
+branches;
+next	1.1;
+commitid	100541828B02DA9DD6E;
+
+1.1
+date	2014.09.16.12.08.15;	author radek;	state dead;
+branches
+	1.1.2.1;
+next	;
+commitid	100541828282D52E89E;
+
+1.1.2.1
+date	2014.09.16.12.08.15;	author radek;	state Exp;
+branches;
+next	1.1.2.2;
+commitid	100541828282D52E89E;
+
+1.1.2.2
+date	2014.09.16.12.09.01;	author radek;	state Exp;
+branches;
+next	;
+commitid	100541828502D741154;
+
+
+desc
+@@
+
+
+1.3
+log
+@edited
+@
+text
+@Creating a checkpoint
+
+Checkpoints are not created automatically; someone or something must run the checkpoint command on the Perforce server machine. To create a checkpoint, invoke the p4d program with the -jc (journal-create) flag:
+
+p4d -r server_root -jc
+
+You can create a checkpoint while the Perforce service (p4d) is running. The checkpoint is created in your server root directory (that is, P4ROOT if no server_root is specified).
+
+To make the checkpoint, p4d locks the database and then dumps its contents to a file named checkpoint.n in the P4ROOT directory, where n is a sequence number.
+
+Before unlocking the database, p4d also copies (on UNIX where the journal is uncompressed, renames) the journal file to a file named journal.n-1 in the P4ROOT directory (regardless of the directory in which the current journal is stored), and then truncates the current journal. The MD5 checksum of the checkpoint is written to a separate file, checkpoint.n.md5, and the lastCheckpointAction counter is updated to reflect successful completion.
+@
+
+
+1.2
+log
+@added
+@
+text
+@d2 10
+@
+
+
+1.1
+log
+@file file2.txt was initially added on branch my_branch.
+@
+text
+@d1 1
+@
+
+
+1.1.2.1
+log
+@added
+@
+text
+@a0 5
+Creating a checkpoint
+
+Checkpoints are not created automatically; someone or something must run the checkpoint command on the Perforce server machine. To create a checkpoint, invoke the p4d program with the -jc (journal-create) flag:
+
+p4d -r server_root -jc
+@
+
+
+1.1.2.2
+log
+@edited
+@
+text
+@a5 4
+
+You can create a checkpoint while the Perforce service (p4d) is running. The checkpoint is created in your server root directory (that is, P4ROOT if no server_root is specified).
+
+
+@
+
+
