@@ -62,7 +62,8 @@ public enum CFG {
 	ISSUE_MAP("hidden.issueMap", String.class),
 	USER_MAP("hidden.userMap", String.class),
 	TYPE_MAP("hidden.typeMap", String.class),
-	P4_LARGE_FILE("hidden.largeFile", Long.class);
+	P4_LARGE_FILE("hidden.largeFile", Long.class),
+	CVS_MAXLINE("hidden.maxLineBuffer", Long.class);
 
 	final private String base = "com.p4convert.";
 	final private String id;
