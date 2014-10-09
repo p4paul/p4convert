@@ -37,6 +37,7 @@ TypeMap:
 	binary		//....war
 	binary		//....rar
 	binary		//....ear
+	binary		//....exe
 			
 # office
 	binary		//....doc
