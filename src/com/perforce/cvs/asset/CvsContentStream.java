@@ -31,36 +31,52 @@ public class CvsContentStream extends ContentStream {
 	@Override
 	public int read(byte[] b, int off, int len) throws IOException {
 		int count = 0;
-
-		if (blockIterator.hasNext()) {
-			ByteArrayOutputStream bs = new ByteArrayOutputStream();
-
-			do {
+		while (remainder != null || blockIterator.hasNext()) {
+			if (remainder != null) {
+				byte[] bytes = remainder;
+				count = into(bytes, b, len, count);
+			} else {
 				ByteArrayOutputStream line = blockIterator.next();
 				byte[] bytes = line.toByteArray();
-				if (count + bytes.length > len) {
-					int part = len - count;
-					bs.write(bytes, 0, part);
-					count += part;
-
-					int left = bytes.length - part;
-					remainder = new byte[left];
-					System.arraycopy(bytes, part, remainder, 0, left);
-				} else {
-					bs.write(bytes);
-					count += bytes.length;
-					remainder = null;
-				}
-			} while (blockIterator.hasNext() && remainder != null);
-
-			System.arraycopy(bs.toByteArray(), 0, b, 0, count);
-			bs.close();
-		} else {
-			return -1;
+				count = into(bytes, b, len, count);
+			}
+			
+			// keep adding to provided buffer until there is a remainder
+			if (remainder != null) {
+				scan.read(b, count);
+				return count;
+			}
 		}
 
-		scan.read(b, count);
-		return count;
+		// all done!
+		if (count > 0) {
+			// return what was read
+			scan.read(b, count);
+			return count;
+		} else {
+			// nothing read, return EOF
+			return -1;
+		}
+	}
+
+	private int into(byte[] from, byte[] to, int to_limit, int to_pos) {
+		if (to_pos + from.length > to_limit) {
+			// more bytes than limit, copy part
+			int part = to_limit - to_pos;
+			System.arraycopy(from, 0, to, to_pos, part);
+			to_pos += part;
+
+			// save leftover to remainder
+			int left = from.length - part;
+			remainder = new byte[left];
+			System.arraycopy(from, part, remainder, 0, left);
+		} else {
+			// less bytes than limit, copy all
+			System.arraycopy(from, 0, to, to_pos, from.length);
+			to_pos += from.length;
+			remainder = null;
+		}
+		return to_pos;
 	}
 
 	@Override

@@ -8,6 +8,10 @@ import java.io.UnsupportedEncodingException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
+
 public abstract class LineReader {
 
 	private String fileName;
@@ -80,9 +84,10 @@ public abstract class LineReader {
 	 * returned if the end of the file is reached.
 	 * 
 	 * @return
+	 * @throws ConfigException
 	 */
-	public ByteArrayOutputStream getData() {
-		int LINE_SIZE = 10240;
+	public ByteArrayOutputStream getData() throws ConfigException {
+		long maxLineSize = (long) Config.get(CFG.CVS_MAXLINE);
 
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		int c = 0;
@@ -103,8 +108,7 @@ public abstract class LineReader {
 			} catch (IOException e) {
 				return null;
 			}
-		} while (c < LINE_SIZE && b != '\n');
-
+		} while (c < maxLineSize && b != '\n');
 		return buf;
 	}
 

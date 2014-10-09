@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.rcstypes.RcsObject;
 import com.perforce.cvs.parser.rcstypes.RcsObjectAdmin;
 import com.perforce.cvs.parser.rcstypes.RcsObjectBlock;
@@ -309,7 +310,8 @@ public class RcsReader {
 		return out;
 	}
 
-	private boolean endAtpersand(ByteArrayOutputStream buf) {
+	private boolean endAtpersand(ByteArrayOutputStream buf)
+			throws ConfigException {
 		int size = buf.size();
 
 		// exit early if less than 2 chars
@@ -319,7 +321,14 @@ public class RcsReader {
 
 		byte[] b = buf.toByteArray();
 		if (b[size - 2] == '@' && b[size - 1] == '\n') {
-			return true;
+
+			// peek ahead to see if line is empty (just \n)
+			long pos = cvsLineReader.getFilePointer();
+			ByteArrayOutputStream line = cvsLineReader.getData();
+			cvsLineReader.seek(pos);
+			if (line == null || line.size() == 1) {
+				return true;
+			}
 		}
 		return false;
 	}
