@@ -46,16 +46,13 @@ public class RcsObjectBlock implements Iterable<ByteArrayOutputStream> {
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer("\n");
-		int p = 1;
+		int sum = 0;
 		for (ByteArrayOutputStream line : lines) {
 			if (line != null) {
-				sb.append(p);
-				sb.append(": ");
-				sb.append(line);
-				sb.append("\n");
-				p++;
+				sum += line.size();
 			}
 		}
+		sb.append("total["  + lines.size() + "] " + sum + "\n");
 		return sb.toString();
 	}
 

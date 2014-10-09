@@ -304,7 +304,7 @@ public class RcsReader {
 				out.write(b);
 				last = b;
 			}
-			
+
 		}
 		return out;
 	}
@@ -327,6 +327,10 @@ public class RcsReader {
 	private RcsObjectBlock parseText() throws Exception {
 		RcsObjectBlock lines = new RcsObjectBlock();
 
+		// to help with debug
+		int sum = 0;
+		StringBuffer sb = new StringBuffer();
+
 		// check and remove starting '@'
 		ByteArrayOutputStream line = cvsLineReader.getData();
 		line = startAtpersand(line);
@@ -345,13 +349,33 @@ public class RcsReader {
 				out.write(clean.toByteArray(), 0, clean.size() - 2);
 				if (out.size() > 0) {
 					lines.add(out);
+					if (logger.isTraceEnabled()) {
+						sum += out.size();
+						sb.append("parse:");
+						sb.append(out.size());
+						sb.append(":");
+						sb.append(sum);
+						sb.append(":END");
+					}
 				}
 				break;
 			} else {
 				lines.add(clean);
+				if (logger.isTraceEnabled()) {
+					sum += clean.size();
+					sb.append("parse:");
+					sb.append(clean.size());
+					sb.append(":");
+					sb.append(sum);
+					sb.append(" ");
+				}
 			}
 			// get next line;
 			line = cvsLineReader.getData();
+		}
+		if (logger.isTraceEnabled()) {
+			logger.trace(sb.toString());
+			logger.trace("total[" + lines.size() + "] " + sum);
 		}
 		return lines;
 	}

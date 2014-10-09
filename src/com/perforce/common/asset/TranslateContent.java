@@ -338,10 +338,25 @@ public class TranslateContent {
 		// read content as bytes and write
 		ByteBuffer bbuf = ByteBuffer.allocate(blockSize);
 
+		// help with debug
+		int sum = 0;
+		int c = 0;
+		StringBuffer sb = new StringBuffer();
+
 		while (rbc.read(bbuf) != -1) {
 			bbuf.flip();
-			fileChannel.write(bbuf);
+			int w = fileChannel.write(bbuf);
+			if (logger.isTraceEnabled()) {
+				sum += w;
+				c++;
+				sb.append("wrote[" + c + "]" + w + ":" + sum + " ");
+			}
 			bbuf.clear();
+		}
+
+		if (logger.isTraceEnabled()) {
+			logger.trace(sb.toString());
+			logger.trace("total[" + c + "] " + sum);
 		}
 
 		// close streams
