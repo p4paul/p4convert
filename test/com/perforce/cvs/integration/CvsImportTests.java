@@ -362,6 +362,12 @@ public class CvsImportTests {
 		testCase("CVScluster01");
 	}
 	
+	@Test
+	public void case043() throws Exception {
+		Config.set(CFG.CVS_MODULE, "null_path");
+		testCase("CVScluster01");
+	}
+	
 	/**
 	 * Environment test
 	 * 

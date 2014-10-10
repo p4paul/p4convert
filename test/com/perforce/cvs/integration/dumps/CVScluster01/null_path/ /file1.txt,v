@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.23.07.53.51;	author radek;	state Exp;
+branches;
+next	;
+commitid	100542127074E38C5CE;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@@@Test
+	public void case042() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "win1252");
+		testCase("CVScluster01");
+	}
+@

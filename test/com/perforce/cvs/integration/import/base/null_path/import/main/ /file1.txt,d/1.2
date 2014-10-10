@@ -1,0 +1,6 @@
+@Test
+	public void case042() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "win1252");
+		testCase("CVScluster01");
+	}
