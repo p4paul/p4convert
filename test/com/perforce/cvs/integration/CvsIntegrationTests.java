@@ -320,6 +320,20 @@ public class CvsIntegrationTests {
 		testCase("CVScluster01");
 	}
 	
+	@Test
+	public void case041() throws Exception {
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "win1252_non");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case042() throws Exception {
+		Config.set(CFG.P4_UNICODE, true);
+		Config.set(CFG.CVS_MODULE, "win1252");
+		testCase("CVScluster01");
+	}
+	
 	private void testCase(String cvsCluster) {
 		try {
 			String p4_root = (String) Config.get(CFG.P4_ROOT);
