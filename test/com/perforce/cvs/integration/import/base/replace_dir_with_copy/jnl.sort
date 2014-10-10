@@ -1,0 +1,7 @@
+@pv@ 9 @db.rev@ @//import/main/src1/dir/file@ 1 1 0 1 1411461276 1411461276 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/main/src1/dir/file@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/src1/foo@ 1 1 0 1 1411461276 1411461276 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/main/src1/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/src2/bar@ 1 1 0 2 1411461355 1411461355 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/main/src2/bar@ @1.2@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @radek@ 1411461355 1 @added
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1411461276 1 @added
+@pv@ 0 @db.desc@ 2 @added
+@pv@ 0 @db.desc@ 1 @added
