@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.config.CFG;
+import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
 import com.perforce.config.ScmType;
 import com.perforce.cvs.process.CvsProcessChange;
@@ -114,54 +115,49 @@ public class CvsIntegrationTests {
 		testCase("CVScluster01");
 	}
 
-	/* TODO support labels
-	@Test
-	public void case009() throws Exception {
-		Config.set(CFG.CVS_MODULE, "label-r1");
-		testCase("CVScluster01");
-	}
-	*/
-	
+	/*
+	 * TODO support labels
+	 * 
+	 * @Test public void case009() throws Exception { Config.set(CFG.CVS_MODULE,
+	 * "label-r1"); testCase("CVScluster01"); }
+	 */
+
 	@Test
 	public void case010() throws Exception {
 		Config.set(CFG.CVS_MODULE, "empty-rev");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case011() throws Exception {
 		Config.set(CFG.CVS_MODULE, "empty-edit");
 		testCase("CVScluster01");
 	}
-	
-	/* CVS doesn't support symbolic links
-	@Test
-	public void case012() throws Exception {
-		Config.set(CFG.CVS_MODULE, "symlink");
-		testCase("CVScluster01");
-	}
-	
-	@Test
-	public void case013() throws Exception {
-		Config.set(CFG.CVS_MODULE, "symlink-target");
-		testCase("CVScluster01");
-	}
-	*/
-	
+
+	/*
+	 * CVS doesn't support symbolic links
+	 * 
+	 * @Test public void case012() throws Exception { Config.set(CFG.CVS_MODULE,
+	 * "symlink"); testCase("CVScluster01"); }
+	 * 
+	 * @Test public void case013() throws Exception { Config.set(CFG.CVS_MODULE,
+	 * "symlink-target"); testCase("CVScluster01"); }
+	 */
+
 	@Test
 	public void case014() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "utf8-bom");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case015() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "utf8-nobom");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case016() throws Exception {
 		Form form = (Form) Config.get(CFG.P4_NORMALISATION);
@@ -169,64 +165,64 @@ public class CvsIntegrationTests {
 			Config.set(CFG.CVS_MODULE, "utf8_path_nfd");
 		else
 			Config.set(CFG.CVS_MODULE, "utf8_path_nfc");
-		
+
 		// TODO Config.set(CFG.CVS_MODULE, "utf8_path_nfc_win");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case019() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "win1251");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case020() throws Exception {
 		Config.set(CFG.CVS_MODULE, "win_line");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case021() throws Exception {
 		Config.set(CFG.CVS_MODULE, "nix_line");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case022() throws Exception {
 		Config.set(CFG.CVS_MODULE, "mac_line");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case023() throws Exception {
 		Config.set(CFG.CVS_MODULE, "huge_file");
 		// PROPRIAROTY DATA -- not released
 		// testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case024() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "utf16_le");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case025() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "utf16_le_bom");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case026() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "utf16_be");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case027() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
@@ -234,28 +230,23 @@ public class CvsIntegrationTests {
 		testCase("CVScluster01");
 	}
 
-	/* TODO merge operations
-	@Test
-	public void case028() throws Exception { 
-		Config.set(CFG.CVS_MODULE, "merge-copy");
-		testCase("CVScluster01");
-	}
-	
-	@Test
-	public void case029() throws Exception { 
-		Config.set(CFG.CVS_MODULE, "merge-edit");
-		testCase("CVScluster01");
-	}
-	*/
-	
-	/* TODO support labels
-	@Test
-	public void case030() throws Exception {
-		Config.set(CFG.CVS_MODULE, "label_rev");
-		testCase("CVScluster01");
-	}
-	*/
-	
+	/*
+	 * TODO merge operations
+	 * 
+	 * @Test public void case028() throws Exception { Config.set(CFG.CVS_MODULE,
+	 * "merge-copy"); testCase("CVScluster01"); }
+	 * 
+	 * @Test public void case029() throws Exception { Config.set(CFG.CVS_MODULE,
+	 * "merge-edit"); testCase("CVScluster01"); }
+	 */
+
+	/*
+	 * TODO support labels
+	 * 
+	 * @Test public void case030() throws Exception { Config.set(CFG.CVS_MODULE,
+	 * "label_rev"); testCase("CVScluster01"); }
+	 */
+
 	@Test
 	public void case031() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
@@ -263,13 +254,13 @@ public class CvsIntegrationTests {
 		// PROPRIAROTY DATA -- not released
 		// testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case032() throws Exception {
 		Config.set(CFG.CVS_MODULE, "binary-file");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case033() throws Exception {
 		Config.set(CFG.CVS_MODULE, "no-author");
@@ -281,71 +272,82 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "revert");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case035() throws Exception {
 		Config.set(CFG.P4_C1_MODE, true);
 		Config.set(CFG.CVS_MODULE, "branch");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case036() throws Exception {
 		Config.set(CFG.CVS_MODULE, "username_umlaut");
 		// PROPRIAROTY DATA -- not released
 		// testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case037() throws Exception {
 		Config.set(CFG.CVS_MODULE, "username_rev_chars");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case038() throws Exception {
 		Config.set(CFG.CVS_MODULE, "username_comma");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case039() throws Exception {
 		Config.set(CFG.CVS_MODULE, "revert-from-prev-version-and-modify");
-		testCase("CVScluster01"); 
+		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case040() throws Exception {
 		Config.set(CFG.CVS_MODULE, "exec-file");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case041() throws Exception {
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "win1252_non");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case042() throws Exception {
 		Config.set(CFG.P4_UNICODE, true);
 		Config.set(CFG.CVS_MODULE, "win1252");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case043() throws Exception {
 		Config.set(CFG.CVS_MODULE, "null_path");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case044() throws Exception {
 		Config.set(CFG.CVS_MODULE, "replace_dir_with_copy");
 		testCase("CVScluster01");
 	}
-	
+
+	@Test
+	public void case045() throws Exception {
+		CaseSensitivity mode = (CaseSensitivity) Config.get(CFG.P4_CASE);
+		if (mode == CaseSensitivity.NONE) {
+			Config.set(CFG.CVS_MODULE, "rename_case");
+		} else {
+			Config.set(CFG.CVS_MODULE, "rename_none");
+		}
+		testCase("CVScluster01");
+	}
+
 	private void testCase(String cvsCluster) {
 		try {
 			String p4_root = (String) Config.get(CFG.P4_ROOT);

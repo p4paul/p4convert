@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.config.CFG;
+import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
 import com.perforce.config.ScmType;
 import com.perforce.cvs.process.CvsProcessChange;
@@ -371,6 +372,17 @@ public class CvsImportTests {
 	@Test
 	public void case044() throws Exception {
 		Config.set(CFG.CVS_MODULE, "replace_dir_with_copy");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case045() throws Exception {
+		CaseSensitivity mode = (CaseSensitivity) Config.get(CFG.P4_CASE);
+		if (mode == CaseSensitivity.NONE) {
+			Config.set(CFG.CVS_MODULE, "rename_case");
+		} else {
+			Config.set(CFG.CVS_MODULE, "rename_none");
+		}
 		testCase("CVScluster01");
 	}
 	

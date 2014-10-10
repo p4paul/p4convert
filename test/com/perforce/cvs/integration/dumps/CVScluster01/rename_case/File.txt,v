@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.23.09.12.34;	author radek;	state Exp;
+branches;
+next	;
+commitid	1005421396655F91729;
+
+
+desc
+@@
+
+
+1.1
+log
+@renamed
+@
+text
+@To import a project:
+
+    In the P4 Connections view, right-click the project and choose Import as Project...
+    When prompted, specify your client workspace root directory as the location for project files.
+    Open the project for edit.
+
+@
