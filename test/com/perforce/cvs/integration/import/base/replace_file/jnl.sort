@@ -1,0 +1,13 @@
+@pv@ 9 @db.rev@ @//import/main/bar.txt@ 2 1 2 4 1411547744 0 00000000000000000000000000000000 -1 0 0 @//import/main/bar.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/main/bar.txt@ 1 1 0 3 1411547710 1411547710 8C92617F480DDC7C43385E4F251D2DD2 16 0 0 @//import/main/bar.txt@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/main/file1.txt@ 2 1 1 4 1411547744 1411547744 8C92617F480DDC7C43385E4F251D2DD2 16 0 0 @//import/main/file1.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/main/file1.txt@ 1 1 0 1 1411547636 1411547636 285D019C94D492F278954B6986E995FE 18 0 0 @//import/main/file1.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/file2.txt@ 1 1 0 2 1411547670 1411547670 D859F9822DB93374AAFF99C67A2413DF 18 0 0 @//import/main/file2.txt@ @1.2@ 1 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @radek@ 1411547744 1 @edited
+@pv@ 2 @db.change@ 3 3 @svn-client@ @radek@ 1411547710 1 @added
+@pv@ 2 @db.change@ 2 2 @svn-client@ @radek@ 1411547670 1 @added
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1411547636 1 @added
+@pv@ 0 @db.desc@ 4 @edited
+@pv@ 0 @db.desc@ 3 @added
+@pv@ 0 @db.desc@ 2 @added
+@pv@ 0 @db.desc@ 1 @added

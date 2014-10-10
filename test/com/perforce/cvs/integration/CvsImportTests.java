@@ -386,6 +386,12 @@ public class CvsImportTests {
 		testCase("CVScluster01");
 	}
 	
+	@Test
+	public void case046() throws Exception {
+		Config.set(CFG.CVS_MODULE, "replace_file");
+		testCase("CVScluster01");
+	}
+	
 	/**
 	 * Environment test
 	 * 

@@ -1,0 +1,25 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.24.08.34.30;	author radek;	state Exp;
+branches;
+next	;
+commitid	100542282121D73505F;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@file2.txt content
+@
