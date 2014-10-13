@@ -11,6 +11,8 @@
 	<property name="test.dir" value="test" />
 	<property name="bin.dir" value="bin" />
 	<property name="dist.dir" value="dist" />
+	<property name="pdf.dir" value="docs/pdf-generated" />
+	<property name="web.dir" value="docs/pdf-generated" />
 	<property name="release.dir" value="release" />
 	<property name="cvs_tmp.dir" value="tmp" />
 	<property name="ext.dir" value="ext" />
@@ -35,6 +37,8 @@
 		<delete dir="${junit.dir}" />
 		<delete dir="${release.dir}" />
 		<delete dir="${cvs_tmp.dir}" />
+		<delete dir="${pdf.dir}" />
+		<delete dir="${web.dir}" />
 	</target>
 
 
@@ -80,9 +84,9 @@
 
 
 	<!--RULE: build release-->
-	<target name="release" depends="release.jar, test-ver, run">
+	<target name="release" depends="release.jar, docs, test-ver, run">
 		<mkdir dir="${release.dir}/${version}" />
-		<copy file="p4convert-svn.html" todir="${release.dir}/${version}" />
+		<copy file="${pdf.dir}/p4convert.pdf" todir="${release.dir}/${version}" />
 		<copy file="default.cfg" todir="${release.dir}/${version}" />
 		<copy file="types.map" todir="${release.dir}/${version}" />
 		<copy file="debug.log4j.xml" todir="${release.dir}/${version}" />
@@ -122,6 +126,24 @@
 		</jar>
 	</target>
 
+
+
+	<!--RULE: build docs-->
+	<target name="docs">
+		<ant antfile="_build/perforce/build.xml" dir="docs" target="pdf">
+			<property name="book.build.dir" value="${user.dir}/docs"/>
+			<property name="input-xml" value="xml/p4convert.xml"/>
+		</ant>
+	</target>
+	
+	<!--RULE: build web pages-->
+	<target name="web">
+		<ant antfile="_build/perforce/build.xml" dir="docs" target="publicsite">
+			<property name="book.build.dir" value="${user.dir}/docs"/>
+			<property name="input-xml" value="xml/p4convert.xml"/>
+		</ant>
+	</target>
+	
 	
 
 	<!--RULE: run generated jar-->
