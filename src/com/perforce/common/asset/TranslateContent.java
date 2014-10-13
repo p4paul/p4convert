@@ -23,6 +23,8 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.svn.asset.SvnContentStream;
@@ -181,25 +183,29 @@ public class TranslateContent {
 	private void writeLINK() throws Exception {
 
 		String link = getLinkSource(content);
-		if (link != null) {
-			// set encoder for Perforce archive
-			Charset toCharset = Charset.forName("UTF-8");
-			CharsetEncoder encoder = toCharset.newEncoder();
-
-			// Open Output channels
-			FileOutputStream out = new FileOutputStream(path);
-			FileChannel fileChannel = out.getChannel();
-
-			// translate CharBuffer to encoded ByteBuffer
-			link = link + '\n';
-			char[] chars = link.toCharArray();
-			CharBuffer cbuf = CharBuffer.wrap(chars);
-			ByteBuffer bbuf = encoder.encode(cbuf);
-			fileChannel.write(bbuf);
-
-			// close streams
-			out.close();
+		if (link == null) {
+			link = "_unset_";
+			Stats.inc(StatsType.warningCount);
+			logger.warn("Symlink target is null setting to " + link);
 		}
+
+		// set encoder for Perforce archive
+		Charset toCharset = Charset.forName("UTF-8");
+		CharsetEncoder encoder = toCharset.newEncoder();
+
+		// Open Output channels
+		FileOutputStream out = new FileOutputStream(path);
+		FileChannel fileChannel = out.getChannel();
+
+		// translate CharBuffer to encoded ByteBuffer
+		link = link + '\n';
+		char[] chars = link.toCharArray();
+		CharBuffer cbuf = CharBuffer.wrap(chars);
+		ByteBuffer bbuf = encoder.encode(cbuf);
+		fileChannel.write(bbuf);
+
+		// close streams
+		out.close();
 	}
 
 	/**
@@ -209,14 +215,18 @@ public class TranslateContent {
 	 */
 	private void createLINK() throws Exception {
 		String target = getLinkSource(content);
-		if (target != null) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("symlink: " + path + " target: " + target);
-			}
-			Path linkPath = FileSystems.getDefault().getPath(path);
-			Path targetPath = FileSystems.getDefault().getPath(target);
-			Files.createSymbolicLink(linkPath, targetPath);
+		if (target == null) {
+			target = "_unset_";
+			Stats.inc(StatsType.warningCount);
+			logger.warn("Symlink target is null setting to " + target);
 		}
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("symlink: " + path + " target: " + target);
+		}
+		Path linkPath = FileSystems.getDefault().getPath(path);
+		Path targetPath = FileSystems.getDefault().getPath(target);
+		Files.createSymbolicLink(linkPath, targetPath);
 	}
 
 	/**

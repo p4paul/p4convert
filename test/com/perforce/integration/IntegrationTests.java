@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.TypeMap;
 import com.perforce.config.CFG;
@@ -814,7 +816,17 @@ public class IntegrationTests {
 		testCase(test);
 	}
 
+	@Test
+	public void case115() throws Exception {
+		String test = "symlink-missing";
+		testCase(test, 1);
+	}
+
 	private void testCase(String dumpCase) {
+		testCase(dumpCase, 0);
+	}
+
+	private void testCase(String dumpCase, int warnings) {
 		try {
 			logger.info("testcase: " + dumpCase);
 
@@ -851,6 +863,10 @@ public class IntegrationTests {
 			String p4m = "diff " + sortTest + " " + sortBase;
 			int meta = SystemCaller.exec(p4m, true, false);
 			Assert.assertEquals("Metadata:", 0, meta);
+
+			// check warning count
+			long warn = Stats.getLong(StatsType.warningCount);
+			Assert.assertEquals("Warnings:", warnings, warn);
 
 		} catch (Throwable e) {
 			e.printStackTrace();

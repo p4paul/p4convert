@@ -954,6 +954,12 @@ public class ImportTests {
 		testCase(test);
 	}
 
+	@Test
+	public void case115() throws Exception {
+		String test = "symlink-missing";
+		testCase(test, 1);
+	}
+
 	/**
 	 * Environment test
 	 * 
@@ -1104,10 +1110,18 @@ public class ImportTests {
 	 * @param dumpCase
 	 */
 	private void testCase(String dumpCase) {
-		testCase(dumpCase, null);
+		testCase(dumpCase, null, 0);
+	}
+
+	private void testCase(String dumpCase, int warnings) {
+		testCase(dumpCase, null, warnings);
 	}
 
 	private void testCase(String dumpCase, String seed) {
+		testCase(dumpCase, seed, 0);
+	}
+
+	private void testCase(String dumpCase, String seed, int warnings) {
 		try {
 			String p4_port = (String) Config.get(CFG.P4_PORT);
 
@@ -1167,7 +1181,7 @@ public class ImportTests {
 
 			// check warning count
 			long warn = Stats.getLong(StatsType.warningCount);
-			Assert.assertEquals("Warnings:", 0, warn);
+			Assert.assertEquals("Warnings:", warnings, warn);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
