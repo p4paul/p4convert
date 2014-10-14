@@ -21,7 +21,7 @@
     </para>
 
 <programlisting language="ini">
-com.p4convert.svn.mode=true
+com.p4convert.p4.mode=IMPORT
 </programlisting>
 
     <para>
@@ -129,7 +129,7 @@ com.p4convert.p4.passwd=<replaceable>PaSSwoRd</replaceable>
     </para>
         
 <programlisting language="ini">
-com.p4convert.svn.mode=false
+com.p4convert.p4.mode=CONVERT
 </programlisting>
 
     <section xml:id="running.convert_mode.configuration">
@@ -143,7 +143,7 @@ com.p4convert.svn.mode=false
           </para>
 
 <programlisting language="ini">
-com.p4convert.adv.p4root=<replaceable>/full/path/to/p4_root/</replaceable>
+com.p4convert.p4.root=<replaceable>/full/path/to/p4_root/</replaceable>
 </programlisting>
         </listitem>
 
@@ -153,7 +153,7 @@ com.p4convert.adv.p4root=<replaceable>/full/path/to/p4_root/</replaceable>
           </para>
 
 <programlisting language="ini">
-com.p4convert.adv.offset=<replaceable>0</replaceable>
+com.p4convert.p4.offset=<replaceable>0</replaceable>
 </programlisting>
         </listitem>
 
@@ -164,8 +164,8 @@ com.p4convert.adv.offset=<replaceable>0</replaceable>
           </para>
 
 <programlisting language="ini">
-com.p4convert.adv.jnlIndex=<replaceable>0</replaceable>
-com.p4convert.adv.jnlPrefix=<replaceable>jnl.</replaceable>
+com.p4convert.p4.jnlIndex=<replaceable>0</replaceable>
+com.p4convert.p4.jnlPrefix=<replaceable>jnl.</replaceable>
 </programlisting>
         </listitem>
 
@@ -176,7 +176,7 @@ com.p4convert.adv.jnlPrefix=<replaceable>jnl.</replaceable>
           </para>
 
 <programlisting language="ini">
-com.p4convert.adv.downgrade=<replaceable>false</replaceable>
+com.p4convert.p4.downgrade=<replaceable>false</replaceable>
 </programlisting>
         </listitem>
 
@@ -191,7 +191,7 @@ com.p4convert.adv.downgrade=<replaceable>false</replaceable>
           </para>
 
 <programlisting language="ini">
-com.p4convert.adv.lineEnding=<replaceable>true</replaceable>
+com.p4convert.p4.lineEnding=<replaceable>true</replaceable>
 </programlisting>
         </listitem>
 

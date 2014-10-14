@@ -17,8 +17,15 @@
     <orderedlist>
       <listitem>
         <para>
-          An unzipped Subversion dump file of the repository to be converted
+          [SVN] an unzipped Subversion dump file of the repository to be converted
           (generated without the <parameter>--delta</parameter> flag).
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          [CVS] an unzipped CVSROOT directory containing the RCS files of the 
+          repository to be converted.
         </para>
       </listitem>
 
@@ -144,14 +151,14 @@ java -Xmx65536M -jar p4convert-svn.jar myConfig.cfg
       <listitem>
         <para>
           [Import Mode] Symbolic links are not supported in Import Mode on
-          Windows 7x64.
+          Windows.
         </para>
       </listitem>
 
       <listitem>
         <para>
-          Perforce keyword expansions are different from the Subversion standard
-          and may yield different results when synced.
+          Perforce keyword expansions are different from the CVS and 
+          Subversion standard and may yield different results when synced.
         </para>
       </listitem>
     </orderedlist>
@@ -166,34 +173,34 @@ java -Xmx65536M -jar p4convert-svn.jar myConfig.cfg
     </para>
 
     <para>
-      For usage details, execute the jar with no options (this will generate a
-      default configuration file):
+      For usage details, execute the jar with no options:
     </para>
 
 <programlisting language="bash">
 java -jar p4convert-svn.jar
 
-WARNING: No configuration file specified...
+No configuration file specified...
 
 Usage:
 	java -jar p4convert-svn.jar &lt;config file&gt;
 
+	java -jar p4convert-svn.jar --config [ SVN | CVS ]
 	java -jar p4convert-svn.jar --version
-	java -jar p4convert-svn.jar --info &lt;dump file&gt;
-	java -jar p4convert-svn.jar --users &lt;dump file&gt;
-	java -jar p4convert-svn.jar --extract rev.node &lt;dump file&gt;
+	java -jar p4convert-svn.jar --info [ dumpfile ]
+	java -jar p4convert-svn.jar --users [ dumpfile ]
+	java -jar p4convert-svn.jar --extract [ rev ].[ node ] [ dumpfile ]
 
-Generating default config file 'default.cfg'...
 </programlisting>
 
     <para>
-      Create a configuration file based on the generated default configuration,
-      then start the conversion by executing the jar with the configuration
-      file. For example:
+      Create a configuration file using the <parameter>--config</parameter>
+      option.  This will contain a set of default configuration options 
+      based on you platform.  To start a conversion, execute the jar with
+      the populated configuration file. For example:
     </para>
 
 <programlisting>
-java -jar p4convert-svn.jar config.txt
+java -jar p4convert-svn.jar my_CVSrepo.cfg
 </programlisting>
 
   </section>
@@ -202,9 +209,9 @@ java -jar p4convert-svn.jar config.txt
     <title>Generating a Subversion Dump file</title>
 
     <para>
-      Both the Import and Convert modes require a Subversion dumpfile as the
-      history data source. A dumpfile can be generated in several different
-      ways; two of which are detailed below:
+      For Subversion conversions, both Import and Convert modes require a 
+      Subversion dumpfile as the history data source. A dumpfile can be 
+      generated in several different ways; two of which are detailed below:
     </para>
 
     <itemizedlist>
@@ -245,5 +252,16 @@ rsvndump <replaceable>url</replaceable> &gt; dumpfile.dmp
         </para>
       </listitem>
     </itemizedlist>
+  </section>
+  
+  <section xml:id="setup.cvs_root">
+    <title>Selecting a CVS root</title>
+
+    <para>
+      For CVS conversions, both Import and Convert modes require a path
+      containining RCS files as the history data source. CVSROOT can be filtered
+      or imported on a per module basis.  The converter will only import file
+      revisions under the specified CVSROOT path.
+    </para>
   </section>
 </chapter>

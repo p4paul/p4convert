@@ -120,7 +120,6 @@ com.p4convert.core.test
 com.p4convert.core.version
 com.p4convert.svn.emptyDirEnabled
 com.p4convert.svn.emptyDirName
-com.p4convert.adv.mimeTypes=false
 </programlisting>
     </section>
 
@@ -708,7 +707,7 @@ WARNING: p4java: //import/repo/trunk/my.file - file(s) up-to-date.
     </para>
 
 <programlisting language="bash">
-$ java -jar dist/p4convert-svn.jar --extract 46.3 mysvndump.dump 
+$ java -jar dist/p4convert.jar --extract 46.3 mysvndump.dump 
 
 searching for node: 46.3...
 Node-path: repo/trunk/my.file
