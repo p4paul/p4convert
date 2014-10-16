@@ -1,0 +1,6 @@
+@pv@ 9 @db.rev@ @//import/branches/6.4.0/configure.in@ 1 1 0 1 1203672010 1203672010 E55670D2EDB7187F0493D8E5BAD24E25 32 0 0 @//import/branches/6.4.0/configure.in@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/branches/6.4.0/install-sh@ 1 131073 0 1 1203672010 1203672010 2F0EA76F17021DA527ABF241C5504601 32 0 0 @//import/branches/6.4.0/install-sh@ @1.1@ 131073 
+@pv@ 9 @db.rev@ @//import/configure.in@ 1 1 0 1 1203672010 1203672010 E55670D2EDB7187F0493D8E5BAD24E25 32 0 0 @//import/configure.in@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/install-sh@ 1 131073 0 1 1203672010 1203672010 2F0EA76F17021DA527ABF241C5504601 32 0 0 @//import/install-sh@ @1.1@ 131073 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @nordfalk@ 1203672010 1 @initial import
+@pv@ 0 @db.desc@ 1 @initial import

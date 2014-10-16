@@ -1,0 +1,57 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 00265e9a-a446-0410-a409-fb6d3c48c71e
+
+Revision-number: 1
+Prop-content-length: 117
+Content-length: 117
+
+K 7
+svn:log
+V 14
+initial import
+K 10
+svn:author
+V 8
+nordfalk
+K 8
+svn:date
+V 27
+2008-02-22T09:20:10.826318Z
+PROPS-END
+
+Node-path: configure.in
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 32
+Text-content-md5: e55670d2edb7187f0493d8e5bad24e25
+Text-content-sha1: 9504836512be69f45ef012793e71883846c9d95a
+Content-length: 42
+
+PROPS-END
+e91a8e4342f319e2756abeb98b9c0841
+
+Node-path: install-sh
+Node-kind: file
+Node-action: add
+Prop-content-length: 36
+Text-content-length: 32
+Text-content-md5: 2f0ea76f17021da527abf241c5504601
+Text-content-sha1: beb890a5a9845c26b02abea650d86f9b2b432737
+Content-length: 68
+
+K 14
+svn:executable
+V 1
+*
+PROPS-END
+73dd1912e99b91d3812d8f35d8185fc8
+
+Node-path: branches/6.4.0
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: 
+
+

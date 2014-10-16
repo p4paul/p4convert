@@ -1,6 +1,7 @@
 package com.perforce.svn.change;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -106,7 +107,6 @@ public class RevisionImport {
 					}
 				}
 			}
-
 		}
 
 		// Branch files
@@ -127,6 +127,79 @@ public class RevisionImport {
 		rsvMsg = iclient.resolveFilesAuto(iTargetFiles, rsvOpts);
 		P4Factory.validateFileSpecs(rsvMsg, "no file(s) to resolve");
 
+		// look for open source files
+		duplicatePath(from, to);
+	}
+
+	/**
+	 * Duplicates a path to another location when a copy operation is not
+	 * possible. For example when a file is added and branched in the same
+	 * change. All the duplicated files are opened as ADD operations and content
+	 * is copied within the Workspace.
+	 * 
+	 * @param from
+	 * @param to
+	 * @throws Exception
+	 */
+	private void duplicatePath(String from, String to) throws Exception {
+		List<IFileSpec> iOpenFile;
+		iOpenFile = FileSpecBuilder.makeFileSpecList(from + "/...");
+
+		// Check if file is open
+		OpenedFilesOptions openOps = new OpenedFilesOptions();
+		openOps.setChangelistId(ichangelist.getId());
+		List<IFileSpec> open = iclient.openedFiles(iOpenFile, openOps);
+
+		for (IFileSpec file : open) {
+			FileAction a = file.getAction();
+			Action act = P4Factory.p4javaToQueryAction(a);
+
+			// get file type and options
+			String fileType = file.getFileType();
+
+			// get paths
+			String fromFile = file.getDepotPathString();
+			String remainder = fromFile.substring(from.length());
+			String toFile = to + remainder;
+			if (logger.isDebugEnabled()) {
+				logger.debug("copy " + fromFile + " -> " + toFile);
+			}
+
+			switch (act) {
+			case ADD:
+			case EDIT:
+				// copy file within workspace
+				File localFrom = new File(toLocalPath(fromFile));
+				File localTo = new File(toLocalPath(toFile));
+				localTo.getParentFile().mkdirs();
+				Files.copy(localFrom.toPath(), localTo.toPath());
+
+				// Change file modtime
+				localTo.setLastModified(date.getTime());
+
+				List<IFileSpec> fileSpec;
+				fileSpec = FileSpecBuilder.makeFileSpecList(toFile);
+
+				// ADD options
+				AddFilesOptions addOpts = new AddFilesOptions();
+				addOpts.setNoUpdate(false);
+				addOpts.setUseWildcards(true);
+				addOpts.setChangelistId(ichangelist.getId());
+				addOpts.setFileType(fileType);
+
+				List<IFileSpec> addMsg = iclient.addFiles(fileSpec, addOpts);
+				P4Factory.validateFileSpecs(addMsg, "empty, assuming text");
+				break;
+			case REMOVE:
+			case BRANCH:
+				// Do not copy deleted or branched revisions
+				break;
+
+			default:
+				logger.warn("Unexpected open state: " + act);
+				Stats.inc(StatsType.warningCount);
+			}
+		}
 	}
 
 	public void rollBackBranch(String to, String from, long fromChange)
@@ -442,6 +515,10 @@ public class RevisionImport {
 
 			// abort if no files to roll back
 			if (P4Factory.trapFileSpecs(update, "- file(s) up-to-date")) {
+				if (content.isBlob()) {
+					// downgrade to EDIT
+					editFile(localToPath, content);
+				}
 				return;
 			}
 
@@ -661,7 +738,8 @@ public class RevisionImport {
 		}
 	}
 
-	public void dirtyEdit(String localToPath, Content content) throws Exception {
+	private void dirtyEdit(String localToPath, Content content)
+			throws Exception {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("dirtyEdit(" + localToPath + ")");

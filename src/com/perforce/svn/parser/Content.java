@@ -40,7 +40,7 @@ public class Content {
 	}
 
 	public void setProps(List<ContentProperty> propList) {
-		props.clear();
+		props = new ArrayList<ContentProperty>();
 		for (ContentProperty p : propList) {
 			if (type == ContentType.SYMLINK && p == ContentProperty.EXECUTE) {
 				logger.info("Ignoring +x modifer; disallowed combination (executable symlinks)");

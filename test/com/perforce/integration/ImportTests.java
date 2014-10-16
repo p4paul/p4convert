@@ -477,16 +477,16 @@ public class ImportTests {
 	public void case056() throws Exception {
 		Config.set(CFG.P4_LINEEND, true);
 		int ver = getServerVersion();
-		String test = null;
 		if (ver > 20131) {
-			test = "dir_rollback";
+			String test = "dir_rollback";
+			testCase(test);
 		} else if (ver > 20102 && ver <= 20131) {
-			test = "dir_rollback_13.1";
+			String test = "dir_rollback_13.1";
+			testCase(test);
 		} else {
-			test = "dir_rollback_10.2";
+			String test = "dir_rollback_10.2";
+			testCase(test);
 		}
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
 	}
 
 	@Test
@@ -521,8 +521,7 @@ public class ImportTests {
 	@Test
 	public void case061() throws Exception {
 		String test = "bigTextFile";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
@@ -539,15 +538,13 @@ public class ImportTests {
 		Config.set(CFG.P4_UNICODE, true);
 		Config.set(CFG.P4_CHARSET, "utf8");
 		String test = "win1252";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
 	public void case064() throws Exception {
 		String test = "bad_encoding";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
@@ -595,8 +592,7 @@ public class ImportTests {
 	@Test
 	public void case070() throws Exception {
 		String test = "utf8-nobom";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
@@ -750,8 +746,7 @@ public class ImportTests {
 	@Test
 	public void case091() throws Exception {
 		String test = "russian";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
@@ -878,8 +873,7 @@ public class ImportTests {
 	public void case103() throws Exception {
 		Config.set(CFG.P4_LINEEND, false);
 		String test = "extra_line_endings";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
@@ -905,8 +899,7 @@ public class ImportTests {
 	public void case107() throws Exception {
 		TypeMap.add("cpp", "text");
 		String test = "fixdocs";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
@@ -919,15 +912,13 @@ public class ImportTests {
 	public void case109() throws Exception {
 		TypeMap.add("pl", "text");
 		String test = "typemap_win_lineend";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
 	public void case110() throws Exception {
 		String test = "utf16_del";
-		// PROPRIAROTY DATA -- not released
-		// testCase(test);
+		testCase(test);
 	}
 
 	@Test
@@ -958,6 +949,18 @@ public class ImportTests {
 	public void case115() throws Exception {
 		String test = "symlink-missing";
 		testCase(test, 1);
+	}
+
+	@Test
+	public void case116() throws Exception {
+		String test = "rename_edit";
+		testCase(test);
+	}
+	
+	@Test
+	public void case117() throws Exception {
+		String test = "exe_prop_branch";
+		testCase(test);
 	}
 
 	/**
