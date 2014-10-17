@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN" "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+  <!-- redirect @common-xml@ to correct location -->
+  <rewriteSystem
+    systemIdStartString="file://@common-xml@"
+    rewritePrefix="file:///path/to/_build/perforce/common_xml"
+  />
+  <rewriteURI
+    uriStartString="file://@common-xml@"
+    rewritePrefix="file:///path/to/_build/perforce/common_xml"
+  />
+
+  <!-- redirect @guides-dir@ to correct location -->
+  <rewriteSystem
+    systemIdStartString="file://@guides-dir@"
+    rewritePrefix="file:///path/to/p4-doc/manuals"
+  />
+  <rewriteURI
+    uriStartString="file://@guides-dir@"
+    rewritePrefix="file:///path/to/p4-doc/manuals"
+  />
+</catalog>
