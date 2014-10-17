@@ -13,6 +13,7 @@ import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.process.ProcessFactory;
 import com.perforce.common.process.ProcessNode;
 import com.perforce.cvs.RevisionEntry;
+import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 import com.perforce.svn.change.ChangeInterface;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.ChangeAction.Action;
@@ -55,7 +56,7 @@ public class CvsProcessNode extends ProcessNode {
 
 		// find action and node type
 		Action nodeAction = getNodeAction();
-		
+
 		// find last action using path and Perforce change number
 		ChangeAction lastAction = query.findLastAction(nodePath,
 				changelist.getChange());
@@ -69,13 +70,13 @@ public class CvsProcessNode extends ProcessNode {
 					lastAction);
 			content.setType(detectedType);
 		}
-		
+
 		// add from sources (for branches etc...)
 		if (nodeAction == Action.BRANCH) {
 			String fromPath = revEntry.getFromPath();
 			fromPath = formatPath(fromPath);
 			revEntry.setPath(fromPath);
-			
+
 			MergeSource from = new MergeSource(fromPath, 1, cvsChange - 1);
 			processMergeCredit(from, content, nodeAction);
 			from.fetchNode(query);
@@ -91,8 +92,6 @@ public class CvsProcessNode extends ProcessNode {
 				nodeAction = Action.EDIT;
 			}
 		}
-
-
 
 		boolean subBlock = false;
 		boolean caseRename = false;
@@ -171,6 +170,7 @@ public class CvsProcessNode extends ProcessNode {
 
 		// Set node condition ('add', 'change' or 'delete')
 		String s = revEntry.getState();
+		RcsObjectNum id = revEntry.getId();
 		if (s != null) {
 			if ("Exp".equals(s))
 				action = ChangeAction.Action.ADD;
@@ -178,9 +178,13 @@ public class CvsProcessNode extends ProcessNode {
 				action = ChangeAction.Action.ADD;
 			else if ("Rel".equals(s))
 				action = ChangeAction.Action.ADD;
-			else if ("dead".equals(s))
-				action = ChangeAction.Action.REMOVE;
-			else if ("BRANCH".equals(s))
+			else if ("dead".equals(s)) {
+				if (id.equals(new RcsObjectNum("1.1"))) {
+					action = ChangeAction.Action.ADD;
+				} else {
+					action = ChangeAction.Action.REMOVE;
+				}
+			} else if ("BRANCH".equals(s))
 				action = ChangeAction.Action.BRANCH;
 			else
 				throw new RuntimeException("unknown STATE " + s);

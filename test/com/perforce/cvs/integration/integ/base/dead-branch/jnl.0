@@ -1,0 +1,55 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @Initial revision
+@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1386603033 1 @Initial revision
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/foo.txt@ 1 1 0 1 1386603033 1386603033 00000000000000000000000000000000 @//import/main/src/foo.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/main/src/foo.txt@ 1 0 
+@pv@ 0 @db.desc@ 2 @an edit
+@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1386603137 1 @an edit
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/foo.txt@ 2 1 1 2 1386603137 1386603137 00000000000000000000000000000000 @//import/main/src/foo.txt@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/main/src/foo.txt@ 2 1 
+@pv@ 0 @db.desc@ 3 @ADD and EDIT
+@ 
+@pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1386603220 1 @ADD and EDIT
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/foo.txt@ 3 1 1 3 1386603220 1386603220 00000000000000000000000000000000 @//import/main/src/foo.txt@ @1.3@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/main/src/foo.txt@ 3 1 
+@pv@ 0 @db.desc@ 4 @Branch: @ 
+@pv@ 0 @db.change@ 4 4 @svn-client@ @branch@ 1386603220 1 @Branch: @ 
+@pv@ 0 @db.integed@ @//import/branch/src/foo.txt@ @//import/main/src/foo.txt@ 0 3 0 1 2 4 
+@pv@ 0 @db.integed@ @//import/main/src/foo.txt@ @//import/branch/src/foo.txt@ 0 1 0 3 3 4 
+@pv@ 3 @db.rev@ @//import/branch/src/foo.txt@ 1 1 3 4 1386603220 1386603220 00000000000000000000000000000000 @//import/main/src/foo.txt@ @1.3@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/branch/src/foo.txt@ 1 3 
+@pv@ 0 @db.desc@ 5 @edit on branch
+@ 
+@pv@ 0 @db.change@ 5 5 @svn-client@ @pallen@ 1386603526 1 @edit on branch
+@ 
+@pv@ 3 @db.rev@ @//import/branch/src/foo.txt@ 2 1 1 5 1386603526 1386603526 00000000000000000000000000000000 @//import/branch/src/foo.txt@ @1.5@ 1 
+@pv@ 0 @db.revcx@ 5 @//import/branch/src/foo.txt@ 2 1 
+@pv@ 0 @db.desc@ 6 @edits on MAIN
+@ 
+@pv@ 0 @db.change@ 6 6 @svn-client@ @pallen@ 1386606012 1 @edits on MAIN
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/foo.txt@ 4 1 1 6 1386606012 1386606012 00000000000000000000000000000000 @//import/main/src/foo.txt@ @1.6@ 1 
+@pv@ 0 @db.revcx@ 6 @//import/main/src/foo.txt@ 4 1 
+@pv@ 0 @db.desc@ 7 @edit on branch
+@ 
+@pv@ 0 @db.change@ 7 7 @svn-client@ @pallen@ 1387406302 1 @edit on branch
+@ 
+@pv@ 3 @db.rev@ @//import/branch/src/foo.txt@ 3 1 1 7 1387406302 1387406302 00000000000000000000000000000000 @//import/branch/src/foo.txt@ @1.7@ 1 
+@pv@ 0 @db.revcx@ 7 @//import/branch/src/foo.txt@ 3 1 
+@pv@ 0 @db.desc@ 8 @edit
+@ 
+@pv@ 0 @db.change@ 8 8 @svn-client@ @pallen@ 1387406445 1 @edit
+@ 
+@pv@ 3 @db.rev@ @//import/branch/src/foo.txt@ 4 1 1 8 1387406445 1387406445 00000000000000000000000000000000 @//import/branch/src/foo.txt@ @1.8@ 1 
+@pv@ 0 @db.revcx@ 8 @//import/branch/src/foo.txt@ 4 1 
+@rv@ 1 @db.counters@ @change@ @8@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 
