@@ -424,8 +424,8 @@ public class IntegrationTests {
 	@Test
 	public void case056() throws Exception {
 		Config.set(CFG.P4_LINEEND, true);
-		String test = "dir_rollback";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -462,7 +462,8 @@ public class IntegrationTests {
 	public void case061() throws Exception {
 		Config.set(CFG.P4_C1_MODE, true);
 		String test = "bigTextFile";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -475,13 +476,15 @@ public class IntegrationTests {
 	public void case063() throws Exception {
 		Config.set(CFG.P4_UNICODE, true);
 		String test = "win1252";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
 	public void case064() throws Exception {
 		String test = "bad_encoding";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -520,7 +523,8 @@ public class IntegrationTests {
 	@Test
 	public void case070() throws Exception {
 		String test = "utf8-nobom";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -661,7 +665,8 @@ public class IntegrationTests {
 	@Test
 	public void case091() throws Exception {
 		String test = "russian";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -734,7 +739,8 @@ public class IntegrationTests {
 	public void case103() throws Exception {
 		Config.set(CFG.P4_LINEEND, false);
 		String test = "extra_line_endings";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -761,7 +767,8 @@ public class IntegrationTests {
 	public void case107() throws Exception {
 		TypeMap.add("cpp", "text");
 		String test = "fixdocs";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -774,13 +781,15 @@ public class IntegrationTests {
 	public void case109() throws Exception {
 		TypeMap.add("pl", "text");
 		String test = "typemap_win_lineend";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
 	public void case110() throws Exception {
 		String test = "utf16_del";
-		testCase(test);
+		// PROPRIAROTY DATA -- not released
+		// testCase(test);
 	}
 
 	@Test
@@ -812,19 +821,21 @@ public class IntegrationTests {
 		String test = "symlink-missing";
 		testCase(test, 1);
 	}
-
+	
 	@Test
 	public void case116() throws Exception {
+        Config.set(CFG.P4_C1_MODE, true);
+        Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
 		String test = "rename_edit";
 		testCase(test);
 	}
-
+	
 	@Test
 	public void case117() throws Exception {
 		String test = "exe_prop_branch";
 		testCase(test);
 	}
-	
+
 	private void testCase(String dumpCase) {
 		testCase(dumpCase, 0);
 	}
