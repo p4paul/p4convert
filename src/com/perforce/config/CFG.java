@@ -55,6 +55,7 @@ public enum CFG {
 	CVS_MODULE("cvs.cvsmodule", String.class),
 	CVS_WINDOW("cvs.timeWindow", Long.class),
 	CVS_TMPDIR("cvs.tmpDir", String.class),
+	CVS_LABELS("cvs.labels", Boolean.class),
 
 	// Hidden properties
 	EXCLUDE_MAP("hidden.excludeMap", String.class),

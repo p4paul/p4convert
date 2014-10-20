@@ -139,6 +139,11 @@ public class CvsProcessChange extends ProcessChange {
 					node.process();
 					revisions.drop(entry);
 
+					// tag any labels
+					if ((Boolean) Config.get(CFG.CVS_LABELS)) {
+						processLabel.labelRev(entry, ci.getChange());
+					}
+
 					nodeID++;
 				} else {
 					logger.info("<<< leaving: " + entry.toString());
@@ -162,6 +167,11 @@ public class CvsProcessChange extends ProcessChange {
 		close();
 
 		// submit labels
-		processLabel.submit();
+		if ((Boolean) Config.get(CFG.CVS_LABELS)) {
+			if(logger.isDebugEnabled()) {
+				logger.debug(processLabel.toString());
+			}
+			processLabel.submit();
+		}
 	}
 }

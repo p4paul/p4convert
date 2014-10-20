@@ -50,13 +50,6 @@ public class RcsReader {
 				rcsDesc = rcsObject;
 			}
 
-			// -----------------------------------------------------------------------------------
-			// TODO Split this here to read only metadata and skip content as
-			// binary
-			// content can't be read as lines/strings
-			// read other fields.
-			// -----------------------------------------------------------------------------------
-
 			// find log and add to rcsDeltas matching the same ID key
 			if (rcsObject.containsKey(RcsSchema.LOG)) {
 				String key = rcsObject.getID().toString();
