@@ -14,7 +14,10 @@ import com.perforce.common.process.ProcessLabel;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
+import com.perforce.cvs.BranchNavigator;
+import com.perforce.cvs.BranchSorter;
 import com.perforce.cvs.RevisionEntry;
+import com.perforce.cvs.RevisionNavigator;
 import com.perforce.cvs.RevisionSorter;
 import com.perforce.cvs.asset.CvsContentReader;
 import com.perforce.cvs.parser.RcsFileFinder;
@@ -75,21 +78,39 @@ public class CvsProcessChange extends ProcessChange {
 		logger.info("Searching for RCS files...");
 		RcsFileFinder rcsFiles = new RcsFileFinder(cvsSearch);
 
+		logger.info("Building branch list...");
+		BranchSorter brSort = new BranchSorter();
+		BranchNavigator brNav = new BranchNavigator(brSort);
+		for (File file : rcsFiles.getFiles()) {
+			try {
+				RcsReader rcs = new RcsReader(file);
+				brNav.add(rcs);
+
+			} catch (Exception e) {
+				logger.error("Unable to process file: "
+						+ file.getAbsolutePath());
+				e.printStackTrace();
+			}
+		}
+		
+		logger.info("Sorted branch list:");
+		logger.info(brSort.toString());
+		
 		logger.info("Building revision list...");
-		RevisionSorter revisions = new RevisionSorter();
+		RevisionSorter revSort = new RevisionSorter();
+		RevisionNavigator revNav = new RevisionNavigator(revSort, brSort);
 		Progress progress = new Progress(rcsFiles.getFiles().size());
 		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
 				RcsReader rcs = new RcsReader(file);
+				revNav.add(rcs);
 
 				// Extract all RCS deltas to tmp store
 				CvsContentReader content = new CvsContentReader(rcs);
 				content.cacheContent();
 				count++;
 				progress.update(count);
-
-				revisions.add(rcs);
 			} catch (Exception e) {
 				logger.error("Unable to process file: "
 						+ file.getAbsolutePath());
@@ -99,15 +120,15 @@ public class CvsProcessChange extends ProcessChange {
 
 		// Sort revisions by date/time
 		logger.info("Sorting revisions...");
-		revisions.sort();
+		revSort.sort();
 
 		// Initialise counters
 		int nodeID = 0;
 		long nextChange = 1;
 
 		RevisionEntry entry = null;
-		RevisionEntry changeEntry = revisions.next();
-		revisions.reset();
+		RevisionEntry changeEntry = revSort.next();
+		revSort.reset();
 
 		// construct first change
 		long cvsChange = 0;
@@ -137,7 +158,7 @@ public class CvsProcessChange extends ProcessChange {
 					CvsProcessNode node;
 					node = new CvsProcessNode(ci, depot, entry);
 					node.process();
-					revisions.drop(entry);
+					revSort.drop(entry);
 
 					// tag any labels
 					if ((Boolean) Config.get(CFG.CVS_LABELS)) {
@@ -148,16 +169,16 @@ public class CvsProcessChange extends ProcessChange {
 				} else {
 					logger.info("<<< leaving: " + entry.toString());
 				}
-				entry = revisions.next();
+				entry = revSort.next();
 			}
 
 			// submit current change
 			submit();
 
 			// update current change
-			revisions.reset();
-			changeEntry = revisions.next();
-			revisions.reset();
+			revSort.reset();
+			changeEntry = revSort.next();
+			revSort.reset();
 			nodeID = 0;
 			nextChange++;
 
@@ -168,7 +189,7 @@ public class CvsProcessChange extends ProcessChange {
 
 		// submit labels
 		if ((Boolean) Config.get(CFG.CVS_LABELS)) {
-			if(logger.isDebugEnabled()) {
+			if (logger.isDebugEnabled()) {
 				logger.debug(processLabel.toString());
 			}
 			processLabel.submit();

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
 import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 
@@ -30,9 +31,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	private String fromPath;
 	private List<String> labels = new ArrayList<String>();
 
-	private long window = (long) Config.get(CFG.CVS_WINDOW);
-
-	public RevisionEntry(RcsObjectDelta revision) throws Exception {
+	public RevisionEntry(RcsObjectDelta revision) {
 		this.id = revision.getID();
 		this.date = revision.getDate();
 		this.commitId = revision.getCommitId();
@@ -198,6 +197,13 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public boolean within(RevisionEntry entry) {
+		long window;
+		try {
+			window = (long) Config.get(CFG.CVS_WINDOW);
+		} catch (ConfigException e) {
+			window = 20000L;
+		}
+
 		long gap = date.getTime() - entry.getDate().getTime();
 		if (Math.abs(gap) > window) {
 			return false;
