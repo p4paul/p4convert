@@ -1,0 +1,7 @@
+@pv@ 9 @db.rev@ @//import/main/file.txt@ 1 1 0 2 1411393384 1411393384 D3C18D2E7D0DA8801EAA7043340BCB36 26 0 0 @//import/main/file.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/main/file1.txt@ 1 1 0 1 1410940530 1410940530 9B2BB321F5DD1A87857EB875CE22F7E1 9 0 0 @//import/main/file1.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/file2.txt@ 1 1 0 1 1410940530 1410940530 1A9AFE60E8106373630F536016B82FFF 9 0 0 @//import/main/file2.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @radek@ 1411393384 1 @added
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1410940530 1 @added
+@pv@ 0 @db.desc@ 2 @added
+@pv@ 0 @db.desc@ 1 @added

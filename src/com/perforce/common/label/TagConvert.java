@@ -17,8 +17,12 @@ public class TagConvert {
 	public String getPath() {
 		return path;
 	}
-	
+
 	public String toString() {
-		return path + "#" + revision;
+		if (revision > 0) {
+			return path + "#" + revision;
+		} else {
+			return path;
+		}
 	}
 }

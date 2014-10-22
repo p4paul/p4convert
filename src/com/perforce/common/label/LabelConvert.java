@@ -4,16 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.perforce.common.depot.DepotConvert;
 import com.perforce.common.journal.BuildLabel;
 import com.perforce.cvs.RevisionEntry;
 
 public class LabelConvert implements LabelInterface {
-
-	private Logger logger = LoggerFactory.getLogger(LabelConvert.class);
 
 	private DepotConvert depot;
 	private String name;
@@ -73,7 +68,6 @@ public class LabelConvert implements LabelInterface {
 
 	@Override
 	public void submit() throws Exception {
-		logger.debug(this.toString());
 		ArrayList<String> journal = BuildLabel.toJournal(depot, this);
 		depot.getJournal().write(journal);
 		depot.getJournal().flush();

@@ -30,8 +30,6 @@ public class CvsProcessChange extends ProcessChange {
 
 	private Logger logger = LoggerFactory.getLogger(CvsProcessChange.class);
 
-	private ProcessLabel processLabel;
-
 	protected void processChange() throws Exception {
 		// Read configuration settings for locals
 		String depotPath = (String) Config.get(CFG.P4_DEPOT_PATH);
@@ -43,7 +41,6 @@ public class CvsProcessChange extends ProcessChange {
 
 		// Create revision tree and depot
 		DepotInterface depot = ProcessFactory.getDepot(depotPath, caseMode);
-		processLabel = new ProcessLabel(depot);
 
 		// Check for pending changes, abort if any are found
 		QueryInterface query = ProcessFactory.getQuery(depot);
@@ -92,10 +89,10 @@ public class CvsProcessChange extends ProcessChange {
 				e.printStackTrace();
 			}
 		}
-		
+
 		logger.info("Sorted branch list:");
 		logger.info(brSort.toString());
-		
+
 		logger.info("Building revision list...");
 		RevisionSorter revSort = new RevisionSorter();
 		RevisionNavigator revNav = new RevisionNavigator(revSort, brSort);
@@ -122,6 +119,10 @@ public class CvsProcessChange extends ProcessChange {
 		logger.info("Sorting revisions...");
 		revSort.sort();
 
+		// Enable labels
+		boolean isLabel = (Boolean) Config.get(CFG.CVS_LABELS);
+		ProcessLabel processLabel = null;
+
 		// Initialise counters
 		int nodeID = 0;
 		long nextChange = 1;
@@ -136,6 +137,11 @@ public class CvsProcessChange extends ProcessChange {
 
 		do {
 			entry = changeEntry;
+
+			// initialise labels
+			if (isLabel) {
+				processLabel = new ProcessLabel(depot);
+			}
 
 			// construct change
 			cvsChange = nextChange;
@@ -161,7 +167,7 @@ public class CvsProcessChange extends ProcessChange {
 					revSort.drop(entry);
 
 					// tag any labels
-					if ((Boolean) Config.get(CFG.CVS_LABELS)) {
+					if (isLabel) {
 						processLabel.labelRev(entry, ci.getChange());
 					}
 
@@ -175,6 +181,14 @@ public class CvsProcessChange extends ProcessChange {
 			// submit current change
 			submit();
 
+			// submit labels
+			if (isLabel) {
+				if (logger.isDebugEnabled()) {
+					logger.debug(processLabel.toString());
+				}
+				processLabel.submit();
+			}
+
 			// update current change
 			revSort.reset();
 			changeEntry = revSort.next();
@@ -186,13 +200,5 @@ public class CvsProcessChange extends ProcessChange {
 
 		// finish up conversion
 		close();
-
-		// submit labels
-		if ((Boolean) Config.get(CFG.CVS_LABELS)) {
-			if (logger.isDebugEnabled()) {
-				logger.debug(processLabel.toString());
-			}
-			processLabel.submit();
-		}
 	}
 }

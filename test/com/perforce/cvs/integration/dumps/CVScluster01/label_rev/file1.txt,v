@@ -1,0 +1,26 @@
+head	1.1;
+access;
+symbols
+	release_tag:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.17.07.55.30;	author radek;	state Exp;
+branches;
+next	;
+commitid	10054193E6D19A18C06;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@content1
+@

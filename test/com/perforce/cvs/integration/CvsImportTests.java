@@ -119,6 +119,7 @@ public class CvsImportTests {
 	@Test
 	public void case005() throws Exception {
 		Config.set(CFG.CVS_MODULE, "rcs-deltas");
+		Config.set(CFG.CVS_LABELS, true);
 		// PROPRIAROTY DATA -- not released
 		// testCase("CVScluster01");
 	}
@@ -143,13 +144,13 @@ public class CvsImportTests {
 		testCase("CVScluster01", seed);
 	}
 
-	/* TODO support labels
 	@Test
 	public void case009() throws Exception {
 		Config.set(CFG.CVS_MODULE, "label-r1");
-		testCase("CVScluster01");
+		Config.set(CFG.CVS_LABELS, true);
+		// PROPRIAROTY DATA -- not released
+		// testCase("CVScluster01");
 	}
-	*/
 	
 	@Test
 	public void case010() throws Exception {
@@ -277,13 +278,12 @@ public class CvsImportTests {
 	}
 	*/
 	
-	/* TODO support labels
 	@Test
 	public void case030() throws Exception {
 		Config.set(CFG.CVS_MODULE, "label_rev");
+		Config.set(CFG.CVS_LABELS, true);
 		testCase("CVScluster01");
 	}
-	*/
 	
 	@Test
 	public void case031() throws Exception {

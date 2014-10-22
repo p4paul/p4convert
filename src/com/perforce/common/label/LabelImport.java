@@ -1,5 +1,6 @@
 package com.perforce.common.label;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import com.perforce.p4java.core.ILabelMapping;
 import com.perforce.p4java.core.ViewMap;
 import com.perforce.p4java.core.file.FileSpecBuilder;
 import com.perforce.p4java.core.file.IFileSpec;
-import com.perforce.p4java.exception.P4JavaException;
 import com.perforce.p4java.impl.generic.core.Label;
 import com.perforce.p4java.option.server.TagFilesOptions;
 import com.perforce.p4java.server.IOptionsServer;
@@ -24,6 +24,8 @@ public class LabelImport implements LabelInterface {
 	private String name;
 	private String owner;
 	private Date date;
+
+	private ArrayList<TagConvert> revs = new ArrayList<TagConvert>();
 
 	public LabelImport(String label, RevisionEntry entry, DepotImport depot)
 			throws Exception {
@@ -88,10 +90,31 @@ public class LabelImport implements LabelInterface {
 
 	@Override
 	public void add(TagConvert tag) throws Exception {
+		revs.add(tag);
+	}
+
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(name + " by: " + owner + "\n");
+		for (TagConvert tag : revs) {
+			sb.append("... " + tag + "\n");
+		}
+		return sb.toString();
+	}
+
+	@Override
+	public void submit() throws Exception {
+		for (TagConvert tag : revs) {
+			tagLabel(tag);
+		}
+		ilabel.setOwnerName(owner);
+	}
+
+	private void tagLabel(TagConvert tag) throws Exception {
 		StringBuffer fileStr = new StringBuffer();
 		fileStr.append("//" + depot.getName() + "/");
 		fileStr.append(tag.getPath());
-		fileStr.append("#" + tag.getRevision());
+		// fileStr.append("#" + tag.getRevision());
 
 		List<IFileSpec> fileSpecs;
 		fileSpecs = FileSpecBuilder.makeFileSpecList(fileStr.toString());
@@ -99,29 +122,5 @@ public class LabelImport implements LabelInterface {
 		TagFilesOptions tagOpts = new TagFilesOptions();
 		List<IFileSpec> tagSpec = iserver.tagFiles(fileSpecs, name, tagOpts);
 		P4Factory.validateFileSpecs(tagSpec);
-	}
-
-	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(name + " by: " + owner + "\n");
-
-		String fileStr = "//...@" + name;
-		List<IFileSpec> fileSpecs;
-		fileSpecs = FileSpecBuilder.makeFileSpecList(fileStr);
-		List<IFileSpec> tags;
-		try {
-			tags = iserver.getDepotFiles(fileSpecs, null);
-			for (IFileSpec rev : tags) {
-				sb.append("... " + rev + "\n");
-			}
-		} catch (P4JavaException e) {
-			sb.append("... error\n");
-		}
-		return sb.toString();
-	}
-
-	@Override
-	public void submit() throws Exception {
-		ilabel.setOwnerName(owner);
 	}
 }
