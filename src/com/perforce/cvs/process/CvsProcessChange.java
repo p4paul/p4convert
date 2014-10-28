@@ -90,8 +90,10 @@ public class CvsProcessChange extends ProcessChange {
 			}
 		}
 
-		logger.info("Sorted branch list:");
-		logger.info(brSort.toString());
+		if (logger.isDebugEnabled()) {
+			logger.debug("Sorted branch list:");
+			logger.debug(brSort.toString());
+		}
 
 		logger.info("Building revision list...");
 		RevisionSorter revSort = new RevisionSorter();
@@ -155,7 +157,10 @@ public class CvsProcessChange extends ProcessChange {
 				boolean opened = ci.isPendingRevision(path);
 
 				if (entry.equals(changeEntry) && !opened) {
-					logger.info(">>> adding: " + entry.toString());
+					if (logger.isTraceEnabled()) {
+						logger.trace(">>> adding: " + entry.toString());
+					}
+
 					// update entry
 					entry.setNodeID(nodeID);
 					entry.setCvsChange(cvsChange);
@@ -173,7 +178,9 @@ public class CvsProcessChange extends ProcessChange {
 
 					nodeID++;
 				} else {
-					logger.info("<<< leaving: " + entry.toString());
+					if (logger.isTraceEnabled()) {
+						logger.trace("<<< leaving: " + entry.toString());
+					}
 				}
 				entry = revSort.next();
 			}

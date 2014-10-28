@@ -43,7 +43,7 @@
 
 
 	<root>
-		<level value="debug" />
+		<level value="info" />
 		<appender-ref ref="warn.log" />
 		<appender-ref ref="info.log" />
 		<!-- appender-ref ref="trace.log" / -->

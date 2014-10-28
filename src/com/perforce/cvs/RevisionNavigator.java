@@ -30,7 +30,9 @@ public class RevisionNavigator extends RcsNavigator {
 
 	@Override
 	protected void foundBranchEntry(String tagName, RevisionEntry entry) {
-		logger.debug("tag entry: " + tagName + " " + entry.getId());
+		if (logger.isDebugEnabled()) {
+			logger.debug("tag entry: " + tagName + " " + entry.getId());
+		}
 
 		if (branchList.isBranch(tagName) || "main".equals(tagName) || !isLabel) {
 			revList.add(entry);
@@ -41,7 +43,9 @@ public class RevisionNavigator extends RcsNavigator {
 
 	@Override
 	protected void foundBranchPoint(String tagName, RevisionEntry entry) {
-		logger.debug("tag point: " + tagName + " " + entry.getId());
+		if (logger.isDebugEnabled()) {
+			logger.debug("tag point: " + tagName + " " + entry.getId());
+		}
 
 		if (branchList.isBranch(tagName) || !isLabel) {
 			RevisionEntry brRev = createBranch(tagName, entry.getId());
