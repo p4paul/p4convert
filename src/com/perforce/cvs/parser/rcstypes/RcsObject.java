@@ -7,6 +7,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.cvs.parser.RcsSchema;
 
 public abstract class RcsObject {
@@ -56,6 +58,7 @@ public abstract class RcsObject {
 			}
 			map.put(key, item);
 		} else {
+			Stats.inc(StatsType.warningCount);
 			logger.warn("unknown " + item.getClass().getName() + " option '"
 					+ key.toString() + "'");
 		}

@@ -7,6 +7,8 @@ import java.util.Iterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentStream;
 import com.perforce.common.asset.ScanContentStream;
 import com.perforce.svn.parser.Content;
@@ -40,7 +42,7 @@ public class CvsContentStream extends ContentStream {
 				byte[] bytes = line.toByteArray();
 				count = into(bytes, b, len, count);
 			}
-			
+
 			// keep adding to provided buffer until there is a remainder
 			if (remainder != null) {
 				scan.read(b, count);
@@ -114,7 +116,7 @@ public class CvsContentStream extends ContentStream {
 	@Override
 	public boolean removeBOM() {
 		logger.warn("NOT IMPLEMENTED YET!");
-
+		Stats.inc(StatsType.warningCount);
 		return true;
 	}
 

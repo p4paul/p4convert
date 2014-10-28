@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.process.ChangeInfo;
 import com.perforce.common.process.ProcessChange;
@@ -84,9 +86,8 @@ public class CvsProcessChange extends ProcessChange {
 				brNav.add(rcs);
 
 			} catch (Exception e) {
-				logger.error("Unable to process file: "
-						+ file.getAbsolutePath());
-				e.printStackTrace();
+				logger.warn("Unable to process file: " + file.getAbsolutePath());
+				Stats.inc(StatsType.warningCount);
 			}
 		}
 
@@ -111,9 +112,8 @@ public class CvsProcessChange extends ProcessChange {
 				count++;
 				progress.update(count);
 			} catch (Exception e) {
-				logger.error("Unable to process file: "
-						+ file.getAbsolutePath());
-				e.printStackTrace();
+				logger.warn("Unable to process file: " + file.getAbsolutePath());
+				Stats.inc(StatsType.warningCount);
 			}
 		}
 
