@@ -17,7 +17,7 @@
 	<property name="cvs_tmp.dir" value="tmp" />
 	<property name="ext.dir" value="ext" />
 	<property name="prop.dir" value="prop" />
-	<property name="jar.name" value="p4convert-svn" />
+	<property name="jar.name" value="p4convert" />
 	<property name="manifest.name" value="MANIFEST.MF" />
 	<property name="junit.dir" value="junit" />
 	<property name="p4java.ver" value="p4java-2013.2.858003.MAIN-TEST_ONLY-SNAPSHOT" />

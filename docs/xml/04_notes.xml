@@ -101,7 +101,7 @@ trunk/src/foo.c, 1, 1, 1234567890abcdef1234567890abcdef
       </para>
 
 <programlisting language="bash">
-java -Dlog4j.configuration=file:log4j.xml -jar p4convert-svn.jar
+java -Dlog4j.configuration=file:log4j.xml -jar p4convert.jar
 </programlisting>
 
       <para>

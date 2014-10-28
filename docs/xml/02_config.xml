@@ -23,7 +23,7 @@
     </para>
 
 <programlisting language="bash">
-java -jar p4convert-svn.jar --config CVS
+java -jar p4convert.jar --config CVS
 </programlisting>
 
   <para>
@@ -334,7 +334,7 @@ com.p4convert.svn.end=200
     </para>
 
 <programlisting>
-pallen-mac:main$ java -jar dist/p4convert-svn.jar Config/foo.cfg 
+pallen-mac:main$ java -jar dist/p4convert.jar Config/foo.cfg 
 loading ChangeMap: 	changeMap.txt
 loading TypeMap: 	types.map
 importing revisions: 	1 to 20635 out of 20635

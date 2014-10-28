@@ -20,7 +20,7 @@ Introduction
 
 	To determine the version of your P4Convert, issue the following
 	command:
-		java -jar p4convert-svn.jar --version
+		java -jar p4convert.jar --version
 		
 --------------------------------------------------------------------------
 
@@ -528,7 +528,7 @@ New functionality in 2012.1
 	
 	Subversion revision or node extraction feature
 		
-		java -jar p4convert-svn.jar --extract rev.node <dump file>
+		java -jar p4convert.jar --extract rev.node <dump file>
 		
 		
 	#452368 (Bug #54101)
@@ -591,7 +591,7 @@ New functionality in 2012.1
 	
 	Prescan a Subversion dump file to determine system requirements.
 	
-		java -jar p4convert-svn.jar --info
+		java -jar p4convert.jar --info
 	
 		
 Internal new functionality in 2012.1

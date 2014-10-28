@@ -73,7 +73,7 @@
       </para>
 
 <programlisting language="bash">
-java -jar p4convert-svn.jar --info &lt;path_to_svn_dumpfile&gt;
+java -jar p4convert.jar --info &lt;path_to_svn_dumpfile&gt;
 </programlisting>
 
       <para>
@@ -82,7 +82,7 @@ java -jar p4convert-svn.jar --info &lt;path_to_svn_dumpfile&gt;
       </para>
 
 <programlisting language="bash">
-java -Xmx65536M -jar p4convert-svn.jar myConfig.cfg
+java -Xmx65536M -jar p4convert.jar myConfig.cfg
 </programlisting>
     </section>
   </section>
@@ -177,19 +177,22 @@ java -Xmx65536M -jar p4convert-svn.jar myConfig.cfg
     </para>
 
 <programlisting language="bash">
-java -jar p4convert-svn.jar
+java -jar p4convert.jar
 
-No configuration file specified...
+No option or configuration file specified...
+
 
 Usage:
-	java -jar p4convert-svn.jar &lt;config file&gt;
+	java -jar p4convert.jar [ config file ]
 
-	java -jar p4convert-svn.jar --config [ SVN | CVS ]
-	java -jar p4convert-svn.jar --version
-	java -jar p4convert-svn.jar --info [ dumpfile ]
-	java -jar p4convert-svn.jar --users [ dumpfile ]
-	java -jar p4convert-svn.jar --extract [ rev ].[ node ] [ dumpfile ]
+Options:
+	java -jar p4convert.jar --config [ SVN | CVS ]
+	java -jar p4convert.jar --version
 
+Subversion specific options:
+	java -jar p4convert.jar --info [ dumpfile ]
+	java -jar p4convert.jar --users [ dumpfile ]
+	java -jar p4convert.jar --extract [ rev ].[ node ] [ dumpfile ]
 </programlisting>
 
     <para>
@@ -200,7 +203,7 @@ Usage:
     </para>
 
 <programlisting>
-java -jar p4convert-svn.jar my_CVSrepo.cfg
+java -jar p4convert.jar my_CVSrepo.cfg
 </programlisting>
 
   </section>
