@@ -361,6 +361,12 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "dead-branch");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case048() throws Exception {
+		Config.set(CFG.CVS_MODULE, "end-file");
+		testCase("CVScluster01");
+	}
 
 	private void testCase(String cvsCluster) {
 		try {

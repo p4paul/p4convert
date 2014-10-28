@@ -312,17 +312,19 @@ public class RcsReader {
 			return false;
 		}
 
-		byte[] b = buf.toByteArray();
-		if (b[size - 2] == '@' && b[size - 1] == '\n') {
+		byte[] bytes = buf.toByteArray();
 
-			// peek ahead to see if line is empty (just \n)
-			long pos = cvsLineReader.getFilePointer();
-			ByteArrayOutputStream line = cvsLineReader.getData();
-			cvsLineReader.seek(pos);
-			if (line == null || line.size() == 1) {
-				return true;
+		// count '@' in line, if even then not end '@'
+		int count = 0;
+		for (byte b : bytes) {
+			if (b == '@') {
+				count++;
 			}
 		}
+		if ((count % 2) != 0) {
+			return true;
+		}
+
 		return false;
 	}
 
@@ -345,7 +347,7 @@ public class RcsReader {
 			clean = decodeAtpersand(line);
 
 			// exit if ending with '@\n'
-			if (endAtpersand(clean)) {
+			if (endAtpersand(line)) {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				// copy buffer, but trim ending '@\n' chars
 				out.write(clean.toByteArray(), 0, clean.size() - 2);
