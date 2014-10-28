@@ -10,8 +10,11 @@ import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.ScanArchive;
 import com.perforce.common.asset.TypeMap;
 import com.perforce.common.depot.DepotInterface;
+import com.perforce.common.process.AuditLogger;
 import com.perforce.common.process.ProcessFactory;
 import com.perforce.common.process.ProcessNode;
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
 import com.perforce.cvs.RevisionEntry;
 import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 import com.perforce.svn.change.ChangeInterface;
@@ -69,6 +72,13 @@ public class CvsProcessNode extends ProcessNode {
 			ContentType detectedType = findContentType(nodePath, content,
 					lastAction);
 			content.setType(detectedType);
+
+			// audit content if enabled
+			if ((Boolean) Config.get(CFG.AUDIT_ENABLED)) {
+				String md5 = content.getMd5();
+				String rev = revEntry.getId().toString();
+				AuditLogger.log(nodePath, rev, cvsChange, md5);
+			}
 		}
 
 		// add from sources (for branches etc...)

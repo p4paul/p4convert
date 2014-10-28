@@ -115,7 +115,8 @@ public class SvnProcessNode extends ProcessNode {
 			if ((Boolean) Config.get(CFG.AUDIT_ENABLED)) {
 				String md5 = content.getMd5();
 				long lastChange = ChangeMap.getChange(svnRev - 1);
-				AuditLogger.log(nodePath, svnRev, lastChange + 1, md5);
+				String rev = String.valueOf(svnRev);
+				AuditLogger.log(nodePath, rev, lastChange + 1, md5);
 			}
 		} else {
 			// non archive content (deletes and lazy copies)

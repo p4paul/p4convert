@@ -40,7 +40,7 @@ public class AuditLogger {
 		}
 	}
 
-	public static void log(String path, int rev, long cng, String md5)
+	public static void log(String path, String rev, long cng, String md5)
 			throws Exception {
 		StringBuffer sb = new StringBuffer();
 		sb.append(path + ", ");
