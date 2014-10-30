@@ -52,7 +52,7 @@ $Date$        ==&gt; $DateTime$	gives	$DateTime: 2006/02/17 12:09:10 $
 
     <para>
       Due to the differences in keyword expansion the MD5 sum in Subversion is
-      not valid for use in Perforce. This is why any keyword expanded files has
+      not valid for use in Perforce. This is why any keyword expanded files have
       an empty MD5 sum and why the <command>p4 verify -u //...</command> command
       is recommended in the 'Optional Steps' section.
     </para>

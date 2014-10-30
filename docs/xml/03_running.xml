@@ -15,8 +15,8 @@
     <title>Import Mode</title>
 
     <para>
-      Import Mode will pull in file revisions from a Subversion dump file adding
-      them to the Perforce Server specified by the connection details in the
+      Import Mode will pull in file revisions from a Subversion dump file or CVS repository,
+      adding them to the Perforce Server specified by the connection details in the
       configuration options. To use this mode set:
     </para>
 
@@ -64,8 +64,8 @@ com.p4convert.p4.port=<replaceable>localhost\:4444</replaceable>
           </para>
 
 <programlisting language="ini">
-com.p4convert.p4.client=<replaceable>svn-client</replaceable>
-com.p4convert.p4.user=<replaceable>svn-user</replaceable>
+com.p4convert.p4.client=<replaceable>p4-client</replaceable>
+com.p4convert.p4.user=<replaceable>p4-user</replaceable>
 </programlisting>
         </listitem>
 
@@ -82,7 +82,7 @@ com.p4convert.p4.clientRoot=<replaceable>/Users/bruno/ws/</replaceable>
         <listitem>
           <para>
             If Security is set to level 1 or greater, then the
-            <replaceable>svn-user</replaceable> must have
+            <replaceable>p4-user</replaceable> must have
             <emphasis>admin</emphasis> permissions in the Protection table and
             the password supplied as a string (the
             default is no string after the '=' sign):
@@ -118,7 +118,7 @@ com.p4convert.p4.passwd=<replaceable>PaSSwoRd</replaceable>
     </para>
 
     <para>
-      After a using the Convert Mode the administrator will need to run
+      After using Convert Mode the administrator will need to run
       several commands to rebuild the Perforce server and upgrade the
       metadata. Please refer to the <xref linkend="running.post_conversion"/>
       section for step-by-step instructions.
@@ -149,7 +149,7 @@ com.p4convert.p4.root=<replaceable>/full/path/to/p4_root/</replaceable>
 
         <listitem>
           <para>
-            Change list offset (handy for batched conversions):
+            Change list offset from which to start conversion (handy for batched conversions):
           </para>
 
 <programlisting language="ini">
@@ -197,8 +197,8 @@ com.p4convert.p4.lineEnding=<replaceable>true</replaceable>
 
         <listitem>
           <para>
-            For non Unicode servers or to simplify storage of hi-ASCII files,
-            setting following option to <literal>false</literal> will store the file
+            For non Unicode servers, or to simplify storage of hi-ASCII files,
+            setting the following option to <literal>false</literal> will store the file
             as <literal>binary</literal>:
           </para>
 
@@ -214,7 +214,7 @@ com.p4convert.p4.unicode=<replaceable>false</replaceable>
     <title>Post Conversion [Conversion Mode]</title>
 
     <para>
-      To finish the conversion you will need to install <command>p4</command>
+      To finish a Convert Mode conversion you will need to install <command>p4</command>
       and <command>p4d</command> and run a few Perforce commands.
     </para>
 

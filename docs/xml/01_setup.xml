@@ -61,8 +61,8 @@
 
       <para>
         Running some conversions, particularly in Conversion Mode can
-        be very memory intensive, as we keep a mapping of revisions and
-        integrations in memory. For large conversions or conversions with
+        be very memory intensive, as a mapping of revisions and integrations
+        is kept in memory. For large conversions, or conversions with
         excessive branching, more memory will needed by the JVM.
       </para>
 
@@ -198,8 +198,8 @@ Subversion specific options:
     <para>
       Create a configuration file using the <parameter>--config</parameter>
       option.  This will contain a set of default configuration options 
-      based on you platform.  To start a conversion, execute the jar with
-      the populated configuration file. For example:
+      based on your platform.  To subsequently start a conversion, execute
+      the jar with the populated configuration file. For example:
     </para>
 
 <programlisting>
@@ -213,8 +213,8 @@ java -jar p4convert.jar my_CVSrepo.cfg
 
     <para>
       For Subversion conversions, both Import and Convert modes require a 
-      Subversion dumpfile as the history data source. A dumpfile can be 
-      generated in several different ways; two of which are detailed below:
+      Subversion dumpfile as the historic data source. A dumpfile can be 
+      generated in several different ways, two of which are detailed below:
     </para>
 
     <itemizedlist>
@@ -248,7 +248,7 @@ rsvndump <replaceable>url</replaceable> &gt; dumpfile.dmp
           server. For example: <literal>http://</literal> or
           <literal>file://</literal> or <literal>svn://</literal>.  Note that
           for large servers generating the dump file locally is significantly
-          faster, you might also consider creating a local copy of the
+          faster, so you might also consider creating a local copy of the
           subversion depot using
           <link xlink:href="http://svn.apache.org/repos/asf/subversion/trunk/notes/svnsync.txt">svnsync</link>,
           before generating the dump file.
@@ -262,7 +262,7 @@ rsvndump <replaceable>url</replaceable> &gt; dumpfile.dmp
 
     <para>
       For CVS conversions, both Import and Convert modes require a path
-      containining RCS files as the history data source. CVSROOT can be filtered
+      containining RCS files as the historic data source. CVSROOT can be filtered
       or imported on a per module basis.  The converter will only import file
       revisions under the specified CVSROOT path.
     </para>

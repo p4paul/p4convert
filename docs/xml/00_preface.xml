@@ -60,7 +60,8 @@
       Convert Mode is an advanced feature and should only be attempted by a
       Perforce expert familiar with replaying and upgrading databases.
       Incremental conversions are not supported using Convert Mode; however
-      Import Mode can be used after the a conversion to update the migration.
+      Import Mode can be used after a Convert Mode conversion to update the
+      migration.
     </para>
   </section>
 
@@ -68,10 +69,10 @@
     <title>Incremental Updates (front door)</title>
 
     <para>
-      Incremental updates are possible only using the Import Mode where new
-      revision from Subversion are imported into Perforce. However, no changes
-      should be made to the import area of the Perforce Server or conflicts
-      may occur.
+      Incremental Subversion updates are possible only using the Import Mode
+      where new revisions from Subversion are imported into Perforce. However,
+      no changes should be made to the import area of the Perforce Server or
+      conflicts may occur.
     </para>
     
     <para>

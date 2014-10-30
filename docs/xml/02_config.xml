@@ -40,7 +40,7 @@ java -jar p4convert.jar --config CVS
     <para>
       The following settings appear at the top of the configuration file 
       and are automatically defined at the time of generation.  The
-      Core converter settings should not me modified.
+      Core converter settings should not be modified.
     </para>
 
     <orderedlist>
@@ -138,7 +138,7 @@ com.p4convert.core.subPath=<replaceable>sub</replaceable>/
       <parameter>--config SVN</parameter> the Subversion configuration
       options will appear as a block using the <parameter>com.p4convert.svn
       </parameter> name space.  These settings will only apply if the SCM
-      mode is set:
+      mode is set to <parameter>SVN</parameter>:
 <programlisting language="ini">
 com.p4convert.core.scmType=<replaceable>SVN</replaceable>
 </programlisting>      
@@ -169,7 +169,7 @@ com.p4convert.svn.dumpFile=<replaceable>/Users/bruno/MyDumpFile.dmp</replaceable
       <parameter>--config CVS</parameter> the CVS configuration
       options will appear as a block using the <parameter>com.p4convert.cvs
       </parameter> name space.  These settings will only apply if the SCM
-      mode is set:
+      mode is set to <parameter>CVS</parameter>:
 <programlisting language="ini">
 com.p4convert.core.scmType=<replaceable>CVS</replaceable>
 </programlisting>      
@@ -198,7 +198,7 @@ com.p4convert.cvs.cvsmodule=<replaceable>projX</replaceable>
 
       <listitem>
         <para>
-          CVS time window.  When no <paramiter>commitid</paramiter> is 
+          CVS time window.  When no <parameter>commitid</parameter> is 
           defined in the RCS file, the converter will calculate which
           revisions should be grouped into a changelist.  The time window
           specifies the maximum range the converter should look ahead for
@@ -211,8 +211,8 @@ com.p4convert.cvs.timeWindow=<replaceable>20000</replaceable>
       
       <listitem>
         <para>
-          CVS tempary directory.  All the CVS assets are reformatted into
-          full text files. The specified tempary directory is used to store
+          CVS temporary directory.  All the CVS assets are reformatted into
+          full text files. The specified temporary directory is used to store
           the content during conversion. 
         </para>
 <programlisting language="ini">
@@ -631,6 +631,7 @@ com.p4convert.p4.skipEmpty=false
         right-hand-side modified with the new user name. The rename will only
         occur if the conversion tool finds the <filename>users.map</filename>
         file in the current working directory.
+        Username mapping is not currently supported for CVS conversions.
       </para>
     </section>
 
@@ -756,9 +757,9 @@ com.p4convert.p4.caseMode=FIRST
       </itemizedlist>
 
       <para>
-        When using the Convert Mode the generated Perforce archive files are
-        based on the platforms case sensitivity. However on Linux platforms it
-        can be useful to store archives files as if on a case-insensitive server
+        When using Convert Mode the generated Perforce archive files are
+        based on the platform's case sensitivity. However on Linux platforms it
+        can be useful to store archive files as if on a case-insensitive server
         (<command>p4d -C1</command>). This can be simulated by setting the following
         option to <literal>true</literal>:
       </para>
