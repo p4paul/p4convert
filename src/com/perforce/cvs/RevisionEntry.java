@@ -48,20 +48,20 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		RevisionEntry entry = (RevisionEntry) obj;
 
 		// only test for commit ID if used
-		if (commitId != null && entry.getCommitId() != null) {
-			if (commitId.contentEquals(entry.getCommitId()))
+		if (getCommitId() != null && entry.getCommitId() != null) {
+			if (getCommitId().contentEquals(entry.getCommitId()))
 				return true;
 			else
 				return false;
 		}
 
 		// otherwise, check author
-		if (!author.contentEquals(entry.getAuthor())) {
+		if (!getAuthor().contentEquals(entry.getAuthor())) {
 			return false;
 		}
 
 		// and comment
-		if (!comment.contentEquals(entry.getComment())) {
+		if (!getComment().contentEquals(entry.getComment())) {
 			return false;
 		}
 
@@ -76,7 +76,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		final int OLDER = -1;
 
 		// compare newer or older by date
-		long gap = obj.getDate().getTime() - date.getTime();
+		long gap = obj.getDate().getTime() - getDate().getTime();
 		if (gap == 0)
 			return EQUAL;
 		else if (gap > 0)
@@ -155,15 +155,15 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append(id);
+		sb.append(getId());
 		sb.append(" ");
-		sb.append(date.getTime());
+		sb.append(getDate().getTime());
 		sb.append(" ");
-		sb.append(path);
+		sb.append(getPath());
 		sb.append(" ");
-		sb.append(commitId);
+		sb.append(getCommitId());
 		sb.append(" ");
-		sb.append(author);
+		sb.append(getAuthor());
 		return sb.toString();
 	}
 
@@ -188,8 +188,10 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void addLabel(String label) {
-		logger.debug("Label tag: " + label + " - " + id);
-		labels.add(label);
+		if (logger.isDebugEnabled()) {
+			logger.debug("Label tag: " + label + " - " + getId());
+		}
+		getLabels().add(label);
 	}
 
 	public List<String> getLabels() {
@@ -204,7 +206,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 			window = 20000L;
 		}
 
-		long gap = date.getTime() - entry.getDate().getTime();
+		long gap = getDate().getTime() - entry.getDate().getTime();
 		if (Math.abs(gap) > window) {
 			return false;
 		}

@@ -5,3 +5,6 @@
 @pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1410940530 1 @added
 @pv@ 0 @db.desc@ 2 @added
 @pv@ 0 @db.desc@ 1 @added
+@pv@ 0 @db.label@ @custom_tag@ @//import/main/file.txt@ 1 
+@pv@ 0 @db.label@ @release_tag@ @//import/main/file1.txt@ 1 
+@pv@ 0 @db.label@ @release_tag@ @//import/main/file2.txt@ 1 

@@ -432,7 +432,7 @@ public class CvsImportTests {
 	 */
 	private void filterJournal(String p4Root) throws Exception {
 		String[] tables = { "@db.rev@", "@db.integed@", "@db.change@",
-				"@db.desc@" };
+				"@db.desc@", "@db.label@" };
 
 		// Filter results (grep and sort)
 		String base = "grep '^@pv@' " + p4root + "checkpoint.1 | ";

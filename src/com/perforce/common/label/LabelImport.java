@@ -107,7 +107,7 @@ public class LabelImport implements LabelInterface {
 		for (TagConvert tag : revs) {
 			tagLabel(tag);
 		}
-		ilabel.setOwnerName(owner);
+		ilabel.update();
 	}
 
 	private void tagLabel(TagConvert tag) throws Exception {

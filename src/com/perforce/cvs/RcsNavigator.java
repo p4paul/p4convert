@@ -67,8 +67,6 @@ public abstract class RcsNavigator {
 		// Process HEAD code-line and recurse branches
 		RcsObjectNum head = rcs.getAdmin().getHead();
 		followCodeLine(head, null);
-
-		// xxx populateFullBranch();
 	}
 
 	/**
@@ -83,6 +81,12 @@ public abstract class RcsNavigator {
 		do {
 			RcsObjectDelta revision = rcsRevision.getDelta(id);
 			RevisionEntry entry = new RevisionEntry(revision);
+
+			// add label, before revision is added by foundBranch[Point|Entry]
+			String labelName = getLabelName(id);
+			if (labelName != null) {
+				entry.addLabel(labelName);
+			}
 
 			// look for IDs matching a tag in the branch map
 			for (Entry<RcsObjectNum, String> br : getBranchMap()) {
@@ -117,12 +121,6 @@ public abstract class RcsNavigator {
 				}
 				entry.setPath(branchName + "/" + basePath);
 				foundBranchEntry(branchName, entry);
-			}
-
-			// add label to revision
-			String labelName = getLabelName(id);
-			if (labelName != null) {
-				entry.addLabel(labelName);
 			}
 
 			// follow tags off code line [recursive]
