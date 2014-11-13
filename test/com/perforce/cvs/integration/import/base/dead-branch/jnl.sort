@@ -1,26 +1,11 @@
-@pv@ 9 @db.rev@ @//import/branch/src/foo.txt@ 4 1 1 8 1387406445 1387406445 BE49397F6CD14BA03405871C0352335F 72 0 0 @//import/branch/src/foo.txt@ @1.8@ 1 
-@pv@ 9 @db.rev@ @//import/branch/src/foo.txt@ 3 1 1 7 1387406302 1387406302 2F57A1B1B2A0EB2A8DBA15CBDD02875E 64 0 0 @//import/branch/src/foo.txt@ @1.7@ 1 
-@pv@ 9 @db.rev@ @//import/branch/src/foo.txt@ 2 1 1 5 1386603526 1386603526 B60C105A400A8DA6458CA312DA9B1478 41 0 0 @//import/branch/src/foo.txt@ @1.5@ 1 
-@pv@ 9 @db.rev@ @//import/branch/src/foo.txt@ 1 1 3 4 1386603220 1386603220 F9287EEDBD7BF556FA9090FD5BF9D7AE 26 0 1 @//import/main/src/foo.txt@ @1.3@ 1 
-@pv@ 9 @db.rev@ @//import/main/src/foo.txt@ 4 1 1 6 1386606012 1386606012 C62C3C0E2654A8D7323F3980C7B7DC71 39 0 0 @//import/main/src/foo.txt@ @1.6@ 1 
-@pv@ 9 @db.rev@ @//import/main/src/foo.txt@ 3 1 1 3 1386603220 1386603220 F9287EEDBD7BF556FA9090FD5BF9D7AE 26 0 0 @//import/main/src/foo.txt@ @1.3@ 1 
-@pv@ 9 @db.rev@ @//import/main/src/foo.txt@ 2 1 1 2 1386603137 1386603137 46AE77FB6BAEB790DAB31122D34C25B1 12 0 0 @//import/main/src/foo.txt@ @1.2@ 1 
-@pv@ 9 @db.rev@ @//import/main/src/foo.txt@ 1 1 0 1 1386603033 1386603033 16FED0121505838F492D0295BA547558 8 0 0 @//import/main/src/foo.txt@ @1.1@ 1 
-@pv@ 0 @db.integed@ @//import/branch/src/foo.txt@ @//import/main/src/foo.txt@ 0 3 0 1 2 4 
-@pv@ 0 @db.integed@ @//import/main/src/foo.txt@ @//import/branch/src/foo.txt@ 0 1 0 3 3 4 
-@pv@ 2 @db.change@ 8 8 @svn-client@ @pallen@ 1387406445 1 @edit
-@pv@ 2 @db.change@ 7 7 @svn-client@ @pallen@ 1387406302 1 @edit on branch
-@pv@ 2 @db.change@ 6 6 @svn-client@ @pallen@ 1386606012 1 @edits on MAIN
-@pv@ 2 @db.change@ 5 5 @svn-client@ @pallen@ 1386603526 1 @edit on branch
-@pv@ 2 @db.change@ 4 4 @svn-client@ @branch@ 1386603220 1 @Branch: 
-@pv@ 2 @db.change@ 3 3 @svn-client@ @pallen@ 1386603220 1 @ADD and EDIT
-@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1386603137 1 @an edit
-@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1386603033 1 @Initial revision
-@pv@ 0 @db.desc@ 8 @edit
-@pv@ 0 @db.desc@ 7 @edit on branch
-@pv@ 0 @db.desc@ 6 @edits on MAIN
-@pv@ 0 @db.desc@ 5 @edit on branch
-@pv@ 0 @db.desc@ 4 @Branch: 
-@pv@ 0 @db.desc@ 3 @ADD and EDIT
-@pv@ 0 @db.desc@ 2 @an edit
-@pv@ 0 @db.desc@ 1 @Initial revision
+@pv@ 9 @db.rev@ @//import/branch/src/file@ 2 1 1 4 1362113737 1362113737 32DA7BA1CEBD3488EC559BA4AB92AACB 18 0 0 @//import/branch/src/file@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/branch/src/file@ 1 1 3 3 1236403500 1236403500 0323793676BD60D32C7D6ACD4413FA3F 16 0 1 @//import/main/src/file@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/src/file@ 1 1 0 1 1236403500 1236403500 0323793676BD60D32C7D6ACD4413FA3F 16 0 0 @//import/main/src/file@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/branch/src/file@ @//import/main/src/file@ 0 1 0 1 2 3 
+@pv@ 0 @db.integed@ @//import/main/src/file@ @//import/branch/src/file@ 0 1 0 1 3 3 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @pallen@ 1362113737 1 @edit unrelated file on branch
+@pv@ 2 @db.change@ 3 3 @svn-client@ @branch@ 1236403500 1 @Branch: 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1236403500 1 @add file to main
+@pv@ 0 @db.desc@ 4 @edit unrelated file on branch
+@pv@ 0 @db.desc@ 3 @Branch: 
+@pv@ 0 @db.desc@ 1 @add file to main

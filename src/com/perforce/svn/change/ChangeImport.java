@@ -13,6 +13,7 @@ import com.perforce.common.client.Connection;
 import com.perforce.common.client.ConnectionFactory;
 import com.perforce.common.client.P4Factory;
 import com.perforce.common.depot.DepotImport;
+import com.perforce.common.journal.FileRevision;
 import com.perforce.common.process.ChangeInfo;
 import com.perforce.common.process.ProcessFactory;
 import com.perforce.config.CFG;
@@ -341,7 +342,7 @@ public class ChangeImport implements ChangeInterface {
 		case BRANCH:
 		case MERGE:
 			// revert any pending actions (typically deletes)
-			if (rev.openedFile(depotToPath)) {
+			if (rev.isOpened(depotToPath)) {
 				rev.revertFile(depotToPath);
 				if (logger.isDebugEnabled()) {
 					logger.debug("reverting file: " + depotToPath);
@@ -380,7 +381,7 @@ public class ChangeImport implements ChangeInterface {
 
 	private void removeAction(RevisionImport rev, String depotToPath,
 			boolean remove) throws Exception {
-		if (rev.openedFile(depotToPath)) {
+		if (rev.isOpened(depotToPath)) {
 			if (!remove) {
 				if (logger.isTraceEnabled()) {
 					logger.trace("addRevision (reverting): " + depotToPath);
@@ -462,6 +463,14 @@ public class ChangeImport implements ChangeInterface {
 		RevisionImport rev = new RevisionImport(iclient, ichangelist, depot,
 				changeInfo.getDate());
 		String depotToPath = depot.getBase() + toPath;
-		return rev.openedFile(depotToPath);
+		return rev.isOpened(depotToPath);
+	}
+	
+	@Override
+	public Action getPendingAction(String toPath) throws Exception {
+		RevisionImport rev = new RevisionImport(iclient, ichangelist, depot,
+				changeInfo.getDate());
+		String depotToPath = depot.getBase() + toPath;
+		return rev.getOpenedAction(depotToPath);
 	}
 }

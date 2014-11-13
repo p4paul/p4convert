@@ -182,22 +182,19 @@ public class CvsProcessNode extends ProcessNode {
 		String s = revEntry.getState();
 		RcsObjectNum id = revEntry.getId();
 		if (s != null) {
-			if ("Exp".equals(s))
+			if ("Exp".equals(s)) {
 				action = ChangeAction.Action.ADD;
-			else if ("Stab".equals(s))
+			} else if ("Stab".equals(s)) {
 				action = ChangeAction.Action.ADD;
-			else if ("Rel".equals(s))
+			} else if ("Rel".equals(s)) {
 				action = ChangeAction.Action.ADD;
-			else if ("dead".equals(s)) {
-				if (id.equals(new RcsObjectNum("1.1"))) {
-					action = ChangeAction.Action.ADD;
-				} else {
-					action = ChangeAction.Action.REMOVE;
-				}
-			} else if ("BRANCH".equals(s))
+			} else if ("dead".equals(s)) {
+				action = ChangeAction.Action.REMOVE;
+			} else if ("BRANCH".equals(s)) {
 				action = ChangeAction.Action.BRANCH;
-			else
+			} else {
 				throw new RuntimeException("unknown STATE " + s);
+			}
 		} else {
 			throw new RuntimeException("no STATE in RCS");
 		}

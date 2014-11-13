@@ -37,7 +37,7 @@ public class ChangeConvert implements ChangeInterface {
 	public ChangeConvert(long c, ChangeInfo i, DepotConvert d) throws Exception {
 		this.change = c;
 		this.changeInfo = i;
-		this.depot = d;		
+		this.depot = d;
 	}
 
 	public void submit() throws Exception {
@@ -212,5 +212,11 @@ public class ChangeConvert implements ChangeInterface {
 	@Override
 	public boolean isPendingRevision(String path) {
 		return fileRevisions.containsKey(path);
+	}
+
+	@Override
+	public Action getPendingAction(String path) {
+		FileRevision rev = fileRevisions.get(path);
+		return rev.getTo().getAction();
 	}
 }

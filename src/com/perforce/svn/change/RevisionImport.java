@@ -90,7 +90,7 @@ public class RevisionImport {
 		integOpts.setDeleteTargetAfterDelete(true); // flag '-Ds'
 
 		// revert any pending actions (typically deletes)
-		if (openedFile(toStr)) {
+		if (isOpened(toStr)) {
 			integOpts.setShowActionsOnly(true); // preview flag '-n'
 
 			// Preview branch files
@@ -209,7 +209,7 @@ public class RevisionImport {
 		String fromStr = from + "/...@" + fromChange;
 
 		// revert any pending actions (typically deletes)
-		if (openedFile(toStr)) {
+		if (isOpened(toStr)) {
 			revertFile(toStr);
 		}
 
@@ -352,7 +352,7 @@ public class RevisionImport {
 		}
 
 		// just revert pending revision
-		if (openedFile(path)) {
+		if (isOpened(path)) {
 			revertFile(path);
 		}
 
@@ -395,7 +395,7 @@ public class RevisionImport {
 		}
 
 		// test if already open (integ -v ?)
-		if (openedFile(depotToPath)) {
+		if (isOpened(depotToPath)) {
 			isVirtualInteg(depotToPath);
 		}
 
@@ -575,7 +575,17 @@ public class RevisionImport {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean openedFile(String depotToPath) throws Exception {
+	public boolean isOpened(String depotToPath) throws Exception {
+		IFileSpec file = openedFile(depotToPath);
+		return file != null;
+	}
+	
+	public Action getOpenedAction(String depotToPath) throws Exception {
+		IFileSpec file = openedFile(depotToPath);
+		return P4Factory.p4javaToQueryAction(file.getAction());
+	}
+
+	private IFileSpec openedFile(String depotToPath) throws Exception {
 		List<IFileSpec> iOpenFile;
 		iOpenFile = FileSpecBuilder.makeFileSpecList(depotToPath);
 
@@ -583,12 +593,12 @@ public class RevisionImport {
 		OpenedFilesOptions openOps = new OpenedFilesOptions();
 		openOps.setChangelistId(ichangelist.getId());
 		List<IFileSpec> open = iclient.openedFiles(iOpenFile, openOps);
-		for (IFileSpec files : open) {
-			if (files != null && files.getAction() != null) {
-				return true;
+		for (IFileSpec file : open) {
+			if (file != null && file.getAction() != null) {
+				return file;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**

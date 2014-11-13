@@ -25,6 +25,7 @@ import com.perforce.cvs.asset.CvsContentReader;
 import com.perforce.cvs.parser.RcsFileFinder;
 import com.perforce.cvs.parser.RcsReader;
 import com.perforce.svn.change.ChangeInterface;
+import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.prescan.Progress;
 import com.perforce.svn.query.QueryInterface;
 
@@ -154,9 +155,31 @@ public class CvsProcessChange extends ProcessChange {
 
 			while (entry != null && entry.within(changeEntry)) {
 				String path = entry.getPath();
-				boolean opened = ci.isPendingRevision(path);
+				boolean isOpen = ci.isPendingRevision(path);
+				boolean add = false;
+				
+				// if no pending revision open and the same change...
+				if (entry.equals(changeEntry) && !isOpen) {
+					add = true;
+				}
 
-				if (entry.equals(changeEntry) && !opened) {
+				// if a pending twin-revision...
+				if (isOpen) {
+					// calculate if this is a twin-branch (1ms time diff)
+					long t1 = changeEntry.getDate().getTime();
+					long t2 = entry.getDate().getTime();
+					boolean twin = t1 == (t2 - 1);
+
+					// if pending revision is a REMOVE
+					Action pendingAct = ci.getPendingAction(path);
+					if (twin && pendingAct == Action.REMOVE) {
+						// overlay REMOVE with branch and downgrade to ADD
+						add = true;
+						entry.setState("Exp");
+					}
+				}
+
+				if (add) {
 					if (logger.isTraceEnabled()) {
 						logger.trace(">>> adding: " + entry.toString());
 					}
@@ -175,13 +198,15 @@ public class CvsProcessChange extends ProcessChange {
 					if (isLabel) {
 						processLabel.labelRev(entry, ci.getChange());
 					}
-
 					nodeID++;
 				} else {
+					// else, revision belongs in another change
 					if (logger.isTraceEnabled()) {
 						logger.trace("<<< leaving: " + entry.toString());
 					}
 				}
+
+				// get the next revision
 				entry = revSort.next();
 			}
 

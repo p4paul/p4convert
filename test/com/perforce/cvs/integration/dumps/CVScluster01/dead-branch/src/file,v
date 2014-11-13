@@ -1,0 +1,58 @@
+head	1.1;
+access;
+symbols
+	branch:1.1.0.2
+	pallen_2:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2009.03.07.05.25.00;	author pallen;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2009.03.07.05.25.00;	author pallen;	state dead;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2013.03.01.04.55.37;	author pallen;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@add file to main
+@
+text
+@content on main
+@
+
+
+1.1.2.1
+log
+@branch unrelated file
+@
+text
+@d1 1
+@
+
+
+1.1.2.2
+log
+@edit unrelated file on branch
+@
+text
+@a0 1
+Different content
+@
+
+

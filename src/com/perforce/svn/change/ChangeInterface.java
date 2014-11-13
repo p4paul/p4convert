@@ -2,6 +2,7 @@ package com.perforce.svn.change;
 
 import java.util.List;
 
+import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.process.MergeInfo;
 import com.perforce.svn.process.MergeSource;
 
@@ -66,7 +67,8 @@ public interface ChangeInterface {
 	public void setMergeSource(MergeSource m);
 
 	public MergeSource getMergeSource();
-	
+
 	public boolean isPendingRevision(String path) throws Exception;
 
+	public Action getPendingAction(String path) throws Exception;
 }
