@@ -8,6 +8,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.common.asset.AssetWriter;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
@@ -83,16 +85,21 @@ public class CvsContentReader {
 			}
 			RcsObjectDelta delta = rcsDelta.getDelta(id);
 
-			// undelta text; skip HEAD as it is already in full text
-			if (!rcsHEAD.equals(id)) {
-				RcsObjectBlock blockDelta = delta.getBlock();
-				lastBlock = undelta(lastBlock, blockDelta);
-			}
-
 			// build tmp path from rev id and base path
 			String tmp = (String) Config.get(CFG.CVS_TMPDIR);
 			String base = rcsDelta.getPath();
 			String path = tmp + "/" + base + "/" + id;
+
+			// undelta text; skip HEAD as it is already in full text
+			if (!rcsHEAD.equals(id)) {
+				RcsObjectBlock blockDelta = delta.getBlock();
+				if (blockDelta != null) {
+					lastBlock = undelta(lastBlock, blockDelta);
+				} else {
+					logger.warn("No data block: " + base + " " + delta.getID());
+					Stats.inc(StatsType.warningCount);
+				}
+			}
 
 			// write blockFull to tmp file
 			AssetWriter asset = new AssetWriter(path);
