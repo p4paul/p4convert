@@ -369,7 +369,7 @@ public class RevisionImport {
 	 * @param path
 	 * @return
 	 */
-	private static String unFormatPath(String path) {
+	public static String unFormatPath(String path) {
 		if (path != null) {
 			path = path.replace("%25", "%");
 			path = path.replace("%40", "@");

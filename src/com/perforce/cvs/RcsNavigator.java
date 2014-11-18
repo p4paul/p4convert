@@ -10,8 +10,6 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.perforce.config.CFG;
-import com.perforce.config.Config;
 import com.perforce.cvs.parser.RcsReader;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
 import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
@@ -100,10 +98,8 @@ public abstract class RcsNavigator {
 				}
 			}
 
-			// get tmp content name
-			String tmp = (String) Config.get(CFG.CVS_TMPDIR);
-			String basePath = rcsRevision.getPath();
-			entry.setTmpFile(tmp + "/" + basePath + "/" + id.toString());
+			// has content, so set non-lazy
+			entry.setLazy(false);
 
 			// fetch from id
 			RcsObjectNum from = null;
@@ -112,6 +108,7 @@ public abstract class RcsNavigator {
 			}
 
 			// if branch, get name and add to list of revisions to sort
+			String basePath = rcsRevision.getPath();
 			String branchName = getBranchName(id, from);
 			if (branchName != null) {
 				if (!"main".equals(branchName) && id.getMinor() == 1) {

@@ -12,13 +12,14 @@ import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
 import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
+import com.perforce.svn.change.RevisionImport;
 
 public class RevisionEntry implements Comparable<RevisionEntry> {
 
 	private Logger logger = LoggerFactory.getLogger(RevisionEntry.class);
 
 	private RcsObjectNum id;
-	private String tmpFile;
+	private boolean lazy = true;
 	private String path;
 	private int nodeID;
 	private long cvsChange;
@@ -34,10 +35,10 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	public RevisionEntry(RcsObjectDelta revision) {
 		this.id = revision.getID();
 		this.date = revision.getDate();
-		this.commitId = revision.getCommitId();
-		this.author = revision.getAuthor();
-		this.comment = revision.getLog();
-		this.state = revision.getState();
+		this.commitId = revision.getCommitId().intern();
+		this.author = revision.getAuthor().intern();
+		this.comment = revision.getLog().intern();
+		this.state = revision.getState().intern();
 	}
 
 	@Override
@@ -168,7 +169,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setPath(String revPath) {
-		path = revPath;
+		path = revPath.intern();
 	}
 
 	public String getFromPath() {
@@ -176,22 +177,36 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setFromPath(String fromPath) {
-		this.fromPath = fromPath;
+		this.fromPath = fromPath.intern();
 	}
 
 	public String getTmpFile() {
-		return tmpFile;
+		if(lazy) {
+			return null;
+		}
+		
+		String tmp;
+		try {
+			tmp = (String) Config.get(CFG.CVS_TMPDIR);
+		} catch (ConfigException e) {
+			tmp = "tmp";
+		}
+		
+		String subPath = path.substring(path.indexOf("/"));
+		String myTmpFile = tmp + subPath + "/" + id.toString();
+		myTmpFile = RevisionImport.unFormatPath(myTmpFile);
+		return myTmpFile;
 	}
-
-	public void setTmpFile(String tmpFile) {
-		this.tmpFile = tmpFile;
+	
+	public void setLazy(boolean set) {
+		this.lazy = set;
 	}
 
 	public void addLabel(String label) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Label tag: " + label + " - " + getId());
 		}
-		getLabels().add(label);
+		getLabels().add(label.intern());
 	}
 
 	public List<String> getLabels() {
