@@ -31,7 +31,7 @@ public class RcsObjectDelta extends RcsObject {
 		if (containsKey(RcsSchema.COMMITID)) {
 			return (String) get(RcsSchema.COMMITID);
 		} else {
-			return null;
+			return "";
 		}
 	}
 

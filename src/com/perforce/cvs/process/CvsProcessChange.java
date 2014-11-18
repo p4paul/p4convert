@@ -96,6 +96,7 @@ public class CvsProcessChange extends ProcessChange {
 			} catch (Exception e) {
 				logger.warn("Unable to process file: " + file.getAbsolutePath());
 				Stats.inc(StatsType.warningCount);
+				e.printStackTrace();
 			}
 		}
 		logger.info("... done          \n");
@@ -123,6 +124,7 @@ public class CvsProcessChange extends ProcessChange {
 			} catch (Exception e) {
 				logger.warn("Unable to process file: " + file.getAbsolutePath());
 				Stats.inc(StatsType.warningCount);
+				e.printStackTrace();
 			}
 		}
 		logger.info("... done          \n");
