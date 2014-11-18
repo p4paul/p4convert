@@ -48,7 +48,9 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		RevisionEntry entry = (RevisionEntry) obj;
 
 		// only test for commit ID if used
-		if (!getCommitId().isEmpty() && !entry.getCommitId().isEmpty()) {
+		if (getCommitId() != null && !getCommitId().isEmpty()
+				&& entry.getCommitId() != null
+				&& !entry.getCommitId().isEmpty()) {
 			if (getCommitId().contentEquals(entry.getCommitId()))
 				return true;
 			else
