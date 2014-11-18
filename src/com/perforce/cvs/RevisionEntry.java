@@ -12,14 +12,13 @@ import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
 import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
-import com.perforce.svn.change.RevisionImport;
 
 public class RevisionEntry implements Comparable<RevisionEntry> {
 
 	private Logger logger = LoggerFactory.getLogger(RevisionEntry.class);
 
 	private RcsObjectNum id;
-	private boolean lazy = true;
+	private String tmpFile;
 	private String path;
 	private int nodeID;
 	private long cvsChange;
@@ -35,10 +34,10 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	public RevisionEntry(RcsObjectDelta revision) {
 		this.id = revision.getID();
 		this.date = revision.getDate();
-		this.commitId = revision.getCommitId().intern();
-		this.author = revision.getAuthor().intern();
-		this.comment = revision.getLog().intern();
-		this.state = revision.getState().intern();
+		this.commitId = revision.getCommitId();
+		this.author = revision.getAuthor();
+		this.comment = revision.getLog();
+		this.state = revision.getState();
 	}
 
 	@Override
@@ -169,7 +168,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setPath(String revPath) {
-		path = revPath.intern();
+		path = revPath;
 	}
 
 	public String getFromPath() {
@@ -177,36 +176,22 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setFromPath(String fromPath) {
-		this.fromPath = fromPath.intern();
+		this.fromPath = fromPath;
 	}
 
 	public String getTmpFile() {
-		if(lazy) {
-			return null;
-		}
-		
-		String tmp;
-		try {
-			tmp = (String) Config.get(CFG.CVS_TMPDIR);
-		} catch (ConfigException e) {
-			tmp = "tmp";
-		}
-		
-		String subPath = path.substring(path.indexOf("/"));
-		String myTmpFile = tmp + subPath + "/" + id.toString();
-		myTmpFile = RevisionImport.unFormatPath(myTmpFile);
-		return myTmpFile;
+		return tmpFile;
 	}
-	
-	public void setLazy(boolean set) {
-		this.lazy = set;
+
+	public void setTmpFile(String tmpFile) {
+		this.tmpFile = tmpFile;
 	}
 
 	public void addLabel(String label) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Label tag: " + label + " - " + getId());
 		}
-		getLabels().add(label.intern());
+		getLabels().add(label);
 	}
 
 	public List<String> getLabels() {
