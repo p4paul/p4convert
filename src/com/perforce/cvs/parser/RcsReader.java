@@ -229,6 +229,17 @@ public class RcsReader {
 				}
 				rcs.add(type, sb.toString());
 				break;
+				
+			case COMMENT:
+				if(line.contains("@")) {
+					int begin = line.indexOf("@") + 1;
+					int end = line.lastIndexOf("@");
+					String comment = line.substring(begin, end);
+					rcs.add(type, comment);
+					return;
+				} else {
+					rcs.add(type, "");
+				}
 
 			default:
 				if (args.length > 1) {

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 public enum RcsSchema {
 
 	UNKNOWN("unknown", RcsSchemaType.STRING),
-	
+
 	// 'admin' block [1:required]
 	HEAD("head", RcsSchemaType.NUM),
 	BRANCH("branch", RcsSchemaType.NUM),
@@ -24,7 +24,7 @@ public enum RcsSchema {
 	STATE("state", RcsSchemaType.STRING),
 	BRANCHES("branches", RcsSchemaType.NUMS),
 	NEXT("next", RcsSchemaType.NUM),
-	
+
 	// extended
 	COMMITID("commitid", RcsSchemaType.STRING),
 	DELTATYPE("deltatype", RcsSchemaType.STRING),
@@ -50,7 +50,7 @@ public enum RcsSchema {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String n) {
 		name = n;
 	}
@@ -66,8 +66,11 @@ public enum RcsSchema {
 					return t;
 				}
 			}
+			if (type.startsWith("comment")) {
+				return RcsSchema.COMMENT;
+			}
 		}
-		
+
 		Logger logger = LoggerFactory.getLogger(RcsSchema.class);
 		logger.info("Unknown RCS type: " + type);
 		RcsSchema unknown = RcsSchema.UNKNOWN;
