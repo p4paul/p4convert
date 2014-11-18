@@ -121,24 +121,6 @@ public class AssetWriter {
 		switch (type) {
 		case P4_ASSET:
 			// use cached file if present
-			ScmType scm = (ScmType) Config.get(CFG.SCM_TYPE);
-			if (scm == ScmType.CVS) {
-				File tmp = new File(content.getFileName());
-				File path = new File(open());
-				if (!path.exists()) {
-					Files.copy(tmp.toPath(), path.toPath());
-					if (logger.isDebugEnabled()) {
-						logger.debug("Copy asset: " + tmp.getPath() + " to "
-								+ path.getPath());
-					}
-				} else {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Asset exists: " + path);
-					}
-				}
-				return;
-			}
-
 			if (Config.isImportMode()) {
 				writeClientFile(content);
 			} else {

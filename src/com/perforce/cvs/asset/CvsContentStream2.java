@@ -8,23 +8,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.asset.ContentStream;
+import com.perforce.common.asset.ContentType;
 import com.perforce.svn.parser.Content;
 
 public class CvsContentStream2 extends ContentStream {
 
-	private Logger logger = LoggerFactory.getLogger(CvsContentStream2.class);
-
 	private RandomAccessFile rf;
 	private long mark = 0L;
 	private long end = 0L;
+	
+	private ContentType contentType;
 
 	public CvsContentStream2(Content content) {
+		this.contentType = content.getType();
+		
 		try {
 			String name = content.getFileName();
-			if (logger.isTraceEnabled()) {
-				logger.trace("filename: " + name);
-			}
-
 			rf = new RandomAccessFile(name, "r");
 			mark = rf.getFilePointer();
 			end = rf.length();
@@ -103,10 +102,28 @@ public class CvsContentStream2 extends ContentStream {
 	public boolean removeBOM() throws IOException {
 		byte[] bom = null;
 		byte[] b = null;
+		switch (contentType) {
+		case UTF_8:
+			bom = new byte[] { (byte) 0xEF, (byte) 0xBB, (byte) 0xBF };
+			b = new byte[bom.length];
+			rf.read(b);
+			break;
 
-		bom = new byte[] { (byte) 0xEF, (byte) 0xBB, (byte) 0xBF };
-		b = new byte[bom.length];
-		rf.read(b);
+		case UTF_16LE:
+			bom = new byte[] { (byte) 0xFF, (byte) 0xFE };
+			b = new byte[2];
+			rf.read(b);
+			break;
+
+		case UTF_16BE:
+			bom = new byte[] { (byte) 0xFE, (byte) 0xFF };
+			b = new byte[2];
+			rf.read(b);
+			break;
+
+		default:
+			return false;
+		}
 
 		// return to start position if no match
 		if (!Arrays.equals(b, bom)) {

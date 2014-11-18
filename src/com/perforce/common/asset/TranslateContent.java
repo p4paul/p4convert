@@ -265,8 +265,7 @@ public class TranslateContent {
 
 			// For unicode servers remove the BOM
 			if (rmBOM) {
-				((SvnContentStream) in).removeBOM();
-				logger.warn("Stuff to do here for CVS");
+				in.removeBOM();
 			}
 
 			// Open Output channels
