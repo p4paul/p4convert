@@ -34,10 +34,10 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	public RevisionEntry(RcsObjectDelta revision) {
 		this.id = revision.getID();
 		this.date = revision.getDate();
-		this.commitId = revision.getCommitId();
-		this.author = revision.getAuthor();
-		this.comment = revision.getLog();
-		this.state = revision.getState();
+		this.commitId = revision.getCommitId().intern();
+		this.author = revision.getAuthor().intern();
+		this.comment = revision.getLog().intern();
+		this.state = revision.getState().intern();
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setAuthor(String user) {
-		author = user;
+		author = user.intern();
 	}
 
 	public String getComment() {
@@ -114,7 +114,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setComment(String log) {
-		comment = log;
+		comment = log.intern();
 	}
 
 	public Date getDate() {
@@ -150,7 +150,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setState(String s) {
-		state = s;
+		state = s.intern();
 	}
 
 	public String toString() {
@@ -168,7 +168,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setPath(String revPath) {
-		path = revPath;
+		path = revPath.intern();
 	}
 
 	public String getFromPath() {
@@ -176,7 +176,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setFromPath(String fromPath) {
-		this.fromPath = fromPath;
+		this.fromPath = fromPath.intern();
 	}
 
 	public String getTmpFile() {
@@ -184,14 +184,14 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setTmpFile(String tmpFile) {
-		this.tmpFile = tmpFile;
+		this.tmpFile = tmpFile.intern();
 	}
 
 	public void addLabel(String label) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Label tag: " + label + " - " + getId());
 		}
-		getLabels().add(label);
+		getLabels().add(label.intern());
 	}
 
 	public List<String> getLabels() {
