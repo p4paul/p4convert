@@ -75,33 +75,42 @@ public class CvsProcessChange extends ProcessChange {
 		if (!new File(cvsSearch).exists()) {
 			cvsSearch = cvsroot;
 		}
-		logger.info("Searching for RCS files...");
+		
+		logger.info("Searching for RCS files:");
 		RcsFileFinder rcsFiles = new RcsFileFinder(cvsSearch);
-
-		logger.info("Building branch list...");
+		int files = rcsFiles.getFiles().size();
+		
+		logger.info("... found " + files + " RCS files\n" );
+		
+		logger.info("Building branch list:");
 		BranchSorter brSort = new BranchSorter();
 		BranchNavigator brNav = new BranchNavigator(brSort);
+		
+		Progress progress = new Progress(files);
+		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
 				RcsReader rcs = new RcsReader(file);
 				brNav.add(rcs);
-
+				progress.update(++count);
 			} catch (Exception e) {
 				logger.warn("Unable to process file: " + file.getAbsolutePath());
 				Stats.inc(StatsType.warningCount);
 			}
 		}
+		logger.info("... done          \n");
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("Sorted branch list:");
 			logger.debug(brSort.toString());
 		}
 
-		logger.info("Building revision list...");
+		logger.info("Building revision list:");
 		RevisionSorter revSort = new RevisionSorter();
 		RevisionNavigator revNav = new RevisionNavigator(revSort, brSort);
-		Progress progress = new Progress(rcsFiles.getFiles().size());
-		int count = 0;
+		
+		progress = new Progress(files);
+		count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
 				RcsReader rcs = new RcsReader(file);
@@ -110,17 +119,18 @@ public class CvsProcessChange extends ProcessChange {
 				// Extract all RCS deltas to tmp store
 				CvsContentReader content = new CvsContentReader(rcs);
 				content.cacheContent();
-				count++;
-				progress.update(count);
+				progress.update(++count);
 			} catch (Exception e) {
 				logger.warn("Unable to process file: " + file.getAbsolutePath());
 				Stats.inc(StatsType.warningCount);
 			}
 		}
+		logger.info("... done          \n");
 
 		// Sort revisions by date/time
-		logger.info("Sorting revisions...");
+		logger.info("Sorting revisions:");
 		revSort.sort();
+		logger.info("... done          \n");
 
 		// Enable labels
 		boolean isLabel = (Boolean) Config.get(CFG.CVS_LABELS);
@@ -157,7 +167,7 @@ public class CvsProcessChange extends ProcessChange {
 				String path = entry.getPath();
 				boolean isOpen = ci.isPendingRevision(path);
 				boolean add = false;
-				
+
 				// if no pending revision open and the same change...
 				if (entry.equals(changeEntry) && !isOpen) {
 					add = true;
