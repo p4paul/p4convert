@@ -1,0 +1,84 @@
+head	1.2;
+access;
+symbols
+	l_3_1_6:1.2
+	l_3_1_5:1.2
+	l_3_1_4:1.2
+	l_3_1_3:1.2
+	l_3_1_2:1.2
+	l_3_1_1:1.2
+	l_3_1_0:1.2
+	rel_3_1:1.2.0.2
+	l_xxx:1.2
+	l_3_0_3:1.1.2.2
+	l_3_0_2:1.1.2.2
+	l_3_0_ean_1:1.1.2.2
+	rel_3_0_ean:1.1.2.2.0.2
+	l_3_0_1:1.1.2.2
+	rel_3_0:1.1.0.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2003.04.09.15.51.37;	author u2;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2002.10.17.09.30.14;	author u1;	state dead;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2002.10.17.09.30.14;	author u1;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2002.10.17.09.34.02;	author u1;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@desc A
+@
+text
+@--- Content 1.2 ---
+@
+
+
+1.1
+log
+@desc B
+@
+text
+@d1 1
+@
+
+
+1.1.2.1
+log
+@desc C
+@
+text
+@a0 1
+--- Content 1.1.2.1 ---@
+
+
+1.1.2.2
+log
+@desc D
+@
+text
+@a0 1
+--- Content 1.1.2.2 ---@
+
+
