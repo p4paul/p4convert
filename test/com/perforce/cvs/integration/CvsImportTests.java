@@ -410,6 +410,12 @@ public class CvsImportTests {
 		testCase("CVScluster01");
 	}
 	
+	@Test
+	public void case050() throws Exception {
+		Config.set(CFG.CVS_MODULE, "branch-branch");
+		testCase("CVScluster01");
+	}
+	
 	/**
 	 * Environment test
 	 * 

@@ -210,8 +210,9 @@ public abstract class RcsNavigator {
 		if (from == null) {
 			return null;
 		}
-		if (branchMap.containsKey(from)) {
-			return branchMap.get(from);
+		RcsObjectNum branchId = getBranchId(from);
+		if (branchMap.containsKey(branchId)) {
+			return branchMap.get(branchId);
 		}
 		return "main";
 	}
