@@ -75,6 +75,9 @@ public class CvsProcessChange extends ProcessChange {
 		revSort = buildRevisionList(rcsFiles, brSort);
 		logger.info("Sorting revisions:");
 		revSort.sort();
+		if (logger.isTraceEnabled()) {
+			logger.trace(revSort.toString());
+		}
 		logger.info("... done          \n");
 
 		// Initialise counters
@@ -82,10 +85,14 @@ public class CvsProcessChange extends ProcessChange {
 		RevisionEntry entry;
 		revSort.reset();
 		RevisionSorter revs = revSort;
-		
+
 		// Iterate over all revisions
 		do {
 			entry = changeEntry;
+			if (logger.isTraceEnabled()) {
+				logger.trace("... next change uses: " + entry);
+				logger.trace("... from remainder: " + revs.isRemainder());
+			}
 
 			// initialise labels
 			if (isLabel) {
@@ -130,11 +137,11 @@ public class CvsProcessChange extends ProcessChange {
 				revs = revSort;
 			}
 			revs.reset();
-			
+
 			// fetch revision for next change
 			changeEntry = revs.next();
 			revs.reset();
-			
+
 			// update counters
 			nodeID = 0;
 			cvsChange++;
