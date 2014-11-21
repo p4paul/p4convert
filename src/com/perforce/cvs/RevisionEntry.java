@@ -22,6 +22,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	private String path;
 	private int nodeID;
 	private long cvsChange;
+	private boolean pseudo = false;
 
 	private Date date;
 	private String commitId;
@@ -159,13 +160,18 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		StringBuffer sb = new StringBuffer();
 		sb.append(getId());
 		sb.append(" ");
+		sb.append(getPath());
+		sb.append(" (");
+		sb.append(getCommitId());
+		sb.append(") (");
+		sb.append(getAuthor());
+		sb.append(" ");
 		sb.append(getDate().getTime());
 		sb.append(" ");
-		sb.append(getPath());
-		sb.append(" ");
-		sb.append(getCommitId());
-		sb.append(" ");
-		sb.append(getAuthor());
+		String hex = Integer.toHexString(getComment().hashCode());
+		sb.append(hex.toUpperCase());
+		sb.append(") ");
+
 		return sb.toString();
 	}
 
@@ -213,5 +219,13 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 			return false;
 		}
 		return true;
+	}
+	
+	public boolean isPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(boolean pseudo) {
+		this.pseudo = pseudo;
 	}
 }

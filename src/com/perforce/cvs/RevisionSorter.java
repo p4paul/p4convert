@@ -7,7 +7,12 @@ import java.util.List;
 public class RevisionSorter {
 
 	private int index = 0;
+	private final boolean remainder;
 	private List<RevisionEntry> list = new ArrayList<RevisionEntry>();
+
+	public RevisionSorter(boolean b) {
+		remainder = b;
+	}
 
 	public void add(RevisionEntry entry) {
 		list.add(entry);
@@ -52,5 +57,9 @@ public class RevisionSorter {
 
 	public void reset() {
 		index = 0;
+	}
+
+	public boolean isRemainder() {
+		return remainder;
 	}
 }

@@ -9,17 +9,25 @@
 @ 
 @pv@ 3 @db.rev@ @//import/main/src/file@ 1 1 0 1 1236403500 1236403500 00000000000000000000000000000000 @//import/main/src/file@ @1.1@ 1 
 @pv@ 0 @db.revcx@ 1 @//import/main/src/file@ 1 0 
-@pv@ 0 @db.desc@ 2 @branch unrelated file
+@pv@ 0 @db.desc@ 2 @add file to main
 @ 
-@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1236403500 1 @branch unrelated file
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1236403500 1 @add file to main
 @ 
-@pv@ 3 @db.rev@ @//import/branch/src/file@ 1 257 0 2 1236403500 1236403500 00000000000000000000000000000000 @//import/branch/src/file@ @1.2@ 257 
-@pv@ 0 @db.revcx@ 2 @//import/branch/src/file@ 1 0 
-@pv@ 0 @db.desc@ 3 @edit unrelated file on branch
+@pv@ 0 @db.integed@ @//import/branch/src/file@ @//import/main/src/file@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/main/src/file@ @//import/branch/src/file@ 0 1 0 1 3 2 
+@pv@ 3 @db.rev@ @//import/branch/src/file@ 1 1 3 2 1236403500 1236403500 00000000000000000000000000000000 @//import/main/src/file@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/branch/src/file@ 1 3 
+@pv@ 0 @db.desc@ 3 @branch unrelated file
 @ 
-@pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1362113737 1 @edit unrelated file on branch
+@pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1236403500 1 @branch unrelated file
 @ 
-@pv@ 3 @db.rev@ @//import/branch/src/file@ 2 1 1 3 1362113737 1362113737 00000000000000000000000000000000 @//import/branch/src/file@ @1.3@ 1 
-@pv@ 0 @db.revcx@ 3 @//import/branch/src/file@ 2 1 
-@rv@ 1 @db.counters@ @change@ @3@ 
+@pv@ 3 @db.rev@ @//import/branch/src/file@ 2 1 2 3 1236403500 1236403500 00000000000000000000000000000000 @//import/branch/src/file@ @1.3@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/branch/src/file@ 2 2 
+@pv@ 0 @db.desc@ 4 @edit unrelated file on branch
+@ 
+@pv@ 0 @db.change@ 4 4 @svn-client@ @pallen@ 1362113737 1 @edit unrelated file on branch
+@ 
+@pv@ 3 @db.rev@ @//import/branch/src/file@ 3 1 0 4 1362113737 1362113737 00000000000000000000000000000000 @//import/branch/src/file@ @1.4@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/branch/src/file@ 3 0 
+@rv@ 1 @db.counters@ @change@ @4@ 
 @rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

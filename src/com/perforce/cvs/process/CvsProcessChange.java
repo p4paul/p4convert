@@ -33,17 +33,28 @@ public class CvsProcessChange extends ProcessChange {
 
 	private Logger logger = LoggerFactory.getLogger(CvsProcessChange.class);
 
+	private DepotInterface depot;
+	private boolean isLabel;
+	private ProcessLabel processLabel;
+
+	private int nodeID = 0;
+	private long cvsChange = 1;
+
+	private RevisionSorter revSort;
+	private RevisionSorter delayedBranch = new RevisionSorter(true);
+
 	protected void processChange() throws Exception {
-		// Read configuration settings for locals
+		// Initialise labels
+		isLabel = (Boolean) Config.get(CFG.CVS_LABELS);
+
+		// Create revision tree and depot
 		String depotPath = (String) Config.get(CFG.P4_DEPOT_PATH);
-		CaseSensitivity caseMode;
-		caseMode = (CaseSensitivity) Config.get(CFG.P4_CASE);
+		CaseSensitivity caseMode = (CaseSensitivity) Config.get(CFG.P4_CASE);
+		depot = ProcessFactory.getDepot(depotPath, caseMode);
+
 		if (logger.isDebugEnabled()) {
 			logger.debug(Config.summary());
 		}
-
-		// Create revision tree and depot
-		DepotInterface depot = ProcessFactory.getDepot(depotPath, caseMode);
 
 		// Check for pending changes, abort if any are found
 		QueryInterface query = ProcessFactory.getQuery(depot);
@@ -54,6 +65,93 @@ public class CvsProcessChange extends ProcessChange {
 			throw new ConverterException(err);
 		}
 
+		// Find all revisions in CVSROOT
+		RcsFileFinder rcsFiles = findRcsFiles();
+
+		// Sort branches
+		BranchSorter brSort = buildBranchList(rcsFiles);
+
+		// Sort revisions by date/time
+		revSort = buildRevisionList(rcsFiles, brSort);
+		logger.info("Sorting revisions:");
+		revSort.sort();
+		logger.info("... done          \n");
+
+		// Initialise counters
+		RevisionEntry changeEntry = revSort.next();
+		RevisionEntry entry;
+		revSort.reset();
+		RevisionSorter revs = revSort;
+		
+		// Iterate over all revisions
+		do {
+			entry = changeEntry;
+
+			// initialise labels
+			if (isLabel) {
+				processLabel = new ProcessLabel(depot);
+			}
+
+			// construct next change
+			ChangeInterface change;
+			long p4Change = cvsChange + (Long) Config.get(CFG.P4_OFFSET);
+			ChangeInfo info = new ChangeInfo(changeEntry, cvsChange);
+			change = ProcessFactory.getChange(p4Change, info, depot);
+			super.setCurrentChange(change);
+
+			// add matching entries to current change
+			while (entry != null && entry.within(changeEntry)) {
+				if (entry.equals(changeEntry)) {
+					nextEntry(entry, revs, change);
+				} else {
+					// else, revision belongs in another change
+					if (logger.isTraceEnabled()) {
+						logger.trace("... leaving: " + entry + "(outside)");
+					}
+				}
+				entry = revs.next();
+			}
+
+			// submit changes
+			submit();
+
+			// submit labels
+			if (isLabel) {
+				if (logger.isDebugEnabled()) {
+					logger.debug(processLabel.toString());
+				}
+				processLabel.submit();
+			}
+
+			// update revision list
+			if (delayedBranch.hasNext()) {
+				revs = delayedBranch;
+			} else {
+				revs = revSort;
+			}
+			revs.reset();
+			
+			// fetch revision for next change
+			changeEntry = revs.next();
+			revs.reset();
+			
+			// update counters
+			nodeID = 0;
+			cvsChange++;
+		} while (changeEntry != null);
+
+		// finish up conversion
+		close();
+	}
+
+	/**
+	 * Returns a list of RCS files under a path defined by the CVSROOT and
+	 * MODULE if set. Only returns ',v' files.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	private RcsFileFinder findRcsFiles() throws Exception {
 		// Find all revisions in CVSROOT
 		String cvsroot = (String) Config.get(CFG.CVS_ROOT);
 		if (!new File(cvsroot).exists()) {
@@ -75,18 +173,27 @@ public class CvsProcessChange extends ProcessChange {
 		if (!new File(cvsSearch).exists()) {
 			cvsSearch = cvsroot;
 		}
-		
+
 		logger.info("Searching for RCS files:");
-		RcsFileFinder rcsFiles = new RcsFileFinder(cvsSearch);
-		int files = rcsFiles.getFiles().size();
-		
-		logger.info("... found " + files + " RCS files\n" );
-		
+		RcsFileFinder files = new RcsFileFinder(cvsSearch);
+
+		int count = files.getFiles().size();
+		logger.info("... found " + count + " RCS files\n");
+
+		return files;
+	}
+
+	/**
+	 * Finds Labels/Branches and builds a list of true branches.
+	 * 
+	 * @return
+	 */
+	private BranchSorter buildBranchList(RcsFileFinder rcsFiles) {
 		logger.info("Building branch list:");
 		BranchSorter brSort = new BranchSorter();
 		BranchNavigator brNav = new BranchNavigator(brSort);
-		
-		Progress progress = new Progress(files);
+
+		Progress progress = new Progress(rcsFiles.getFiles().size());
 		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
@@ -105,13 +212,24 @@ public class CvsProcessChange extends ProcessChange {
 			logger.debug("Sorted branch list:");
 			logger.debug(brSort.toString());
 		}
+		return brSort;
+	}
 
+	/**
+	 * Return a list of all CVS revisions
+	 * 
+	 * @param brSorter
+	 * @return
+	 */
+	private RevisionSorter buildRevisionList(RcsFileFinder rcsFiles,
+			BranchSorter brSorter) {
 		logger.info("Building revision list:");
-		RevisionSorter revSort = new RevisionSorter();
-		RevisionNavigator revNav = new RevisionNavigator(revSort, brSort);
-		
-		progress = new Progress(files);
-		count = 0;
+
+		RevisionSorter revSorter = new RevisionSorter(false);
+		RevisionNavigator revNav = new RevisionNavigator(revSorter, brSorter);
+
+		Progress progress = new Progress(rcsFiles.getFiles().size());
+		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
 				RcsReader rcs = new RcsReader(file);
@@ -129,120 +247,74 @@ public class CvsProcessChange extends ProcessChange {
 		}
 		logger.info("... done          \n");
 
-		// Sort revisions by date/time
-		logger.info("Sorting revisions:");
-		revSort.sort();
-		logger.info("... done          \n");
+		return revSorter;
+	}
 
-		// Enable labels
-		boolean isLabel = (Boolean) Config.get(CFG.CVS_LABELS);
-		ProcessLabel processLabel = null;
+	/**
+	 * Calculates next entry.
+	 * 
+	 * @param entry
+	 * @param changeEntry
+	 * @throws Exception
+	 */
+	private void nextEntry(RevisionEntry entry, RevisionSorter revs,
+			ChangeInterface change) throws Exception {
 
-		// Initialise counters
-		int nodeID = 0;
-		long nextChange = 1;
+		String path = entry.getPath();
 
-		RevisionEntry entry = null;
-		RevisionEntry changeEntry = revSort.next();
-		revSort.reset();
+		// if no pending revisions...
+		if (!change.isPendingRevision(path)) {
+			// add entry to current change
+			addEntry(entry, revs, change);
+		} else {
+			// if pending revision is a REMOVE and current is a PSEUDO branch
+			Action pendingAct = change.getPendingAction(path);
+			if (entry.isPseudo() && pendingAct == Action.REMOVE) {
+				// overlay REMOVE with branch and down-grade to ADD
+				entry.setState("Exp");
+				addEntry(entry, revs, change);
+			} else {
+				// else, revision belongs in another change
+				if (logger.isTraceEnabled()) {
+					logger.trace("... leaving: " + entry + "(opened)");
+				}
+			}
+		}
+	}
 
-		// construct first change
-		long cvsChange = 0;
-		ChangeInterface ci = null;
+	/**
+	 * Adds Entry to current change-list
+	 * 
+	 * @param entry
+	 * @param revs
+	 * @param change
+	 * @throws Exception
+	 */
+	private void addEntry(RevisionEntry entry, RevisionSorter revs,
+			ChangeInterface change) throws Exception {
+		if (entry.isPseudo() && !revs.isRemainder()) {
+			delayedBranch.add(entry);
+			revs.drop(entry);
+		} else {
+			if (logger.isTraceEnabled()) {
+				logger.trace("... adding: " + entry);
+			}
 
-		do {
-			entry = changeEntry;
+			// update entry
+			entry.setNodeID(nodeID);
+			entry.setCvsChange(cvsChange);
 
-			// initialise labels
+			// and add node to current change
+			CvsProcessNode node;
+			node = new CvsProcessNode(change, depot, entry);
+			node.process();
+			revs.drop(entry);
+
+			// tag any labels
 			if (isLabel) {
-				processLabel = new ProcessLabel(depot);
+				processLabel.labelRev(entry, change.getChange());
 			}
-
-			// construct change
-			cvsChange = nextChange;
-			long p4Change = nextChange + (Long) Config.get(CFG.P4_OFFSET);
-			ChangeInfo info = new ChangeInfo(changeEntry, cvsChange);
-			ci = ProcessFactory.getChange(p4Change, info, depot);
-			super.setCurrentChange(ci);
-
-			while (entry != null && entry.within(changeEntry)) {
-				String path = entry.getPath();
-				boolean isOpen = ci.isPendingRevision(path);
-				boolean add = false;
-
-				// if no pending revision open and the same change...
-				if (entry.equals(changeEntry) && !isOpen) {
-					add = true;
-				}
-
-				// if a pending twin-revision...
-				if (isOpen) {
-					// calculate if this is a twin-branch (1ms time diff)
-					long t1 = changeEntry.getDate().getTime();
-					long t2 = entry.getDate().getTime();
-					boolean twin = t1 == (t2 - 1);
-
-					// if pending revision is a REMOVE
-					Action pendingAct = ci.getPendingAction(path);
-					if (twin && pendingAct == Action.REMOVE) {
-						// overlay REMOVE with branch and downgrade to ADD
-						add = true;
-						entry.setState("Exp");
-					}
-				}
-
-				if (add) {
-					if (logger.isTraceEnabled()) {
-						logger.trace(">>> adding: " + entry.toString());
-					}
-
-					// update entry
-					entry.setNodeID(nodeID);
-					entry.setCvsChange(cvsChange);
-
-					// and add node to current change
-					CvsProcessNode node;
-					node = new CvsProcessNode(ci, depot, entry);
-					node.process();
-					revSort.drop(entry);
-
-					// tag any labels
-					if (isLabel) {
-						processLabel.labelRev(entry, ci.getChange());
-					}
-					nodeID++;
-				} else {
-					// else, revision belongs in another change
-					if (logger.isTraceEnabled()) {
-						logger.trace("<<< leaving: " + entry.toString());
-					}
-				}
-
-				// get the next revision
-				entry = revSort.next();
-			}
-
-			// submit current change
-			submit();
-
-			// submit labels
-			if (isLabel) {
-				if (logger.isDebugEnabled()) {
-					logger.debug(processLabel.toString());
-				}
-				processLabel.submit();
-			}
-
-			// update current change
-			revSort.reset();
-			changeEntry = revSort.next();
-			revSort.reset();
-			nodeID = 0;
-			nextChange++;
-
-		} while (changeEntry != null);
-
-		// finish up conversion
-		close();
+			nodeID++;
+		}
 	}
 }

@@ -185,8 +185,8 @@
 @pv@ 9 @db.rev@ @//import/OPENBSD_5_3/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
 @pv@ 9 @db.rev@ @//import/OPENBSD_5_4/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
 @pv@ 9 @db.rev@ @//import/OPENBSD_5_5/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
-@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 4 3 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 1 @//import/main/checkout.c@ @1.1@ 1 
-@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 0 2 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 0 @//import/OpenCVS/checkout.c@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 1 3 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 0 @//import/OpenCVS/checkout.c@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 3 2 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 1 @//import/main/checkout.c@ @1.1@ 1 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_7/checkout.c@ 0 1 0 13 3 16 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_8/checkout.c@ 0 1 0 39 3 43 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_9/checkout.c@ 0 1 0 50 3 55 
@@ -206,7 +206,7 @@
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_3/checkout.c@ 0 1 0 168 3 182 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_4/checkout.c@ 0 1 0 168 3 182 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_5/checkout.c@ 0 1 0 168 3 182 
-@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 1 2 0 1 5 3 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 0 1 0 1 3 2 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_7/checkout.c@ @//import/main/checkout.c@ 0 13 0 1 2 16 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_8/checkout.c@ @//import/main/checkout.c@ 0 39 0 1 2 43 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_9/checkout.c@ @//import/main/checkout.c@ 0 50 0 1 2 55 
@@ -226,24 +226,24 @@
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_3/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_4/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_5/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
-@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 1 2 4 3 
-@pv@ 2 @db.change@ 182 182 @svn-client@ @branch@ 1324994341 1 @Branch: 
+@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 0 1 2 2 
+@pv@ 2 @db.change@ 182 182 @svn-client@ @nicm@ 1324994341 1 @Move some global variables/stat@ @//import/OPENBSD_5_...@ 
 @pv@ 2 @db.change@ 181 181 @svn-client@ @nicm@ 1324994341 1 @Move some global variables/stat@ @//import/main/*@ 
-@pv@ 2 @db.change@ 180 180 @svn-client@ @branch@ 1280526438 1 @Branch: 
+@pv@ 2 @db.change@ 180 180 @svn-client@ @ray@ 1280526438 1 @Check date_parse return values.@ @//import/OPENBSD_...@ 
 @pv@ 2 @db.change@ 179 179 @svn-client@ @ray@ 1280526438 1 @Check date_parse return values.@ @//import/main/*@ 
 @pv@ 2 @db.change@ 178 178 @svn-client@ @ray@ 1279921565 1 @Reduce variable/function name a@ @//import/main/*@ 
-@pv@ 2 @db.change@ 177 177 @svn-client@ @branch@ 1245615781 1 @Branch: 
+@pv@ 2 @db.change@ 177 177 @svn-client@ @sthen@ 1245615781 1 @Use correct synopses for checko@ @//import/OPENBSD_4_...@ 
 @pv@ 2 @db.change@ 176 176 @svn-client@ @sthen@ 1245615781 1 @Use correct synopses for checko@ @//import/main/*@ 
 @pv@ 2 @db.change@ 175 175 @svn-client@ @joris@ 1239000356 1 @make sure we handle allowed opt@ @//import/main/*@ 
 @pv@ 2 @db.change@ 174 174 @svn-client@ @joris@ 1238138937 1 @make sure that when we try to s@ @//import/main/*@ 
 @pv@ 2 @db.change@ 173 173 @svn-client@ @joris@ 1238017833 1 @switch our file and directory l@ @//import/main/*@ 
 @pv@ 2 @db.change@ 172 172 @svn-client@ @joris@ 1237367649 1 @be carefull when trying to acce@ @//import/main/*@ 
-@pv@ 2 @db.change@ 171 171 @svn-client@ @branch@ 1235424728 1 @Branch: 
+@pv@ 2 @db.change@ 171 171 @svn-client@ @joris@ 1235424728 1 @we no longer push out Set-stick@ @//import/OPENBSD_4_5/*@ 
 @pv@ 2 @db.change@ 170 170 @svn-client@ @joris@ 1235424728 1 @we no longer push out Set-stick@ @//import/main/*@ 
 @pv@ 2 @db.change@ 169 169 @svn-client@ @joris@ 1235227853 1 @use FILE_ON_DISK flags when we @ @//import/main/*@ 
 @pv@ 2 @db.change@ 168 168 @svn-client@ @joris@ 1235223858 1 @use file_flags for 2 more reaso@ @//import/main/*@ 
 @pv@ 2 @db.change@ 167 167 @svn-client@ @pyr@ 1233164413 1 @enable -d for the export comman@ @//import/main/*@ 
-@pv@ 2 @db.change@ 166 166 @svn-client@ @branch@ 1215520198 1 @Branch: 
+@pv@ 2 @db.change@ 166 166 @svn-client@ @joris@ 1215520198 1 @use cf->fd in cvs_remote_sendfi@ @//import/OPENBSD_4_4/*@ 
 @pv@ 2 @db.change@ 165 165 @svn-client@ @joris@ 1215520198 1 @use cf->fd in cvs_remote_sendfi@ @//import/main/*@ 
 @pv@ 2 @db.change@ 164 164 @svn-client@ @tobias@ 1213418048 1 @Conforming to RCS specification@ @//import/main/*@ 
 @pv@ 2 @db.change@ 163 163 @svn-client@ @tobias@ 1213415909 1 @Added support for sticky date s@ @//import/main/*@ 
@@ -259,7 +259,7 @@
 @pv@ 2 @db.change@ 153 153 @svn-client@ @tobias@ 1211471101 1 @expension -> expansion
 @pv@ 2 @db.change@ 152 152 @svn-client@ @joris@ 1205032492 1 @proper repository locking:
 @pv@ 2 @db.change@ 151 151 @svn-client@ @joris@ 1205007994 1 @add checkout/update -j support.@ @//import/main/*@ 
-@pv@ 2 @db.change@ 150 150 @svn-client@ @branch@ 1204321437 1 @Branch: 
+@pv@ 2 @db.change@ 150 150 @svn-client@ @joris@ 1204321437 1 @handle file permissions and own@ @//import/OPENBSD_4_3/*@ 
 @pv@ 2 @db.change@ 149 149 @svn-client@ @joris@ 1204321437 1 @handle file permissions and own@ @//import/main/*@ 
 @pv@ 2 @db.change@ 148 148 @svn-client@ @joris@ 1204151644 1 @prevent file races
 @pv@ 2 @db.change@ 147 147 @svn-client@ @tobias@ 1203883445 1 @Properly handle return value of@ @//import/main/*@ 
@@ -302,7 +302,7 @@
 @pv@ 2 @db.change@ 110 110 @svn-client@ @tobias@ 1189369446 1 @Added support for checkout -p w@ @//import/main/*@ 
 @pv@ 2 @db.change@ 109 109 @svn-client@ @joris@ 1189206304 1 @Sprinkle some magic so checkout@ @//import/main/*@ 
 @pv@ 2 @db.change@ 108 108 @svn-client@ @tobias@ 1189193765 1 @Added support for single file c@ @//import/main/*@ 
-@pv@ 2 @db.change@ 107 107 @svn-client@ @branch@ 1185353124 1 @Branch: 
+@pv@ 2 @db.change@ 107 107 @svn-client@ @xsa@ 1185353124 1 @Correctly handle the export com@ @//import/OPENBSD_4_2/*@ 
 @pv@ 2 @db.change@ 106 106 @svn-client@ @xsa@ 1185353124 1 @Correctly handle the export com@ @//import/main/*@ 
 @pv@ 2 @db.change@ 105 105 @svn-client@ @xsa@ 1184746647 1 @Support -r for the export comma@ @//import/main/*@ 
 @pv@ 2 @db.change@ 104 104 @svn-client@ @joris@ 1183468962 1 @Rework the way opencvs works in@ @//import/main/*@ 
@@ -310,7 +310,7 @@
 @pv@ 2 @db.change@ 102 102 @svn-client@ @joris@ 1182916696 1 @We were missing the needed clue@ @//import/main/*@ 
 @pv@ 2 @db.change@ 101 101 @svn-client@ @joris@ 1182189253 1 @first stab at history stuff for@ @//import/main/*@ 
 @pv@ 2 @db.change@ 100 100 @svn-client@ @niallo@ 1180720067 1 @add support for local and remot@ @//import/main/*@ 
-@pv@ 2 @db.change@ 99 99 @svn-client@ @branch@ 1172126529 1 @Branch: 
+@pv@ 2 @db.change@ 99 99 @svn-client@ @otto@ 1172126529 1 @general includes cleanup sweep.@ @//import/OPENBSD_4_1/*@ 
 @pv@ 2 @db.change@ 98 98 @svn-client@ @otto@ 1172126529 1 @general includes cleanup sweep.@ @//import/main/*@ 
 @pv@ 2 @db.change@ 97 97 @svn-client@ @otto@ 1171794645 1 @an erroneous free() crept in du@ @//import/main/*@ 
 @pv@ 2 @db.change@ 96 96 @svn-client@ @xsa@ 1171736623 1 @cvs_path_cat() removal since we@ @//import/main/*@ 
@@ -337,7 +337,7 @@
 @pv@ 2 @db.change@ 75 75 @svn-client@ @joris@ 1167863310 1 @add support for 'remove' in a r@ @//import/main/*@ 
 @pv@ 2 @db.change@ 74 74 @svn-client@ @joris@ 1167857306 1 @if we are commiting a file, do @ @//import/main/*@ 
 @pv@ 2 @db.change@ 73 73 @svn-client@ @xsa@ 1166788310 1 @snprintf() -> cvs_path_cat();
-@pv@ 2 @db.change@ 72 72 @svn-client@ @branch@ 1152293837 1 @Branch: 
+@pv@ 2 @db.change@ 72 72 @svn-client@ @joris@ 1152293837 1 @first part of opencvs remote, f@ @//import/OPENBSD_4_0/*@ 
 @pv@ 2 @db.change@ 71 71 @svn-client@ @joris@ 1152293837 1 @first part of opencvs remote, f@ @//import/main/*@ 
 @pv@ 2 @db.change@ 70 70 @svn-client@ @reyk@ 1151785846 1 @implement the -p (dump) flag fo@ @//import/main/*@ 
 @pv@ 2 @db.change@ 69 69 @svn-client@ @joris@ 1150693517 1 @kill local and remote callback @ @//import/main/*@ 
@@ -354,7 +354,7 @@
 @pv@ 2 @db.change@ 58 58 @svn-client@ @joris@ 1148700630 1 @commit the new opencvs code, i @ @//import/main/*@ 
 @pv@ 2 @db.change@ 57 57 @svn-client@ @deraadt@ 1144982735 1 @remove a metric buttload of exc@ @//import/main/*@ 
 @pv@ 2 @db.change@ 56 56 @svn-client@ @ray@ 1143207267 1 @Remove unused variables, better@ @//import/main/*@ 
-@pv@ 2 @db.change@ 55 55 @svn-client@ @branch@ 1138715720 1 @Branch: 
+@pv@ 2 @db.change@ 55 55 @svn-client@ @xsa@ 1138715720 1 @errors in cvs_checkout_init() a@ @//import/OPENBSD_3_9/*@ 
 @pv@ 2 @db.change@ 54 54 @svn-client@ @xsa@ 1138715720 1 @errors in cvs_checkout_init() a@ @//import/main/*@ 
 @pv@ 2 @db.change@ 53 53 @svn-client@ @xsa@ 1138643927 1 @strerror() -> rcs_errstr() when@ @//import/main/*@ 
 @pv@ 2 @db.change@ 52 52 @svn-client@ @xsa@ 1138366588 1 @cvs_mkadmin() cannot return < 0@ @//import/main/*@ 
@@ -366,7 +366,7 @@
 @pv@ 2 @db.change@ 46 46 @svn-client@ @joris@ 1135908208 1 @major cleanup of the functions @ @//import/main/*@ 
 @pv@ 2 @db.change@ 45 45 @svn-client@ @joris@ 1133571728 1 @add very basic support for the @ @//import/main/*@ 
 @pv@ 2 @db.change@ 44 44 @svn-client@ @xsa@ 1126803670 1 @check in cvs_mkadmin() wether w@ @//import/main/*@ 
-@pv@ 2 @db.change@ 43 43 @svn-client@ @branch@ 1122293143 1 @Branch: 
+@pv@ 2 @db.change@ 43 43 @svn-client@ @xsa@ 1122293143 1 @KNF;
 @pv@ 2 @db.change@ 42 42 @svn-client@ @xsa@ 1122293143 1 @KNF;
 @pv@ 2 @db.change@ 41 41 @svn-client@ @xsa@ 1122227285 1 @some more `if (!var)' cleanup;
 @pv@ 2 @db.change@ 40 40 @svn-client@ @joris@ 1120812883 1 @
@@ -393,7 +393,7 @@
 @pv@ 2 @db.change@ 19 19 @svn-client@ @joris@ 1113242187 1 @
 @pv@ 2 @db.change@ 18 18 @svn-client@ @xsa@ 1112549570 1 @first round of EX_* exit codes @ @//import/main/*@ 
 @pv@ 2 @db.change@ 17 17 @svn-client@ @joris@ 1112204584 1 @
-@pv@ 2 @db.change@ 16 16 @svn-client@ @branch@ 1109110320 1 @Branch: 
+@pv@ 2 @db.change@ 16 16 @svn-client@ @jfb@ 1109110320 1 @- support -c and -s to retrieve@ @//import/OPENBSD_3_7/*@ 
 @pv@ 2 @db.change@ 15 15 @svn-client@ @jfb@ 1109110320 1 @- support -c and -s to retrieve@ @//import/main/*@ 
 @pv@ 2 @db.change@ 14 14 @svn-client@ @jfb@ 1102986711 1 @cleaner error handling on conne@ @//import/main/*@ 
 @pv@ 2 @db.change@ 13 13 @svn-client@ @tedu@ 1102439456 1 @less whitespace, more pretty.  @ @//import/main/*@ 
@@ -406,26 +406,26 @@
 @pv@ 2 @db.change@ 6 6 @svn-client@ @jfb@ 1091125965 1 @Don't export `cvs_root'
 @pv@ 2 @db.change@ 5 5 @svn-client@ @jfb@ 1090980089 1 @Pass the appropriate argument t@ @//import/main/*@ 
 @pv@ 2 @db.change@ 4 4 @svn-client@ @jfb@ 1090863030 1 @* make checkout work in remote @ @//import/main/*@ 
-@pv@ 2 @db.change@ 3 3 @svn-client@ @branch@ 1089756160 1 @Branch: 
-@pv@ 2 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ @//import/OpenCVS/*@ 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ @//import/OpenCVS/*@ 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @Initial revision
 @pv@ 2 @db.change@ 1 1 @svn-client@ @jfb@ 1089756160 1 @Initial revision
-@pv@ 0 @db.desc@ 182 @Branch: 
+@pv@ 0 @db.desc@ 182 @Move some global variables/statics to locals, from Michael W
 @pv@ 0 @db.desc@ 181 @Move some global variables/statics to locals, from Michael W
-@pv@ 0 @db.desc@ 180 @Branch: 
+@pv@ 0 @db.desc@ 180 @Check date_parse return values.
 @pv@ 0 @db.desc@ 179 @Check date_parse return values.
 @pv@ 0 @db.desc@ 178 @Reduce variable/function name and whitespace differences between
-@pv@ 0 @db.desc@ 177 @Branch: 
+@pv@ 0 @db.desc@ 177 @Use correct synopses for checkout and export when an invalid -k option
 @pv@ 0 @db.desc@ 176 @Use correct synopses for checkout and export when an invalid -k option
 @pv@ 0 @db.desc@ 175 @make sure we handle allowed options in cvs_export() instead
 @pv@ 0 @db.desc@ 174 @make sure that when we try to send a Set-sticky to the client,
 @pv@ 0 @db.desc@ 173 @switch our file and directory lists to RB trees (see tree(3)),
 @pv@ 0 @db.desc@ 172 @be carefull when trying to access cf->file_rcs in cvs_checkout_file()
-@pv@ 0 @db.desc@ 171 @Branch: 
+@pv@ 0 @db.desc@ 171 @we no longer push out Set-sticky to the client when writing
 @pv@ 0 @db.desc@ 170 @we no longer push out Set-sticky to the client when writing
 @pv@ 0 @db.desc@ 169 @use FILE_ON_DISK flags when we need to verify if a file
 @pv@ 0 @db.desc@ 168 @use file_flags for 2 more reasons:
 @pv@ 0 @db.desc@ 167 @enable -d for the export command.
-@pv@ 0 @db.desc@ 166 @Branch: 
+@pv@ 0 @db.desc@ 166 @use cf->fd in cvs_remote_sendfile() instead of using a local
 @pv@ 0 @db.desc@ 165 @use cf->fd in cvs_remote_sendfile() instead of using a local
 @pv@ 0 @db.desc@ 164 @Conforming to RCS specification, it is possible but unlikely to encounter
 @pv@ 0 @db.desc@ 163 @Added support for sticky date set in CVS/Tag and CVS/Entries per directory.
@@ -441,7 +441,7 @@
 @pv@ 0 @db.desc@ 153 @expension -> expansion
 @pv@ 0 @db.desc@ 152 @proper repository locking:
 @pv@ 0 @db.desc@ 151 @add checkout/update -j support.
-@pv@ 0 @db.desc@ 150 @Branch: 
+@pv@ 0 @db.desc@ 150 @handle file permissions and owners properly.
 @pv@ 0 @db.desc@ 149 @handle file permissions and owners properly.
 @pv@ 0 @db.desc@ 148 @prevent file races
 @pv@ 0 @db.desc@ 147 @Properly handle return value of dirname().
@@ -484,7 +484,7 @@
 @pv@ 0 @db.desc@ 110 @Added support for checkout -p with local repository.
 @pv@ 0 @db.desc@ 109 @Sprinkle some magic so checkout/update -p works
 @pv@ 0 @db.desc@ 108 @Added support for single file checkout.
-@pv@ 0 @db.desc@ 107 @Branch: 
+@pv@ 0 @db.desc@ 107 @Correctly handle the export command when writing to history file.
 @pv@ 0 @db.desc@ 106 @Correctly handle the export command when writing to history file.
 @pv@ 0 @db.desc@ 105 @Support -r for the export command.
 @pv@ 0 @db.desc@ 104 @Rework the way opencvs works in relation to files in the Attic/:
@@ -492,7 +492,7 @@
 @pv@ 0 @db.desc@ 102 @We were missing the needed clue/magic to have our remote setup
 @pv@ 0 @db.desc@ 101 @first stab at history stuff for opencvs, currently only writes
 @pv@ 0 @db.desc@ 100 @add support for local and remote branch checkout.  for example,
-@pv@ 0 @db.desc@ 99 @Branch: 
+@pv@ 0 @db.desc@ 99 @general includes cleanup sweep. ok joris@@ niallo@@
 @pv@ 0 @db.desc@ 98 @general includes cleanup sweep. ok joris@@ niallo@@
 @pv@ 0 @db.desc@ 97 @an erroneous free() crept in due to a merge error
 @pv@ 0 @db.desc@ 96 @cvs_path_cat() removal since we can now easily handle that
@@ -519,7 +519,7 @@
 @pv@ 0 @db.desc@ 75 @add support for 'remove' in a remote setup.
 @pv@ 0 @db.desc@ 74 @if we are commiting a file, do not let the server resend it
 @pv@ 0 @db.desc@ 73 @snprintf() -> cvs_path_cat();
-@pv@ 0 @db.desc@ 72 @Branch: 
+@pv@ 0 @db.desc@ 72 @first part of opencvs remote, fairly useable on existing trees
 @pv@ 0 @db.desc@ 71 @first part of opencvs remote, fairly useable on existing trees
 @pv@ 0 @db.desc@ 70 @implement the -p (dump) flag for cvs update
 @pv@ 0 @db.desc@ 69 @kill local and remote callback and just have one called fileproc.
@@ -536,7 +536,7 @@
 @pv@ 0 @db.desc@ 58 @commit the new opencvs code, i have been hacking on
 @pv@ 0 @db.desc@ 57 @remove a metric buttload of excessive ()
 @pv@ 0 @db.desc@ 56 @Remove unused variables, better integer types, prevent fallthroughs.
-@pv@ 0 @db.desc@ 55 @Branch: 
+@pv@ 0 @db.desc@ 55 @errors in cvs_checkout_init() are definitly fatal.
 @pv@ 0 @db.desc@ 54 @errors in cvs_checkout_init() are definitly fatal.
 @pv@ 0 @db.desc@ 53 @strerror() -> rcs_errstr() when passing rcs_errno as argument;
 @pv@ 0 @db.desc@ 52 @cvs_mkadmin() cannot return < 0 anymore;
@@ -548,7 +548,7 @@
 @pv@ 0 @db.desc@ 46 @major cleanup of the functions handling the remote cvs protocol.
 @pv@ 0 @db.desc@ 45 @add very basic support for the following stuff:
 @pv@ 0 @db.desc@ 44 @check in cvs_mkadmin() wether we need to create or not the
-@pv@ 0 @db.desc@ 43 @Branch: 
+@pv@ 0 @db.desc@ 43 @KNF;
 @pv@ 0 @db.desc@ 42 @KNF;
 @pv@ 0 @db.desc@ 41 @some more `if (!var)' cleanup;
 @pv@ 0 @db.desc@ 40 @
@@ -575,7 +575,7 @@
 @pv@ 0 @db.desc@ 19 @
 @pv@ 0 @db.desc@ 18 @first round of EX_* exit codes removal; ok joris@@.
 @pv@ 0 @db.desc@ 17 @
-@pv@ 0 @db.desc@ 16 @Branch: 
+@pv@ 0 @db.desc@ 16 @- support -c and -s to retrieve the module list
 @pv@ 0 @db.desc@ 15 @- support -c and -s to retrieve the module list
 @pv@ 0 @db.desc@ 14 @cleaner error handling on connection setup and in case of connection
 @pv@ 0 @db.desc@ 13 @less whitespace, more pretty.  ok jfb
@@ -588,6 +588,6 @@
 @pv@ 0 @db.desc@ 6 @Don't export `cvs_root'
 @pv@ 0 @db.desc@ 5 @Pass the appropriate argument to cvs_client_connect()
 @pv@ 0 @db.desc@ 4 @* make checkout work in remote mode (almost)
-@pv@ 0 @db.desc@ 3 @Branch: 
-@pv@ 0 @db.desc@ 2 @* initial import from the cvs-tools module
+@pv@ 0 @db.desc@ 3 @* initial import from the cvs-tools module
+@pv@ 0 @db.desc@ 2 @Initial revision
 @pv@ 0 @db.desc@ 1 @Initial revision

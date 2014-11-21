@@ -9,17 +9,19 @@
 @ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 1 1 0 1 1089756160 1089756160 00000000000000000000000000000000 @//import/main/checkout.c@ @1.1@ 1 
 @pv@ 0 @db.revcx@ 1 @//import/main/checkout.c@ 1 0 
-@pv@ 0 @db.desc@ 2 @* initial import from the cvs-tools module
+@pv@ 0 @db.desc@ 2 @Initial revision
 @ 
-@pv@ 0 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ 
-@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 0 2 1089756160 1089756160 00000000000000000000000000000000 @//import/OpenCVS/checkout.c@ @1.2@ 1 
-@pv@ 0 @db.revcx@ 2 @//import/OpenCVS/checkout.c@ 1 0 
-@pv@ 0 @db.desc@ 3 @Branch: @ 
-@pv@ 0 @db.change@ 3 3 @svn-client@ @branch@ 1089756160 1 @Branch: @ 
-@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 1 2 4 3 
-@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 1 2 0 1 5 3 
-@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 4 3 1089756160 1089756160 00000000000000000000000000000000 @//import/main/checkout.c@ @1.1@ 1 
-@pv@ 0 @db.revcx@ 3 @//import/OpenCVS/checkout.c@ 2 4 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @Initial revision
+@ 
+@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 0 1 0 1 3 2 
+@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 3 2 1089756160 1089756160 00000000000000000000000000000000 @//import/main/checkout.c@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/OpenCVS/checkout.c@ 1 3 
+@pv@ 0 @db.desc@ 3 @* initial import from the cvs-tools module
+@ 
+@pv@ 0 @db.change@ 3 3 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ 
+@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 1 3 1089756160 1089756160 00000000000000000000000000000000 @//import/OpenCVS/checkout.c@ @1.3@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/OpenCVS/checkout.c@ 2 1 
 @pv@ 0 @db.desc@ 4 @* make checkout work in remote mode (almost)
 @ 
 @pv@ 0 @db.change@ 4 4 @svn-client@ @jfb@ 1090863030 1 @* make checkout work in remote @ 
@@ -91,8 +93,11 @@ failure
 @pv@ 0 @db.change@ 15 15 @svn-client@ @jfb@ 1109110320 1 @- support -c and -s to retrieve@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 13 1 1 15 1109110320 1109110320 00000000000000000000000000000000 @//import/main/checkout.c@ @1.15@ 1 
 @pv@ 0 @db.revcx@ 15 @//import/main/checkout.c@ 13 1 
-@pv@ 0 @db.desc@ 16 @Branch: @ 
-@pv@ 0 @db.change@ 16 16 @svn-client@ @branch@ 1109110320 1 @Branch: @ 
+@pv@ 0 @db.desc@ 16 @- support -c and -s to retrieve the module list
+- silently accept most of the other options supported by checkout
+- do not abandon all hope if the `expand-modules' request fails
+@ 
+@pv@ 0 @db.change@ 16 16 @svn-client@ @jfb@ 1109110320 1 @- support -c and -s to retrieve@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_7/checkout.c@ @//import/main/checkout.c@ 0 13 0 1 2 16 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_7/checkout.c@ 0 1 0 13 3 16 
 @pv@ 3 @db.rev@ @//import/OPENBSD_3_7/checkout.c@ 1 1 3 16 1109110320 1109110320 00000000000000000000000000000000 @//import/main/checkout.c@ @1.15@ 1 
@@ -309,8 +314,10 @@ ok xsa@@
 @ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 39 1 1 42 1122293143 1122293143 00000000000000000000000000000000 @//import/main/checkout.c@ @1.42@ 1 
 @pv@ 0 @db.revcx@ 42 @//import/main/checkout.c@ 39 1 
-@pv@ 0 @db.desc@ 43 @Branch: @ 
-@pv@ 0 @db.change@ 43 43 @svn-client@ @branch@ 1122293143 1 @Branch: @ 
+@pv@ 0 @db.desc@ 43 @KNF;
+@ 
+@pv@ 0 @db.change@ 43 43 @svn-client@ @xsa@ 1122293143 1 @KNF;
+@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_8/checkout.c@ @//import/main/checkout.c@ 0 39 0 1 2 43 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_8/checkout.c@ 0 1 0 39 3 43 
 @pv@ 3 @db.rev@ @//import/OPENBSD_3_8/checkout.c@ 1 1 3 43 1122293143 1122293143 00000000000000000000000000000000 @//import/main/checkout.c@ @1.42@ 1 
@@ -394,8 +401,9 @@ ok xsa@@ and niallo@@
 @pv@ 0 @db.change@ 54 54 @svn-client@ @xsa@ 1138715720 1 @errors in cvs_checkout_init() a@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 50 1 1 54 1138715720 1138715720 00000000000000000000000000000000 @//import/main/checkout.c@ @1.54@ 1 
 @pv@ 0 @db.revcx@ 54 @//import/main/checkout.c@ 50 1 
-@pv@ 0 @db.desc@ 55 @Branch: @ 
-@pv@ 0 @db.change@ 55 55 @svn-client@ @branch@ 1138715720 1 @Branch: @ 
+@pv@ 0 @db.desc@ 55 @errors in cvs_checkout_init() are definitly fatal.
+@ 
+@pv@ 0 @db.change@ 55 55 @svn-client@ @xsa@ 1138715720 1 @errors in cvs_checkout_init() a@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_9/checkout.c@ @//import/main/checkout.c@ 0 50 0 1 2 55 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_9/checkout.c@ 0 1 0 50 3 55 
 @pv@ 3 @db.rev@ @//import/OPENBSD_3_9/checkout.c@ 1 1 3 55 1138715720 1138715720 00000000000000000000000000000000 @//import/main/checkout.c@ @1.54@ 1 
@@ -535,8 +543,20 @@ contact me, and please include a full trace (-t).
 @pv@ 0 @db.change@ 71 71 @svn-client@ @joris@ 1152293837 1 @first part of opencvs remote, f@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 66 1 1 71 1152293837 1152293837 00000000000000000000000000000000 @//import/main/checkout.c@ @1.71@ 1 
 @pv@ 0 @db.revcx@ 71 @//import/main/checkout.c@ 66 1 
-@pv@ 0 @db.desc@ 72 @Branch: @ 
-@pv@ 0 @db.change@ 72 72 @svn-client@ @branch@ 1152293837 1 @Branch: @ 
+@pv@ 0 @db.desc@ 72 @first part of opencvs remote, fairly useable on existing trees
+although i advise against using it on real development trees for now.
+
+only a few commands work right so far:
+- commit
+- diff
+- status
+- log
+- update (partially working)
+
+if you feel like testing remote and run into bugs feel free to
+contact me, and please include a full trace (-t).
+@ 
+@pv@ 0 @db.change@ 72 72 @svn-client@ @joris@ 1152293837 1 @first part of opencvs remote, f@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_0/checkout.c@ @//import/main/checkout.c@ 0 66 0 1 2 72 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_0/checkout.c@ 0 1 0 66 3 72 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_0/checkout.c@ 1 1 3 72 1152293837 1152293837 00000000000000000000000000000000 @//import/main/checkout.c@ @1.71@ 1 
@@ -717,8 +737,9 @@ OK thib@@ joris@@.
 @pv@ 0 @db.change@ 98 98 @svn-client@ @otto@ 1172126529 1 @general includes cleanup sweep.@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 92 1 1 98 1172126529 1172126529 00000000000000000000000000000000 @//import/main/checkout.c@ @1.98@ 1 
 @pv@ 0 @db.revcx@ 98 @//import/main/checkout.c@ 92 1 
-@pv@ 0 @db.desc@ 99 @Branch: @ 
-@pv@ 0 @db.change@ 99 99 @svn-client@ @branch@ 1172126529 1 @Branch: @ 
+@pv@ 0 @db.desc@ 99 @general includes cleanup sweep. ok joris@@ niallo@@
+@ 
+@pv@ 0 @db.change@ 99 99 @svn-client@ @otto@ 1172126529 1 @general includes cleanup sweep.@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_1/checkout.c@ @//import/main/checkout.c@ 0 92 0 1 2 99 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_1/checkout.c@ 0 1 0 92 3 99 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_1/checkout.c@ 1 1 3 99 1172126529 1172126529 00000000000000000000000000000000 @//import/main/checkout.c@ @1.98@ 1 
@@ -809,8 +830,9 @@ thanks guys!
 @pv@ 0 @db.change@ 106 106 @svn-client@ @xsa@ 1185353124 1 @Correctly handle the export com@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 99 1 1 106 1185353124 1185353124 00000000000000000000000000000000 @//import/main/checkout.c@ @1.106@ 1 
 @pv@ 0 @db.revcx@ 106 @//import/main/checkout.c@ 99 1 
-@pv@ 0 @db.desc@ 107 @Branch: @ 
-@pv@ 0 @db.change@ 107 107 @svn-client@ @branch@ 1185353124 1 @Branch: @ 
+@pv@ 0 @db.desc@ 107 @Correctly handle the export command when writing to history file.
+@ 
+@pv@ 0 @db.change@ 107 107 @svn-client@ @xsa@ 1185353124 1 @Correctly handle the export com@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_2/checkout.c@ @//import/main/checkout.c@ 0 99 0 1 2 107 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_2/checkout.c@ 0 1 0 99 3 107 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_2/checkout.c@ 1 1 3 107 1185353124 1185353124 00000000000000000000000000000000 @//import/main/checkout.c@ @1.106@ 1 
@@ -1158,8 +1180,14 @@ problem report & diff testing by David Crawshaw.
 @pv@ 0 @db.change@ 149 149 @svn-client@ @joris@ 1204321437 1 @handle file permissions and own@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 141 1 1 149 1204321437 1204321437 00000000000000000000000000000000 @//import/main/checkout.c@ @1.149@ 1 
 @pv@ 0 @db.revcx@ 149 @//import/main/checkout.c@ 141 1 
-@pv@ 0 @db.desc@ 150 @Branch: @ 
-@pv@ 0 @db.change@ 150 150 @svn-client@ @branch@ 1204321437 1 @Branch: @ 
+@pv@ 0 @db.desc@ 150 @handle file permissions and owners properly.
+matches what gnu cvs does.
+
+fixes the fact that we couldnt update group writable files.
+
+problem report & diff testing by David Crawshaw.
+@ 
+@pv@ 0 @db.change@ 150 150 @svn-client@ @joris@ 1204321437 1 @handle file permissions and own@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_3/checkout.c@ @//import/main/checkout.c@ 0 141 0 1 2 150 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_3/checkout.c@ 0 1 0 141 3 150 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_3/checkout.c@ 1 1 3 150 1204321437 1204321437 00000000000000000000000000000000 @//import/main/checkout.c@ @1.149@ 1 
@@ -1297,8 +1325,10 @@ variable that is only used once, which is in this case.
 @pv@ 0 @db.change@ 165 165 @svn-client@ @joris@ 1215520198 1 @use cf->fd in cvs_remote_sendfi@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 156 1 1 165 1215520198 1215520198 00000000000000000000000000000000 @//import/main/checkout.c@ @1.165@ 1 
 @pv@ 0 @db.revcx@ 165 @//import/main/checkout.c@ 156 1 
-@pv@ 0 @db.desc@ 166 @Branch: @ 
-@pv@ 0 @db.change@ 166 166 @svn-client@ @branch@ 1215520198 1 @Branch: @ 
+@pv@ 0 @db.desc@ 166 @use cf->fd in cvs_remote_sendfile() instead of using a local
+variable that is only used once, which is in this case.
+@ 
+@pv@ 0 @db.change@ 166 166 @svn-client@ @joris@ 1215520198 1 @use cf->fd in cvs_remote_sendfi@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_4/checkout.c@ @//import/main/checkout.c@ 0 156 0 1 2 166 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_4/checkout.c@ 0 1 0 156 3 166 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_4/checkout.c@ 1 1 3 166 1215520198 1215520198 00000000000000000000000000000000 @//import/main/checkout.c@ @1.165@ 1 
@@ -1341,8 +1371,18 @@ working copies because they were missing CVS/Tag files.
 @pv@ 0 @db.change@ 170 170 @svn-client@ @joris@ 1235424728 1 @we no longer push out Set-stick@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 160 1 1 170 1235424728 1235424728 00000000000000000000000000000000 @//import/main/checkout.c@ @1.170@ 1 
 @pv@ 0 @db.revcx@ 170 @//import/main/checkout.c@ 160 1 
-@pv@ 0 @db.desc@ 171 @Branch: @ 
-@pv@ 0 @db.change@ 171 171 @svn-client@ @branch@ 1235424728 1 @Branch: @ 
+@pv@ 0 @db.desc@ 171 @we no longer push out Set-sticky to the client when writing
+our Tag file on the server or in cvs_mkpath(), this caused
+problems for the "fast checkout" mechanism when a tag was supplied.
+
+instead, write out any directory sticky tag when we are checking
+out a file in that directory, this way we can use our "fast checkout"
+mechanism (no /tmp required) even for -r and -d without breaking
+working copies because they were missing CVS/Tag files.
+
+"looks good" tobias@@
+@ 
+@pv@ 0 @db.change@ 171 171 @svn-client@ @joris@ 1235424728 1 @we no longer push out Set-stick@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_5/checkout.c@ @//import/main/checkout.c@ 0 160 0 1 2 171 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_5/checkout.c@ 0 1 0 160 3 171 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_5/checkout.c@ 1 1 3 171 1235424728 1235424728 00000000000000000000000000000000 @//import/main/checkout.c@ @1.170@ 1 
@@ -1381,8 +1421,10 @@ is specified. From Dawe in user/6177.
 @pv@ 0 @db.change@ 176 176 @svn-client@ @sthen@ 1245615781 1 @Use correct synopses for checko@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 165 1 1 176 1245615781 1245615781 00000000000000000000000000000000 @//import/main/checkout.c@ @1.176@ 1 
 @pv@ 0 @db.revcx@ 176 @//import/main/checkout.c@ 165 1 
-@pv@ 0 @db.desc@ 177 @Branch: @ 
-@pv@ 0 @db.change@ 177 177 @svn-client@ @branch@ 1245615781 1 @Branch: @ 
+@pv@ 0 @db.desc@ 177 @Use correct synopses for checkout and export when an invalid -k option
+is specified. From Dawe in user/6177.
+@ 
+@pv@ 0 @db.change@ 177 177 @svn-client@ @sthen@ 1245615781 1 @Use correct synopses for checko@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_6/checkout.c@ @//import/main/checkout.c@ 0 165 0 1 2 177 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_6/checkout.c@ 0 1 0 165 3 177 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_6/checkout.c@ 1 1 3 177 1245615781 1245615781 00000000000000000000000000000000 @//import/main/checkout.c@ @1.176@ 1 
@@ -1406,8 +1448,11 @@ OK xsa
 @pv@ 0 @db.change@ 179 179 @svn-client@ @ray@ 1280526438 1 @Check date_parse return values.@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 167 1 1 179 1280526438 1280526438 00000000000000000000000000000000 @//import/main/checkout.c@ @1.179@ 1 
 @pv@ 0 @db.revcx@ 179 @//import/main/checkout.c@ 167 1 
-@pv@ 0 @db.desc@ 180 @Branch: @ 
-@pv@ 0 @db.change@ 180 180 @svn-client@ @branch@ 1280526438 1 @Branch: @ 
+@pv@ 0 @db.desc@ 180 @Check date_parse return values.
+
+OK xsa
+@ 
+@pv@ 0 @db.change@ 180 180 @svn-client@ @ray@ 1280526438 1 @Check date_parse return values.@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_8/checkout.c@ @//import/main/checkout.c@ 0 167 0 1 2 180 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_4_8/checkout.c@ 0 1 0 167 3 180 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_8/checkout.c@ 1 1 3 180 1280526438 1280526438 00000000000000000000000000000000 @//import/main/checkout.c@ @1.179@ 1 
@@ -1426,8 +1471,10 @@ Bombardieri.
 @pv@ 0 @db.change@ 181 181 @svn-client@ @nicm@ 1324994341 1 @Move some global variables/stat@ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 168 1 1 181 1324994341 1324994341 00000000000000000000000000000000 @//import/main/checkout.c@ @1.181@ 1 
 @pv@ 0 @db.revcx@ 181 @//import/main/checkout.c@ 168 1 
-@pv@ 0 @db.desc@ 182 @Branch: @ 
-@pv@ 0 @db.change@ 182 182 @svn-client@ @branch@ 1324994341 1 @Branch: @ 
+@pv@ 0 @db.desc@ 182 @Move some global variables/statics to locals, from Michael W
+Bombardieri.
+@ 
+@pv@ 0 @db.change@ 182 182 @svn-client@ @nicm@ 1324994341 1 @Move some global variables/stat@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_5/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_5/checkout.c@ 0 1 0 168 3 182 
 @pv@ 3 @db.rev@ @//import/OPENBSD_5_5/checkout.c@ 1 1 3 182 1324994341 1324994341 00000000000000000000000000000000 @//import/main/checkout.c@ @1.181@ 1 

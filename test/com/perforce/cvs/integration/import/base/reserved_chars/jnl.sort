@@ -68,47 +68,47 @@
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_3/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 12 0 1 2 20 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_4/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 12 0 1 2 20 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_5/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 13 0 1 2 22 
-@pv@ 2 @db.change@ 22 22 @svn-client@ @branch@ 1382441644 1 @Branch: 
+@pv@ 2 @db.change@ 22 22 @svn-client@ @zhuk@ 1382441644 1 @Do a massive change on the plac@ @//import/OPENBSD_5_5/*@ 
 @pv@ 2 @db.change@ 21 21 @svn-client@ @zhuk@ 1382441644 1 @Do a massive change on the plac@ @//import/main/*@ 
-@pv@ 2 @db.change@ 20 20 @svn-client@ @branch@ 1326751860 1 @Branch: 
+@pv@ 2 @db.change@ 20 20 @svn-client@ @espie@ 1326751860 1 @don't use flavors for independe@ @//import/OPENBSD_5_...@ 
 @pv@ 2 @db.change@ 19 19 @svn-client@ @espie@ 1326751860 1 @don't use flavors for independe@ @//import/main/*@ 
-@pv@ 2 @db.change@ 18 18 @svn-client@ @branch@ 1193262737 1 @Branch: 
+@pv@ 2 @db.change@ 18 18 @svn-client@ @espie@ 1193262737 1 @update to 3.5.8
 @pv@ 2 @db.change@ 17 17 @svn-client@ @espie@ 1193262737 1 @update to 3.5.8
-@pv@ 2 @db.change@ 16 16 @svn-client@ @branch@ 1180298321 1 @Branch: 
+@pv@ 2 @db.change@ 16 16 @svn-client@ @espie@ 1180298321 1 @update to 3.5.7
 @pv@ 2 @db.change@ 15 15 @svn-client@ @espie@ 1180298321 1 @update to 3.5.7
-@pv@ 2 @db.change@ 14 14 @svn-client@ @branch@ 1170005000 1 @Branch: 
+@pv@ 2 @db.change@ 14 14 @svn-client@ @espie@ 1170005000 1 @3.5.6
 @pv@ 2 @db.change@ 13 13 @svn-client@ @espie@ 1170005000 1 @3.5.6
-@pv@ 2 @db.change@ 12 12 @svn-client@ @branch@ 1149338850 1 @Branch: 
+@pv@ 2 @db.change@ 12 12 @svn-client@ @espie@ 1149338850 1 @minor update to 3.5.3, integrat@ @//import/OPENBSD_4_0/*@ 
 @pv@ 2 @db.change@ 11 11 @svn-client@ @espie@ 1149338850 1 @minor update to 3.5.3, integrat@ @//import/main/*@ 
 @pv@ 2 @db.change@ 10 10 @svn-client@ @espie@ 1143894823 1 @3.5.2
-@pv@ 2 @db.change@ 9 9 @svn-client@ @branch@ 1134398276 1 @Branch: 
+@pv@ 2 @db.change@ 9 9 @svn-client@ @espie@ 1134398276 1 @sr@@Latn package contains the sa@ @//import/OPENBSD_3_9/*@ 
 @pv@ 2 @db.change@ 8 8 @svn-client@ @espie@ 1134398276 1 @sr@@Latn package contains the sa@ @//import/main/*@ 
 @pv@ 2 @db.change@ 7 7 @svn-client@ @espie@ 1133476059 1 @some i18n3
-@pv@ 2 @db.change@ 6 6 @svn-client@ @branch@ 1124185794 1 @Branch: 
+@pv@ 2 @db.change@ 6 6 @svn-client@ @espie@ 1124185794 1 @conflicts from the past: histor@ @//import/OPENBSD_3_8/*@ 
 @pv@ 2 @db.change@ 5 5 @svn-client@ @espie@ 1124185794 1 @conflicts from the past: histor@ @//import/main/*@ 
 @pv@ 2 @db.change@ 4 4 @svn-client@ @espie@ 1122540461 1 @KDE 3.4.2
 @pv@ 2 @db.change@ 3 3 @svn-client@ @espie@ 1118948861 1 @forgot commit
-@pv@ 2 @db.change@ 2 2 @svn-client@ @branch@ 1110236994 1 @Branch: 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @espie@ 1110236994 1 @bring back i18n3 packages from @ @//import/OPENBSD_3_7/*@ 
 @pv@ 2 @db.change@ 1 1 @svn-client@ @espie@ 1110236994 1 @bring back i18n3 packages from @ @//import/main/*@ 
-@pv@ 0 @db.desc@ 22 @Branch: 
+@pv@ 0 @db.desc@ 22 @Do a massive change on the placement of some KDE3 apps data:
 @pv@ 0 @db.desc@ 21 @Do a massive change on the placement of some KDE3 apps data:
-@pv@ 0 @db.desc@ 20 @Branch: 
+@pv@ 0 @db.desc@ 20 @don't use flavors for independent builds. dpb happy
 @pv@ 0 @db.desc@ 19 @don't use flavors for independent builds. dpb happy
-@pv@ 0 @db.desc@ 18 @Branch: 
+@pv@ 0 @db.desc@ 18 @update to 3.5.8
 @pv@ 0 @db.desc@ 17 @update to 3.5.8
-@pv@ 0 @db.desc@ 16 @Branch: 
+@pv@ 0 @db.desc@ 16 @update to 3.5.7
 @pv@ 0 @db.desc@ 15 @update to 3.5.7
-@pv@ 0 @db.desc@ 14 @Branch: 
+@pv@ 0 @db.desc@ 14 @3.5.6
 @pv@ 0 @db.desc@ 13 @3.5.6
-@pv@ 0 @db.desc@ 12 @Branch: 
+@pv@ 0 @db.desc@ 12 @minor update to 3.5.3, integrate libidn support (some more changes to come
 @pv@ 0 @db.desc@ 11 @minor update to 3.5.3, integrate libidn support (some more changes to come
 @pv@ 0 @db.desc@ 10 @3.5.2
-@pv@ 0 @db.desc@ 9 @Branch: 
+@pv@ 0 @db.desc@ 9 @sr@@Latn package contains the same sound as the sr package, so remove them
 @pv@ 0 @db.desc@ 8 @sr@@Latn package contains the same sound as the sr package, so remove them
 @pv@ 0 @db.desc@ 7 @some i18n3
-@pv@ 0 @db.desc@ 6 @Branch: 
+@pv@ 0 @db.desc@ 6 @conflicts from the past: history since 3.7.
 @pv@ 0 @db.desc@ 5 @conflicts from the past: history since 3.7.
 @pv@ 0 @db.desc@ 4 @KDE 3.4.2
 @pv@ 0 @db.desc@ 3 @forgot commit
-@pv@ 0 @db.desc@ 2 @Branch: 
+@pv@ 0 @db.desc@ 2 @bring back i18n3 packages from the dead, but build them all at once.
 @pv@ 0 @db.desc@ 1 @bring back i18n3 packages from the dead, but build them all at once.

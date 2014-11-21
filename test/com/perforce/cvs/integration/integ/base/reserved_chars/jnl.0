@@ -8,8 +8,9 @@
 @pv@ 0 @db.change@ 1 1 @svn-client@ @espie@ 1110236994 1 @bring back i18n3 packages from @ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 1 1 0 1 1110236994 1110236994 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.1@ 1 
 @pv@ 0 @db.revcx@ 1 @//import/main/PLIST-sr%40Latn@ 1 0 
-@pv@ 0 @db.desc@ 2 @Branch: @ 
-@pv@ 0 @db.change@ 2 2 @svn-client@ @branch@ 1110236994 1 @Branch: @ 
+@pv@ 0 @db.desc@ 2 @bring back i18n3 packages from the dead, but build them all at once.
+@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @espie@ 1110236994 1 @bring back i18n3 packages from @ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_7/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 1 0 1 2 2 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_3_7/PLIST-sr%40Latn@ 0 1 0 1 3 2 
 @pv@ 3 @db.rev@ @//import/OPENBSD_3_7/PLIST-sr%40Latn@ 1 1 3 2 1110236994 1110236994 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.1@ 1 
@@ -45,8 +46,23 @@ okay pvalchev@@
 @pv@ 0 @db.change@ 5 5 @svn-client@ @espie@ 1124185794 1 @conflicts from the past: histor@ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 4 1 1 5 1124185794 1124185794 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.5@ 1 
 @pv@ 0 @db.revcx@ 5 @//import/main/PLIST-sr%40Latn@ 4 1 
-@pv@ 0 @db.desc@ 6 @Branch: @ 
-@pv@ 0 @db.change@ 6 6 @svn-client@ @branch@ 1124185794 1 @Branch: @ 
+@pv@ 0 @db.desc@ 6 @conflicts from the past: history since 3.7.
+
+As noted on ports@@ recently, pkg_add -r relies on conflicts, and the
+sheer existence of updates means we MUST take the past into account in
+conflicts now.
+
+Note the renaming of hugs98 to valid package names where versions are
+concerned.
+
+This commit shows clearly the renaming of the xfce4 plugin packages, the
+ditching of eclipse flavors, the splitting of nessus into subpackages,
+the splitting of various other software documentations, some packaging bugs
+in kdeedu, and a lot of files moving around...
+
+okay pvalchev@@
+@ 
+@pv@ 0 @db.change@ 6 6 @svn-client@ @espie@ 1124185794 1 @conflicts from the past: histor@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_8/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 4 0 1 2 6 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_3_8/PLIST-sr%40Latn@ 0 1 0 4 3 6 
 @pv@ 3 @db.rev@ @//import/OPENBSD_3_8/PLIST-sr%40Latn@ 1 1 3 6 1124185794 1124185794 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.5@ 1 
@@ -63,8 +79,10 @@ and have it depend on the other package.
 @pv@ 0 @db.change@ 8 8 @svn-client@ @espie@ 1134398276 1 @sr@@Latn package contains the sa@ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 6 1 1 8 1134398276 1134398276 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.8@ 1 
 @pv@ 0 @db.revcx@ 8 @//import/main/PLIST-sr%40Latn@ 6 1 
-@pv@ 0 @db.desc@ 9 @Branch: @ 
-@pv@ 0 @db.change@ 9 9 @svn-client@ @branch@ 1134398276 1 @Branch: @ 
+@pv@ 0 @db.desc@ 9 @sr@@Latn package contains the same sound as the sr package, so remove them
+and have it depend on the other package.
+@ 
+@pv@ 0 @db.change@ 9 9 @svn-client@ @espie@ 1134398276 1 @sr@@Latn package contains the sa@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_9/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 6 0 1 2 9 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_3_9/PLIST-sr%40Latn@ 0 1 0 6 3 9 
 @pv@ 3 @db.rev@ @//import/OPENBSD_3_9/PLIST-sr%40Latn@ 1 1 3 9 1134398276 1134398276 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.8@ 1 
@@ -81,8 +99,10 @@ to WANTLIB in packages dependent on KDE).
 @pv@ 0 @db.change@ 11 11 @svn-client@ @espie@ 1149338850 1 @minor update to 3.5.3, integrat@ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 8 1 1 11 1149338850 1149338850 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.11@ 1 
 @pv@ 0 @db.revcx@ 11 @//import/main/PLIST-sr%40Latn@ 8 1 
-@pv@ 0 @db.desc@ 12 @Branch: @ 
-@pv@ 0 @db.change@ 12 12 @svn-client@ @branch@ 1149338850 1 @Branch: @ 
+@pv@ 0 @db.desc@ 12 @minor update to 3.5.3, integrate libidn support (some more changes to come
+to WANTLIB in packages dependent on KDE).
+@ 
+@pv@ 0 @db.change@ 12 12 @svn-client@ @espie@ 1149338850 1 @minor update to 3.5.3, integrat@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_0/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 8 0 1 2 12 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_0/PLIST-sr%40Latn@ 0 1 0 8 3 12 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_0/PLIST-sr%40Latn@ 1 1 3 12 1149338850 1149338850 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.11@ 1 
@@ -93,8 +113,10 @@ to WANTLIB in packages dependent on KDE).
 @ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 9 1 1 13 1170005000 1170005000 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.13@ 1 
 @pv@ 0 @db.revcx@ 13 @//import/main/PLIST-sr%40Latn@ 9 1 
-@pv@ 0 @db.desc@ 14 @Branch: @ 
-@pv@ 0 @db.change@ 14 14 @svn-client@ @branch@ 1170005000 1 @Branch: @ 
+@pv@ 0 @db.desc@ 14 @3.5.6
+@ 
+@pv@ 0 @db.change@ 14 14 @svn-client@ @espie@ 1170005000 1 @3.5.6
+@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_1/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 9 0 1 2 14 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_1/PLIST-sr%40Latn@ 0 1 0 9 3 14 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_1/PLIST-sr%40Latn@ 1 1 3 14 1170005000 1170005000 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.13@ 1 
@@ -105,8 +127,10 @@ to WANTLIB in packages dependent on KDE).
 @ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 10 1 1 15 1180298321 1180298321 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.15@ 1 
 @pv@ 0 @db.revcx@ 15 @//import/main/PLIST-sr%40Latn@ 10 1 
-@pv@ 0 @db.desc@ 16 @Branch: @ 
-@pv@ 0 @db.change@ 16 16 @svn-client@ @branch@ 1180298321 1 @Branch: @ 
+@pv@ 0 @db.desc@ 16 @update to 3.5.7
+@ 
+@pv@ 0 @db.change@ 16 16 @svn-client@ @espie@ 1180298321 1 @update to 3.5.7
+@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_2/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 10 0 1 2 16 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_2/PLIST-sr%40Latn@ 0 1 0 10 3 16 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_2/PLIST-sr%40Latn@ 1 1 3 16 1180298321 1180298321 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.15@ 1 
@@ -117,8 +141,10 @@ to WANTLIB in packages dependent on KDE).
 @ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 11 1 1 17 1193262737 1193262737 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
 @pv@ 0 @db.revcx@ 17 @//import/main/PLIST-sr%40Latn@ 11 1 
-@pv@ 0 @db.desc@ 18 @Branch: @ 
-@pv@ 0 @db.change@ 18 18 @svn-client@ @branch@ 1193262737 1 @Branch: @ 
+@pv@ 0 @db.desc@ 18 @update to 3.5.8
+@ 
+@pv@ 0 @db.change@ 18 18 @svn-client@ @espie@ 1193262737 1 @update to 3.5.8
+@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_4_5/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 11 0 1 2 18 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_4_5/PLIST-sr%40Latn@ 0 1 0 11 3 18 
 @pv@ 3 @db.rev@ @//import/OPENBSD_4_5/PLIST-sr%40Latn@ 1 1 3 18 1193262737 1193262737 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.17@ 1 
@@ -156,8 +182,9 @@ to WANTLIB in packages dependent on KDE).
 @pv@ 0 @db.change@ 19 19 @svn-client@ @espie@ 1326751860 1 @don't use flavors for independe@ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 12 1 1 19 1326751860 1326751860 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.19@ 1 
 @pv@ 0 @db.revcx@ 19 @//import/main/PLIST-sr%40Latn@ 12 1 
-@pv@ 0 @db.desc@ 20 @Branch: @ 
-@pv@ 0 @db.change@ 20 20 @svn-client@ @branch@ 1326751860 1 @Branch: @ 
+@pv@ 0 @db.desc@ 20 @don't use flavors for independent builds. dpb happy
+@ 
+@pv@ 0 @db.change@ 20 20 @svn-client@ @espie@ 1326751860 1 @don't use flavors for independe@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_3/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 12 0 1 2 20 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_3/PLIST-sr%40Latn@ 0 1 0 12 3 20 
 @pv@ 3 @db.rev@ @//import/OPENBSD_5_3/PLIST-sr%40Latn@ 1 1 3 20 1326751860 1326751860 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.19@ 1 
@@ -189,8 +216,19 @@ Run-time tested with some KDE3 apps, including KMail, taxipilot, yakuake...
 @pv@ 0 @db.change@ 21 21 @svn-client@ @zhuk@ 1382441644 1 @Do a massive change on the plac@ 
 @pv@ 3 @db.rev@ @//import/main/PLIST-sr%40Latn@ 13 1 1 21 1382441644 1382441644 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.21@ 1 
 @pv@ 0 @db.revcx@ 21 @//import/main/PLIST-sr%40Latn@ 13 1 
-@pv@ 0 @db.desc@ 22 @Branch: @ 
-@pv@ 0 @db.change@ 22 22 @svn-client@ @branch@ 1382441644 1 @Branch: @ 
+@pv@ 0 @db.desc@ 22 @Do a massive change on the placement of some KDE3 apps data:
+
+  * share/apps => share/apps.kde3
+  * share/doc/HTML => share/doc/HTML.kde3
+
+This is a part of KDE3/4 deconflicting work.
+
+Build tested in a bulk by landry@@, also sat over a week on ports@@.
+Run-time tested with some KDE3 apps, including KMail, taxipilot, yakuake...
+
+"do it" landry@@
+@ 
+@pv@ 0 @db.change@ 22 22 @svn-client@ @zhuk@ 1382441644 1 @Do a massive change on the plac@ 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_5/PLIST-sr%40Latn@ @//import/main/PLIST-sr%40Latn@ 0 13 0 1 2 22 
 @pv@ 0 @db.integed@ @//import/main/PLIST-sr%40Latn@ @//import/OPENBSD_5_5/PLIST-sr%40Latn@ 0 1 0 13 3 22 
 @pv@ 3 @db.rev@ @//import/OPENBSD_5_5/PLIST-sr%40Latn@ 1 1 3 22 1382441644 1382441644 00000000000000000000000000000000 @//import/main/PLIST-sr%40Latn@ @1.21@ 1 

@@ -48,7 +48,7 @@ public class RevisionNavigator extends RcsNavigator {
 		}
 
 		if (branchList.isBranch(tagName) || !isLabel) {
-			RevisionEntry brRev = createBranch(tagName, entry.getId());
+			RevisionEntry brRev = createBranch(tagName, entry);
 			revList.add(brRev);
 		} else {
 			entry.addLabel(tagName);
@@ -63,18 +63,15 @@ public class RevisionNavigator extends RcsNavigator {
 	 * @return
 	 * @throws Exception
 	 */
-	private RevisionEntry createBranch(String tagName, RcsObjectNum id) {
+	private RevisionEntry createBranch(String tagName, RevisionEntry entry) {
 		String basePath = getRcsRevision().getPath();
-		RcsObjectDelta revision = getRcsRevision().getDelta(id);
+		RcsObjectDelta revision = getRcsRevision().getDelta(entry.getId());
 
 		RevisionEntry branch = new RevisionEntry(revision);
-		branch.setComment("Branch: ");
-		branch.setAuthor("branch");
-		branch.clearCommitId();
 		branch.setState(Action.BRANCH.toString());
 		branch.setPath(tagName + "/" + basePath);
-		branch.addDate(1L);
-		String fromBranch = getParentName(id);
+		branch.setPseudo(true);
+		String fromBranch = getParentName(entry.getId());
 		String fromPath = fromBranch + "/" + basePath;
 		branch.setFromPath(fromPath);
 		return branch;
