@@ -28,8 +28,8 @@ public abstract class RcsNavigator {
 	protected abstract void foundBranchPoint(String name, RevisionEntry entry);
 
 	private RcsReader rcsRevision;
-	private Map<RcsObjectNum, String> labelMap = new HashMap<RcsObjectNum, String>();
-	private Map<RcsObjectNum, String> branchMap = new HashMap<RcsObjectNum, String>();
+	private Map<RcsObjectNum, String> labelMap;
+	private Map<RcsObjectNum, String> branchMap;
 
 	protected RcsReader getRcsRevision() {
 		return rcsRevision;
@@ -53,6 +53,8 @@ public abstract class RcsNavigator {
 	public void add(RcsReader rcs) throws Exception {
 
 		rcsRevision = rcs;
+		labelMap = new HashMap<RcsObjectNum, String>();
+		branchMap = new HashMap<RcsObjectNum, String>();
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("RCS file: " + rcs.getRcsFile().getName());
