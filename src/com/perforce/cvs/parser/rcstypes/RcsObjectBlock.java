@@ -4,8 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class RcsObjectBlock implements Iterable<ByteArrayOutputStream> {
 
+	private Logger logger = LoggerFactory.getLogger(RcsObjectBlock.class);
 	private ArrayList<ByteArrayOutputStream> lines = new ArrayList<ByteArrayOutputStream>();
 
 	public RcsObjectBlock() {
@@ -47,8 +51,14 @@ public class RcsObjectBlock implements Iterable<ByteArrayOutputStream> {
 	public String toString() {
 		StringBuffer sb = new StringBuffer("\n");
 		int sum = 0;
+		int count = 0;
 		for (ByteArrayOutputStream line : lines) {
 			if (line != null) {
+				if(logger.isTraceEnabled()) {
+					sb.append("\t" + count + ": ");
+					sb.append(line);
+					count++;
+				}
 				sum += line.size();
 			}
 		}

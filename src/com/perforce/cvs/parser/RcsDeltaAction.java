@@ -17,7 +17,7 @@ public class RcsDeltaAction {
 		//TODO may need to use a Charset for translation?
 		String str = buf.toString();
 
-		Pattern r = Pattern.compile("^(a|d)(\\d+) (\\d+)");
+		Pattern r = Pattern.compile("^(a|d)(\\d+) (\\d+)$");
 		Matcher m = r.matcher(str);
 		if (m.find()) {
 			// set action

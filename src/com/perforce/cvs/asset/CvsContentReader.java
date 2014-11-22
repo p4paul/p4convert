@@ -80,8 +80,8 @@ public class CvsContentReader {
 			RcsObjectBlock fullBlock) throws Exception {
 		RcsObjectBlock lastBlock = new RcsObjectBlock(fullBlock);
 		do {
-			if (logger.isTraceEnabled()) {
-				logger.trace("processing: " + last + " > " + id);
+			if (logger.isDebugEnabled()) {
+				logger.debug("processing: " + last + " > " + id);
 			}
 			RcsObjectDelta delta = rcsDelta.getDelta(id);
 
