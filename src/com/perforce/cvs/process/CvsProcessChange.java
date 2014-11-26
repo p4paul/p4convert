@@ -271,21 +271,33 @@ public class CvsProcessChange extends ProcessChange {
 
 		String path = entry.getPath();
 
-		// if no pending revisions...
-		if (!change.isPendingRevision(path)) {
-			// add entry to current change
-			addEntry(entry, revs, change);
+		if (entry.isPseudo() && !revs.isRemainder()) {
+			if (logger.isTraceEnabled()) {
+				logger.trace("... delaying: " + entry);
+			}
+
+			delayedBranch.add(entry);
+			revs.drop(entry);
 		} else {
-			// if pending revision is a REMOVE and current is a PSEUDO branch
-			Action pendingAct = change.getPendingAction(path);
-			if (entry.isPseudo() && pendingAct == Action.REMOVE) {
-				// overlay REMOVE with branch and down-grade to ADD
-				entry.setState("Exp");
-				addEntry(entry, revs, change);
+			// if no pending revisions...
+			if (!change.isPendingRevision(path)) {
+				// add entry to current change
+				addEntry(entry, change);
+				revs.drop(entry);
 			} else {
-				// else, revision belongs in another change
-				if (logger.isTraceEnabled()) {
-					logger.trace("... leaving: " + entry + "(opened)");
+				// if pending revision is a REMOVE and current is a PSEUDO
+				// branch
+				Action pendingAct = change.getPendingAction(path);
+				if (entry.isPseudo() && pendingAct == Action.REMOVE) {
+					// overlay REMOVE with branch and down-grade to ADD
+					entry.setState("Exp");
+					addEntry(entry, change);
+					revs.drop(entry);
+				} else {
+					// else, revision belongs in another change
+					if (logger.isTraceEnabled()) {
+						logger.trace("... leaving: " + entry + "(opened)");
+					}
 				}
 			}
 		}
@@ -299,35 +311,26 @@ public class CvsProcessChange extends ProcessChange {
 	 * @param change
 	 * @throws Exception
 	 */
-	private void addEntry(RevisionEntry entry, RevisionSorter revs,
-			ChangeInterface change) throws Exception {
-		if (entry.isPseudo() && !revs.isRemainder()) {
-			if (logger.isTraceEnabled()) {
-				logger.trace("... delaying: " + entry);
-			}
+	private void addEntry(RevisionEntry entry, ChangeInterface change)
+			throws Exception {
 
-			delayedBranch.add(entry);
-			revs.drop(entry);
-		} else {
-			if (logger.isTraceEnabled()) {
-				logger.trace("... adding: " + entry);
-			}
-
-			// update entry
-			entry.setNodeID(nodeID);
-			entry.setCvsChange(cvsChange);
-
-			// and add node to current change
-			CvsProcessNode node;
-			node = new CvsProcessNode(change, depot, entry);
-			node.process();
-			revs.drop(entry);
-
-			// tag any labels
-			if (isLabel) {
-				processLabel.labelRev(entry, change.getChange());
-			}
-			nodeID++;
+		if (logger.isTraceEnabled()) {
+			logger.trace("... adding: " + entry);
 		}
+
+		// update entry
+		entry.setNodeID(nodeID);
+		entry.setCvsChange(cvsChange);
+
+		// and add node to current change
+		CvsProcessNode node;
+		node = new CvsProcessNode(change, depot, entry);
+		node.process();
+
+		// tag any labels
+		if (isLabel) {
+			processLabel.labelRev(entry, change.getChange());
+		}
+		nodeID++;
 	}
 }
