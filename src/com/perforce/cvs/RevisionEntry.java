@@ -18,17 +18,19 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	private Logger logger = LoggerFactory.getLogger(RevisionEntry.class);
 
 	private RcsObjectNum id;
-	private String tmpFile;
-	private String path;
-	private int nodeID;
-	private long cvsChange;
-	private boolean pseudo = false;
-
 	private Date date;
 	private String commitId;
 	private String author;
 	private String comment;
 	private String state;
+
+	private String tmpFile;
+	private String path;
+	private int nodeID;
+	private long cvsChange;
+	private boolean pseudo = false;
+	private boolean reverse = false;
+
 	private String fromPath;
 	private List<String> labels = new ArrayList<String>();
 
@@ -161,9 +163,13 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		sb.append(getId());
 		sb.append(" ");
 		sb.append(getPath());
+		sb.append(" <== ");
+		sb.append(getFromPath());
+
+		// Change sequence data
 		sb.append(" (");
 		sb.append(getCommitId());
-		sb.append(") (");
+		sb.append(" ");
 		sb.append(getAuthor());
 		sb.append(" ");
 		sb.append(getDate().getTime());
@@ -171,6 +177,10 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		String hex = Integer.toHexString(getComment().hashCode());
 		sb.append(hex.toUpperCase());
 		sb.append(") ");
+
+		// Flags
+		sb.append(isPseudo() ? "P " : "E ");
+		sb.append(isReverse() ? "Rev " : "Fwd ");
 
 		return sb.toString();
 	}
@@ -220,12 +230,20 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		}
 		return true;
 	}
-	
+
 	public boolean isPseudo() {
 		return pseudo;
 	}
 
 	public void setPseudo(boolean pseudo) {
 		this.pseudo = pseudo;
+	}
+
+	public boolean isReverse() {
+		return reverse;
+	}
+
+	public void setReverse(boolean reverse) {
+		this.reverse = reverse;
 	}
 }

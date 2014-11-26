@@ -124,13 +124,15 @@ public class CvsProcessChange extends ProcessChange {
 
 			// submit labels
 			if (isLabel) {
-				if (logger.isDebugEnabled()) {
-					logger.debug(processLabel.toString());
+				if (logger.isTraceEnabled()) {
+					logger.trace("Submitting labels:");
+					logger.trace(processLabel.toString());
 				}
 				processLabel.submit();
 			}
 
 			// update revision list
+			revs.reset();
 			if (delayedBranch.hasNext()) {
 				revs = delayedBranch;
 			} else {
@@ -300,6 +302,10 @@ public class CvsProcessChange extends ProcessChange {
 	private void addEntry(RevisionEntry entry, RevisionSorter revs,
 			ChangeInterface change) throws Exception {
 		if (entry.isPseudo() && !revs.isRemainder()) {
+			if (logger.isTraceEnabled()) {
+				logger.trace("... delaying: " + entry);
+			}
+
 			delayedBranch.add(entry);
 			revs.drop(entry);
 		} else {

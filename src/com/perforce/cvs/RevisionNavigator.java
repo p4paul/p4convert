@@ -7,7 +7,6 @@ import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
-import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 import com.perforce.svn.history.ChangeAction.Action;
 
 public class RevisionNavigator extends RcsNavigator {
@@ -42,16 +41,16 @@ public class RevisionNavigator extends RcsNavigator {
 	}
 
 	@Override
-	protected void foundBranchPoint(String tagName, RevisionEntry entry) {
+	protected void foundBranchPoint(String toTag, RevisionEntry from) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("tag point: " + tagName + " " + entry.getId());
+			logger.debug("tag point: " + toTag + " " + from.getId());
 		}
 
-		if (branchList.isBranch(tagName) || !isLabel) {
-			RevisionEntry brRev = createBranch(tagName, entry);
+		if (branchList.isBranch(toTag) || !isLabel) {
+			RevisionEntry brRev = createBranch(toTag, from);
 			revList.add(brRev);
 		} else {
-			entry.addLabel(tagName);
+			from.addLabel(toTag);
 		}
 	}
 
@@ -63,18 +62,27 @@ public class RevisionNavigator extends RcsNavigator {
 	 * @return
 	 * @throws Exception
 	 */
-	private RevisionEntry createBranch(String tagName, RevisionEntry entry) {
+	private RevisionEntry createBranch(String toTag, RevisionEntry from) {
 		String basePath = getRcsRevision().getPath();
-		RcsObjectDelta revision = getRcsRevision().getDelta(entry.getId());
+		RcsObjectDelta revision = getRcsRevision().getDelta(from.getId());
 
 		RevisionEntry branch = new RevisionEntry(revision);
 		branch.setState(Action.BRANCH.toString());
-		branch.setPath(tagName + "/" + basePath);
 		branch.setPseudo(true);
+		branch.setReverse(from.isReverse());
 		branch.addDate(1L);
-		String fromBranch = getParentName(entry.getId());
-		String fromPath = fromBranch + "/" + basePath;
-		branch.setFromPath(fromPath);
+
+		String toPath = toTag + "/" + basePath;
+		String fromPath = from.getFromPath();
+
+		if (from.isReverse()) {
+			branch.setPath(fromPath);
+			branch.setFromPath(toPath);
+		} else {
+			branch.setPath(toPath);
+			branch.setFromPath(fromPath);
+		}
+		logger.info("create branch: " + branch);
 		return branch;
 	}
 }
