@@ -16,7 +16,6 @@ import com.perforce.common.process.ProcessNode;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.cvs.RevisionEntry;
-import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 import com.perforce.svn.change.ChangeInterface;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.ChangeAction.Action;
@@ -180,7 +179,6 @@ public class CvsProcessNode extends ProcessNode {
 
 		// Set node condition ('add', 'change' or 'delete')
 		String s = revEntry.getState();
-		RcsObjectNum id = revEntry.getId();
 		if (s != null) {
 			if ("Exp".equals(s)) {
 				action = ChangeAction.Action.ADD;
