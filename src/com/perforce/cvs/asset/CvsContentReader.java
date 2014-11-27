@@ -3,6 +3,7 @@ package com.perforce.cvs.asset;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -121,25 +122,66 @@ public class CvsContentReader {
 
 	private List<RcsDeltaAction> parse(RcsObjectBlock delta) throws Exception {
 
+		Iterator<ByteArrayOutputStream> lines = delta.iterator();
+
+		// exit early if nothing to process
+		if (!lines.hasNext()) {
+			return new ArrayList<RcsDeltaAction>();
+		}
+
+		ByteArrayOutputStream line = lines.next();
+		RcsDeltaAction action = new RcsDeltaAction(line);
+		switch (action.getAction()) {
+		case ADD:
+		case DELETE:
+			return parseDeltas(delta);
+
+		case TEXT:
+			return new ArrayList<RcsDeltaAction>();
+
+		default:
+			StringBuffer sb = new StringBuffer();
+			sb.append("unknown type: " + action.getAction());
+			logger.error(sb.toString());
+			throw new Exception(sb.toString());
+		}
+	}
+
+	/**
+	 * Reads only the delta commands and skips over the correct number of text
+	 * lines.
+	 * 
+	 * @param lines
+	 * @return
+	 * @throws Exception
+	 */
+	private List<RcsDeltaAction> parseDeltas(RcsObjectBlock delta)
+			throws Exception {
+
+		Iterator<ByteArrayOutputStream> lines = delta.iterator();
 		List<RcsDeltaAction> list = new ArrayList<RcsDeltaAction>();
 
-		RcsDeltaAction last = null;
-		for (ByteArrayOutputStream d : delta) {
-			RcsDeltaAction act = new RcsDeltaAction(d);
-			switch (act.getAction()) {
+		while (lines.hasNext()) {
+			ByteArrayOutputStream line = lines.next();
+			RcsDeltaAction action = new RcsDeltaAction(line);
+			switch (action.getAction()) {
 			case ADD:
-			case DELETE:
-				list.add(act);
-				last = act;
+				list.add(action);
+				for (int i = 0; i < action.getLength(); i++) {
+					// read lines and add to action
+					if (lines.hasNext()) {
+						line = lines.next();
+						action.addLine(line);
+					}
+				}
 				break;
-
-			case TEXT:
-				last.addLine(d);
+			case DELETE:
+				list.add(action);
 				break;
 
 			default:
 				StringBuffer sb = new StringBuffer();
-				sb.append("unknown type: " + act.getAction());
+				sb.append("unmatched line: " + line);
 				logger.error(sb.toString());
 				throw new Exception(sb.toString());
 			}
@@ -163,6 +205,10 @@ public class CvsContentReader {
 		// Apply deltas in reverse order to preserve index references
 		Collections.reverse(list);
 		for (RcsDeltaAction d : list) {
+			if (logger.isTraceEnabled()) {
+				logger.trace("... " + d);
+			}
+
 			switch (d.getAction()) {
 			case ADD:
 				full.insert(d.getLine(), d.getBlock());

@@ -82,7 +82,6 @@ public class RevisionNavigator extends RcsNavigator {
 			branch.setPath(toPath);
 			branch.setFromPath(fromPath);
 		}
-		logger.info("create branch: " + branch);
 		return branch;
 	}
 }
