@@ -40,8 +40,9 @@ public class ChangeConvert implements ChangeInterface {
 		this.depot = d;
 	}
 
-	public void submit() throws Exception {
+	public long submit() throws Exception {
 		depot.getJournal().write(BuildChange.toJournal(depot, this));
+		return change;
 	}
 
 	public void close() throws Exception {

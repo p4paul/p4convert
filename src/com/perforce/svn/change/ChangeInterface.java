@@ -21,7 +21,7 @@ public interface ChangeInterface {
 	 * 
 	 * @throws Throwable
 	 */
-	public void submit() throws Exception;
+	public long submit() throws Exception;
 
 	/**
 	 * Sets the Perforce counter; key and value pair.

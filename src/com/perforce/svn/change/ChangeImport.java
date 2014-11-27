@@ -13,7 +13,6 @@ import com.perforce.common.client.Connection;
 import com.perforce.common.client.ConnectionFactory;
 import com.perforce.common.client.P4Factory;
 import com.perforce.common.depot.DepotImport;
-import com.perforce.common.journal.FileRevision;
 import com.perforce.common.process.ChangeInfo;
 import com.perforce.common.process.ProcessFactory;
 import com.perforce.config.CFG;
@@ -24,6 +23,7 @@ import com.perforce.p4java.client.IClient;
 import com.perforce.p4java.core.ChangelistStatus;
 import com.perforce.p4java.core.IChangelist;
 import com.perforce.p4java.core.file.FileSpecBuilder;
+import com.perforce.p4java.core.file.FileSpecOpStatus;
 import com.perforce.p4java.core.file.IFileSpec;
 import com.perforce.p4java.impl.generic.core.Changelist;
 import com.perforce.p4java.server.IOptionsServer;
@@ -75,8 +75,8 @@ public class ChangeImport implements ChangeInterface {
 	}
 
 	@Override
-	public void submit() throws Exception {
-
+	public long submit() throws Exception {
+		long change = 0;
 		ichangelist.refresh();
 
 		// check for empty changelist
@@ -99,6 +99,7 @@ public class ChangeImport implements ChangeInterface {
 			List<IFileSpec> submitted = ichangelist.submit(null);
 			String ignore = "Submitted as change";
 			P4Factory.validateFileSpecs(submitted, ignore);
+			change = findSubmittedChange(submitted);
 
 			// Clean up workspace
 			cleanWorkspace();
@@ -115,6 +116,26 @@ public class ChangeImport implements ChangeInterface {
 		if (logger.isTraceEnabled()) {
 			logger.trace("done.\n\n");
 		}
+		return change;
+	}
+
+	private long findSubmittedChange(List<IFileSpec> submitted) {
+		long change = 0;
+		for (IFileSpec spec : submitted) {
+			if (spec.getOpStatus() != FileSpecOpStatus.VALID) {
+				String msg = spec.getStatusMessage();
+				String cng = "Submitted as change ";
+				if (msg.startsWith(cng)) {
+					try {
+						String id = msg.substring(cng.length());
+						change = Long.parseLong(id);
+					} catch (NumberFormatException e) {
+						change = -1;
+					}
+				}
+			}
+		}
+		return change;
 	}
 
 	/**
@@ -465,7 +486,7 @@ public class ChangeImport implements ChangeInterface {
 		String depotToPath = depot.getBase() + toPath;
 		return rev.isOpened(depotToPath);
 	}
-	
+
 	@Override
 	public Action getPendingAction(String toPath) throws Exception {
 		RevisionImport rev = new RevisionImport(iclient, ichangelist, depot,

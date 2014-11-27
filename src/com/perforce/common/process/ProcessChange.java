@@ -137,29 +137,31 @@ public abstract class ProcessChange implements Callable<Integer> {
 
 		// Submit or delete the current pending change.
 		if (currentChange != null) {
+			// update stats
+			Stats.addUser(currentChange.getUser());
+
+			// check if current change has revisions
+			int revCount = currentChange.getNumberOfRevisions();
+			long change = currentChange.getChange();
+			if (skip && revCount == 0) {
+				currentChange.delete();
+			} else {
+				long c = currentChange.submit();
+				change = (c > change) ? c : change;
+			}
+
 			// logging details
 			Stats.inc(StatsType.currentRevision);
 			if (logger.isInfoEnabled()) {
 				StringBuffer log = new StringBuffer();
 				log.append("mapping: r" + currentChange.getSvnRevision());
-				log.append(" => @" + currentChange.getChange() + "\n");
+				log.append(" => @" + change + "\n");
 				logger.info(log.toString());
 			}
 
-			// update stats
-			Stats.addUser(currentChange.getUser());
-
 			// map change to subversion revision
-			ChangeMap.add(currentChange.getSvnRevision(),
-					currentChange.getChange());
-
-			// check if current change has revisions
-			int revCount = currentChange.getNumberOfRevisions();
-			if (skip && revCount == 0) {
-				currentChange.delete();
-			} else {
-				currentChange.submit();
-			}
+			change = currentChange.getChange();
+			ChangeMap.add(currentChange.getSvnRevision(), change);
 		}
 	}
 
