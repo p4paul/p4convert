@@ -9,5 +9,15 @@
 @ 
 @pv@ 3 @db.rev@ @//import/main/file.txt@ 1 1 0 1 1414498631 1414498631 00000000000000000000000000000000 @//import/main/file.txt@ @1.1@ 1 
 @pv@ 0 @db.revcx@ 1 @//import/main/file.txt@ 1 0 
-@rv@ 1 @db.counters@ @change@ @1@ 
+@pv@ 3 @db.rev@ @//import/branch_1.1.1/file.txt@ 1 1 0 1 1414498631 1414498631 00000000000000000000000000000000 @//import/branch_1.1.1/file.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/branch_1.1.1/file.txt@ 1 0 
+@pv@ 0 @db.desc@ 2 @Initial revision
+@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1414498631 1 @Initial revision
+@ 
+@pv@ 0 @db.integed@ @//import/branch_1.1.1/file.txt@ @//import/main/file.txt@ 0 1 1 2 4 2 
+@pv@ 0 @db.integed@ @//import/main/file.txt@ @//import/branch_1.1.1/file.txt@ 1 2 0 1 5 2 
+@pv@ 3 @db.rev@ @//import/branch_1.1.1/file.txt@ 2 1 4 2 1414498631 1414498631 00000000000000000000000000000000 @//import/main/file.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/branch_1.1.1/file.txt@ 2 4 
+@rv@ 1 @db.counters@ @change@ @2@ 
 @rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 
