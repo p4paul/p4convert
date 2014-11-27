@@ -58,6 +58,10 @@ public class RevisionSorter {
 	public void reset() {
 		index = 0;
 	}
+	
+	public int size() {
+		return list.size();
+	}
 
 	public boolean isRemainder() {
 		return remainder;

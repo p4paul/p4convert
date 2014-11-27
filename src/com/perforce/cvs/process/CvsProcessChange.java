@@ -78,7 +78,7 @@ public class CvsProcessChange extends ProcessChange {
 		if (logger.isTraceEnabled()) {
 			logger.trace(revSort.toString());
 		}
-		logger.info("... done          \n");
+		logger.info("... found " + revSort.size() + " revisions\n");
 
 		// Initialise counters
 		RevisionEntry changeEntry = revSort.next();

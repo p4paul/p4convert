@@ -145,8 +145,6 @@ public abstract class RcsNavigator {
 				// Look for a match
 				RcsObjectNum brId = getBranchId(br.getKey());
 				if (brId.equals(id)) {
-					logger.info("found symbol: " + br);
-
 					String tag = br.getValue();
 					String state = revision.getState();
 					if (!state.equals("dead") && (node != null)) {
@@ -168,7 +166,6 @@ public abstract class RcsNavigator {
 				RcsObjectNumList tags = delta.getBranches();
 				for (RcsObjectNum tag : tags.getList()) {
 					if (tag.equals(id) && node != null) {
-						logger.info("found lookup: " + tag);
 						String fromBranch = getParentName(parentId);
 						String fromPath = fromBranch + "/" + basePath;
 						entry.setFromPath(fromPath);
