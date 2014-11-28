@@ -7,6 +7,7 @@ import java.util.List;
 public class RevisionSorter {
 
 	private int index = 0;
+	private long window = 0;
 	private final boolean remainder;
 	private List<RevisionEntry> list = new ArrayList<RevisionEntry>();
 
@@ -58,12 +59,20 @@ public class RevisionSorter {
 	public void reset() {
 		index = 0;
 	}
-	
+
 	public int size() {
 		return list.size();
 	}
 
 	public boolean isRemainder() {
 		return remainder;
+	}
+
+	public long getWindow() {
+		return window;
+	}
+
+	public void setWindow(long window) {
+		this.window = window;
 	}
 }

@@ -43,8 +43,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		this.state = revision.getState().intern();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
+	public boolean matches(Object obj) {
 		if (!(obj instanceof RevisionEntry))
 			return false;
 
@@ -71,7 +70,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		}
 
 		// and date is within range
-		return within(entry);
+		return within(entry, 0);
 	}
 
 	@Override
@@ -216,13 +215,14 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		return labels;
 	}
 
-	public boolean within(RevisionEntry entry) {
+	public boolean within(RevisionEntry entry, long time) {
 		long window;
 		try {
 			window = (long) Config.get(CFG.CVS_WINDOW);
 		} catch (ConfigException e) {
 			window = 20000L;
 		}
+		window = (time > 0) ? time : window;
 
 		long gap = getDate().getTime() - entry.getDate().getTime();
 		if (Math.abs(gap) > window) {

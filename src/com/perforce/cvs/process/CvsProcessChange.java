@@ -1,6 +1,7 @@
 package com.perforce.cvs.process;
 
 import java.io.File;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,8 +108,8 @@ public class CvsProcessChange extends ProcessChange {
 			super.setCurrentChange(change);
 
 			// add matching entries to current change
-			while (entry != null && entry.within(changeEntry)) {
-				if (entry.equals(changeEntry)) {
+			while (entry != null && entry.within(changeEntry, revs.getWindow())) {
+				if (entry.matches(changeEntry)) {
 					nextEntry(entry, revs, change);
 				} else {
 					// else, revision belongs in another change
@@ -132,12 +133,21 @@ public class CvsProcessChange extends ProcessChange {
 			}
 
 			// update revision list
-			revs.reset();
+			revs = revSort;
+			revSort.reset();
+			delayedBranch.reset();
 			if (delayedBranch.hasNext()) {
 				revs = delayedBranch;
-			} else {
-				revs = revSort;
-			}
+				if(revSort.hasNext()) {
+					long rDate = revSort.next().getDate().getTime();
+					long dDate = delayedBranch.next().getDate().getTime();
+					if(rDate < dDate) {
+						revs = revSort;
+					} else {
+						revs.setWindow(rDate - dDate);
+					}
+				}
+			} 
 			revs.reset();
 
 			// fetch revision for next change
