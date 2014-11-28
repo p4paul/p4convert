@@ -185,8 +185,8 @@
 @pv@ 9 @db.rev@ @//import/OPENBSD_5_3/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
 @pv@ 9 @db.rev@ @//import/OPENBSD_5_4/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
 @pv@ 9 @db.rev@ @//import/OPENBSD_5_5/checkout.c@ 1 1 3 182 1324994341 1324994341 C3FEE8B2264F62B2A3C403803A92C812 15097 0 1 @//import/main/checkout.c@ @1.181@ 1 
-@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 1 3 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 0 @//import/OpenCVS/checkout.c@ @1.3@ 1 
-@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 3 2 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 1 @//import/main/checkout.c@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 4 3 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 1 @//import/main/checkout.c@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 0 2 1089756160 1089756160 30A4A33CA4FCB86102A24CB7C2EE85D8 2097 0 0 @//import/OpenCVS/checkout.c@ @1.2@ 1 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_7/checkout.c@ 0 1 0 13 3 16 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_8/checkout.c@ 0 1 0 39 3 43 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_3_9/checkout.c@ 0 1 0 50 3 55 
@@ -206,7 +206,7 @@
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_3/checkout.c@ 0 1 0 168 3 182 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_4/checkout.c@ 0 1 0 168 3 182 
 @pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OPENBSD_5_5/checkout.c@ 0 1 0 168 3 182 
-@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 0 1 0 1 3 2 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 1 2 0 1 5 3 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_7/checkout.c@ @//import/main/checkout.c@ 0 13 0 1 2 16 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_8/checkout.c@ @//import/main/checkout.c@ 0 39 0 1 2 43 
 @pv@ 0 @db.integed@ @//import/OPENBSD_3_9/checkout.c@ @//import/main/checkout.c@ 0 50 0 1 2 55 
@@ -226,7 +226,7 @@
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_3/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_4/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
 @pv@ 0 @db.integed@ @//import/OPENBSD_5_5/checkout.c@ @//import/main/checkout.c@ 0 168 0 1 2 182 
-@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 1 2 4 3 
 @pv@ 2 @db.change@ 182 182 @svn-client@ @nicm@ 1324994341 1 @Move some global variables/stat@ @//import/OPENBSD_5_...@ 
 @pv@ 2 @db.change@ 181 181 @svn-client@ @nicm@ 1324994341 1 @Move some global variables/stat@ @//import/main/*@ 
 @pv@ 2 @db.change@ 180 180 @svn-client@ @ray@ 1280526438 1 @Check date_parse return values.@ @//import/OPENBSD_...@ 
@@ -406,8 +406,8 @@
 @pv@ 2 @db.change@ 6 6 @svn-client@ @jfb@ 1091125965 1 @Don't export `cvs_root'
 @pv@ 2 @db.change@ 5 5 @svn-client@ @jfb@ 1090980089 1 @Pass the appropriate argument t@ @//import/main/*@ 
 @pv@ 2 @db.change@ 4 4 @svn-client@ @jfb@ 1090863030 1 @* make checkout work in remote @ @//import/main/*@ 
-@pv@ 2 @db.change@ 3 3 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ @//import/OpenCVS/*@ 
-@pv@ 2 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @Initial revision
+@pv@ 2 @db.change@ 3 3 @svn-client@ @jfb@ 1089756160 1 @Initial revision
+@pv@ 2 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ @//import/OpenCVS/*@ 
 @pv@ 2 @db.change@ 1 1 @svn-client@ @jfb@ 1089756160 1 @Initial revision
 @pv@ 0 @db.desc@ 182 @Move some global variables/statics to locals, from Michael W
 @pv@ 0 @db.desc@ 181 @Move some global variables/statics to locals, from Michael W
@@ -588,6 +588,6 @@
 @pv@ 0 @db.desc@ 6 @Don't export `cvs_root'
 @pv@ 0 @db.desc@ 5 @Pass the appropriate argument to cvs_client_connect()
 @pv@ 0 @db.desc@ 4 @* make checkout work in remote mode (almost)
-@pv@ 0 @db.desc@ 3 @* initial import from the cvs-tools module
-@pv@ 0 @db.desc@ 2 @Initial revision
+@pv@ 0 @db.desc@ 3 @Initial revision
+@pv@ 0 @db.desc@ 2 @* initial import from the cvs-tools module
 @pv@ 0 @db.desc@ 1 @Initial revision

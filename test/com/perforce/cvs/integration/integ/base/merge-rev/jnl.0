@@ -9,19 +9,19 @@
 @ 
 @pv@ 3 @db.rev@ @//import/main/checkout.c@ 1 1 0 1 1089756160 1089756160 00000000000000000000000000000000 @//import/main/checkout.c@ @1.1@ 1 
 @pv@ 0 @db.revcx@ 1 @//import/main/checkout.c@ 1 0 
-@pv@ 0 @db.desc@ 2 @Initial revision
+@pv@ 0 @db.desc@ 2 @* initial import from the cvs-tools module
 @ 
-@pv@ 0 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @Initial revision
+@pv@ 0 @db.change@ 2 2 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ 
+@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 0 2 1089756160 1089756160 00000000000000000000000000000000 @//import/OpenCVS/checkout.c@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/OpenCVS/checkout.c@ 1 0 
+@pv@ 0 @db.desc@ 3 @Initial revision
 @ 
-@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 0 1 2 2 
-@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 0 1 0 1 3 2 
-@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 1 1 3 2 1089756160 1089756160 00000000000000000000000000000000 @//import/main/checkout.c@ @1.1@ 1 
-@pv@ 0 @db.revcx@ 2 @//import/OpenCVS/checkout.c@ 1 3 
-@pv@ 0 @db.desc@ 3 @* initial import from the cvs-tools module
+@pv@ 0 @db.change@ 3 3 @svn-client@ @jfb@ 1089756160 1 @Initial revision
 @ 
-@pv@ 0 @db.change@ 3 3 @svn-client@ @jfb@ 1089756160 1 @* initial import from the cvs-t@ 
-@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 1 3 1089756160 1089756160 00000000000000000000000000000000 @//import/OpenCVS/checkout.c@ @1.3@ 1 
-@pv@ 0 @db.revcx@ 3 @//import/OpenCVS/checkout.c@ 2 1 
+@pv@ 0 @db.integed@ @//import/OpenCVS/checkout.c@ @//import/main/checkout.c@ 0 1 1 2 4 3 
+@pv@ 0 @db.integed@ @//import/main/checkout.c@ @//import/OpenCVS/checkout.c@ 1 2 0 1 5 3 
+@pv@ 3 @db.rev@ @//import/OpenCVS/checkout.c@ 2 1 4 3 1089756160 1089756160 00000000000000000000000000000000 @//import/main/checkout.c@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/OpenCVS/checkout.c@ 2 4 
 @pv@ 0 @db.desc@ 4 @* make checkout work in remote mode (almost)
 @ 
 @pv@ 0 @db.change@ 4 4 @svn-client@ @jfb@ 1090863030 1 @* make checkout work in remote @ 
