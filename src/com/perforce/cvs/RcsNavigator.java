@@ -32,7 +32,6 @@ public abstract class RcsNavigator {
 	private RcsReader rcsRevision;
 	private Map<String, RcsObjectNum> labelsMap;
 	private Map<RcsObjectNum, String> branchMap;
-	private Map<RcsObjectNum, String> reverseMap;
 
 	protected RcsReader getRcsRevision() {
 		return rcsRevision;
@@ -54,7 +53,6 @@ public abstract class RcsNavigator {
 		rcsRevision = rcs;
 		labelsMap = new HashMap<String, RcsObjectNum>();
 		branchMap = new HashMap<RcsObjectNum, String>();
-		reverseMap = new HashMap<RcsObjectNum, String>();
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("RCS file: " + rcs.getRcsFile().getName());
@@ -160,21 +158,6 @@ public abstract class RcsNavigator {
 				}
 			}
 
-			// reverse lookup for late branching
-			if (parent != null) {
-				RcsObjectDelta delta = rcsRevision.getDelta(parentId);
-				RcsObjectNumList tags = delta.getBranches();
-				for (RcsObjectNum tag : tags.getList()) {
-					if (tag.equals(id) && node != null) {
-						String fromBranch = getParentName(parentId);
-						String fromPath = fromBranch + "/" + basePath;
-						entry.setFromPath(fromPath);
-						entry.setReverse(node.isReverse());
-						// foundBranchPoint(node.getName(), entry);
-					}
-				}
-			}
-
 			// if branch, get name and add to list of revisions to sort
 			if (node != null) {
 				String nodeName = node.getName();
@@ -235,16 +218,6 @@ public abstract class RcsNavigator {
 			String name = branchMap.get(branchId);
 			return new NodeTarget(name, fromName, false);
 		}
-
-		// check for a reversed branch
-		for (Entry<RcsObjectNum, String> entry : branchMap.entrySet()) {
-			if (entry.getKey().toString().startsWith(id.toString())) {
-				String name = entry.getValue();
-				// add reverse lookup map for branch
-///				reverseMap.put(branchId, name);
-///				return new NodeTarget(name, fromName, true);
-			}
-		}
 		return null;
 	}
 
@@ -268,10 +241,6 @@ public abstract class RcsNavigator {
 		// check the list of known branches.
 		if (branchMap.containsKey(branchId)) {
 			return branchMap.get(branchId);
-		}
-		// check reverse map if branch was reversed
-		if (reverseMap.containsKey(branchId)) {
-			return reverseMap.get(branchId);
 		}
 		// guess it must be from the 'main'
 		return "main";
