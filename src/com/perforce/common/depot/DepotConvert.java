@@ -71,7 +71,7 @@ public class DepotConvert implements DepotInterface {
 		try {
 			return (String) Config.get(CFG.P4_CLIENT);
 		} catch (ConfigException e) {
-			return "svn-client";
+			return "p4-client";
 		}
 	}
 
@@ -85,7 +85,7 @@ public class DepotConvert implements DepotInterface {
 		try {
 			return (String) Config.get(CFG.P4_USER);
 		} catch (ConfigException e) {
-			return "svn-user";
+			return "p4-user";
 		}
 	}
 

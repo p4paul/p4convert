@@ -40,6 +40,8 @@ public class IntegrationTests {
 			Config.setDefault();
 			Config.set(CFG.P4_MODE, "CONVERT");
 			Config.set(CFG.SCM_TYPE, ScmType.SVN);
+			Config.set(CFG.P4_USER, "svn-user");
+			Config.set(CFG.P4_CLIENT, "svn-client");
 			Config.set(CFG.P4_ROOT, "./p4_root/");
 			Config.set(CFG.TEST, true);
 

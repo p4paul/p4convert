@@ -82,6 +82,8 @@ public class CvsImportTests {
 			Config.set(CFG.TEST, true);
 			Config.set(CFG.SCM_TYPE, ScmType.CVS);
 			Config.set(CFG.P4_MODE, "IMPORT");
+			Config.set(CFG.P4_USER, "svn-user");
+			Config.set(CFG.P4_CLIENT, "svn-client");
 			Config.set(CFG.P4_PORT, "localhost:4444");
 			Config.set(CFG.P4_CLIENT_ROOT, p4ws);
 			Config.set(CFG.P4_ROOT, p4root);

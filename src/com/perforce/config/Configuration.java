@@ -61,9 +61,9 @@ public class Configuration {
 		set(CFG.P4_MODE, "IMPORT");
 		set(CFG.P4_ROOT, "<unset>"); // end with a '/'
 		set(CFG.P4_PORT, "localhost:4444");
-		set(CFG.P4_USER, "svn-user");
+		set(CFG.P4_USER, "p4-user");
 		set(CFG.P4_PASSWD, "");
-		set(CFG.P4_CLIENT, "svn-client");
+		set(CFG.P4_CLIENT, "p4-client");
 		set(CFG.P4_CLIENT_ROOT, "<unset>"); // end with a '/'
 		set(CFG.P4_UNICODE, false);
 		set(CFG.P4_CHARSET, "<none>");
