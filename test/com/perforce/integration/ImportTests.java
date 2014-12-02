@@ -99,6 +99,12 @@ public class ImportTests {
 			Config.set(CFG.SVN_PROP_ENCODE, "ini");
 			Config.set(CFG.SVN_PROP_ENABLED, true);
 			Config.set(CFG.SVN_END, 0L);
+			
+			Config.set(CFG.EXCLUDE_MAP, "test_exclude.map");
+			Config.set(CFG.INCLUDE_MAP, "test_include.map");
+			Config.set(CFG.ISSUE_MAP, "test_issue.map");
+			Config.set(CFG.USER_MAP, "test_users.map");
+			Config.set(CFG.TYPE_MAP, "test_types.map");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -899,6 +905,7 @@ public class ImportTests {
 
 	@Test
 	public void case106() throws Exception {
+		Config.set(CFG.TYPE_MAP, "types.map");
 		String test = "sub_conflict";
 		testCase(test);
 	}
