@@ -2,6 +2,7 @@ package com.perforce.svn.change;
 
 import java.util.List;
 
+import com.perforce.common.process.ChangeInfo;
 import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.process.MergeInfo;
 import com.perforce.svn.process.MergeSource;
@@ -14,6 +15,13 @@ public interface ChangeInterface {
 	 * @return
 	 */
 	public long getChange();
+
+	/**
+	 * Return the original ChangeInfo object used to create the change
+	 * 
+	 * @return
+	 */
+	public ChangeInfo getChangeInfo();
 
 	/**
 	 * Submits the revisions into a change. ChangeConvert - writes a journal or

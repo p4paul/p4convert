@@ -220,4 +220,9 @@ public class ChangeConvert implements ChangeInterface {
 		FileRevision rev = fileRevisions.get(path);
 		return rev.getTo().getAction();
 	}
+	
+	@Override
+	public ChangeInfo getChangeInfo() {
+		return changeInfo;
+	}
 }

@@ -494,4 +494,9 @@ public class ChangeImport implements ChangeInterface {
 		String depotToPath = depot.getBase() + toPath;
 		return rev.getOpenedAction(depotToPath);
 	}
+
+	@Override
+	public ChangeInfo getChangeInfo() {
+		return changeInfo;
+	}
 }
