@@ -9,19 +9,25 @@ import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.process.ChangeInfo;
 import com.perforce.common.process.ProcessChange;
 import com.perforce.common.process.ProcessFactory;
+import com.perforce.common.process.ProcessLabel;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
+import com.perforce.svn.change.ChangeInterface;
 import com.perforce.svn.parser.Node;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
 import com.perforce.svn.prescan.ExcludeParser;
+import com.perforce.svn.prescan.LabelParser;
 import com.perforce.svn.prescan.LastRevision;
 import com.perforce.svn.query.QueryInterface;
 
 public class SvnProcessChange extends ProcessChange {
 
 	private Logger logger = LoggerFactory.getLogger(SvnProcessChange.class);
+
+	private ProcessLabel processLabel;
+	private ChangeInfo changeInfo;
 
 	protected void processChange() throws Exception {
 		// Read configuration settings for locals
@@ -93,10 +99,18 @@ public class SvnProcessChange extends ProcessChange {
 		}
 
 		// Initialise node path excluder, if required
-		boolean filter = ExcludeParser.load();
-		if (filter && !ExcludeParser.parse(dumpFile)) {
-			System.exit(ExitCode.USAGE.value());
+		boolean isFilter = ExcludeParser.load();
+		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
+		if (isFilter && !isLabels) {
+			if (!ExcludeParser.parse(dumpFile)) {
+				System.exit(ExitCode.USAGE.value());
+			}
 		}
+
+		// Scan Subversion tags for label candidates
+		LabelParser.parse(dumpFile);
+		logger.info(LabelParser.toLog());
+		processLabel = new ProcessLabel(depot);
 
 		// Initialise counters
 		super.setCurrentChange(null);
@@ -126,6 +140,12 @@ public class SvnProcessChange extends ProcessChange {
 				// Submit change
 				submit();
 
+				// Submit any labels
+				if (isLabels) {
+					processLabel.submit();
+					processLabel = new ProcessLabel(depot);
+				}
+
 				if (super.isStop() || (nextChange > revEnd && revEnd != 0)) {
 					if (super.isStop()) {
 						// Premature stop -- update end rev
@@ -141,9 +161,10 @@ public class SvnProcessChange extends ProcessChange {
 				 */
 				long change = nextChange;
 				change += (Long) Config.get(CFG.P4_OFFSET);
-				ChangeInfo info = new ChangeInfo(record);
-				super.setCurrentChange(ProcessFactory.getChange(change, info,
-						depot));
+				changeInfo = new ChangeInfo(record);
+				ChangeInterface ci = ProcessFactory.getChange(change,
+						changeInfo, depot);
+				super.setCurrentChange(ci);
 				nextChange++;
 				break;
 
@@ -153,8 +174,10 @@ public class SvnProcessChange extends ProcessChange {
 
 					((Node) record).setSubBlock(isSubNode(lastRecord, record));
 
-					SvnProcessNode node = new SvnProcessNode(
-							super.getCurrentChange(), depot, (Node) record);
+					ci = super.getCurrentChange();
+					SvnProcessNode node = new SvnProcessNode(ci, depot,
+							(Node) record);
+					node.setProcessLabel(processLabel);
 					node.process();
 				}
 				break;

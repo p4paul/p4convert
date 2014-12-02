@@ -16,7 +16,9 @@ import com.perforce.common.asset.TypeMap;
 import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.journal.Digest;
 import com.perforce.common.process.AuditLogger;
+import com.perforce.common.process.ChangeInfo;
 import com.perforce.common.process.ProcessFactory;
+import com.perforce.common.process.ProcessLabel;
 import com.perforce.common.process.ProcessNode;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
@@ -32,6 +34,7 @@ import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Node;
 import com.perforce.svn.parser.Property;
 import com.perforce.svn.prescan.ExcludeParser;
+import com.perforce.svn.prescan.LabelParser;
 import com.perforce.svn.query.QueryInterface;
 
 public class SvnProcessNode extends ProcessNode {
@@ -42,6 +45,7 @@ public class SvnProcessNode extends ProcessNode {
 	private DepotInterface depot;
 	private Node record;
 	private QueryInterface query;
+	private ProcessLabel processLabel;
 
 	public SvnProcessNode(ChangeInterface changelist, DepotInterface depot,
 			Node record) throws Exception {
@@ -366,7 +370,8 @@ public class SvnProcessNode extends ProcessNode {
 		nodePath = formatPath(nodePath);
 
 		// skip if excluded
-		if (ExcludeParser.isSkipped(nodePath)) {
+		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
+		if (ExcludeParser.isSkipped(nodePath) && !isLabels) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("skipping D:" + nodePath);
 			}
@@ -397,6 +402,16 @@ public class SvnProcessNode extends ProcessNode {
 		// Verbose output for user
 		verbose(nodeRev, nodeID, nodeAction, NodeType.DIR, nodePath, null,
 				subBlock);
+		
+		// Label change if required
+		if(isLabels && LabelParser.isLabel(nodePath)) {
+			String tag = LabelParser.getId(nodePath);
+			logger.info("LABEL: " + tag);
+			logger.info("... " + from);
+			ChangeInfo change = changelist.getChangeInfo();
+			processLabel.labelChange(tag, change);
+			return;
+		}
 
 		// create node for current action
 		NodeInterface node = ProcessFactory
@@ -614,4 +629,7 @@ public class SvnProcessNode extends ProcessNode {
 		return mergeInfo;
 	}
 
+	public void setProcessLabel(ProcessLabel processLabel) {
+		this.processLabel = processLabel;
+	}
 }
