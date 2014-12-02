@@ -98,7 +98,10 @@ public class Configuration {
 		set(CFG.SVN_DIR_ENABLED, false);
 		set(CFG.SVN_KEEP_KEYWORD, true);
 		set(CFG.SVN_MERGEINFO, false);
-
+		set(CFG.SVN_LABELS, false);
+		set(CFG.SVN_LABEL_DEPTH, 2);
+		set(CFG.SVN_LABEL_FORMAT, "svn_label:{depth}");
+		
 		// CVS specific modes
 		set(CFG.CVS_ROOT, "<unset>");
 		set(CFG.CVS_MODULE, "");

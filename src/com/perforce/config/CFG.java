@@ -49,6 +49,9 @@ public enum CFG {
 	SVN_DIR_ENABLED("svn.emptyDirEnabled", Boolean.class),
 	SVN_KEEP_KEYWORD("svn.keepKeyword", Boolean.class),
 	SVN_MERGEINFO("svn.mergeInfoEnabled", Boolean.class),
+	SVN_LABELS("svn.labels", Boolean.class),
+	SVN_LABEL_DEPTH("svn.labelDepth", Integer.class),
+	SVN_LABEL_FORMAT("svn.labelFormat", String.class),
 
 	// CVS specific modes
 	CVS_ROOT("cvs.cvsroot", String.class),
