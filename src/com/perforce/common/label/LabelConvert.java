@@ -6,21 +6,21 @@ import java.util.List;
 
 import com.perforce.common.depot.DepotConvert;
 import com.perforce.common.journal.BuildLabel;
-import com.perforce.cvs.RevisionEntry;
+import com.perforce.common.process.ChangeInfo;
 
 public class LabelConvert implements LabelInterface {
 
-	private DepotConvert depot;
-	private String name;
-	private String owner;
-	private Date date;
+	private final DepotConvert depot;
+	private final String name;
+	private final ChangeInfo change;
+	
 	private List<TagConvert> revs = new ArrayList<TagConvert>();
+	private long automatic = 0;
 
-	public LabelConvert(String label, RevisionEntry entry, DepotConvert depot) {
+	public LabelConvert(String label, ChangeInfo change, DepotConvert depot) {
 		this.depot = depot;
 		this.name = label;
-		this.owner = entry.getAuthor();
-		this.date = entry.getDate();
+		this.change = change;
 	}
 
 	@Override
@@ -30,21 +30,32 @@ public class LabelConvert implements LabelInterface {
 
 	@Override
 	public String getOwner() {
-		return owner;
+		return change.getUser();
 	}
 
 	@Override
 	public Long getDate() {
-		return date.getTime() / 1000;
+		Date date = change.getDate();
+		long time = date.getTime() / 1000;
+		return time;
+	}
+
+	@Override
+	public void setAutomatic(long automatic) {
+		this.automatic = automatic;
+	}
+
+	@Override
+	public String getAutomatic() {
+		if (automatic > 0) {
+			return "@@" + automatic;
+		}
+		return "";
 	}
 
 	@Override
 	public String getDesc() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("Created by ");
-		sb.append(owner);
-		sb.append(".\n");
-		return sb.toString();
+		return change.getDescription();
 	}
 
 	@Override
@@ -59,7 +70,7 @@ public class LabelConvert implements LabelInterface {
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append(name + " by: " + owner + "\n");
+		sb.append(name + " by: " + getOwner() + "\n");
 		for (TagConvert tags : revs) {
 			sb.append("... " + tags + "\n");
 		}

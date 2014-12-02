@@ -11,7 +11,6 @@ import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.config.ScmType;
-import com.perforce.cvs.RevisionEntry;
 import com.perforce.svn.change.ChangeConvert;
 import com.perforce.svn.change.ChangeImport;
 import com.perforce.svn.change.ChangeInterface;
@@ -83,12 +82,12 @@ public class ProcessFactory {
 		}
 	}
 
-	public static LabelInterface getLabel(String label, RevisionEntry entry,
+	public static LabelInterface getLabel(String label, ChangeInfo change,
 			DepotInterface depot) throws Exception {
 		if (Config.isImportMode()) {
-			return new LabelImport(label, entry, (DepotImport) depot);
+			return new LabelImport(label, change, (DepotImport) depot);
 		} else {
-			return new LabelConvert(label, entry, (DepotConvert) depot);
+			return new LabelConvert(label, change, (DepotConvert) depot);
 		}
 	}
 }

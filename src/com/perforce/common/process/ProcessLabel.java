@@ -29,6 +29,13 @@ public class ProcessLabel {
 		return depot;
 	}
 
+	public void labelChange(String tag, ChangeInfo change) throws Exception {
+		LabelInterface label;
+		label = ProcessFactory.getLabel(tag, change, depot);
+		label.setAutomatic(change.getScmChange());
+		labelMap.put(tag, label);
+	}
+	
 	public void labelRev(RevisionEntry entry, long change) throws Exception {
 		for (String labelName : entry.getLabels()) {
 			LabelInterface label;
@@ -36,7 +43,8 @@ public class ProcessLabel {
 			if (labelMap.containsKey(labelName)) {
 				label = labelMap.get(labelName);
 			} else {
-				label = ProcessFactory.getLabel(labelName, entry, depot);
+				ChangeInfo changeInfo = new ChangeInfo(entry, change);
+				label = ProcessFactory.getLabel(labelName, changeInfo, depot);
 			}
 
 			String path = entry.getPath();

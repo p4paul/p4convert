@@ -17,7 +17,7 @@ public class BuildLabel {
 		JournalRecord dbLabel = new JournalRecord("pv", "db.domain", 5);
 		dbLabel.addField("name", lbl.getName());
 		dbLabel.addField("type", 108);
-		dbLabel.addField("extra", "");
+		dbLabel.addField("extra", lbl.getAutomatic());
 		dbLabel.addField("mount", "");
 		dbLabel.addField("mount2", "");
 		dbLabel.addField("mount3", "");

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.perforce.common.client.P4Factory;
 import com.perforce.common.depot.DepotImport;
-import com.perforce.cvs.RevisionEntry;
+import com.perforce.common.process.ChangeInfo;
 import com.perforce.p4java.core.ILabel;
 import com.perforce.p4java.core.ILabelMapping;
 import com.perforce.p4java.core.ViewMap;
@@ -18,21 +18,21 @@ import com.perforce.p4java.server.IOptionsServer;
 
 public class LabelImport implements LabelInterface {
 
-	private DepotImport depot;
+	private final DepotImport depot;
+	private final String name;
+	private final ChangeInfo change;
+
 	private ILabel ilabel;
 	private IOptionsServer iserver;
-	private String name;
-	private String owner;
-	private Date date;
+	private long automatic;
 
 	private ArrayList<TagConvert> revs = new ArrayList<TagConvert>();
 
-	public LabelImport(String label, RevisionEntry entry, DepotImport depot)
+	public LabelImport(String label, ChangeInfo change, DepotImport depot)
 			throws Exception {
 		this.depot = depot;
 		this.name = label;
-		this.owner = entry.getAuthor();
-		this.date = entry.getDate();
+		this.change = change;
 
 		iserver = depot.getIServer();
 		ilabel = iserver.getLabel(name);
@@ -52,9 +52,9 @@ public class LabelImport implements LabelInterface {
 			ilabel = iserver.getLabel(name);
 		}
 
-		ilabel.setOwnerName(owner);
-		ilabel.setLastAccess(date);
-		ilabel.setLastUpdate(date);
+		ilabel.setOwnerName(getOwner());
+		ilabel.setLastAccess(change.getDate());
+		ilabel.setLastUpdate(change.getDate());
 		ilabel.setDescription(getDesc());
 	}
 
@@ -65,21 +65,32 @@ public class LabelImport implements LabelInterface {
 
 	@Override
 	public String getOwner() {
-		return owner;
+		return change.getUser();
 	}
 
 	@Override
 	public Long getDate() {
-		return date.getTime() / 1000;
+		Date date = change.getDate();
+		long time = date.getTime() / 1000;
+		return time;
+	}
+
+	@Override
+	public void setAutomatic(long automatic) {
+		this.automatic = automatic;
+	}
+
+	@Override
+	public String getAutomatic() {
+		if (automatic < 0) {
+			return "@" + automatic;
+		}
+		return "";
 	}
 
 	@Override
 	public String getDesc() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("Created by ");
-		sb.append(owner);
-		sb.append(".\n");
-		return sb.toString();
+		return change.getDescription();
 	}
 
 	@Override
@@ -95,7 +106,7 @@ public class LabelImport implements LabelInterface {
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append(name + " by: " + owner + "\n");
+		sb.append(name + " by: " + getOwner() + "\n");
 		for (TagConvert tag : revs) {
 			sb.append("... " + tag + "\n");
 		}
@@ -114,7 +125,6 @@ public class LabelImport implements LabelInterface {
 		StringBuffer fileStr = new StringBuffer();
 		fileStr.append("//" + depot.getName() + "/");
 		fileStr.append(tag.getPath());
-		// fileStr.append("#" + tag.getRevision());
 
 		List<IFileSpec> fileSpecs;
 		fileSpecs = FileSpecBuilder.makeFileSpecList(fileStr.toString());

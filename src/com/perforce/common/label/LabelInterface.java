@@ -9,6 +9,10 @@ public interface LabelInterface {
 	String getOwner();
 
 	Long getDate();
+	
+	void setAutomatic(long automatic);
+	
+	String getAutomatic();
 
 	String getDesc();
 
