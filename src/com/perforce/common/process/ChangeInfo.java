@@ -39,6 +39,10 @@ public class ChangeInfo {
 		this.description = r.getComment();
 	}
 
+	public void setScmChange(long change) {
+		scmChange = change;
+	}
+	
 	public long getScmChange() {
 		return scmChange;
 	}
