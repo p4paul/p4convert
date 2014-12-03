@@ -402,13 +402,20 @@ public class SvnProcessNode extends ProcessNode {
 		// Verbose output for user
 		verbose(nodeRev, nodeID, nodeAction, NodeType.DIR, nodePath, null,
 				subBlock);
-		
+
 		// Label change if required
-		if(isLabels && LabelParser.isLabel(nodePath)) {
+		if (isLabels && LabelParser.isLabel(nodePath)) {
 			String tag = LabelParser.getId(nodePath);
-			logger.info("LABEL: " + tag);
-			logger.info("... " + from);
+			if (logger.isDebugEnabled()) {
+				logger.debug("Label branch with id: " + tag);
+				logger.debug("... " + from);
+			}
+
+			// Use the author, description, and date from the current change,
+			// but use the from change number for the automatic label's revision.
 			ChangeInfo change = changelist.getChangeInfo();
+			change.setScmChange(from.getEndFromChange());
+
 			processLabel.labelChange(tag, change);
 			return;
 		}

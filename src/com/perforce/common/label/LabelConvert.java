@@ -48,7 +48,7 @@ public class LabelConvert implements LabelInterface {
 	@Override
 	public String getAutomatic() {
 		if (automatic > 0) {
-			return "@@" + automatic;
+			return "@" + automatic;
 		}
 		return "";
 	}
