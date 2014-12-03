@@ -199,6 +199,9 @@ public class NodeConvert implements NodeInterface {
 				throw new ConverterException("Expected one or more sources");
 			}
 			break;
+			
+		case LABEL:
+			return;
 
 		default:
 			throw new ConverterException("Node-action(" + nodeAction + ")");
@@ -349,7 +352,7 @@ public class NodeConvert implements NodeInterface {
 			break;
 
 		case LABEL:
-			break;
+			return;
 			
 		default:
 			throw new ConverterException("Node-action(" + nodeAction + ")");

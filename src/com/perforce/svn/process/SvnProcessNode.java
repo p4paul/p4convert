@@ -248,6 +248,29 @@ public class SvnProcessNode extends ProcessNode {
 			content.setProps(contentProps);
 		}
 
+		// Label change if required
+		if (isLabels && TagParser.isLabel(nodePath)) {
+			if (nodeAction == Action.BRANCH) {
+				String tag = TagParser.getId(nodePath);
+				if (logger.isDebugEnabled()) {
+					logger.debug("Label branch with id: " + tag);
+					logger.debug("... " + from);
+				}
+
+				// Use the author, description, and date from the current
+				// change,
+				// but use the from change number for the automatic label's
+				// revision.
+				ChangeInfo change = changelist.getChangeInfo();
+				change.setScmChange(from.getEndFromChange());
+				nodeAction = Action.LABEL;
+
+				processLabel.labelChange(tag, change);
+			} else {
+				return;
+			}
+		}
+
 		// Verbose output for user
 		verbose(svnRev, nodeID, nodeAction, NodeType.FILE, nodePath, content,
 				subBlock);
