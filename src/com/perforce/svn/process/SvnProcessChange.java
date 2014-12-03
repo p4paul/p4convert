@@ -130,9 +130,7 @@ public class SvnProcessChange extends ProcessChange {
 
 				// skip revision outside of starting position
 				if (record.getSvnRevision() < revStart) {
-					if (logger.isInfoEnabled()) {
-						logger.info("skipping change " + nextChange + "...");
-					}
+					logger.info("skipping change " + nextChange + "...");
 					nextChange++;
 					break;
 				}

@@ -25,7 +25,8 @@ public class ChangeAction {
 		MERGE_EDIT(4), // merge FROM actions
 		MERGE_IGNORE(4), // merge FROM actions
 		UPDATE(5), // replace action
-		COPY(6); // replace branch action
+		COPY(6),  // replace branch action
+		LABEL(-1);
 
 		final int id;
 

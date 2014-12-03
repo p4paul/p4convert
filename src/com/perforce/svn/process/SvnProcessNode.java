@@ -88,16 +88,16 @@ public class SvnProcessNode extends ProcessNode {
 		String nodePath = record.findHeaderString("Node-path");
 		nodePath = formatPath(nodePath);
 
-		// skip if excluded
-		if (ExcludeParser.isSkipped(nodePath)) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("skipping F:" + nodePath);
-			}
-			return;
-		}
-
 		// find action and node type
 		ChangeAction.Action nodeAction = getNodeAction();
+
+		// skip if excluded
+		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
+		if (ExcludeParser.isSkipped(nodePath) && !isLabels) {
+			char a = nodeAction.toString().charAt(0);
+			logger.info("skipping " + a + ":F " + nodePath);
+			return;
+		}
 
 		// find last action using path and Perforce change number
 		ChangeAction lastAction = query.findLastAction(nodePath,
@@ -369,17 +369,16 @@ public class SvnProcessNode extends ProcessNode {
 		String nodePath = record.findHeaderString("Node-path");
 		nodePath = formatPath(nodePath);
 
+		// find action and node type
+		ChangeAction.Action nodeAction = getNodeAction();
+
 		// skip if excluded
 		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
 		if (ExcludeParser.isSkipped(nodePath) && !isLabels) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("skipping D:" + nodePath);
-			}
+			char a = nodeAction.toString().charAt(0);
+			logger.info("skipping " + a + ":D " + nodePath);
 			return;
 		}
-
-		// find action and node type
-		ChangeAction.Action nodeAction = getNodeAction();
 
 		// find change numbers
 		int nodeRev = record.getSvnRevision();
@@ -399,10 +398,6 @@ public class SvnProcessNode extends ProcessNode {
 			changelist.setMergeSource(null);
 		}
 
-		// Verbose output for user
-		verbose(nodeRev, nodeID, nodeAction, NodeType.DIR, nodePath, null,
-				subBlock);
-
 		// Label change if required
 		if (isLabels && LabelParser.isLabel(nodePath)) {
 			String tag = LabelParser.getId(nodePath);
@@ -412,13 +407,18 @@ public class SvnProcessNode extends ProcessNode {
 			}
 
 			// Use the author, description, and date from the current change,
-			// but use the from change number for the automatic label's revision.
+			// but use the from change number for the automatic label's
+			// revision.
 			ChangeInfo change = changelist.getChangeInfo();
 			change.setScmChange(from.getEndFromChange());
+			nodeAction = Action.LABEL;
 
 			processLabel.labelChange(tag, change);
-			return;
 		}
+
+		// Verbose output for user
+		verbose(nodeRev, nodeID, nodeAction, NodeType.DIR, nodePath, null,
+				subBlock);
 
 		// create node for current action
 		NodeInterface node = ProcessFactory

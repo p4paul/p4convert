@@ -348,6 +348,9 @@ public class NodeConvert implements NodeInterface {
 			processDirProperty(content);
 			break;
 
+		case LABEL:
+			break;
+			
 		default:
 			throw new ConverterException("Node-action(" + nodeAction + ")");
 		}
