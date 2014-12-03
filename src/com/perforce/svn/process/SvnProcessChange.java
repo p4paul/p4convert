@@ -18,9 +18,9 @@ import com.perforce.svn.parser.Node;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
 import com.perforce.svn.prescan.ExcludeParser;
-import com.perforce.svn.prescan.LabelParser;
 import com.perforce.svn.prescan.LastRevision;
 import com.perforce.svn.query.QueryInterface;
+import com.perforce.svn.tag.TagParser;
 
 public class SvnProcessChange extends ProcessChange {
 
@@ -108,8 +108,8 @@ public class SvnProcessChange extends ProcessChange {
 		}
 
 		// Scan Subversion tags for label candidates
-		LabelParser.parse(dumpFile);
-		logger.info(LabelParser.toLog());
+		TagParser.parse(dumpFile);
+		logger.info(TagParser.toLog());
 		processLabel = new ProcessLabel(depot);
 
 		// Initialise counters

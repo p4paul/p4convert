@@ -1,4 +1,4 @@
-package com.perforce.svn.prescan;
+package com.perforce.svn.tag;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -11,14 +11,17 @@ import org.slf4j.LoggerFactory;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
+import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
+import com.perforce.svn.prescan.ExcludeParser;
+import com.perforce.svn.prescan.Progress;
 
-public class LabelParser {
+public class TagParser {
 
-	private static Logger logger = LoggerFactory.getLogger(LabelParser.class);
+	private static Logger logger = LoggerFactory.getLogger(TagParser.class);
 
-	private static HashMap<String, Integer> tags = new HashMap<String, Integer>();
+	private static HashMap<String, TagEntry> tags = new HashMap<String, TagEntry>();
 
 	public static void parse(String dumpFile) throws Exception {
 
@@ -29,21 +32,65 @@ public class LabelParser {
 		long end = (Long) Config.get(CFG.SVN_END);
 		Progress progress = new Progress(end);
 
+		// Initialise per change tag counter
+		HashMap<String, TagEntry> changeTags = new HashMap<String, TagEntry>();
+
 		// Open dump file reader and iterate over entries
 		RecordReader recordReader = new RecordReader(dumpFile);
 		for (Record record : recordReader) {
 			switch (record.getType()) {
 			case REVISION:
 				progress.update(record.getSvnRevision());
+				aggregateTags(changeTags);
+
+				// reset tags for next change
+				changeTags = new HashMap<String, TagEntry>();
 				break;
 
 			case NODE:
 				String toPath = record.findHeaderString("Node-path");
-				processPath(toPath);
+				String id = getId(toPath);
+				if (id.isEmpty()) {
+					continue;
+				}
+
+				// If content the BRANCH else look for label type
+				Content content = record.getContent();
+				if (content.isBlob()) {
+					countTag(id, TagType.BRANCH, changeTags);
+				} else {
+					countTag(id, TagType.UNKNOWN, changeTags);
+				}
 				break;
 
 			default:
 				break;
+			}
+		}
+
+		// Aggregate tags from remaining nodes
+		aggregateTags(changeTags);
+	}
+
+	public static void aggregateTags(HashMap<String, TagEntry> changeTags) {
+		for (Entry<String, TagEntry> t : changeTags.entrySet()) {
+			String id = t.getKey();
+			TagEntry tag = t.getValue();
+
+			TagType type = tag.getType();
+			if (type == TagType.UNKNOWN) {
+				if (tag.getCount() == 1) {
+					type = TagType.AUTOMATIC;
+				} else if (tag.getCount() > 1) {
+					type = TagType.STATIC;
+				}
+			}
+			countTag(id, type, tags);
+
+			// Check aggregated result
+			TagEntry tt = tags.get(id);
+			if (tt.getCount() > 1) {
+				tt.setType(TagType.BRANCH);
 			}
 		}
 	}
@@ -55,7 +102,7 @@ public class LabelParser {
 		}
 
 		if (tags.containsKey(id)) {
-			int count = tags.get(id);
+			int count = tags.get(id).getCount();
 			if (count == 1) {
 				// a label candidate
 				return true;
@@ -69,17 +116,15 @@ public class LabelParser {
 		}
 	}
 
-	private static void processPath(String path) {
-		String id = getId(path);
-		if (id.isEmpty()) {
-			return;
-		}
-
+	private static void countTag(String id, TagType type,
+			HashMap<String, TagEntry> tags) {
 		if (tags.containsKey(id)) {
-			int count = tags.get(id);
-			tags.put(id, count + 1);
+			TagEntry tag = tags.get(id);
+			tag.increment();
 		} else {
-			tags.put(id, 1);
+			TagEntry tag = new TagEntry(id);
+			tag.setType(type);
+			tags.put(id, tag);
 		}
 	}
 
@@ -103,7 +148,7 @@ public class LabelParser {
 		} catch (ConfigException e) {
 			return id;
 		}
-		
+
 		// exit early if path is too short
 		String[] parts = path.split("/", depth + 1);
 		if (parts.length < depth) {
@@ -144,11 +189,9 @@ public class LabelParser {
 	public static String toLog() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("Branch map count:\n");
-		for (Entry<String, Integer> t : tags.entrySet()) {
+		for (Entry<String, TagEntry> t : tags.entrySet()) {
 			sb.append("... ");
 			sb.append(t.getValue());
-			sb.append(" ");
-			sb.append(t.getKey());
 			sb.append("\n");
 		}
 		return sb.toString();

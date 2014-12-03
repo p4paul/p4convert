@@ -34,8 +34,8 @@ import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Node;
 import com.perforce.svn.parser.Property;
 import com.perforce.svn.prescan.ExcludeParser;
-import com.perforce.svn.prescan.LabelParser;
 import com.perforce.svn.query.QueryInterface;
+import com.perforce.svn.tag.TagParser;
 
 public class SvnProcessNode extends ProcessNode {
 
@@ -399,8 +399,8 @@ public class SvnProcessNode extends ProcessNode {
 		}
 
 		// Label change if required
-		if (isLabels && LabelParser.isLabel(nodePath)) {
-			String tag = LabelParser.getId(nodePath);
+		if (isLabels && TagParser.isLabel(nodePath)) {
+			String tag = TagParser.getId(nodePath);
 			if (logger.isDebugEnabled()) {
 				logger.debug("Label branch with id: " + tag);
 				logger.debug("... " + from);
