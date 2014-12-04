@@ -4,7 +4,12 @@ public class TagEntry {
 
 	private final String id;
 
+	private String toPath;
+	private String fromPath;
+	private long fromChange;
 	private TagType type = TagType.UNKNOWN;
+	
+	
 	private int branchCount;
 
 	public TagEntry(String id) {
@@ -16,6 +21,10 @@ public class TagEntry {
 		branchCount++;
 	}
 
+	public String getId() {
+		return id;
+	}
+	
 	public int getCount() {
 		return branchCount;
 	}
@@ -30,5 +39,29 @@ public class TagEntry {
 
 	public String toString() {
 		return id + ":" + type + " " + branchCount;
+	}
+
+	public String getToPath() {
+		return toPath;
+	}
+
+	public void setToPath(String toPath) {
+		this.toPath = toPath;
+	}
+
+	public String getFromPath() {
+		return fromPath;
+	}
+
+	public void setFromPath(String fromPath) {
+		this.fromPath = fromPath;
+	}
+
+	public long getFromChange() {
+		return fromChange;
+	}
+
+	public void setFromChange(long fromChange) {
+		this.fromChange = fromChange;
 	}
 }

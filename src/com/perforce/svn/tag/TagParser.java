@@ -127,8 +127,16 @@ public class TagParser {
 			tags.put(id, tag);
 		}
 	}
+	
+	public static TagEntry getLabel(String path) {
+		String id = getId(path);
+		if(!id.isEmpty()) {
+			return tags.get(id);
+		}
+		return null;
+	}
 
-	public static String getId(String path) {
+	private static String getId(String path) {
 		String id = "";
 
 		// exit early for non taggable paths

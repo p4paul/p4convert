@@ -35,6 +35,7 @@ import com.perforce.svn.parser.Node;
 import com.perforce.svn.parser.Property;
 import com.perforce.svn.prescan.ExcludeParser;
 import com.perforce.svn.query.QueryInterface;
+import com.perforce.svn.tag.TagEntry;
 import com.perforce.svn.tag.TagParser;
 
 public class SvnProcessNode extends ProcessNode {
@@ -251,21 +252,24 @@ public class SvnProcessNode extends ProcessNode {
 		// Label change if required
 		if (isLabels && TagParser.isLabel(nodePath)) {
 			if (nodeAction == Action.BRANCH) {
-				String tag = TagParser.getId(nodePath);
+				TagEntry tag = TagParser.getLabel(nodePath);
+				tag.setToPath(nodePath);
+				tag.setFromPath(from.getFromPath());
+				tag.setFromChange(from.getEndFromChange());
+				
 				if (logger.isDebugEnabled()) {
 					logger.debug("Label branch with id: " + tag);
 					logger.debug("... " + from);
 				}
 
 				// Use the author, description, and date from the current
-				// change,
-				// but use the from change number for the automatic label's
-				// revision.
+				// change, but use the from change number for the automatic
+				// label's revision.
 				ChangeInfo change = changelist.getChangeInfo();
 				change.setScmChange(from.getEndFromChange());
 				nodeAction = Action.LABEL;
 
-				processLabel.labelChange(tag, change);
+				processLabel.labelRev(tag, change);
 			} else {
 				return;
 			}
@@ -423,7 +427,11 @@ public class SvnProcessNode extends ProcessNode {
 
 		// Label change if required
 		if (isLabels && TagParser.isLabel(nodePath)) {
-			String tag = TagParser.getId(nodePath);
+			TagEntry tag = TagParser.getLabel(nodePath);
+			tag.setToPath(nodePath);
+			tag.setFromPath(from.getFromPath());
+			tag.setFromChange(from.getEndFromChange());
+
 			if (logger.isDebugEnabled()) {
 				logger.debug("Label branch with id: " + tag);
 				logger.debug("... " + from);

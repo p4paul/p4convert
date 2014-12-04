@@ -26,10 +26,12 @@ public class SvnProcessChange extends ProcessChange {
 
 	private Logger logger = LoggerFactory.getLogger(SvnProcessChange.class);
 
-	private ProcessLabel processLabel;
 	private ChangeInfo changeInfo;
 
 	protected void processChange() throws Exception {
+		// Initialise labels
+		isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
+		
 		// Read configuration settings for locals
 		String dumpFile = (String) Config.get(CFG.SVN_DUMPFILE);
 		long revStart = (Long) Config.get(CFG.SVN_START);
@@ -100,7 +102,6 @@ public class SvnProcessChange extends ProcessChange {
 
 		// Initialise node path excluder, if required
 		boolean isFilter = ExcludeParser.load();
-		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
 		if (isFilter && !isLabels) {
 			if (!ExcludeParser.parse(dumpFile)) {
 				System.exit(ExitCode.USAGE.value());
@@ -138,11 +139,8 @@ public class SvnProcessChange extends ProcessChange {
 				// Submit change
 				submit();
 
-				// Submit any labels
-				if (isLabels) {
-					processLabel.submit();
-					processLabel = new ProcessLabel(depot);
-				}
+				// reset label for next change
+				processLabel = new ProcessLabel(depot);
 
 				if (super.isStop() || (nextChange > revEnd && revEnd != 0)) {
 					if (super.isStop()) {

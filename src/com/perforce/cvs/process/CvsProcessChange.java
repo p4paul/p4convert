@@ -1,7 +1,6 @@
 package com.perforce.cvs.process;
 
 import java.io.File;
-import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +34,6 @@ public class CvsProcessChange extends ProcessChange {
 	private Logger logger = LoggerFactory.getLogger(CvsProcessChange.class);
 
 	private DepotInterface depot;
-	private boolean isLabel;
-	private ProcessLabel processLabel;
 
 	private int nodeID = 0;
 	private long cvsChange = 1;
@@ -46,7 +43,7 @@ public class CvsProcessChange extends ProcessChange {
 
 	protected void processChange() throws Exception {
 		// Initialise labels
-		isLabel = (Boolean) Config.get(CFG.CVS_LABELS);
+		isLabels = (Boolean) Config.get(CFG.CVS_LABELS);
 
 		// Create revision tree and depot
 		String depotPath = (String) Config.get(CFG.P4_DEPOT_PATH);
@@ -96,7 +93,7 @@ public class CvsProcessChange extends ProcessChange {
 			}
 
 			// initialise labels
-			if (isLabel) {
+			if (isLabels) {
 				processLabel = new ProcessLabel(depot);
 			}
 
@@ -123,31 +120,22 @@ public class CvsProcessChange extends ProcessChange {
 			// submit changes
 			submit();
 
-			// submit labels
-			if (isLabel) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Submitting labels:");
-					logger.trace(processLabel.toString());
-				}
-				processLabel.submit();
-			}
-
 			// update revision list
 			revs = revSort;
 			revSort.reset();
 			delayedBranch.reset();
 			if (delayedBranch.hasNext()) {
 				revs = delayedBranch;
-				if(revSort.hasNext()) {
+				if (revSort.hasNext()) {
 					long rDate = revSort.next().getDate().getTime();
 					long dDate = delayedBranch.next().getDate().getTime();
-					if(rDate < dDate) {
+					if (rDate < dDate) {
 						revs = revSort;
 					} else {
 						revs.setWindow(rDate - dDate);
 					}
 				}
-			} 
+			}
 			revs.reset();
 
 			// fetch revision for next change
@@ -338,7 +326,7 @@ public class CvsProcessChange extends ProcessChange {
 		node.process();
 
 		// tag any labels
-		if (isLabel) {
+		if (isLabels) {
 			processLabel.labelRev(entry, change.getChange());
 		}
 		nodeID++;

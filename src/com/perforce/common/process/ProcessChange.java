@@ -20,6 +20,9 @@ public abstract class ProcessChange implements Callable<Integer> {
 
 	private Logger logger = LoggerFactory.getLogger(ProcessChange.class);
 
+	protected boolean isLabels;
+	protected ProcessLabel processLabel;
+
 	private ChangeInterface currentChange = null;
 	private boolean stop = false;
 	private boolean clean = true;
@@ -162,6 +165,15 @@ public abstract class ProcessChange implements Callable<Integer> {
 			// map change to subversion revision
 			change = currentChange.getChange();
 			ChangeMap.add(currentChange.getSvnRevision(), change);
+		}
+
+		// Submit any labels
+		if (isLabels && processLabel != null) {
+			if (logger.isTraceEnabled()) {
+				logger.trace("Submitting labels:");
+				logger.trace(processLabel.toString());
+			}
+			processLabel.submit();
 		}
 	}
 
