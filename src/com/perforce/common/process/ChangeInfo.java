@@ -38,10 +38,6 @@ public class ChangeInfo {
 		this.user = r.getAuthor();
 		this.description = r.getComment();
 	}
-
-	public void setScmChange(long change) {
-		scmChange = change;
-	}
 	
 	public long getScmChange() {
 		return scmChange;

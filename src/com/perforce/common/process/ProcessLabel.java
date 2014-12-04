@@ -38,21 +38,21 @@ public class ProcessLabel {
 	 * label.
 	 * 
 	 * @param tag
-	 * @param change
+	 * @param changeInfo
 	 * @throws Exception
 	 */
-	public void labelChange(TagEntry tagEntry, ChangeInfo change) throws Exception {
+	public void labelChange(TagEntry tagEntry, ChangeInfo changeInfo, long change) throws Exception {
 		LabelInterface label;
 		String id = tagEntry.getId();
 		
 		if (labelMap.containsKey(id)) {
 			label = labelMap.get(id);
 		} else {
-			label = ProcessFactory.getLabel(id, change, depot);
+			label = ProcessFactory.getLabel(id, changeInfo, depot);
 		}
 		
 		if (tagEntry.getType() == TagType.AUTOMATIC) {
-			label.setAutomatic(change.getScmChange());
+			label.setAutomatic(change);
 		} else {
 			String fromPath = tagEntry.getFromPath();
 			long fromChange = tagEntry.getFromChange();

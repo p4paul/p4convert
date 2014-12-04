@@ -78,11 +78,12 @@ public class LabelImport implements LabelInterface {
 	@Override
 	public void setAutomatic(long automatic) {
 		this.automatic = automatic;
+		ilabel.setRevisionSpec(getAutomatic());
 	}
 
 	@Override
 	public String getAutomatic() {
-		if (automatic < 0) {
+		if (automatic > 0) {
 			return "@" + automatic;
 		}
 		return "";

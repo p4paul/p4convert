@@ -256,17 +256,15 @@ public class SvnProcessNode extends ProcessNode {
 				tag.setToPath(nodePath);
 				tag.setFromPath(from.getFromPath());
 				tag.setFromChange(from.getEndFromChange());
-				
+
 				if (logger.isDebugEnabled()) {
 					logger.debug("Label branch with id: " + tag);
 					logger.debug("... " + from);
 				}
 
 				// Use the author, description, and date from the current
-				// change, but use the from change number for the automatic
-				// label's revision.
+				// change.
 				ChangeInfo change = changelist.getChangeInfo();
-				change.setScmChange(from.getEndFromChange());
 				nodeAction = Action.LABEL;
 
 				processLabel.labelRev(tag, change);
@@ -437,14 +435,11 @@ public class SvnProcessNode extends ProcessNode {
 				logger.debug("... " + from);
 			}
 
-			// Use the author, description, and date from the current change,
-			// but use the from change number for the automatic label's
-			// revision.
+			// Use the author, description, and date from the current change.
 			ChangeInfo change = changelist.getChangeInfo();
-			change.setScmChange(from.getEndFromChange());
 			nodeAction = Action.LABEL;
-
-			processLabel.labelChange(tag, change);
+			long fromChange = from.getEndFromChange();
+			processLabel.labelChange(tag, change, fromChange);
 		}
 
 		// Verbose output for user

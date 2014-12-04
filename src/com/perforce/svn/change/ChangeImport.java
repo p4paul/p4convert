@@ -234,8 +234,10 @@ public class ChangeImport implements ChangeInterface {
 
 			// find properties and store if required
 			createDirProperty(toPath, property);
-
 			break;
+
+		case LABEL:
+			return;
 
 		default:
 			throw new ConverterException("Node-action(" + nodeAction + ")");
@@ -394,6 +396,9 @@ public class ChangeImport implements ChangeInterface {
 				}
 			}
 			break;
+
+		case LABEL:
+			return;
 
 		default:
 			throw new ConverterException("Node-action(" + nodeAction + ")");
