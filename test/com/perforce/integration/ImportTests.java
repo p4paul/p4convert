@@ -982,6 +982,19 @@ public class ImportTests {
 		String test = "exe_prop_branch";
 		testCase(test);
 	}
+		
+	@Test
+	public void case118() throws Exception {
+		String test = "labels_basic";
+		Config.set(CFG.SVN_LABELS, true);
+		Config.set(CFG.SVN_LABEL_DEPTH, 2);
+		Config.set(CFG.SVN_LABEL_FORMAT, "label:{depth}");
+		
+		String path = dumpPath + test + "/exclude.map"; 
+		Config.set(CFG.EXCLUDE_MAP, path);
+
+		testCase(test);
+	}
 
 	/**
 	 * Environment test

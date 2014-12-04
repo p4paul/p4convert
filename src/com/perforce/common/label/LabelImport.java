@@ -132,6 +132,6 @@ public class LabelImport implements LabelInterface {
 
 		TagFilesOptions tagOpts = new TagFilesOptions();
 		List<IFileSpec> tagSpec = iserver.tagFiles(fileSpecs, name, tagOpts);
-		P4Factory.validateFileSpecs(tagSpec);
+		P4Factory.validateFileSpecs(tagSpec, "label in sync.");
 	}
 }

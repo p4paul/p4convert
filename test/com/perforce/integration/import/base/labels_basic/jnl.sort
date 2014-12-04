@@ -1,0 +1,29 @@
+@pv@ 9 @db.rev@ @//import/tags/1.0.2/src/file1.txt@ 2 1 1 7 1417534450 1417534450 D055FA606E585D6939429FFA868E812A 29 0 0 @//import/tags/1.0.2/src/file1.txt@ @1.7@ 1 
+@pv@ 9 @db.rev@ @//import/tags/1.0.2/src/file1.txt@ 1 1 3 6 1417534391 1417534355 756DD4C1A11DFDF409C0FCD81D4DEA9C 22 0 1 @//import/trunk/src/file1.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/tags/1.0.2/src/file2.txt@ 1 1 3 6 1417534391 1417534355 9198A36F6A4990C2967FD7DD336B015B 15 0 1 @//import/trunk/src/file2.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/tags/1.0.2/src/file3.txt@ 1 1 3 6 1417534391 1417534005 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 1 @//import/trunk/src/file3.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file1.txt@ 3 1 1 4 1417534355 1417534355 756DD4C1A11DFDF409C0FCD81D4DEA9C 22 0 0 @//import/trunk/src/file1.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file1.txt@ 2 1 1 3 1417534331 1417534331 9198A36F6A4990C2967FD7DD336B015B 15 0 0 @//import/trunk/src/file1.txt@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file1.txt@ 1 1 0 1 1417534005 1417534005 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/src/file1.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file2.txt@ 2 1 1 4 1417534355 1417534355 9198A36F6A4990C2967FD7DD336B015B 15 0 0 @//import/trunk/src/file2.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file2.txt@ 1 1 0 1 1417534005 1417534005 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/src/file2.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file3.txt@ 1 1 0 1 1417534005 1417534005 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/src/file3.txt@ @1.1@ 1 
+@pv@ 0 @db.integed@ @//import/tags/1.0.2/src/file1.txt@ @//import/trunk/src/file1.txt@ 0 3 0 1 2 6 
+@pv@ 0 @db.integed@ @//import/tags/1.0.2/src/file2.txt@ @//import/trunk/src/file2.txt@ 0 2 0 1 2 6 
+@pv@ 0 @db.integed@ @//import/tags/1.0.2/src/file3.txt@ @//import/trunk/src/file3.txt@ 0 1 0 1 2 6 
+@pv@ 0 @db.integed@ @//import/trunk/src/file1.txt@ @//import/tags/1.0.2/src/file1.txt@ 0 1 0 3 3 6 
+@pv@ 0 @db.integed@ @//import/trunk/src/file2.txt@ @//import/tags/1.0.2/src/file2.txt@ 0 1 0 2 3 6 
+@pv@ 0 @db.integed@ @//import/trunk/src/file3.txt@ @//import/tags/1.0.2/src/file3.txt@ 0 1 0 1 3 6 
+@pv@ 2 @db.change@ 7 7 @svn-client@ @pallen@ 1417534450 1 @edit3 on 1.0.2
+@pv@ 2 @db.change@ 6 6 @svn-client@ @pallen@ 1417534391 1 @tag 1.0.2
+@pv@ 2 @db.change@ 4 4 @svn-client@ @pallen@ 1417534355 1 @edit2
+@pv@ 2 @db.change@ 3 3 @svn-client@ @pallen@ 1417534331 1 @edit1
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1417534005 1 @Initial code base
+@pv@ 0 @db.desc@ 7 @edit3 on 1.0.2
+@pv@ 0 @db.desc@ 6 @tag 1.0.2
+@pv@ 0 @db.desc@ 4 @edit2
+@pv@ 0 @db.desc@ 3 @edit1
+@pv@ 0 @db.desc@ 1 @Initial code base
+@pv@ 0 @db.label@ @label:1.0.1@ @//import/trunk/src/file1.txt@ 3 
+@pv@ 0 @db.label@ @label:1.0.1@ @//import/trunk/src/file2.txt@ 2 
+@pv@ 0 @db.label@ @label:1.0.1@ @//import/trunk/src/file3.txt@ 1 
