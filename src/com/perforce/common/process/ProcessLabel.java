@@ -41,7 +41,7 @@ public class ProcessLabel {
 	 * @param changeInfo
 	 * @throws Exception
 	 */
-	public void labelChange(TagEntry tagEntry, ChangeInfo changeInfo, long change) throws Exception {
+	public void labelChange(TagEntry tagEntry, ChangeInfo changeInfo) throws Exception {
 		LabelInterface label;
 		String id = tagEntry.getId();
 		
@@ -52,7 +52,16 @@ public class ProcessLabel {
 		}
 		
 		if (tagEntry.getType() == TagType.AUTOMATIC) {
-			label.setAutomatic(change);
+			label.setAutomatic(tagEntry.getFromChange());
+			
+			// Add branch source to Label view
+			StringBuffer sb = new StringBuffer();
+			sb.append("//");
+			sb.append(depot.getName());
+			sb.append("/");
+			sb.append(tagEntry.getFromPath());
+			sb.append("/...");
+			label.addView(sb.toString());
 		} else {
 			String fromPath = tagEntry.getFromPath();
 			long fromChange = tagEntry.getFromChange();

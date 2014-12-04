@@ -14,6 +14,12 @@ public class BuildLabel {
 		ArrayList<String> label = new ArrayList<String>();
 		StringBuffer sb = new StringBuffer();
 
+		// Build label view
+		for (String view : lbl.getView()) {
+			label.add(viewToJournal(lbl.getName(), view));
+		}
+
+		// Build label domain spec
 		JournalRecord dbLabel = new JournalRecord("pv", "db.domain", 5);
 		dbLabel.addField("name", lbl.getName());
 		dbLabel.addField("type", 108);
@@ -30,6 +36,7 @@ public class BuildLabel {
 		sb.append(dbLabel.toJournalString() + "\n");
 		label.add(sb.toString());
 
+		// Build label revisions
 		for (TagConvert t : lbl.getTags()) {
 			label.add(toJournal(d, lbl.getName(), t));
 		}
@@ -46,6 +53,21 @@ public class BuildLabel {
 		dbTag.addField("file", depotPath(d, tag.getPath()));
 		dbTag.addField("rev", tag.getRevision());
 		sb.append(dbTag.toJournalString() + "\n");
+
+		return sb.toString();
+	}
+
+	private static String viewToJournal(String name, String view)
+			throws Exception {
+		StringBuffer sb = new StringBuffer();
+
+		JournalRecord dbView = new JournalRecord("pv", "db.view", 0);
+		dbView.addField("name", name);
+		dbView.addField("seq", 0);
+		dbView.addField("mapflag", 0);
+		dbView.addField("vfile", "");
+		dbView.addField("dfile", view);
+		sb.append(dbView.toJournalString() + "\n");
 
 		return sb.toString();
 	}

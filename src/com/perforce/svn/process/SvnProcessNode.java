@@ -438,8 +438,7 @@ public class SvnProcessNode extends ProcessNode {
 			// Use the author, description, and date from the current change.
 			ChangeInfo change = changelist.getChangeInfo();
 			nodeAction = Action.LABEL;
-			long fromChange = from.getEndFromChange();
-			processLabel.labelChange(tag, change, fromChange);
+			processLabel.labelChange(tag, change);
 		}
 
 		// Verbose output for user

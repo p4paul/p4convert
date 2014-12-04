@@ -9,9 +9,9 @@ public interface LabelInterface {
 	String getOwner();
 
 	Long getDate();
-	
+
 	void setAutomatic(long automatic);
-	
+
 	String getAutomatic();
 
 	String getDesc();
@@ -19,6 +19,8 @@ public interface LabelInterface {
 	List<TagConvert> getTags();
 
 	void add(TagConvert tags) throws Exception;
+
+	void addView(String view) throws Exception;
 
 	void submit() throws Exception;
 }

@@ -13,6 +13,7 @@ import com.perforce.p4java.core.ViewMap;
 import com.perforce.p4java.core.file.FileSpecBuilder;
 import com.perforce.p4java.core.file.IFileSpec;
 import com.perforce.p4java.impl.generic.core.Label;
+import com.perforce.p4java.impl.generic.core.Label.LabelMapping;
 import com.perforce.p4java.option.server.TagFilesOptions;
 import com.perforce.p4java.server.IOptionsServer;
 
@@ -26,6 +27,7 @@ public class LabelImport implements LabelInterface {
 	private IOptionsServer iserver;
 	private long automatic;
 
+	private ArrayList<String> views = new ArrayList<String>();
 	private ArrayList<TagConvert> revs = new ArrayList<TagConvert>();
 
 	public LabelImport(String label, ChangeInfo change, DepotImport depot)
@@ -105,9 +107,19 @@ public class LabelImport implements LabelInterface {
 		revs.add(tag);
 	}
 
+	@Override
+	public void addView(String view) throws Exception {
+		views.add(view);
+	}
+
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(name + " by: " + getOwner() + "\n");
+		int i = 0;
+		for(String view : views) {
+			sb.append("   view[" + i + "] " + view);
+			i++;
+		}
 		for (TagConvert tag : revs) {
 			sb.append("... " + tag + "\n");
 		}
@@ -119,7 +131,19 @@ public class LabelImport implements LabelInterface {
 		for (TagConvert tag : revs) {
 			tagLabel(tag);
 		}
+		buildViewMap();
 		ilabel.update();
+	}
+
+	private void buildViewMap() {
+		ViewMap<ILabelMapping> viewMap = new ViewMap<ILabelMapping>();
+		int i = 0;
+		for (String view : views) {
+			LabelMapping map = new LabelMapping(i, view);
+			viewMap.addEntry(map);
+			i++;
+		}
+		ilabel.setViewMapping(viewMap);
 	}
 
 	private void tagLabel(TagConvert tag) throws Exception {

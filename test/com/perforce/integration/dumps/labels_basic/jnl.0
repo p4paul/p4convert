@@ -13,6 +13,7 @@
 @pv@ 0 @db.revcx@ 1 @//import/trunk/src/file1.txt@ 1 0 
 @pv@ 0 @db.desc@ 2 @tag 1.0.0@ 
 @pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1417534286 1 @tag 1.0.0@ 
+@pv@ 0 @db.view@ @label:1.0.0@ 0 0 @@ @//import/trunk/...@ 
 @pv@ 5 @db.domain@ @label:1.0.0@ 108 @@@1@ @@ @@ @@ @pallen@ 1417534286 1417534286 0 @tag 1.0.0@ @@ 
 @pv@ 0 @db.desc@ 3 @edit1@ 
 @pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1417534331 1 @edit1@ 

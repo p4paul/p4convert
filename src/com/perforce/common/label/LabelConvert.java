@@ -13,9 +13,11 @@ public class LabelConvert implements LabelInterface {
 	private final DepotConvert depot;
 	private final String name;
 	private final ChangeInfo change;
-	
-	private List<TagConvert> revs = new ArrayList<TagConvert>();
+
 	private long automatic = 0;
+
+	private ArrayList<String> views = new ArrayList<String>();
+	private List<TagConvert> revs = new ArrayList<TagConvert>();
 
 	public LabelConvert(String label, ChangeInfo change, DepotConvert depot) {
 		this.depot = depot;
@@ -68,9 +70,23 @@ public class LabelConvert implements LabelInterface {
 		revs.add(tag);
 	}
 
+	@Override
+	public void addView(String view) throws Exception {
+		views.add(view);
+	}
+	
+	public ArrayList<String> getView() {
+		return views;
+	}
+
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(name + " by: " + getOwner() + "\n");
+		int i = 0;
+		for(String view : views) {
+			sb.append("   view[" + i + "] " + view);
+			i++;
+		}
 		for (TagConvert tags : revs) {
 			sb.append("... " + tags + "\n");
 		}
