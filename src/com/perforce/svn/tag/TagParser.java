@@ -21,14 +21,13 @@ public class TagParser {
 
 	private static Logger logger = LoggerFactory.getLogger(TagParser.class);
 
-	private static HashMap<String, TagEntry> tags = new HashMap<String, TagEntry>();
+	private static HashMap<String, TagEntry> tags;
 
 	public static void parse(String dumpFile) throws Exception {
 
-		if (logger.isInfoEnabled()) {
-			logger.info("Searching for labels...");
-		}
-
+		logger.info("Searching for labels...");
+		tags = new HashMap<String, TagEntry>();
+		
 		long end = (Long) Config.get(CFG.SVN_END);
 		Progress progress = new Progress(end);
 

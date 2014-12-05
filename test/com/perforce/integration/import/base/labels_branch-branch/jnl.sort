@@ -1,0 +1,7 @@
+@pv@ 9 @db.rev@ @//import/tags/2.0.1/src/file1.txt@ 1 1 0 6 1417775362 1417775362 988B78C748C69BC15C5768ED50B86DBA 13 0 0 @//import/tags/2.0.1/src/file1.txt@ @1.6@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file1.txt@ 1 1 0 1 1417774653 1417774653 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/src/file1.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/src/file2.txt@ 1 1 0 1 1417774653 1417774653 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/src/file2.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 6 6 @svn-client@ @pallen@ 1417775362 1 @2.0.1 edit
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1417774653 1 @add
+@pv@ 0 @db.desc@ 6 @2.0.1 edit
+@pv@ 0 @db.desc@ 1 @add

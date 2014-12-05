@@ -8,8 +8,7 @@ public class TagEntry {
 	private String fromPath;
 	private long fromChange;
 	private TagType type = TagType.UNKNOWN;
-	
-	
+
 	private int branchCount;
 
 	public TagEntry(String id) {
@@ -24,7 +23,7 @@ public class TagEntry {
 	public String getId() {
 		return id;
 	}
-	
+
 	public int getCount() {
 		return branchCount;
 	}
@@ -38,7 +37,11 @@ public class TagEntry {
 	}
 
 	public String toString() {
-		return id + ":" + type + " " + branchCount;
+		StringBuffer sb = new StringBuffer();
+		char t = type.toString().charAt(0);
+		sb.append(t + ":" + branchCount);
+		sb.append(" " + id);
+		return sb.toString();
 	}
 
 	public String getToPath() {

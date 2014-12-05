@@ -122,16 +122,8 @@ public class NodeConvert implements NodeInterface {
 					content.setType(lastAction.getType());
 					content.setProps(lastAction.getProps());
 				} else {
-					// cvs2p4 or case-sensitivity issue job061622:
 					StringBuffer msg = new StringBuffer();
-					msg.append("CASE-SENSITIVITY ISSUE:\n");
-					msg.append("\tCannot delete a non-existant revision; skipping!\n");
-					msg.append("\tPlease check case options and platform types.\n");
-					msg.append("\t  " + CFG.P4_CASE.toString());
-					msg.append(" = " + Config.get(CFG.P4_CASE) + "\n");
-					msg.append("\t  " + CFG.P4_C1_MODE.toString());
-					msg.append(" = " + Config.get(CFG.P4_C1_MODE) + "\n");
-
+					msg.append("SKIPPING: cannot delete a non-existant revision.\n");
 					logger.warn(msg.toString());
 					Stats.inc(StatsType.warningCount);
 					return;
@@ -167,14 +159,8 @@ public class NodeConvert implements NodeInterface {
 				} else {
 					// Can't get here unless case-sensitivity issue job053572
 					StringBuffer msg = new StringBuffer();
-					msg.append("CASE-SENSITIVITY ISSUE:\n");
-					msg.append("\tCannot branch a deleted revision to a non-existant or deleted\n");
-					msg.append("\trevision. Please check case options and platform types.\n");
-					msg.append("\t  " + CFG.P4_CASE.toString());
-					msg.append(" = " + Config.get(CFG.P4_CASE) + "\n");
-					msg.append("\t  " + CFG.P4_C1_MODE.toString());
-					msg.append(" = " + Config.get(CFG.P4_C1_MODE) + "\n");
-
+					msg.append("SKIPPING: cannot branch a deleted revision to");
+					msg.append(" a non-existant or deleted target.\n");
 					logger.error(msg.toString());
 					throw new RuntimeException(msg.toString());
 				}
@@ -199,7 +185,7 @@ public class NodeConvert implements NodeInterface {
 				throw new ConverterException("Expected one or more sources");
 			}
 			break;
-			
+
 		case LABEL:
 			return;
 
@@ -353,7 +339,7 @@ public class NodeConvert implements NodeInterface {
 
 		case LABEL:
 			return;
-			
+
 		default:
 			throw new ConverterException("Node-action(" + nodeAction + ")");
 		}

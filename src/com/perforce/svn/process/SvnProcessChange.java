@@ -31,7 +31,7 @@ public class SvnProcessChange extends ProcessChange {
 	protected void processChange() throws Exception {
 		// Initialise labels
 		isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
-		
+
 		// Read configuration settings for locals
 		String dumpFile = (String) Config.get(CFG.SVN_DUMPFILE);
 		long revStart = (Long) Config.get(CFG.SVN_START);
@@ -109,9 +109,11 @@ public class SvnProcessChange extends ProcessChange {
 		}
 
 		// Scan Subversion tags for label candidates
-		TagParser.parse(dumpFile);
-		logger.info(TagParser.toLog());
 		processLabel = new ProcessLabel(depot);
+		if (isLabels) {
+			TagParser.parse(dumpFile);
+			logger.info(TagParser.toLog());
+		}
 
 		// Initialise counters
 		super.setCurrentChange(null);

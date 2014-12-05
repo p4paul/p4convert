@@ -22,7 +22,6 @@ import com.perforce.config.ConfigException;
 import com.perforce.config.Normaliser;
 import com.perforce.config.ScmType;
 import com.perforce.svn.change.ChangeParser;
-import com.perforce.svn.prescan.ExcludeParser;
 import com.perforce.svn.process.SvnProcessChange;
 
 public class IntegrationTests {
@@ -52,7 +51,7 @@ public class IntegrationTests {
 			Config.set(CFG.SVN_PROP_ENABLED, true);
 			Config.set(CFG.SVN_END, 0L);
 			Config.set(CFG.P4_CLIENT_ROOT, "/ws");
-			
+
 			Config.set(CFG.EXCLUDE_MAP, "test_exclude.map");
 			Config.set(CFG.INCLUDE_MAP, "test_include.map");
 			Config.set(CFG.ISSUE_MAP, "test_issue.map");
@@ -831,32 +830,45 @@ public class IntegrationTests {
 		String test = "symlink-missing";
 		testCase(test, 1);
 	}
-	
+
 	@Test
 	public void case116() throws Exception {
-        Config.set(CFG.P4_C1_MODE, true);
-        Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
+		Config.set(CFG.P4_C1_MODE, true);
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
 		String test = "rename_edit";
 		testCase(test);
 	}
-	
+
 	@Test
 	public void case117() throws Exception {
 		String test = "exe_prop_branch";
 		testCase(test);
 	}
-	
+
 	@Test
 	public void case118() throws Exception {
 		String test = "labels_basic";
 		Config.set(CFG.SVN_LABELS, true);
 		Config.set(CFG.SVN_LABEL_DEPTH, 2);
 		Config.set(CFG.SVN_LABEL_FORMAT, "label:{depth}");
-		
-		String path = dumpPath + test + "/exclude.map"; 
+
+		String path = dumpPath + test + "/exclude.map";
 		Config.set(CFG.EXCLUDE_MAP, path);
 
 		testCase(test);
+	}
+
+	@Test
+	public void case119() throws Exception {
+		String test = "labels_branch-branch";
+		Config.set(CFG.SVN_LABELS, true);
+		Config.set(CFG.SVN_LABEL_DEPTH, 2);
+		Config.set(CFG.SVN_LABEL_FORMAT, "label:{depth}");
+
+		String path = dumpPath + test + "/exclude.map";
+		Config.set(CFG.EXCLUDE_MAP, path);
+
+		testCase(test, 1);
 	}
 
 	private void testCase(String dumpCase) {
