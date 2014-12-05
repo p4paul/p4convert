@@ -361,6 +361,115 @@ Caught EXIT shutting down ...
   </section>
 
   <section xml:id="config.changelist_offset_options">
+    <title>Labeling Subversion Paths</title>
+    
+    <para>
+      Whilst Subversion does not have a specific label entity may users follow 
+      the 'tags' convention.  If a 'tag' path is pure (in that it has not had 
+      subsequent changes to the content) it can be converted to a Perforce 
+      label. 
+    </para>
+
+    <orderedlist>
+    
+      <listitem>
+        
+        <para>
+          To enable labeling of Subversion tags, set the 
+          <parameter>com.p4convert.svn.labels</parameter> to 
+          <parameter>true</parameter> and define maps: 
+          <filename>exclude.map</filename> and <filename>include.map</filename>.
+        </para>
+
+<programlisting language="ini">
+com.p4convert.svn.labels=true
+</programlisting>
+
+      </listitem>
+    
+      <listitem>
+      
+        <para>
+          The maps are designed with resect to branches.  The default behaviour is
+          for all Subversion tag operations to be imported as Perforce branches. 
+          In order to change the behaviour and attempt to import the Subversion tag
+          as a Perforce label the path must be in the exclude map.      
+        </para>
+    
+        <para>
+          For example; to import all Subversion tags in the folder 'tags/' as 
+          Perforce labels, create an exclusion map file
+          <filename>exclude.map</filename>:
+        </para>
+
+<programlisting language="ini">
+# exclude Subversion tags:
+^tags/.*
+</programlisting>
+
+      </listitem>
+      
+      <listitem>
+
+        <para>
+          A Perforce label will need a unique name space derived from the 'tags'
+          path.  The conversion tool provides a depth and regular expression 
+          configuration option to assist.
+        </para>    
+        
+<programlisting language="ini">
+com.p4convert.svn.labelFormat=svn_label:{depth}
+</programlisting>  
+
+<programlisting language="ini">
+com.p4convert.svn.labelDepth=2
+</programlisting>
+
+        <para>
+          The depth determins how much of the path to use for the unique label 
+          name.  Typically a value of '2' for convertional Subversion usage. 
+          With a depth of '2' the first two elements of the 'tags' path are then
+          held in an array and used by a regular expression to generate the label
+          name.
+        </para>
+        
+        <para>
+          For example, given a Subversion tag located <filename>tags/1.0.0/</filename>
+          the following regular expressions provide the coresponding label names:
+        </para>
+    
+<programlisting language="ini">
+com.p4convert.svn.labelFormat=label:{2}         label:1.0.0
+com.p4convert.svn.labelFormat={1}-{2}           tags-1.0.0
+</programlisting>
+
+        <note>
+          <para>
+            An empty expression will use the original path.
+          </para>
+        </note> 
+
+<programlisting language="ini">
+com.p4convert.svn.labelFormat=                  tags/1.0.0/
+</programlisting>
+
+        <note>
+          <para>
+            If a keyword of <parameter>{depth}</parameter> is used it will be 
+            substituted with it's value.
+          </para>
+        </note> 
+
+<programlisting language="ini">
+com.p4convert.svn.labelFormat=label_{depth}     label_1.0.0
+</programlisting>
+
+      </listitem>
+    </orderedlist>
+     
+  </section>
+
+  <section xml:id="config.changelist_offset_options">
     <title>Changelist Offset options</title>
 
     <orderedlist>

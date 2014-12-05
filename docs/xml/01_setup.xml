@@ -157,8 +157,9 @@ java -Xmx65536M -jar p4convert.jar myConfig.cfg
 
       <listitem>
         <para>
-          Perforce keyword expansions are different from the CVS and 
-          Subversion standard and may yield different results when synced.
+          Perforce keyword expansions are different from the Subversion 
+          standard and may yield different results when synced.  CVS keyword
+          detection is not yet supported.
         </para>
       </listitem>
     </orderedlist>
