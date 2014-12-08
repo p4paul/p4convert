@@ -360,7 +360,7 @@ Caught EXIT shutting down ...
 </programlisting>
   </section>
 
-  <section xml:id="config.changelist_offset_options">
+  <section xml:id="config.labeling_subversion_paths">
     <title>Labeling Subversion Paths</title>
     
     <para>
