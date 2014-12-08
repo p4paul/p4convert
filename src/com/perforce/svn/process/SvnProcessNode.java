@@ -425,20 +425,23 @@ public class SvnProcessNode extends ProcessNode {
 
 		// Label change if required
 		if (isLabels && TagParser.isLabel(nodePath)) {
-			TagEntry tag = TagParser.getLabel(nodePath);
-			tag.setToPath(nodePath);
-			tag.setFromPath(from.getFromPath());
-			tag.setFromChange(from.getEndFromChange());
+			if (nodeAction == Action.BRANCH) {
+				TagEntry tag = TagParser.getLabel(nodePath);
+				tag.setToPath(nodePath);
+				tag.setFromPath(from.getFromPath());
+				tag.setFromChange(from.getEndFromChange());
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("Label branch with id: " + tag);
-				logger.debug("... " + from);
+				if (logger.isDebugEnabled()) {
+					logger.debug("Label branch with id: " + tag);
+					logger.debug("... " + from);
+				}
+
+				// Use the author, description, and date from the current
+				// change.
+				ChangeInfo change = changelist.getChangeInfo();
+				nodeAction = Action.LABEL;
+				processLabel.labelChange(tag, change);
 			}
-
-			// Use the author, description, and date from the current change.
-			ChangeInfo change = changelist.getChangeInfo();
-			nodeAction = Action.LABEL;
-			processLabel.labelChange(tag, change);
 		}
 
 		// Verbose output for user
