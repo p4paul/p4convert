@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.asset.ContentProperty;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
@@ -28,6 +30,7 @@ public class RcsReader {
 	private RcsObjectAdmin rcsAdmin;
 	private RcsObject rcsDesc;
 	private Map<String, RcsObjectDelta> rcsDeltas = new HashMap<String, RcsObjectDelta>();
+	private List<ContentProperty> props = new ArrayList<ContentProperty>();
 
 	private CvsLineReader cvsLineReader;
 
@@ -37,6 +40,11 @@ public class RcsReader {
 		rcsAdmin = new RcsObjectAdmin();
 		cvsLineReader = new CvsLineReader(rcsFile.toString());
 
+		// parse permission bits
+		if(file.canExecute()) {
+			props.add(ContentProperty.EXECUTE);
+		}
+		
 		parseRcsAdmin();
 
 		RcsObjectDelta rcsObject = parseRcsDeltas();
@@ -426,5 +434,9 @@ public class RcsReader {
 
 	public String getPath() {
 		return rcsPath;
+	}
+
+	public List<ContentProperty> getProps() {
+		return props;
 	}
 }

@@ -76,6 +76,7 @@ public class Content {
 			this.asset = AssetType.P4_ASSET;
 			this.blob = true;
 			this.fileName = rev.getTmpFile();
+			this.props = rev.getProps();
 		}
 	}
 

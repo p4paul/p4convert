@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.asset.ContentProperty;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
@@ -30,6 +31,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	private long cvsChange;
 	private boolean pseudo = false;
 	private boolean reverse = false;
+	private List<ContentProperty> props = new ArrayList<ContentProperty>();
 
 	private String fromPath;
 	private List<String> labels = new ArrayList<String>();
@@ -245,5 +247,13 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 
 	public void setReverse(boolean reverse) {
 		this.reverse = reverse;
+	}
+
+	public List<ContentProperty> getProps() {
+		return props;
+	}
+
+	public void setProps(List<ContentProperty> props) {
+		this.props = props;
 	}
 }

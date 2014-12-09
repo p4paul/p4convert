@@ -71,6 +71,7 @@ public class RevisionNavigator extends RcsNavigator {
 		branch.setPseudo(true);
 		branch.setReverse(from.isReverse());
 		branch.addDate(1L);
+		branch.setProps(from.getProps());
 
 		String toPath = toTag + "/" + basePath;
 		String fromPath = from.getFromPath();

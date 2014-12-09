@@ -120,6 +120,9 @@ public abstract class RcsNavigator {
 		do {
 			RcsObjectDelta revision = rcsRevision.getDelta(id);
 			RevisionEntry entry = new RevisionEntry(revision);
+			
+			// set file permission properties for entry
+			entry.setProps(rcsRevision.getProps());
 
 			// add label, before revision is added by foundBranch[Point|Entry]
 			List<String> labels = getLabels(id);
