@@ -1,4 +1,4 @@
-package com.perforce.svn.node;
+package com.perforce.common.node;
 
 import java.util.ArrayList;
 

@@ -10,11 +10,11 @@ import com.perforce.common.asset.AssetType;
 import com.perforce.common.asset.ContentProperty;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.journal.Digest;
+import com.perforce.common.node.NodeAttributes;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.cvs.RevisionEntry;
 import com.perforce.cvs.parser.rcstypes.RcsObjectBlock;
-import com.perforce.svn.node.NodeAttributes;
 
 public class Content {
 

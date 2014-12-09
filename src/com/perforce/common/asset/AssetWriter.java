@@ -16,12 +16,12 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.depot.DepotConvert;
 import com.perforce.common.depot.DepotInterface;
+import com.perforce.common.node.NodeAttributes;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.config.ScmType;
 import com.perforce.svn.history.ChangeAction;
-import com.perforce.svn.node.NodeAttributes;
 import com.perforce.svn.parser.Content;
 
 public class AssetWriter {

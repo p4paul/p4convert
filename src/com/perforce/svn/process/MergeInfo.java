@@ -7,7 +7,7 @@ import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.perforce.svn.node.NodeHelper;
+import com.perforce.common.node.NodeHelper;
 import com.perforce.svn.query.QueryInterface;
 
 public class MergeInfo {
