@@ -101,11 +101,11 @@ public class Configuration {
 		set(CFG.SVN_LABELS, false);
 		set(CFG.SVN_LABEL_DEPTH, 2);
 		set(CFG.SVN_LABEL_FORMAT, "svn_label:{depth}");
-		
+
 		// CVS specific modes
 		set(CFG.CVS_ROOT, "<unset>");
 		set(CFG.CVS_MODULE, "");
-		set(CFG.CVS_WINDOW, 20 * 1000L);		// milliseconds
+		set(CFG.CVS_WINDOW, 20 * 1000L); // milliseconds
 		set(CFG.CVS_TMPDIR, "tmp");
 		set(CFG.CVS_LABELS, false);
 
@@ -133,6 +133,7 @@ public class Configuration {
 		set(CFG.ISSUE_MAP, "issue.map");
 		set(CFG.USER_MAP, "users.map");
 		set(CFG.TYPE_MAP, "types.map");
+		set(CFG.PATH_MAP, "path.map");
 		set(CFG.P4_LARGE_FILE, 10L * 1024L * 1024L);
 		set(CFG.CVS_MAXLINE, 10L * 1024L * 1024L);
 	}
