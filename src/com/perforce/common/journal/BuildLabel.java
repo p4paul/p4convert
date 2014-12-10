@@ -73,6 +73,6 @@ public class BuildLabel {
 	}
 
 	private static String depotPath(DepotInterface d, String path) {
-		return ("//" + d.getBase() + path);
+		return (d.getPath(path));
 	}
 }

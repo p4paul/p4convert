@@ -3,21 +3,15 @@ package com.perforce.common.depot;
 import java.io.File;
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.perforce.common.Stats;
-import com.perforce.common.StatsType;
 import com.perforce.common.journal.BuildCounter;
 import com.perforce.common.journal.BuildDepot;
 import com.perforce.common.journal.JournalWriter;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 
 public class DepotConvert implements DepotInterface {
-
-	private Logger logger = LoggerFactory.getLogger(DepotConvert.class);
 
 	private String name;
 	private String depotSub;
@@ -95,8 +89,9 @@ public class DepotConvert implements DepotInterface {
 	}
 
 	@Override
-	public String getBase() {
-		return name + depotSub;
+	public String getPath(String scmPath) {
+		String p4Path = PathMapTranslator.translate(scmPath);
+		return p4Path;
 	}
 
 	@Override
@@ -104,8 +99,6 @@ public class DepotConvert implements DepotInterface {
 		String depotPath = (String) Config.get(CFG.P4_ROOT);
 		if (!depotPath.endsWith("/") && !depotPath.endsWith("\\")) {
 			depotPath = new String(depotPath + "/");
-			Stats.inc(StatsType.warningCount);
-			logger.info("Adding missing delimiter '/' or '\\' to end of Depot path");
 			Config.set(CFG.P4_ROOT, depotPath);
 		}
 		return depotPath;

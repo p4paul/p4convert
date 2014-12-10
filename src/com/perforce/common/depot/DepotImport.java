@@ -9,6 +9,7 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.client.Connection;
 import com.perforce.common.client.ConnectionFactory;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
@@ -20,7 +21,6 @@ public class DepotImport implements DepotInterface {
 	private Logger logger = LoggerFactory.getLogger(DepotImport.class);
 
 	private String depotName;
-	private String depotRoot;
 	private String depotSub;
 	private String depotPath;
 	private String port;
@@ -32,7 +32,6 @@ public class DepotImport implements DepotInterface {
 
 	public DepotImport(String name, CaseSensitivity mode) throws Exception {
 		depotName = name;
-		depotRoot = "//" + name;
 
 		depotSub = (String) Config.get(CFG.P4_DEPOT_SUB);
 		if (!depotSub.endsWith("/")) {
@@ -88,8 +87,9 @@ public class DepotImport implements DepotInterface {
 	}
 
 	@Override
-	public String getBase() {
-		return depotRoot + depotSub;
+	public String getPath(String scmPath) {
+		String p4Path = PathMapTranslator.translate(scmPath);
+		return p4Path;
 	}
 
 	@Override

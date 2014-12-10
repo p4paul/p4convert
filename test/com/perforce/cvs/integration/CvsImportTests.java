@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
@@ -88,6 +89,16 @@ public class CvsImportTests {
 			Config.set(CFG.P4_CLIENT_ROOT, p4ws);
 			Config.set(CFG.P4_ROOT, p4root);
 			Config.set(CFG.VERSION, "alpha/TestMode");
+			
+			Config.set(CFG.EXCLUDE_MAP, "test_exclude.map");
+			Config.set(CFG.INCLUDE_MAP, "test_include.map");
+			Config.set(CFG.ISSUE_MAP, "test_issue.map");
+			Config.set(CFG.USER_MAP, "test_users.map");
+			Config.set(CFG.TYPE_MAP, "test_types.map");
+			Config.set(CFG.PATH_MAP, "test_path.map");
+			
+			// Set path translation map defaults
+			PathMapTranslator.setDefault();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -14,6 +14,7 @@ import com.perforce.common.client.ConnectionFactory;
 import com.perforce.common.client.P4Factory;
 import com.perforce.common.depot.DepotImport;
 import com.perforce.common.node.NodeAttributes;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.common.process.ChangeInfo;
 import com.perforce.common.process.ProcessFactory;
 import com.perforce.config.CFG;
@@ -145,8 +146,8 @@ public class ChangeImport implements ChangeInterface {
 	 */
 	private void cleanWorkspace() throws Exception {
 		List<IFileSpec> fileSpecs;
-		fileSpecs = FileSpecBuilder.makeFileSpecList(depot.getBase()
-				+ "...#none");
+		String path = PathMapTranslator.translate(null) + "...#none";
+		fileSpecs = FileSpecBuilder.makeFileSpecList(path);
 		List<IFileSpec> syncMsg = iclient.sync(fileSpecs, null);
 		P4Factory.validateFileSpecs(syncMsg, "file(s) up-to-date.");
 	}
@@ -179,7 +180,7 @@ public class ChangeImport implements ChangeInterface {
 			throws Exception {
 
 		// Path syntax translation
-		String depotToPath = depot.getBase() + toPath;
+		String depotToPath = PathMapTranslator.translate(toPath);
 
 		// Deal with null paths and don't add extra '/'
 		if (toPath == null)
@@ -220,7 +221,7 @@ public class ChangeImport implements ChangeInterface {
 			for (MergeSource from : fromList) {
 				String fromPath = from.getFromPath();
 				long fromChange = from.getEndFromChange();
-				String depotFromPath = depot.getBase() + fromPath;
+				String depotFromPath = PathMapTranslator.translate(fromPath);
 				// Deal with null paths and don't add extra '/'
 				if (fromPath == null || fromPath.isEmpty())
 					depotFromPath = "//" + depot.getName();
@@ -292,7 +293,7 @@ public class ChangeImport implements ChangeInterface {
 			boolean pendingBlock) throws Exception {
 
 		// Path syntax translation
-		String depotToPath = depot.getBase() + toPath;
+		String depotToPath = PathMapTranslator.translate(toPath);
 
 		// Get last 'to' action
 		QueryPerforce query = (QueryPerforce) ProcessFactory.getQuery(depot);
@@ -376,7 +377,7 @@ public class ChangeImport implements ChangeInterface {
 				String fromPath = from.getFromPath();
 				long startFromChange = from.getStartFromChange();
 				long endFromChange = from.getEndFromChange();
-				String depotFromPath = depot.getBase() + fromPath;
+				String depotFromPath = PathMapTranslator.translate(fromPath);
 
 				if (pathMatch(depotToPath, depotFromPath)) {
 					// roll back action
@@ -488,7 +489,7 @@ public class ChangeImport implements ChangeInterface {
 	public boolean isPendingRevision(String toPath) throws Exception {
 		RevisionImport rev = new RevisionImport(iclient, ichangelist, depot,
 				changeInfo.getDate());
-		String depotToPath = depot.getBase() + toPath;
+		String depotToPath = PathMapTranslator.translate(toPath);
 		return rev.isOpened(depotToPath);
 	}
 
@@ -496,7 +497,7 @@ public class ChangeImport implements ChangeInterface {
 	public Action getPendingAction(String toPath) throws Exception {
 		RevisionImport rev = new RevisionImport(iclient, ichangelist, depot,
 				changeInfo.getDate());
-		String depotToPath = depot.getBase() + toPath;
+		String depotToPath = PathMapTranslator.translate(toPath);
 		return rev.getOpenedAction(depotToPath);
 	}
 

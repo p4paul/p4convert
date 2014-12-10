@@ -9,6 +9,7 @@ import com.perforce.common.ExitCode;
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.TypeMap;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.UserMapping;
@@ -120,6 +121,15 @@ public abstract class ProcessChange implements Callable<Integer> {
 		// Initialise type map, if required
 		String typeMapFile = (String) Config.get(CFG.TYPE_MAP);
 		TypeMap.load(typeMapFile);
+
+		// Initialise path map, if required
+		String pathMapFile = (String) Config.get(CFG.PATH_MAP);
+		boolean isPathMap = PathMapTranslator.load(pathMapFile);
+
+		// else, use default path translation map
+		if (!isPathMap) {
+			PathMapTranslator.setDefault();
+		}
 
 		// Report operation mode
 		if (Config.isImportMode()) {

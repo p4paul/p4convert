@@ -140,6 +140,6 @@ public class BuildChange {
 	}
 
 	private static String depotPath(DepotInterface d, String path) {
-		return ("//" + d.getBase() + path);
+		return (d.getPath(path));
 	}
 }

@@ -21,6 +21,7 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.TypeMap;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
@@ -105,6 +106,10 @@ public class ImportTests {
 			Config.set(CFG.ISSUE_MAP, "test_issue.map");
 			Config.set(CFG.USER_MAP, "test_users.map");
 			Config.set(CFG.TYPE_MAP, "test_types.map");
+			Config.set(CFG.PATH_MAP, "test_path.map");
+
+			// Set path translation map defaults
+			PathMapTranslator.setDefault();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -470,6 +475,10 @@ public class ImportTests {
 	@Test
 	public void case054() throws Exception {
 		Config.set(CFG.P4_DEPOT_SUB, "sub/");
+
+		// Update translation map as P4_DEPOT_SUB has changed
+		PathMapTranslator.setDefault();
+
 		String test = "subpath_del_br_del";
 		testCase(test);
 	}
@@ -744,6 +753,10 @@ public class ImportTests {
 	public void case089() throws Exception {
 		Config.set(CFG.P4_PASSWD, "Password");
 		Config.set(CFG.P4_DEPOT_PATH, "depot");
+
+		// Update translation map as P4_DEPOT_PATH has changed
+		PathMapTranslator.setDefault();
+
 		String test = "security";
 		String seed = dumpPath + test + "/";
 		testCase(test, seed);

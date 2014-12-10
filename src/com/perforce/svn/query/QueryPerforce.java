@@ -10,6 +10,7 @@ import com.perforce.common.asset.ContentProperty;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.client.P4Factory;
 import com.perforce.common.depot.DepotImport;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
@@ -80,9 +81,9 @@ public class QueryPerforce implements QueryInterface {
 		// Get connection and build file spec
 		IOptionsServer iserver = depot.getIServer();
 		if (change == 0) {
-			path = depot.getBase() + path + "/...";
+			path = PathMapTranslator.translate(path) + "/...";
 		} else {
-			path = depot.getBase() + path + "/...@" + change;
+			path = PathMapTranslator.translate(path) + "/...@" + change;
 		}
 
 		List<IFileSpec> fileSpec = FileSpecBuilder.makeFileSpecList(path);
@@ -108,9 +109,9 @@ public class QueryPerforce implements QueryInterface {
 		// Get connection and build file spec
 		IOptionsServer iserver = depot.getIServer();
 		if (change != 0) {
-			path = depot.getBase() + path + "@" + change;
+			path = PathMapTranslator.translate(path) + "@" + change;
 		} else {
-			path = depot.getBase() + path;
+			path = PathMapTranslator.translate(path);
 		}
 		List<IFileSpec> fileSpec = FileSpecBuilder.makeFileSpecList(path);
 
@@ -182,7 +183,7 @@ public class QueryPerforce implements QueryInterface {
 
 	@Override
 	public int getPendingChangeCount() throws Exception {
-		String path = depot.getBase() + "...";
+		String path = PathMapTranslator.translate(null) + "...";
 		List<IFileSpec> fileSpec = FileSpecBuilder.makeFileSpecList(path);
 
 		// Filter for pending changes

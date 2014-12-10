@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.zip.GZIPOutputStream;
 
@@ -17,10 +16,10 @@ import com.perforce.common.StatsType;
 import com.perforce.common.depot.DepotConvert;
 import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.node.NodeAttributes;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
-import com.perforce.config.ScmType;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.parser.Content;
 
@@ -62,7 +61,7 @@ public class AssetWriter {
 	private void path(ChangeAction act) throws ConfigException {
 		// generate path
 		String nodePath = act.getPath();
-		dir = depot.getRoot() + depot.getBase() + nodePath + ",d/";
+		dir = PathMapTranslator.getLbrPath(nodePath, depot) + ",d/";
 		path = dir + "1." + act.getEndChange();
 
 		// Convert to lower for C1 mode
@@ -79,7 +78,7 @@ public class AssetWriter {
 	public void check(ChangeAction act) throws Exception {
 		// generate path
 		String nodePath = act.getLazyCopy().getPath();
-		String dir = depot.getRoot() + depot.getBase() + nodePath + ",d/";
+		String dir = PathMapTranslator.getLbrPath(nodePath, depot) + ",d/";
 		String path = dir + "1." + act.getLazyCopy().getEndChange();
 
 		// Convert to lower for C1 mode

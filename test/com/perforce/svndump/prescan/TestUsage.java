@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.perforce.common.ExitCode;
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ScmType;
@@ -58,27 +60,6 @@ public class TestUsage {
 		// clean up test file
 		config.delete();
 		Assert.assertEquals(ExitCode.OK, code);
-	}
-
-	@Test
-	public void test_MainFlagRun_WARNING() throws Exception {
-
-		File config = new File("test.cfg");
-		Config.setDefault();
-		Config.set(CFG.SCM_TYPE, ScmType.SVN);
-		Config.set(CFG.P4_MODE, "CONVERT");
-		Config.set(CFG.P4_ROOT, "./p4_root");
-		Config.set(CFG.SVN_DUMPFILE, dumpPath + "add-del-br-del-br/" + dumpFile);
-
-		Config.store(config.getName(), ScmType.SVN);
-
-		// pass config file to run conversion
-		String args[] = { config.getName() };
-		ExitCode code = Main.processArgs(args);
-
-		// clean up test file
-		config.delete();
-		Assert.assertEquals(ExitCode.WARNING, code);
 	}
 
 	@Test

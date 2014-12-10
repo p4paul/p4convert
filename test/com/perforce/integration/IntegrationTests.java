@@ -15,6 +15,7 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.TypeMap;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
@@ -57,6 +58,10 @@ public class IntegrationTests {
 			Config.set(CFG.ISSUE_MAP, "test_issue.map");
 			Config.set(CFG.USER_MAP, "test_users.map");
 			Config.set(CFG.TYPE_MAP, "test_types.map");
+			Config.set(CFG.PATH_MAP, "test_path.map");
+			
+			// Set path translation map defaults
+			PathMapTranslator.setDefault();
 		} catch (ConfigException e) {
 			e.printStackTrace();
 		}
@@ -418,6 +423,10 @@ public class IntegrationTests {
 	@Test
 	public void case054() throws Exception {
 		Config.set(CFG.P4_DEPOT_SUB, "sub/");
+		
+		// Update translation map as P4_DEPOT_SUB has changed
+		PathMapTranslator.setDefault();
+		
 		String test = "subpath_del_br_del";
 		testCase(test);
 	}
@@ -657,8 +666,12 @@ public class IntegrationTests {
 	@Test
 	public void case089() throws Exception {
 		Config.set(CFG.P4_PASSWD, "Password");
-		Config.set(CFG.P4_DEPOT_PATH, "depot");
 		Config.set(CFG.P4_OFFSET, 1000L);
+		Config.set(CFG.P4_DEPOT_PATH, "depot");
+		
+		// Update translation map as P4_DEPOT_PATH has changed
+		PathMapTranslator.setDefault();
+		
 		// This test largely ineffective in Convert mode
 		String test = "security";
 		testCase(test);
