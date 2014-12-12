@@ -21,8 +21,10 @@ public class Header {
 			if (line.contains(":")) {
 				int pos = line.indexOf(":");
 				String key = line.substring(0, pos);
-				// offset by 2 for colon and space ': '
-				String value = line.substring(pos + 2);	
+				// offset by 1 for colon ':'
+				String value = line.substring(pos + 1);
+				// remove leading spaces
+				value = value.replaceFirst("^\\s+", "");
 				header.map.put(key, value);
 				line = dump.getLine();
 			} else {

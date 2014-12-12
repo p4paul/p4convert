@@ -135,7 +135,7 @@ public class Configuration {
 		set(CFG.TYPE_MAP, "types.map");
 		set(CFG.PATH_MAP, "path.map");
 		set(CFG.P4_LARGE_FILE, 10L * 1024L * 1024L);
-		set(CFG.CVS_MAXLINE, 10L * 1024L * 1024L);
+		set(CFG.CVS_MAXLINE, 1024L * 1024L * 1024L);
 	}
 
 	private static <T> boolean check(CFG id, Class<T> type) {
