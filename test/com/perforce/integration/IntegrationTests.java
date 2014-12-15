@@ -883,6 +883,12 @@ public class IntegrationTests {
 
 		testCase(test, 1);
 	}
+	
+	@Test
+	public void case120() throws Exception {
+		String test = "job115";
+		testCase(test);
+	}
 
 	private void testCase(String dumpCase) {
 		testCase(dumpCase, 0);

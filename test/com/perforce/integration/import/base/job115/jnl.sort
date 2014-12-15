@@ -1,0 +1,17 @@
+@pv@ 9 @db.rev@ @//import/trunk/folderA/fileA1.txt@ 1 1 0 2 1416845355 1416845355 4A906C943CF88CD4BF35E6D9C5324D4C 16 0 0 @//import/trunk/folderA/fileA1.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/folderA/fileA2.txt@ 1 1 0 2 1416845355 1416845355 C9C9011AC741A9276CDB23538BCA5B0D 21 0 0 @//import/trunk/folderA/fileA2.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/folderB/fileB1.c@ 1 1 0 2 1416845355 1416845355 9953937F7E0C5CBE11B2146B056B6A3C 50 0 0 @//import/trunk/folderB/fileB1.c@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/folderC/fileC1.txt@ 3 1 2 5 1416847289 0 00000000000000000000000000000000 -1 0 0 @//import/trunk/folderC/fileC1.txt@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/folderC/fileC1.txt@ 2 1 1 4 1416846884 1416846884 2F65EC43A2222210C0D84130BA4338AF 46 0 0 @//import/trunk/folderC/fileC1.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/folderC/fileC1.txt@ 1 1 0 3 1416845620 1416845620 84DEE08FB9C2A882CFCDCFA7652338E7 22 0 0 @//import/trunk/folderC/fileC1.txt@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/folderD/fileD1.txt@ 1 1 0 6 1416847316 1416847316 2F65EC43A2222210C0D84130BA4338AF 46 0 0 @//import/trunk/folderD/fileD1.txt@ @1.6@ 1 
+@pv@ 2 @db.change@ 6 6 @svn-client@ @dmarold@ 1416847316 1 @add fileD (copy of fileC)
+@pv@ 2 @db.change@ 5 5 @svn-client@ @dmarold@ 1416847289 1 @remove fileC1
+@pv@ 2 @db.change@ 4 4 @svn-client@ @dmarold@ 1416846884 1 @added data
+@pv@ 2 @db.change@ 3 3 @svn-client@ @dmarold@ 1416845620 1 @Added fileC
+@pv@ 2 @db.change@ 2 2 @svn-client@ @dmarold@ 1416845355 1 @import test files
+@pv@ 0 @db.desc@ 6 @add fileD (copy of fileC)
+@pv@ 0 @db.desc@ 5 @remove fileC1
+@pv@ 0 @db.desc@ 4 @added data
+@pv@ 0 @db.desc@ 3 @Added fileC
+@pv@ 0 @db.desc@ 2 @import test files

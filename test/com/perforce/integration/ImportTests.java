@@ -1021,6 +1021,12 @@ public class ImportTests {
 
 		testCase(test, 0);
 	}
+	
+	@Test
+	public void case120() throws Exception {
+		String test = "job115";
+		testCase(test);
+	}
 
 	/**
 	 * Environment test

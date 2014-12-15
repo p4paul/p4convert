@@ -1,0 +1,228 @@
+SVN-fs-dump-format-version: 2
+
+Revision-number: 1
+Prop-content-length: 126
+Content-length: 126
+
+K 8
+svn:date
+V 27
+2014-11-24T16:09:15.000000Z
+K 7
+svn:log
+V 52
+Standard project directories initialized by cvs2svn.
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+
+
+Node-path: branches
+Node-kind: dir
+Node-action: add
+
+
+Node-path: tags
+Node-kind: dir
+Node-action: add
+
+
+Revision-number: 2
+Prop-content-length: 120
+Content-length: 120
+
+K 10
+svn:author
+V 7
+dmarold
+K 8
+svn:date
+V 27
+2014-11-24T16:09:15.000000Z
+K 7
+svn:log
+V 18
+import test files
+
+PROPS-END
+
+Node-path: trunk/folderA
+Node-kind: dir
+Node-action: add
+
+
+Node-path: trunk/folderA/fileA1.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 16
+Text-content-md5: 4a906c943cf88cd4bf35e6d9c5324d4c
+Content-length: 26
+
+PROPS-END
+THis is a file.
+
+
+Node-path: trunk/folderA/fileA2.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 21
+Text-content-md5: c9c9011ac741a9276cdb23538bca5b0d
+Content-length: 31
+
+PROPS-END
+This is another file
+
+
+Node-path: trunk/folderB
+Node-kind: dir
+Node-action: add
+
+
+Node-path: trunk/folderB/fileB1.c
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 50
+Text-content-md5: 9953937f7e0c5cbe11b2146b056b6a3c
+Content-length: 60
+
+PROPS-END
+#include <stidio.h>
+main()
+{
+printf "Hi mom\n";
+}
+
+
+Revision-number: 3
+Prop-content-length: 114
+Content-length: 114
+
+K 10
+svn:author
+V 7
+dmarold
+K 8
+svn:date
+V 27
+2014-11-24T16:13:40.000000Z
+K 7
+svn:log
+V 12
+Added fileC
+
+PROPS-END
+
+Node-path: trunk/folderC
+Node-kind: dir
+Node-action: add
+
+
+Node-path: trunk/folderC/fileC1.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 22
+Text-content-md5: 84dee08fb9c2a882cfcdcfa7652338e7
+Content-length: 32
+
+PROPS-END
+File in the C folder.
+
+
+Revision-number: 4
+Prop-content-length: 113
+Content-length: 113
+
+K 10
+svn:author
+V 7
+dmarold
+K 8
+svn:date
+V 27
+2014-11-24T16:34:44.000000Z
+K 7
+svn:log
+V 11
+added data
+
+PROPS-END
+
+Node-path: trunk/folderC/fileC1.txt
+Node-kind: file
+Node-action: change
+Text-content-length: 46
+Text-content-md5: 2f65ec43a2222210c0d84130ba4338af
+Content-length: 46
+
+File in the C folder.
+More data in this file.
+
+
+Revision-number: 5
+Prop-content-length: 116
+Content-length: 116
+
+K 10
+svn:author
+V 7
+dmarold
+K 8
+svn:date
+V 27
+2014-11-24T16:41:29.000000Z
+K 7
+svn:log
+V 14
+remove fileC1
+
+PROPS-END
+
+Node-path: trunk/folderC/fileC1.txt
+Node-action: delete
+
+Node-path: trunk/folderC
+Node-action: delete
+
+Revision-number: 6
+Prop-content-length: 128
+Content-length: 128
+
+K 10
+svn:author
+V 7
+dmarold
+K 8
+svn:date
+V 27
+2014-11-24T16:41:56.000000Z
+K 7
+svn:log
+V 26
+add fileD (copy of fileC)
+
+PROPS-END
+
+Node-path: trunk/folderD
+Node-kind: dir
+Node-action: add
+
+
+Node-path: trunk/folderD/fileD1.txt
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 46
+Text-content-md5: 2f65ec43a2222210c0d84130ba4338af
+Content-length: 56
+
+PROPS-END
+File in the C folder.
+More data in this file.
+
+

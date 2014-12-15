@@ -353,7 +353,10 @@ public class RevisionImport {
 
 		// just revert pending revision
 		if (isOpened(path)) {
-			revertFile(path);
+			Action action = getOpenedAction(path);
+			if (action != Action.REMOVE) {
+				revertFile(path);
+			}
 		}
 
 		// delete revision
@@ -579,7 +582,7 @@ public class RevisionImport {
 		IFileSpec file = openedFile(depotToPath);
 		return file != null;
 	}
-	
+
 	public Action getOpenedAction(String depotToPath) throws Exception {
 		IFileSpec file = openedFile(depotToPath);
 		return P4Factory.p4javaToQueryAction(file.getAction());
