@@ -161,8 +161,9 @@ public class NodeConvert implements NodeInterface {
 					StringBuffer msg = new StringBuffer();
 					msg.append("SKIPPING: cannot branch a deleted revision to");
 					msg.append(" a non-existant or deleted target.\n");
-					logger.error(msg.toString());
-					throw new RuntimeException(msg.toString());
+					logger.warn(msg.toString());
+					Stats.inc(StatsType.warningCount);
+					return;
 				}
 			} else {
 				throw new ConverterException("Unexpected number of sources");
