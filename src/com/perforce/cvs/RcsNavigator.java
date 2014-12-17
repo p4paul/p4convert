@@ -120,7 +120,7 @@ public abstract class RcsNavigator {
 		do {
 			RcsObjectDelta revision = rcsRevision.getDelta(id);
 			RevisionEntry entry = new RevisionEntry(revision);
-			
+
 			// set file permission properties for entry
 			entry.setProps(rcsRevision.getProps());
 
@@ -148,9 +148,9 @@ public abstract class RcsNavigator {
 				if (brId.equals(id)) {
 					String tag = br.getValue();
 					String state = revision.getState();
-					if (!state.equals("dead") && (node != null)) {
+					if (node != null) {
 						String fromBranch = node.getName();
-						if(node.isReverse()) {
+						if (node.isReverse()) {
 							fromBranch = node.getFrom();
 						}
 						String fromPath = fromBranch + "/" + basePath;

@@ -1,10 +1,22 @@
 @pv@ 9 @db.rev@ @//import/main/module1/file1.txt@ 1 1 0 1 1411036192 1411036192 D7FA2FD9D2BCC36D2213574B97B352D6 463 0 0 @//import/main/module1/file1.txt@ @1.1@ 1 
 @pv@ 9 @db.rev@ @//import/main/module1/file2.txt@ 1 1 0 1 1411036192 1411036192 472DEF12F0C978B876A4F65C4FBAF12A 529 0 0 @//import/main/module1/file2.txt@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/module2/file3.txt@ 1 1 0 2 1411037422 1411037422 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/main/module2/file3.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/main/module2/file4.txt@ 1 1 0 4 1411037512 1411037512 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/main/module2/file4.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/MODULE_2/module2/file3.txt@ 2 1 4 3 1411037422 1411037422 D41D8CD98F00B204E9800998ECF8427E 0 0 1 @//import/main/module2/file3.txt@ @1.2@ 1 
 @pv@ 9 @db.rev@ @//import/MODULE_2/module2/file3.txt@ 1 1 0 2 1411037422 1411037422 3C7B438B77ED8729EFB58C1B9835D9DC 510 0 0 @//import/MODULE_2/module2/file3.txt@ @1.2@ 1 
-@pv@ 9 @db.rev@ @//import/MODULE_2/module2/file4.txt@ 1 1 0 3 1411037512 1411037512 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/MODULE_2/module2/file4.txt@ @1.3@ 1 
-@pv@ 2 @db.change@ 3 3 @svn-client@ @radek@ 1411037512 1 @file file4.txt was initially ad@ @//import/MODULE_2/module2/*@ 
-@pv@ 2 @db.change@ 2 2 @svn-client@ @radek@ 1411037422 1 @file file3.txt was initially ad@ @//import/MODULE_2/module2/*@ 
+@pv@ 9 @db.rev@ @//import/MODULE_2/module2/file4.txt@ 2 1 4 5 1411037512 1411037512 D41D8CD98F00B204E9800998ECF8427E 0 0 1 @//import/main/module2/file4.txt@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/MODULE_2/module2/file4.txt@ 1 1 0 4 1411037512 1411037512 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/MODULE_2/module2/file4.txt@ @1.4@ 1 
+@pv@ 0 @db.integed@ @//import/main/module2/file3.txt@ @//import/MODULE_2/module2/file3.txt@ 1 2 0 1 5 3 
+@pv@ 0 @db.integed@ @//import/main/module2/file4.txt@ @//import/MODULE_2/module2/file4.txt@ 1 2 0 1 5 5 
+@pv@ 0 @db.integed@ @//import/MODULE_2/module2/file3.txt@ @//import/main/module2/file3.txt@ 0 1 1 2 4 3 
+@pv@ 0 @db.integed@ @//import/MODULE_2/module2/file4.txt@ @//import/main/module2/file4.txt@ 0 1 1 2 4 5 
+@pv@ 2 @db.change@ 5 5 @svn-client@ @radek@ 1411037512 1 @file file4.txt was initially ad@ @//import/MODULE_2/module2/*@ 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @radek@ 1411037512 1 @file file4.txt was initially ad@ @//import/m...@ 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @radek@ 1411037422 1 @file file3.txt was initially ad@ @//import/MODULE_2/module2/*@ 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @radek@ 1411037422 1 @file file3.txt was initially ad@ @//import/m...@ 
 @pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1411036192 1 @module1 added
-@pv@ 0 @db.desc@ 3 @file file4.txt was initially added on branch MODULE_2.
+@pv@ 0 @db.desc@ 5 @file file4.txt was initially added on branch MODULE_2.
+@pv@ 0 @db.desc@ 4 @file file4.txt was initially added on branch MODULE_2.
+@pv@ 0 @db.desc@ 3 @file file3.txt was initially added on branch MODULE_2.
 @pv@ 0 @db.desc@ 2 @file file3.txt was initially added on branch MODULE_2.
 @pv@ 0 @db.desc@ 1 @module1 added

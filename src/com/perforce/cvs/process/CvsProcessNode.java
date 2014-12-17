@@ -179,6 +179,7 @@ public class CvsProcessNode extends ProcessNode {
 
 		// Set node condition ('add', 'change' or 'delete')
 		String s = revEntry.getState();
+		String id = revEntry.getId().toString();
 		if (s != null) {
 			if ("Exp".equals(s)) {
 				action = ChangeAction.Action.ADD;
@@ -187,7 +188,11 @@ public class CvsProcessNode extends ProcessNode {
 			} else if ("Rel".equals(s)) {
 				action = ChangeAction.Action.ADD;
 			} else if ("dead".equals(s)) {
-				action = ChangeAction.Action.REMOVE;
+				if (id.equals("1.1")) {
+					action = ChangeAction.Action.ADD;
+				} else {
+					action = ChangeAction.Action.REMOVE;
+				}
 			} else if ("BRANCH".equals(s)) {
 				action = ChangeAction.Action.BRANCH;
 			} else {
