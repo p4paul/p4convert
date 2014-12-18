@@ -88,5 +88,16 @@ public class TestPathMap {
 		String base = "//import/sub/";
 		Assert.assertEquals(base, PathMapTranslator.translate(path));
 	}
+	
+	@Test
+	public void testRegexPath() throws ConfigException {
+		Config.setDefault();
+
+		PathMapTranslator.setDefault();
+
+		String path = "trunk/{1}/foo.txt";
+		String base = "//import/trunk/{1}/foo.txt";
+		Assert.assertEquals(base, PathMapTranslator.translate(path));
+	}
 
 }

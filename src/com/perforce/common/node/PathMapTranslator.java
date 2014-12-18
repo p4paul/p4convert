@@ -57,9 +57,16 @@ public class PathMapTranslator {
 	}
 
 	public static String translate(String path) {
+		String expanded = "";
+		
 		// use empty string for null paths
 		if (path == null) {
 			path = "";
+		}
+
+		// terminate '{' from path with '{}'
+		if (path.contains("{")) {
+			path = path.replaceAll("\\{", "{}");
 		}
 
 		for (PathMapEntry map : list) {
@@ -72,11 +79,16 @@ public class PathMapTranslator {
 				for (int i = 1; i <= m.groupCount(); i++) {
 					group.add(m.group(i));
 				}
-				String expanded = expandGroup(trans, group);
-				return expanded;
+				expanded = expandGroup(trans, group);
+				break;
 			}
 		}
-		return "";
+		
+		// restore path and remove terminator '{}'
+		if (expanded.contains("{}")) {
+			expanded = expanded.replaceAll("\\{\\}", "{");
+		}
+		return expanded;
 	}
 
 	private static String expandGroup(String trans, ArrayList<String> group) {
