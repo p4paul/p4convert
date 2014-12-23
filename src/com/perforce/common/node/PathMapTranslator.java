@@ -58,7 +58,7 @@ public class PathMapTranslator {
 
 	public static String translate(String path) {
 		String expanded = "";
-		
+
 		// use empty string for null paths
 		if (path == null) {
 			path = "";
@@ -83,7 +83,7 @@ public class PathMapTranslator {
 				break;
 			}
 		}
-		
+
 		// restore path and remove terminator '{}'
 		if (expanded.contains("{}")) {
 			expanded = expanded.replaceAll("\\{\\}", "{");
@@ -98,7 +98,8 @@ public class PathMapTranslator {
 		Matcher m = pattern.matcher(trans);
 		while (m.matches()) {
 			int i = Integer.parseInt(m.group(1)) - 1;
-			trans = trans.replaceFirst(regex, group.get(i));
+			String quote = Matcher.quoteReplacement(group.get(i));
+			trans = trans.replaceFirst(regex, quote);
 			m = pattern.matcher(trans);
 		}
 

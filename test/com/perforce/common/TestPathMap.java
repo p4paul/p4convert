@@ -53,7 +53,7 @@ public class TestPathMap {
 		String base = "//depot/R1.0.2/bar/src/baz.txt";
 		Assert.assertEquals(base, PathMapTranslator.translate(path));
 	}
-	
+
 	@Test
 	public void testRegexCharsInPath() {
 		PathMapEntry entry = new PathMapEntry("RELEASE_(.*)/projFoo/(bar/.*)",
@@ -76,7 +76,7 @@ public class TestPathMap {
 		String base = "//import/sub/main/src/baz.txt";
 		Assert.assertEquals(base, PathMapTranslator.translate(path));
 	}
-	
+
 	@Test
 	public void testNullPath() throws ConfigException {
 		Config.setDefault();
@@ -88,7 +88,7 @@ public class TestPathMap {
 		String base = "//import/sub/";
 		Assert.assertEquals(base, PathMapTranslator.translate(path));
 	}
-	
+
 	@Test
 	public void testRegexPath() throws ConfigException {
 		Config.setDefault();
@@ -97,6 +97,10 @@ public class TestPathMap {
 
 		String path = "trunk/{1}/foo.txt";
 		String base = "//import/trunk/{1}/foo.txt";
+		Assert.assertEquals(base, PathMapTranslator.translate(path));
+
+		path = "trunk/$foo.txt";
+		base = "//import/trunk/$foo.txt";
 		Assert.assertEquals(base, PathMapTranslator.translate(path));
 	}
 
