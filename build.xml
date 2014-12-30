@@ -155,7 +155,7 @@
 				<path id="svn2p4.cli.id" location="${dist.dir}/${jar.name}.jar" />
 			</classpath>
 			<jvmarg value="-Dfile.encoding=UTF-8" />
-			<arg line="--config SVN" />
+			<arg line="--type=SVN --default" />
 		</java>
 	</target>
 
