@@ -20,6 +20,11 @@ public class RcsFileFinder {
 
 	private void findFiles(String path) {
 		File base = new File(path);
+		if (!base.exists()) {
+			logger.warn("CVSROOT does not exist: " + path);
+			return;
+		}
+
 		File[] list = base.listFiles();
 
 		for (File f : list) {

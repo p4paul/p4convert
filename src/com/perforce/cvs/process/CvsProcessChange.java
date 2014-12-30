@@ -31,7 +31,7 @@ import com.perforce.svn.query.QueryInterface;
 
 public class CvsProcessChange extends ProcessChange {
 
-	private Logger logger = LoggerFactory.getLogger(CvsProcessChange.class);
+	private static Logger logger = LoggerFactory.getLogger(CvsProcessChange.class);
 
 	private DepotInterface depot;
 
@@ -64,7 +64,8 @@ public class CvsProcessChange extends ProcessChange {
 		}
 
 		// Find all revisions in CVSROOT
-		RcsFileFinder rcsFiles = findRcsFiles();
+		String cvsroot = (String) Config.get(CFG.CVS_ROOT);
+		RcsFileFinder rcsFiles = find(cvsroot);
 
 		// Sort branches
 		BranchSorter brSort = buildBranchList(rcsFiles);
@@ -158,9 +159,8 @@ public class CvsProcessChange extends ProcessChange {
 	 * @return
 	 * @throws Exception
 	 */
-	private RcsFileFinder findRcsFiles() throws Exception {
+	public static RcsFileFinder find(String cvsroot) throws Exception {
 		// Find all revisions in CVSROOT
-		String cvsroot = (String) Config.get(CFG.CVS_ROOT);
 		if (!new File(cvsroot).exists()) {
 			String err = "Invalid path for CVSROOT: " + cvsroot;
 			logger.error(err + "\n");

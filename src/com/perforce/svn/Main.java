@@ -8,23 +8,28 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
 import com.perforce.common.ExitCode;
-import com.perforce.common.Usage;
 import com.perforce.common.asset.ContentType;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ScmType;
 import com.perforce.config.Version;
+import com.perforce.cvs.prescan.CvsExtractUsers;
 import com.perforce.cvs.process.CvsProcessChange;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.SubversionWriter;
 import com.perforce.svn.prescan.ExtractRecord;
-import com.perforce.svn.prescan.ExtractUsers;
 import com.perforce.svn.prescan.LastRevision;
+import com.perforce.svn.prescan.SvnExtractUsers;
 import com.perforce.svn.prescan.UsageParser;
 import com.perforce.svn.process.SvnProcessChange;
 
@@ -41,18 +46,48 @@ public class Main {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		ExitCode code = processArgs(args);
-		System.exit(code.value());
+		// Process arguments
+		ExitCode exit = processArgs(args);
+		System.exit(exit.value());
 	}
 
-	/**
-	 * Process arguments method (TODO improve argument parsing) Access is
-	 * 'public' to allow calls by test cases.
-	 * 
-	 * @param args
-	 * @throws Exception
-	 */
 	public static ExitCode processArgs(String[] args) throws Exception {
+		// Configure arguments
+		CommandLineParser parser = new GnuParser();
+		Options options = new Options();
+		options.addOption("v", "version", false, "Version string");
+		options.addOption("c", "config", true, "Use configuration file");
+		options.addOption("t", "type", true, "SCM type (CVS | SVN)");
+		options.addOption("d", "default", false, "Generate a configuration file");
+		options.addOption("r", "repo", true, "Repository file/path");
+		options.addOption("i", "info", false, "Report on repository usage");
+		options.addOption("u", "users", false, "List repository users");
+		options.addOption("e", "extract", true, "Extract a revision");
+
+		// Process arguments
+		CommandLine line = parser.parse(options, args);
+		ExitCode exit = processOptions(line);
+
+		if (exit.equals(ExitCode.USAGE)) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("\nExample: standard usage.\n");
+			sb.append("\t java -jar p4convert.jar --config=myFile.cfg\n\n");
+			sb.append("Example: generate a CVS configuration file.\n");
+			sb.append("\t java -jar p4convert.jar --type=CVS --default\n\n");
+			sb.append("Example: report Subversion repository usage.\n");
+			sb.append("\t java -jar p4convert.jar --type=SVN --repo=/path/to/repo.dump --info\n\n");
+			
+			HelpFormatter formatter = new HelpFormatter();
+			formatter.printHelp("java -jar p4convert.jar", options);
+			logger.info(sb.toString());
+		}
+		return exit;
+	}
+
+	private static ExitCode processOptions(CommandLine line) throws Exception {
+		ScmType scmType;
+		String repoPath;
+		String configFile;
 
 		// Find version from manifest
 		Version ver = new Version();
@@ -61,64 +96,85 @@ public class Main {
 		Config.setDefault();
 		Config.set(CFG.VERSION, ver.getVersion());
 
-		// Load configuration (may update logger as well)
-		if (args.length == 1) {
-			String arg = args[0];
-			if (arg.contentEquals("--version")) {
-				System.out.println(ver.getVersion() + "\n");
-				return ExitCode.OK;
-			} else {
-				Config.load(arg);
-			}
+		// --version
+		if (line.hasOption("version")) {
+			System.out.println(ver.getVersion() + "\n");
+			return ExitCode.OK;
 		}
 
-		else if (args.length == 2) {
-			String arg = args[0];
-			String opt1 = args[1];
-			if (arg.contentEquals("--users")) {
-				Config.set(CFG.SVN_PROP_TYPE, ContentType.P4_BINARY);
-				String mapFile = (String) Config.get(CFG.USER_MAP);
-				ExtractUsers.store(opt1, mapFile);
-				System.exit(ExitCode.OK.value());
-			}
-
-			else if ("--info".equals(arg)) {
-				Config.set(CFG.SVN_PROP_TYPE, ContentType.P4_BINARY);
-				prescanStats(opt1);
-				return ExitCode.OK;
-			}
-
-			else if ("--config".equals(arg)) {
-				Config.store(defaultFile, ScmType.parse(opt1));
-				return ExitCode.OK;
-			}
-
-			else {
-				Usage.print();
-				return ExitCode.USAGE;
-			}
+		// --config
+		if (line.hasOption("config")) {
+			configFile = line.getOptionValue("config");
+			Config.load(configFile);
+			return startConversion();
 		}
 
-		// check for extraction
-		else if (args.length == 3) {
-			String arg = args[0];
-			String nodepoint = args[1];
-			String dumpFile = args[2];
-			if ("--extract".equals(arg)) {
-				extractNode(dumpFile, nodepoint);
-				return ExitCode.OK;
-			} else {
-				Usage.print();
-				return ExitCode.USAGE;
-			}
-		}
-
-		else {
-			Usage.print();
+		// --type (REQUIRED for all the following options)
+		if (line.hasOption("type")) {
+			scmType = ScmType.parse(line.getOptionValue("type"));
+			Config.set(CFG.SCM_TYPE, scmType);
+		} else {
 			return ExitCode.USAGE;
 		}
 
-		// Start conversion
+		// --default
+		if (line.hasOption("default")) {
+			Config.store(defaultFile, scmType);
+			return ExitCode.OK;
+		}
+
+		// --repo (REQUIRED for all the following options)
+		if (line.hasOption("repo")) {
+			repoPath = line.getOptionValue("repo");
+			Config.set(CFG.SCM_TYPE, scmType);
+		} else {
+			return ExitCode.USAGE;
+		}
+
+		// --info
+		if (line.hasOption("info")) {
+			switch (scmType) {
+			case SVN:
+				Config.set(CFG.SVN_PROP_TYPE, ContentType.P4_BINARY);
+				prescanStats(repoPath);
+				return ExitCode.OK;
+			default:
+				return ExitCode.USAGE;
+			}
+		}
+
+		// --users
+		if (line.hasOption("users")) {
+			String mapFile = (String) Config.get(CFG.USER_MAP);
+			switch (scmType) {
+			case SVN:
+				Config.set(CFG.SVN_PROP_TYPE, ContentType.P4_BINARY);
+				SvnExtractUsers.store(repoPath, mapFile);
+				return ExitCode.OK;
+			case CVS:
+				CvsExtractUsers.store(repoPath, mapFile);
+				return ExitCode.OK;
+			default:
+				return ExitCode.USAGE;
+			}
+		}
+
+		// --extract
+		if (line.hasOption("extract")) {
+			String node = line.getOptionValue("extract");
+			switch (scmType) {
+			case SVN:
+				extractNode(repoPath, node);
+				return ExitCode.OK;
+			default:
+				return ExitCode.USAGE;
+			}
+		}
+
+		return ExitCode.USAGE;
+	}
+
+	private static ExitCode startConversion() throws Exception {
 		ExecutorService executor = Executors.newFixedThreadPool(1);
 
 		Callable<Integer> callable = null;

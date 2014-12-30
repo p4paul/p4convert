@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.perforce.common.ExitCode;
-import com.perforce.common.Stats;
-import com.perforce.common.StatsType;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ScmType;
@@ -22,8 +20,8 @@ public class TestUsage {
 		File file = new File("default.cfg");
 		file.delete();
 
-		// pass no args to generate default configuration file
-		String args[] = {"--config", "SVN"};
+		// generate default configuration file
+		String args[] = { "--type=SVN", "--default" };
 		ExitCode code = Main.processArgs(args);
 
 		boolean test = (!file.isDirectory() && file.canRead());
@@ -35,7 +33,7 @@ public class TestUsage {
 	public void test_MainFlagInfo() throws Exception {
 		// pass --info to scan SVN dump file
 		String testcase = dumpPath + "add-del-br-del-br/" + dumpFile;
-		String args[] = { "--info", testcase };
+		String args[] = { "--type=SVN", "--info", "--repo=" + testcase };
 		ExitCode code = Main.processArgs(args);
 
 		Assert.assertEquals(ExitCode.OK, code);
@@ -54,7 +52,7 @@ public class TestUsage {
 		Config.store(config.getName(), ScmType.SVN);
 
 		// pass config file to run conversion
-		String args[] = { config.getName() };
+		String args[] = { "--config=" + config.getName() };
 		ExitCode code = Main.processArgs(args);
 
 		// clean up test file
@@ -77,7 +75,7 @@ public class TestUsage {
 		Config.store(config.getName(), ScmType.SVN);
 
 		// pass config file to run conversion
-		String args[] = { config.getName() };
+		String args[] = { "--config=" + config.getName() };
 		ExitCode code = Main.processArgs(args);
 
 		// clean up test file

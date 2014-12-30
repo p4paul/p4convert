@@ -14,9 +14,9 @@ import com.perforce.svn.change.ChangeParser;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
 
-public class ExtractUsers {
+public class SvnExtractUsers {
 
-	private static Logger logger = LoggerFactory.getLogger(ExtractUsers.class);
+	private static Logger logger = LoggerFactory.getLogger(SvnExtractUsers.class);
 
 	public static void store(String dumpFile, String filename) throws Exception {
 		Map<String, String> users = new HashMap<String, String>();

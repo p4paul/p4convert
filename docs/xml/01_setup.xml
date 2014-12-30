@@ -73,7 +73,7 @@
       </para>
 
 <programlisting language="bash">
-java -jar p4convert.jar --info &lt;path_to_svn_dumpfile&gt;
+java -jar p4convert.jar --type=SVN --repo=&lt;path_to_svn_dumpfile&gt; --info 
 </programlisting>
 
       <para>
@@ -82,7 +82,7 @@ java -jar p4convert.jar --info &lt;path_to_svn_dumpfile&gt;
       </para>
 
 <programlisting language="bash">
-java -Xmx65536M -jar p4convert.jar myConfig.cfg
+java -Xmx65536M -jar p4convert.jar --config=myConfig.cfg
 </programlisting>
     </section>
   </section>
@@ -101,12 +101,12 @@ java -Xmx65536M -jar p4convert.jar myConfig.cfg
           <tgroup cols="3">
             <colspec colname="os" colwidth="2*"/>
             <colspec colname="10.2" colwidth="*"/>
-            <colspec colname="13.1" colwidth="*"/>
+            <colspec colname="14.1" colwidth="*"/>
             <thead>
               <row>
                 <entry><para>Operating System</para></entry>
                 <entry><para>10.2</para></entry>
-                <entry><para>13.1</para></entry>
+                <entry><para>14.1</para></entry>
               </row>
             </thead>
 
@@ -178,33 +178,39 @@ java -Xmx65536M -jar p4convert.jar myConfig.cfg
     </para>
 
 <programlisting language="bash">
-java -jar p4convert.jar
+usage: java -jar p4convert.jar
+ -c,--config &lt;arg&gt;    Use configuration file
+ -d,--default         Generate a configuration file
+ -e,--extract &lt;arg&gt;   Extract a revision
+ -i,--info            Report on repository usage
+ -r,--repo &lt;arg&gt;      Repository file/path
+ -t,--type &lt;arg&gt;      SCM type (CVS | SVN)
+ -u,--users           List repository users
+ -v,--version         Version string
 
-No option or configuration file specified...
+Example: standard usage.
+   java -jar p4convert.jar --config=myFile.cfg
 
+Example: generate a CVS configuration file.
+   java -jar p4convert.jar --type=CVS --default
 
-Usage:
-	java -jar p4convert.jar [ config file ]
-
-Options:
-	java -jar p4convert.jar --config [ SVN | CVS ]
-	java -jar p4convert.jar --version
-
-Subversion specific options:
-	java -jar p4convert.jar --info [ dumpfile ]
-	java -jar p4convert.jar --users [ dumpfile ]
-	java -jar p4convert.jar --extract [ rev ].[ node ] [ dumpfile ]
+Example: report Subversion repository usage.
+   java -jar p4convert.jar --type=SVN --repo=/path/to/repo.dump --info
 </programlisting>
 
     <para>
-      Create a configuration file using the <parameter>--config</parameter>
-      option.  This will contain a set of default configuration options 
-      based on your platform.  To subsequently start a conversion, execute
-      the jar with the populated configuration file. For example:
+      To create a default configuration file using the <parameter>--default</parameter>
+      option. You will need to specify the SCM type using <parameter>--type</parameter> 
+      (with a value of SVN or CVS). The generated file (default.cfg) will 
+      contain a set of default configuration options based on your platform.
+      Rename the <parameter>default.cfg</parameter> to your own configuration.
+      To run a conversion using your configuration file, execute the jar with 
+      the <parameter>--config</parameter> flag specifying you config file.
+      For example:
     </para>
 
 <programlisting>
-java -jar p4convert.jar my_CVSrepo.cfg
+java -jar p4convert.jar --config=myFile.cfg
 </programlisting>
 
   </section>

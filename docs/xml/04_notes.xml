@@ -707,7 +707,7 @@ WARNING: p4java: //import/repo/trunk/my.file - file(s) up-to-date.
     </para>
 
 <programlisting language="bash">
-$ java -jar dist/p4convert.jar --extract 46.3 mysvndump.dump 
+$ java -jar dist/p4convert.jar --type=SVN --repo=mysvndump.dump --extract=46.3  
 
 searching for node: 46.3...
 Node-path: repo/trunk/my.file
