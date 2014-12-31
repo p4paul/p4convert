@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
-import com.perforce.common.OutOfOrderException;
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.AssetWriter;
@@ -158,12 +157,13 @@ public class NodeConvert implements NodeInterface {
 					// determine branch type and add action to tree
 					act = processBranch(depot, from, toPath, toChange, content);
 				} else {
+					// Can't get here unless case-sensitivity issue job053572
 					StringBuffer msg = new StringBuffer();
-					msg.append("DELAYING: cannot branch a deleted revision to");
+					msg.append("SKIPPING: cannot branch a deleted revision to");
 					msg.append(" a non-existant or deleted target.\n");
-					logger.info(msg.toString());
-					
-					throw new OutOfOrderException();
+					logger.warn(msg.toString());
+					Stats.inc(StatsType.warningCount);
+					return;
 				}
 			} else {
 				throw new ConverterException("Unexpected number of sources");

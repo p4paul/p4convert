@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
-import com.perforce.common.OutOfOrderException;
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.depot.DepotInterface;
@@ -32,8 +31,7 @@ import com.perforce.svn.query.QueryInterface;
 
 public class CvsProcessChange extends ProcessChange {
 
-	private static Logger logger = LoggerFactory
-			.getLogger(CvsProcessChange.class);
+	private static Logger logger = LoggerFactory.getLogger(CvsProcessChange.class);
 
 	private DepotInterface depot;
 
@@ -282,29 +280,17 @@ public class CvsProcessChange extends ProcessChange {
 			// if no pending revisions...
 			if (!change.isPendingRevision(path)) {
 				// add entry to current change
-				try {
-					addEntry(entry, change);
-					revs.drop(entry);
-				} catch (OutOfOrderException e) {
-					if (logger.isInfoEnabled()) {
-						logger.info("... leaving: " + entry + "(catch1)");
-					}
-				}
+				addEntry(entry, change);
+				revs.drop(entry);
 			} else {
 				// if pending revision is a REMOVE and current is a PSEUDO
 				// branch
 				Action pendingAct = change.getPendingAction(path);
 				if (entry.isPseudo() && pendingAct == Action.REMOVE) {
 					// overlay REMOVE with branch and down-grade to ADD
-					try {
-						entry.setState("Exp");
-						addEntry(entry, change);
-						revs.drop(entry);
-					} catch (OutOfOrderException e) {
-						if (logger.isInfoEnabled()) {
-							logger.info("... leaving: " + entry + "(catch2)");
-						}
-					}
+					entry.setState("Exp");
+					addEntry(entry, change);
+					revs.drop(entry);
 				} else {
 					// else, revision belongs in another change
 					if (logger.isTraceEnabled()) {
