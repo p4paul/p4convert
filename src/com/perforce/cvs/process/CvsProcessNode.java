@@ -75,6 +75,12 @@ public class CvsProcessNode extends ProcessNode {
 			long lastChange = cvsChange - 1;
 			for (long c = lastChange; c > 0; c--) {
 				ChangeAction next = query.findLastAction(fromPath, c);
+
+				if (next == null) {
+					logger.warn("null history: " + revEntry.toString());
+					break;
+				}
+
 				if (!next.getAction().equals(Action.REMOVE)) {
 					MergeSource from = new MergeSource(fromPath, 1, c);
 					processMergeCredit(from, content, nodeAction);
@@ -82,13 +88,13 @@ public class CvsProcessNode extends ProcessNode {
 					fromList.add(from);
 					break;
 				} else {
-				//	nodeAction = Action.MERGE;
+					// nodeAction = Action.MERGE;
 					revEntry.setPseudo(false);
 					content = new Content(revEntry);
 				}
 			}
 		}
-		
+
 		// look for content type
 		if (content.isBlob()) {
 			// find content type
