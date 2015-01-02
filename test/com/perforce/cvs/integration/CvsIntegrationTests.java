@@ -59,7 +59,7 @@ public class CvsIntegrationTests {
 
 			Config.set(CFG.VERSION, "alpha/TestMode");
 			Config.set(CFG.P4_CLIENT_ROOT, "/ws");
-			
+
 			Config.set(CFG.EXCLUDE_MAP, "test_exclude.map");
 			Config.set(CFG.INCLUDE_MAP, "test_include.map");
 			Config.set(CFG.ISSUE_MAP, "test_issue.map");
@@ -361,34 +361,40 @@ public class CvsIntegrationTests {
 		}
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case046() throws Exception {
 		Config.set(CFG.CVS_MODULE, "replace_file");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case047() throws Exception {
 		Config.set(CFG.CVS_MODULE, "dead-branch");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case048() throws Exception {
 		Config.set(CFG.CVS_MODULE, "end-file");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case049() throws Exception {
 		Config.set(CFG.CVS_MODULE, "parse-comment");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case050() throws Exception {
 		Config.set(CFG.CVS_MODULE, "branch-branch");
+		testCase("CVScluster01");
+	}
+
+	@Test
+	public void case051() throws Exception {
+		Config.set(CFG.CVS_MODULE, "br-trunk-del");
 		testCase("CVScluster01");
 	}
 

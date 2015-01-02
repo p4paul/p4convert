@@ -429,6 +429,12 @@ public class CvsImportTests {
 		testCase("CVScluster01");
 	}
 	
+	@Test
+	public void case051() throws Exception {
+		Config.set(CFG.CVS_MODULE, "br-trunk-del");
+		testCase("CVScluster01");
+	}
+	
 	/**
 	 * Environment test
 	 * 
