@@ -73,6 +73,10 @@ public class RevisionNavigator extends RcsNavigator {
 		branch.addDate(1L);
 		branch.setProps(from.getProps());
 
+		if (from.getState().contains("dead")) {
+			branch.setTmpFile(from.getTmpFile());
+		}
+
 		String toPath = toTag + "/" + basePath;
 		String fromPath = from.getFromPath();
 

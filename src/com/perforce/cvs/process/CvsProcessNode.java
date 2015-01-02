@@ -65,8 +65,32 @@ public class CvsProcessNode extends ProcessNode {
 
 		// if node has archive content (including empty files), then ...
 		Content content = new Content(revEntry);
-		if (content.isBlob()) {
 
+		// add from sources (for branches etc...)
+		if (nodeAction == Action.BRANCH) {
+			String fromPath = revEntry.getFromPath();
+			fromPath = formatPath(fromPath);
+
+			// Find branch from point
+			long lastChange = cvsChange - 1;
+			for (long c = lastChange; c > 0; c--) {
+				ChangeAction next = query.findLastAction(fromPath, c);
+				if (!next.getAction().equals(Action.REMOVE)) {
+					MergeSource from = new MergeSource(fromPath, 1, c);
+					processMergeCredit(from, content, nodeAction);
+					from.fetchNode(query);
+					fromList.add(from);
+					break;
+				} else {
+				//	nodeAction = Action.MERGE;
+					revEntry.setPseudo(false);
+					content = new Content(revEntry);
+				}
+			}
+		}
+		
+		// look for content type
+		if (content.isBlob()) {
 			// find content type
 			ContentType detectedType = findContentType(nodePath, content,
 					lastAction);
@@ -78,18 +102,6 @@ public class CvsProcessNode extends ProcessNode {
 				String rev = revEntry.getId().toString();
 				AuditLogger.log(nodePath, rev, cvsChange, md5);
 			}
-		}
-
-		// add from sources (for branches etc...)
-		if (nodeAction == Action.BRANCH) {
-			String fromPath = revEntry.getFromPath();
-			fromPath = formatPath(fromPath);
-			revEntry.setPath(fromPath);
-
-			MergeSource from = new MergeSource(fromPath, 1, cvsChange - 1);
-			processMergeCredit(from, content, nodeAction);
-			from.fetchNode(query);
-			fromList.add(from);
 		}
 
 		// upgrade edits from ADD to EDIT
