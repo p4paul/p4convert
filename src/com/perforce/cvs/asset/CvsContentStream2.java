@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.perforce.common.asset.ContentStream;
 import com.perforce.common.asset.ContentType;
 import com.perforce.svn.parser.Content;
@@ -16,12 +13,12 @@ public class CvsContentStream2 extends ContentStream {
 	private RandomAccessFile rf;
 	private long mark = 0L;
 	private long end = 0L;
-	
+
 	private ContentType contentType;
 
 	public CvsContentStream2(Content content) {
 		this.contentType = content.getType();
-		
+
 		try {
 			String name = content.getFileName();
 			rf = new RandomAccessFile(name, "r");

@@ -27,7 +27,6 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
-import com.perforce.svn.asset.SvnContentStream;
 import com.perforce.svn.parser.Content;
 
 public class TranslateContent {

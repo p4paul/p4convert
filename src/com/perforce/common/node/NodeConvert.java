@@ -172,16 +172,9 @@ public class NodeConvert implements NodeInterface {
 
 		case MERGE:
 			if (fromList != null && !fromList.isEmpty()) {
-				if (content.isBlob()) {
-					// determine branch type and add action to tree
-					act = tree.add(toPath, toChange, nodeAction, content,
-							NodeType.FILE, pendingBlock);
-				} else {
-					// TODO deal with properties and ignore case
-					act = tree.add(toPath, toChange, nodeAction, content,
-							NodeType.FILE, pendingBlock);
-				}
-
+				// determine branch type and add action to tree
+				act = tree.add(toPath, toChange, nodeAction, content,
+						NodeType.FILE, pendingBlock);
 			} else {
 				throw new ConverterException("Expected one or more sources");
 			}

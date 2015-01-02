@@ -147,7 +147,6 @@ public abstract class RcsNavigator {
 				RcsObjectNum brId = getBranchId(br.getKey());
 				if (brId.equals(id)) {
 					String tag = br.getValue();
-					String state = revision.getState();
 					if (node != null) {
 						String fromBranch = node.getName();
 						if (node.isReverse()) {
