@@ -77,7 +77,11 @@ public class CvsProcessNode extends ProcessNode {
 				ChangeAction next = query.findLastAction(fromPath, c);
 
 				if (next == null) {
-					logger.warn("null history: " + revEntry.toString());
+					logger.warn("No history (branch from label): " + revEntry.toString());
+					logger.info("... downgrade to ADD");
+					nodeAction = Action.ADD;
+					revEntry.setPseudo(false);
+					content = new Content(revEntry);
 					break;
 				}
 

@@ -70,12 +70,11 @@ public class Content {
 	public Content(RevisionEntry rev) {
 		this.length = -1;
 		fileName = rev.getTmpFile();
-		if (fileName == null) {
+		if (rev.isPseudo()) {
 			this.blob = false;
 		} else {
 			this.asset = AssetType.P4_ASSET;
 			this.blob = true;
-			this.fileName = rev.getTmpFile();
 			this.props = rev.getProps();
 		}
 	}
