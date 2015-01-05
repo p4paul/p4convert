@@ -19,9 +19,9 @@
 @ 
 @pv@ 0 @db.change@ 3 3 @svn-client@ @u1@ 1034847014 1 @desc B
 @ 
-@pv@ 0 @db.integed@ @//import/rel_3_0/src/foo@ @//import/main/src/foo@ 0 1 1 2 12 3 
-@pv@ 0 @db.integed@ @//import/main/src/foo@ @//import/rel_3_0/src/foo@ 1 2 0 1 10 3 
-@pv@ 3 @db.rev@ @//import/rel_3_0/src/foo@ 2 1 4 3 1034847014 1034847014 00000000000000000000000000000000 @//import/rel_3_0/src/foo@ @1.3@ 1 
+@pv@ 0 @db.integed@ @//import/rel_3_0/src/foo@ @//import/main/src/foo@ 0 1 1 2 4 3 
+@pv@ 0 @db.integed@ @//import/main/src/foo@ @//import/rel_3_0/src/foo@ 1 2 0 1 5 3 
+@pv@ 3 @db.rev@ @//import/rel_3_0/src/foo@ 2 1 4 3 1034847014 1034847014 00000000000000000000000000000000 @//import/main/src/foo@ @1.1@ 1 
 @pv@ 0 @db.revcx@ 3 @//import/rel_3_0/src/foo@ 2 4 
 @pv@ 0 @db.desc@ 4 @desc D
 @ 
