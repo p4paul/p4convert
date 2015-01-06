@@ -27,8 +27,8 @@ import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.svn.change.ChangeInterface;
 import com.perforce.svn.change.ChangeMap;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
-import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.history.RevisionTree.NodeType;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Node;
@@ -90,7 +90,7 @@ public class SvnProcessNode extends ProcessNode {
 		nodePath = formatPath(nodePath);
 
 		// find action and node type
-		ChangeAction.Action nodeAction = getNodeAction();
+		Action nodeAction = Action.parse(record);
 
 		// skip if excluded
 		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
@@ -395,7 +395,7 @@ public class SvnProcessNode extends ProcessNode {
 		nodePath = formatPath(nodePath);
 
 		// find action and node type
-		ChangeAction.Action nodeAction = getNodeAction();
+		Action nodeAction = Action.parse(record);
 
 		// skip if excluded
 		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
@@ -566,45 +566,6 @@ public class SvnProcessNode extends ProcessNode {
 			}
 		}
 		return ContentType.UNKNOWN;
-	}
-
-	/**
-	 * Reads parsed "Node-action" header field from the Subversion dumpfile and
-	 * returns the Perforce action
-	 * 
-	 * @return
-	 */
-	private Action getNodeAction() {
-		Action action = null;
-
-		// Set node condition ('add', 'change' or 'delete')
-		String s = record.findHeaderString("Node-action");
-		if (s != null) {
-			if ("add".equals(s))
-				action = Action.ADD;
-			else if ("change".equals(s))
-				action = Action.EDIT;
-			else if ("replace".equals(s))
-				action = Action.UPDATE;
-			else if ("delete".equals(s))
-				action = Action.REMOVE;
-			else
-				throw new RuntimeException("unknown action " + s);
-		} else {
-			throw new RuntimeException("No node-action(" + record + ")");
-		}
-
-		// Test for branch condition (overload 'copy' condition)
-		String path = record.findHeaderString("Node-copyfrom-path");
-		String rev = record.findHeaderString("Node-copyfrom-rev");
-		if (path != null || rev != null) {
-			if (action.equals(Action.UPDATE)) {
-				action = Action.COPY;
-			} else {
-				action = Action.BRANCH;
-			}
-		}
-		return action;
 	}
 
 	/**

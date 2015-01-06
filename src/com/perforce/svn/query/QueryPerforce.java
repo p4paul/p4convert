@@ -26,9 +26,9 @@ import com.perforce.p4java.option.server.GetChangelistsOptions;
 import com.perforce.p4java.option.server.GetExtendedFilesOptions;
 import com.perforce.p4java.server.IOptionsServer;
 import com.perforce.svn.change.ChangeMap;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree;
-import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.process.MergeInfo;
 
 public class QueryPerforce implements QueryInterface {

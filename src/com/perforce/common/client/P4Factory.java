@@ -18,7 +18,7 @@ import com.perforce.common.asset.ContentType;
 import com.perforce.p4java.core.file.FileAction;
 import com.perforce.p4java.core.file.FileSpecOpStatus;
 import com.perforce.p4java.core.file.IFileSpec;
-import com.perforce.svn.history.ChangeAction.Action;
+import com.perforce.svn.history.Action;
 
 public class P4Factory {
 

@@ -25,7 +25,7 @@ import com.perforce.cvs.asset.CvsContentReader;
 import com.perforce.cvs.parser.RcsFileFinder;
 import com.perforce.cvs.parser.RcsReader;
 import com.perforce.svn.change.ChangeInterface;
-import com.perforce.svn.history.ChangeAction.Action;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.prescan.Progress;
 import com.perforce.svn.query.QueryInterface;
 

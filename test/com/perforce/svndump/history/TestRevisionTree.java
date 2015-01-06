@@ -8,6 +8,7 @@ import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree;
 import com.perforce.svn.history.RevisionTree.NodeType;
@@ -40,8 +41,8 @@ public class TestRevisionTree {
 		RevisionTree revisionTree = new RevisionTree("Depot",
 				CaseSensitivity.FIRST);
 
-		ChangeAction node = revisionTree.add(path, 1, ChangeAction.Action.ADD,
-				content, NodeType.FILE, false);
+		ChangeAction node = revisionTree.add(path, 1, Action.ADD, content,
+				NodeType.FILE, false);
 
 		String actual = node.getParent().getName();
 		Assert.assertEquals("Makefile", actual);
@@ -59,11 +60,11 @@ public class TestRevisionTree {
 		RevisionTree revisionTree = new RevisionTree("Depot",
 				CaseSensitivity.FIRST);
 
-		ChangeAction add = revisionTree.add(fromPath, 1,
-				ChangeAction.Action.ADD, content, NodeType.FILE, false);
+		ChangeAction add = revisionTree.add(fromPath, 1, Action.ADD, content,
+				NodeType.FILE, false);
 
 		ChangeAction lazy = revisionTree.branch(fromPath, 1, toPath, 2,
-				ChangeAction.Action.BRANCH, noContent, NodeType.FILE, false);
+				Action.BRANCH, noContent, NodeType.FILE, false);
 
 		Assert.assertEquals(add, lazy.getLazyCopy());
 	}
@@ -79,11 +80,11 @@ public class TestRevisionTree {
 		RevisionTree revisionTree = new RevisionTree("Depot",
 				CaseSensitivity.FIRST);
 
-		ChangeAction add = revisionTree.add(fromPath, 1,
-				ChangeAction.Action.ADD, content, NodeType.FILE, false);
+		ChangeAction add = revisionTree.add(fromPath, 1, Action.ADD, content,
+				NodeType.FILE, false);
 
 		ChangeAction lazy = revisionTree.branch(fromPath, 1, toPath, 2,
-				ChangeAction.Action.BRANCH, content, NodeType.FILE, false);
+				Action.BRANCH, content, NodeType.FILE, false);
 
 		Assert.assertNotSame(add, lazy.getLazyCopy());
 	}
@@ -105,15 +106,15 @@ public class TestRevisionTree {
 		RevisionTree revisionTree = new RevisionTree("Depot",
 				CaseSensitivity.FIRST);
 
-		revisionTree.add(fromPath, 1, ChangeAction.Action.ADD, content,
-				NodeType.FILE, false);
+		revisionTree
+				.add(fromPath, 1, Action.ADD, content, NodeType.FILE, false);
 
 		ChangeAction action = revisionTree.branch(fromPath, 1, toPath, 2,
-				ChangeAction.Action.BRANCH, noContent, NodeType.FILE, false);
+				Action.BRANCH, noContent, NodeType.FILE, false);
 
 		// This should remove previous action
-		revisionTree.add(toPath, 2, ChangeAction.Action.REMOVE, noContent,
-				NodeType.FILE, false);
+		revisionTree.add(toPath, 2, Action.REMOVE, noContent, NodeType.FILE,
+				false);
 
 		int actions = action.getParent().getActions().size();
 		Assert.assertEquals(0, actions);
@@ -137,24 +138,24 @@ public class TestRevisionTree {
 				CaseSensitivity.FIRST);
 
 		// fromPath#1 (add @1)
-		revisionTree.add(fromPath, 1, ChangeAction.Action.ADD, content,
-				NodeType.FILE, false);
+		revisionTree
+				.add(fromPath, 1, Action.ADD, content, NodeType.FILE, false);
 
 		// fromPath#2 (edit @2)
-		ChangeAction base = revisionTree.add(fromPath, 2,
-				ChangeAction.Action.EDIT, content, NodeType.FILE, false);
+		ChangeAction base = revisionTree.add(fromPath, 2, Action.EDIT, content,
+				NodeType.FILE, false);
 
 		// toPath#1 (branch @20)
-		revisionTree.branch(fromPath, 1, toPath, 20,
-				ChangeAction.Action.BRANCH, noContent, NodeType.FILE, false);
+		revisionTree.branch(fromPath, 1, toPath, 20, Action.BRANCH, noContent,
+				NodeType.FILE, false);
 
 		// toPath#1 (overlay branch+edit @20)
-		revisionTree.branch(fromPath, 2, toPath, 20,
-				ChangeAction.Action.BRANCH, content, NodeType.FILE, false);
+		revisionTree.branch(fromPath, 2, toPath, 20, Action.BRANCH, content,
+				NodeType.FILE, false);
 
 		// toPath#2 (edit @21)
-		ChangeAction action = revisionTree.add(toPath, 21,
-				ChangeAction.Action.EDIT, content, NodeType.FILE, false);
+		ChangeAction action = revisionTree.add(toPath, 21, Action.EDIT,
+				content, NodeType.FILE, false);
 
 		int head = action.getParent().getHeadRev();
 		Assert.assertEquals("head rev:", 2, head);

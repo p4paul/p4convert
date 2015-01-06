@@ -3,7 +3,7 @@ package com.perforce.svn.prescan;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.perforce.svn.history.ChangeAction.Action;
+import com.perforce.svn.history.Action;
 
 public class UsageTree {
 

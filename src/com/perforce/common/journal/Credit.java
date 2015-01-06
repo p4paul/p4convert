@@ -1,13 +1,12 @@
 package com.perforce.common.journal;
 
 import com.perforce.common.ConverterException;
-import com.perforce.svn.history.ChangeAction;
+import com.perforce.svn.history.Action;
 
 public class Credit {
 
 	public enum Dir {
-		FORWARD,
-		REVERSE;
+		FORWARD, REVERSE;
 	}
 
 	public enum How {
@@ -42,7 +41,7 @@ public class Credit {
 	}
 
 	// Used by From or the Source
-	public static How forward(ChangeAction.Action action, boolean edit)
+	public static How forward(Action action, boolean edit)
 			throws ConverterException {
 		if (edit) {
 			switch (action) {
@@ -90,7 +89,7 @@ public class Credit {
 	}
 
 	// Used by To or the Target
-	public static How reverse(ChangeAction.Action action, boolean edit)
+	public static How reverse(Action action, boolean edit)
 			throws ConverterException {
 		if (edit) {
 			switch (action) {

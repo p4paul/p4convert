@@ -3,7 +3,7 @@ package com.perforce.svn.change;
 import java.util.List;
 
 import com.perforce.common.process.ChangeInfo;
-import com.perforce.svn.history.ChangeAction.Action;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.process.MergeInfo;
 import com.perforce.svn.process.MergeSource;
 

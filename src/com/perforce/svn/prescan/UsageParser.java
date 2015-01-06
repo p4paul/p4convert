@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
-import com.perforce.svn.history.ChangeAction;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
 import com.perforce.svn.prescan.UsageTree.UsageType;
@@ -48,40 +48,13 @@ public class UsageParser {
 				}
 
 				UsageType type = getNodeType(record);
-				ChangeAction.Action action = getNodeAction(record);
+				Action action = Action.parse(record);
 				tree.add(toPath, fromPath, type, action);
 				break;
 			default:
 				break;
 			}
 		}
-	}
-
-	public static ChangeAction.Action getNodeAction(Record record) {
-		ChangeAction.Action action = null;
-
-		// Set node condition ('add', 'change' or 'delete')
-		String s = record.findHeaderString("Node-action");
-		if (s != null) {
-			if (s.contains("add"))
-				action = ChangeAction.Action.ADD;
-			if (s.contains("change"))
-				action = ChangeAction.Action.EDIT;
-			if (s.contains("replace"))
-				action = ChangeAction.Action.EDIT;
-			if (s.contains("delete"))
-				action = ChangeAction.Action.REMOVE;
-		} else {
-			throw new RuntimeException("unknown Node-action(" + record + ")");
-		}
-
-		// Test for branch condition (overload 'add' condition)
-		if ((record.findHeaderString("Node-copyfrom-path")) != null
-				|| (record.findHeaderString("Node-copyfrom-rev")) != null) {
-			action = ChangeAction.Action.BRANCH;
-		}
-
-		return action;
 	}
 
 	/**

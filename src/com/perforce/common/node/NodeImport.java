@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
 import com.perforce.svn.change.ChangeImport;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.history.RevisionTree;
-import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.history.RevisionTree.NodeType;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Property;
@@ -29,7 +29,8 @@ public class NodeImport implements NodeInterface {
 	private boolean subBlock;
 	private boolean pendingBlock;
 
-	public NodeImport(ChangeImport change, RevisionTree tree, boolean subBlock, boolean pendingBlock) {
+	public NodeImport(ChangeImport change, RevisionTree tree, boolean subBlock,
+			boolean pendingBlock) {
 		currentChange = change;
 		this.tree = tree;
 		this.subBlock = subBlock;
@@ -67,7 +68,7 @@ public class NodeImport implements NodeInterface {
 	private void fileAction(Action nodeAction) throws Exception {
 		// Add file to current change
 		currentChange.addRevision(nodeAction, toPath, fromList, content,
-				subBlock, pendingBlock );
+				subBlock, pendingBlock);
 	}
 
 	@Override

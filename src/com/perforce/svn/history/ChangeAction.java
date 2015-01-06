@@ -13,32 +13,6 @@ public class ChangeAction {
 
 	private Logger logger = LoggerFactory.getLogger(ChangeAction.class);
 
-	public enum Action {
-		REVERT(-1),
-		ADD(0),
-		EDIT(1),
-		REMOVE(2),
-		BRANCH(3),
-		INTEG(4),
-		MERGE(4), // Generic merge (only for TO action)
-		MERGE_COPY(4), // merge FROM actions
-		MERGE_EDIT(4), // merge FROM actions
-		MERGE_IGNORE(4), // merge FROM actions
-		UPDATE(5), // replace action
-		COPY(6),  // replace branch action
-		LABEL(-1);
-
-		final int id;
-
-		Action(int i) {
-			id = i;
-		}
-
-		public int getValue() {
-			return id;
-		}
-	}
-
 	private Action action;
 	private long startChange;
 	private long endChange;

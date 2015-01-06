@@ -18,8 +18,8 @@ import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.cvs.RevisionEntry;
 import com.perforce.svn.change.ChangeInterface;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
-import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.history.RevisionTree.NodeType;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.process.MergeSource;
@@ -77,7 +77,8 @@ public class CvsProcessNode extends ProcessNode {
 				ChangeAction next = query.findLastAction(fromPath, c);
 
 				if (next == null) {
-					logger.warn("No history (branch from label): " + revEntry.toString());
+					logger.warn("No history (branch from label): "
+							+ revEntry.toString());
 					logger.info("... downgrade to ADD");
 					nodeAction = Action.ADD;
 					revEntry.setPseudo(false);
@@ -196,27 +197,27 @@ public class CvsProcessNode extends ProcessNode {
 	 * 
 	 * @return
 	 */
-	private ChangeAction.Action getNodeAction() {
-		ChangeAction.Action action = null;
+	private Action getNodeAction() {
+		Action action = null;
 
 		// Set node condition ('add', 'change' or 'delete')
 		String s = revEntry.getState();
 		String id = revEntry.getId().toString();
 		if (s != null) {
 			if ("Exp".equals(s)) {
-				action = ChangeAction.Action.ADD;
+				action = Action.ADD;
 			} else if ("Stab".equals(s)) {
-				action = ChangeAction.Action.ADD;
+				action = Action.ADD;
 			} else if ("Rel".equals(s)) {
-				action = ChangeAction.Action.ADD;
+				action = Action.ADD;
 			} else if ("dead".equals(s)) {
 				if (id.equals("1.1")) {
-					action = ChangeAction.Action.ADD;
+					action = Action.ADD;
 				} else {
-					action = ChangeAction.Action.REMOVE;
+					action = Action.REMOVE;
 				}
 			} else if ("BRANCH".equals(s)) {
-				action = ChangeAction.Action.BRANCH;
+				action = Action.BRANCH;
 			} else {
 				throw new RuntimeException("unknown STATE " + s);
 			}

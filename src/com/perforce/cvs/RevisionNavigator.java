@@ -7,7 +7,7 @@ import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
-import com.perforce.svn.history.ChangeAction.Action;
+import com.perforce.svn.history.Action;
 
 public class RevisionNavigator extends RcsNavigator {
 

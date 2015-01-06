@@ -17,8 +17,8 @@ import com.perforce.common.process.ChangeInfo;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
-import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.process.MergeInfo;
 import com.perforce.svn.process.MergeSource;
 

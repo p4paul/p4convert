@@ -38,7 +38,7 @@ import com.perforce.p4java.option.client.RevertFilesOptions;
 import com.perforce.p4java.option.client.SyncOptions;
 import com.perforce.p4java.option.server.GetDepotFilesOptions;
 import com.perforce.p4java.option.server.OpenedFilesOptions;
-import com.perforce.svn.history.ChangeAction.Action;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.parser.Content;
 
 public class RevisionImport {

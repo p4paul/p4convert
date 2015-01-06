@@ -10,7 +10,7 @@ import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.journal.Credit.How;
 import com.perforce.common.schema.JournalRecord;
 import com.perforce.svn.change.ChangeConvert;
-import com.perforce.svn.history.ChangeAction.Action;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.process.MergeSource;
 
 public class BuildChange {

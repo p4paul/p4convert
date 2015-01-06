@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
 import com.perforce.config.CaseSensitivity;
-import com.perforce.svn.history.ChangeAction.Action;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.process.MergeInfo;
 import com.perforce.svn.query.QueryHistory;
@@ -21,9 +20,7 @@ public class RevisionTree {
 	private static Logger logger = LoggerFactory.getLogger(RevisionTree.class);
 
 	public enum NodeType {
-		FILE,
-		DIR,
-		NULL
+		FILE, DIR, NULL
 	}
 
 	private String name;
