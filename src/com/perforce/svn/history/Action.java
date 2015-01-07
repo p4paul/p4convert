@@ -15,7 +15,8 @@ public enum Action {
 	MERGE_IGNORE(4), // merge FROM actions
 	UPDATE(5), // replace action
 	COPY(6), // replace branch action
-	LABEL(-1);
+	LABEL(-1),
+	UNKNOWN(-1);
 
 	final int id;
 

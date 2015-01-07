@@ -251,7 +251,8 @@ public class SvnProcessNode extends ProcessNode {
 
 		// Label change if required
 		if (isLabels && TagParser.isLabel(nodePath)) {
-			if (nodeAction == Action.BRANCH) {
+			switch (nodeAction) {
+			case BRANCH:
 				TagEntry tag = TagParser.getLabel(nodePath);
 				tag.setToPath(nodePath);
 				tag.setFromPath(from.getFromPath());
@@ -268,7 +269,11 @@ public class SvnProcessNode extends ProcessNode {
 				nodeAction = Action.LABEL;
 
 				processLabel.labelRev(tag, change);
-			} else {
+				break;
+
+			default:
+				logger.warn("Skipping unknown action on label: " + nodeAction);
+				Stats.inc(StatsType.warningCount);
 				return;
 			}
 		}

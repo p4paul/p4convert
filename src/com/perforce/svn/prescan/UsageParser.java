@@ -18,8 +18,6 @@ public class UsageParser {
 	private long emptyNodes;
 
 	public UsageParser(String dumpFile, long endRev) {
-		super();
-
 		Progress progress = new Progress(endRev);
 		pathLength = 0;
 		emptyNodes = 0;

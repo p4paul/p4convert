@@ -13,6 +13,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.GnuParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
+import org.apache.commons.cli.UnrecognizedOptionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,15 +59,23 @@ public class Main {
 		options.addOption("v", "version", false, "Version string");
 		options.addOption("c", "config", true, "Use configuration file");
 		options.addOption("t", "type", true, "SCM type (CVS | SVN)");
-		options.addOption("d", "default", false, "Generate a configuration file");
+		options.addOption("d", "default", false,
+				"Generate a configuration file");
 		options.addOption("r", "repo", true, "Repository file/path");
+		options.addOption(null, "tree", true,
+				"with --info, display tree to depth");
 		options.addOption("i", "info", false, "Report on repository usage");
 		options.addOption("u", "users", false, "List repository users");
 		options.addOption("e", "extract", true, "Extract a revision");
 
 		// Process arguments
-		CommandLine line = parser.parse(options, args);
-		ExitCode exit = processOptions(line);
+		ExitCode exit = ExitCode.USAGE;
+		try {
+			CommandLine line = parser.parse(options, args);
+			exit = processOptions(line);
+		} catch (UnrecognizedOptionException e) {
+			logger.warn(e.getLocalizedMessage() + "\n");
+		}
 
 		if (exit.equals(ExitCode.USAGE)) {
 			StringBuffer sb = new StringBuffer();
@@ -76,7 +85,7 @@ public class Main {
 			sb.append("\t java -jar p4convert.jar --type=CVS --default\n\n");
 			sb.append("Example: report Subversion repository usage.\n");
 			sb.append("\t java -jar p4convert.jar --type=SVN --repo=/path/to/repo.dump --info\n\n");
-			
+
 			HelpFormatter formatter = new HelpFormatter();
 			formatter.printHelp("java -jar p4convert.jar", options);
 			logger.info(sb.toString());
@@ -88,6 +97,7 @@ public class Main {
 		ScmType scmType;
 		String repoPath;
 		String configFile;
+		int treeDepth = 0;
 
 		// Find version from manifest
 		Version ver = new Version();
@@ -102,14 +112,14 @@ public class Main {
 			return ExitCode.OK;
 		}
 
-		// --config
+		// --config=VALUE
 		if (line.hasOption("config")) {
 			configFile = line.getOptionValue("config");
 			Config.load(configFile);
 			return startConversion();
 		}
 
-		// --type (REQUIRED for all the following options)
+		// --type=VALUE (REQUIRED for all the following options)
 		if (line.hasOption("type")) {
 			scmType = ScmType.parse(line.getOptionValue("type"));
 			Config.set(CFG.SCM_TYPE, scmType);
@@ -123,7 +133,7 @@ public class Main {
 			return ExitCode.OK;
 		}
 
-		// --repo (REQUIRED for all the following options)
+		// --repo=VALUE (REQUIRED for all the following options)
 		if (line.hasOption("repo")) {
 			repoPath = line.getOptionValue("repo");
 			Config.set(CFG.SCM_TYPE, scmType);
@@ -131,12 +141,17 @@ public class Main {
 			return ExitCode.USAGE;
 		}
 
+		// --tree=VALUE
+		if (line.hasOption("tree")) {
+			treeDepth = Integer.parseInt(line.getOptionValue("tree"));
+		}
+
 		// --info
 		if (line.hasOption("info")) {
 			switch (scmType) {
 			case SVN:
 				Config.set(CFG.SVN_PROP_TYPE, ContentType.P4_BINARY);
-				prescanStats(repoPath);
+				prescanStats(repoPath, treeDepth);
 				return ExitCode.OK;
 			default:
 				return ExitCode.USAGE;
@@ -159,7 +174,7 @@ public class Main {
 			}
 		}
 
-		// --extract
+		// --extract=VALUE
 		if (line.hasOption("extract")) {
 			String node = line.getOptionValue("extract");
 			switch (scmType) {
@@ -227,7 +242,11 @@ public class Main {
 		}
 	}
 
-	private static void prescanStats(String dumpFile) throws Exception {
+	private static void prescanStats(String dumpFile, int depth)
+			throws Exception {
+
+		String line = "--------------------------------------------------------------------------------";
+
 		Config.set(CFG.SVN_DUMPFILE, dumpFile);
 		if (logger.isInfoEnabled()) {
 			logger.info("Scanning: " + dumpFile);
@@ -244,33 +263,44 @@ public class Main {
 			throw new ConverterException(err);
 		}
 
-		if (logger.isInfoEnabled()) {
-			long revLast = Long.parseLong(revLastString);
-			logger.info("   subversion revisions: \t" + revLast);
+		// Run usage analysis
+		long revLast = Long.parseLong(revLastString);
+		UsageParser usage = new UsageParser(dumpFile, revLast);
+		int pathLength = usage.getPathLength();
+		long emptyNodes = usage.getEmptyNodes();
+		long revs = usage.getTree().toCount();
+		float mem = (float) (revs * 256.0 / 1024 / 1024 / 1024);
 
-			// Run usage analysis
-			UsageParser usage = new UsageParser(dumpFile, revLast);
+		// Build report
+		StringBuffer sb = new StringBuffer();
+		sb.append(line + "\n");
+		sb.append("\t\t\t\t" + "Information Summary" + "\n");
+		sb.append(line + "\n\n");
+		sb.append("\tSubversion revisions: \t" + revLast + "\n");
+		sb.append("\tLongest path: \t\t" + pathLength + "\n");
+		sb.append("\tEmpty nodes: \t\t" + emptyNodes + "\n");
+		sb.append("\tFile revision count: \t" + revs + "\n");
 
-			int pathLength = usage.getPathLength();
-			logger.info("   longest subversion path: \t" + pathLength);
+		StringBuilder memsb = new StringBuilder();
+		Formatter formatter = new Formatter(memsb, Locale.UK);
+		formatter.format("\tEstimated memory: \t%.2f GBytes", mem);
+		formatter.close();
+		sb.append(memsb + "\n\n");
+		sb.append(line + "\n");
 
-			long emptyNodes = usage.getEmptyNodes();
-			logger.info("   empty nodes: \t\t" + emptyNodes);
+		// Build tree (if required)
+		if (depth > 0) {
+			Config.set(CFG.SVN_LABEL_DEPTH, depth);
+			sb.append("\t\t\t\t" + "Tree Structure" + "\n");
+			sb.append(line + "\n");
+			sb.append(usage.getTree().toString());
+			sb.append(line + "\n\n");
+		}
 
-			long revs = usage.getTree().toCount();
-			logger.info("   file revision count: \t" + revs);
+		logger.info(sb.toString());
 
-			float mem = (float) (revs * 256.0 / 1024 / 1024 / 1024);
-
-			StringBuilder sb = new StringBuilder();
-			Formatter formatter = new Formatter(sb, Locale.UK);
-			formatter.format("   estimated memory: \t\t%.2f GBytes", mem);
-			formatter.close();
-			logger.info(sb.toString());
-
-			if (pathLength > 216) {
-				logger.warn("Long paths, check overall pathlength to Perforce depot!");
-			}
+		if (pathLength > 216) {
+			logger.warn("Long paths, check overall pathlength to Perforce depot!");
 		}
 	}
 }

@@ -3,14 +3,15 @@ package com.perforce.svn.prescan;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
 import com.perforce.svn.history.Action;
 
 public class UsageTree {
 
 	public enum UsageType {
-		FILE,
-		DIR,
-		UNKNOWN
+		FILE, DIR, UNKNOWN
 	}
 
 	private String name;
@@ -205,15 +206,26 @@ public class UsageTree {
 	 */
 	@Override
 	public String toString() {
-		return toString("", new StringBuffer()).toString();
+		return toString(0, new StringBuffer()).toString();
 	}
 
-	private String toString(String indent, StringBuffer sb) {
-		sb.append(indent + "+ " + name);
+	private String toString(int indent, StringBuffer sb) {
+		String spaces = "";
+		if (indent > 0) {
+			spaces = String.format("%" + indent + "s", "");
+		}
+		sb.append("\t" + spaces + "+ " + name);
 		sb.append("\n");
-		if (children != null) {
+
+		int depth = 0;
+		try {
+			depth = (int) Config.get(CFG.SVN_LABEL_DEPTH);
+		} catch (ConfigException e) {
+		}
+
+		if (children != null && indent < depth) {
 			for (UsageTree node : children.values()) {
-				node.toString(indent + "  ", sb);
+				node.toString(indent + 1, sb);
 			}
 		}
 		return sb.toString();

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
+import com.perforce.svn.history.Action;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
@@ -27,7 +28,7 @@ public class TagParser {
 
 		logger.info("Searching for labels...");
 		tags = new HashMap<String, TagEntry>();
-		
+
 		long end = (Long) Config.get(CFG.SVN_END);
 		Progress progress = new Progress(end);
 
@@ -48,16 +49,21 @@ public class TagParser {
 
 			case NODE:
 				String toPath = record.findHeaderString("Node-path");
+				Action act = Action.parse(record);
 				String id = getId(toPath);
 				if (id.isEmpty()) {
 					continue;
 				}
 
-				// If content the BRANCH else look for label type
 				Content content = record.getContent();
 				if (content.isBlob()) {
+					// if content, force BRANCH
 					countTag(id, TagType.BRANCH, changeTags);
+				} else if (act == Action.REMOVE) {
+					// if REMOVE, delete
+					countTag(id, TagType.DELETED, changeTags);
 				} else {
+					// else keep a count
 					countTag(id, TagType.UNKNOWN, changeTags);
 				}
 				break;
@@ -74,22 +80,27 @@ public class TagParser {
 	public static void aggregateTags(HashMap<String, TagEntry> changeTags) {
 		for (Entry<String, TagEntry> t : changeTags.entrySet()) {
 			String id = t.getKey();
-			TagEntry tag = t.getValue();
+			TagEntry entry = t.getValue();
 
-			TagType type = tag.getType();
+			TagType type = entry.getType();
 			if (type == TagType.UNKNOWN) {
-				if (tag.getCount() == 1) {
+				if (entry.getCount() == 1) {
 					type = TagType.AUTOMATIC;
-				} else if (tag.getCount() > 1) {
+				} else if (entry.getCount() > 1) {
 					type = TagType.STATIC;
 				}
 			}
 			countTag(id, type, tags);
 
 			// Check aggregated result
-			TagEntry tt = tags.get(id);
-			if (tt.getCount() > 1) {
-				tt.setType(TagType.BRANCH);
+			TagEntry aggEntry = tags.get(id);
+			TagType aggType = aggEntry.getType();
+			if (aggType != TagType.BRANCH && aggEntry.getCount() > 1) {
+				if (type == TagType.DELETED) {
+					aggEntry.setType(TagType.DELETED);
+				} else {
+					aggEntry.setType(TagType.BRANCH);
+				}
 			}
 		}
 	}
@@ -101,12 +112,14 @@ public class TagParser {
 		}
 
 		if (tags.containsKey(id)) {
-			int count = tags.get(id).getCount();
-			if (count == 1) {
-				// a label candidate
+			TagEntry entry = tags.get(id);
+			TagType type = entry.getType();
+			switch (type) {
+			case AUTOMATIC:
+			case STATIC:
+			case DELETED:
 				return true;
-			} else {
-				// more than one change
+			default:
 				return false;
 			}
 		} else {
@@ -126,10 +139,10 @@ public class TagParser {
 			tags.put(id, tag);
 		}
 	}
-	
+
 	public static TagEntry getLabel(String path) {
 		String id = getId(path);
-		if(!id.isEmpty()) {
+		if (!id.isEmpty()) {
 			return tags.get(id);
 		}
 		return null;
