@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
 import com.perforce.svn.history.Action;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;
@@ -17,10 +20,13 @@ public class UsageParser {
 	private int pathLength;
 	private long emptyNodes;
 
-	public UsageParser(String dumpFile, long endRev) {
+	public UsageParser(String dumpFile) throws ConfigException {
+		long endRev = (long) Config.get(CFG.SVN_END);
 		Progress progress = new Progress(endRev);
 		pathLength = 0;
 		emptyNodes = 0;
+
+		logger.info("Scanning: " + dumpFile);
 
 		// Open dump file reader and iterate over entries
 		RecordReader recordReader = new RecordReader(dumpFile);

@@ -22,6 +22,9 @@ public class NodeFilterMap {
 		filename = file;
 	}
 
+	public NodeFilterMap() {
+	}
+
 	/**
 	 * Load filter file into ArrayList skipping lines starting with a '#'
 	 * 

@@ -17,6 +17,13 @@ public class ExcludeParser {
 	private static NodeFilterMap include;
 	private static NodeFilterMap issues;
 
+	public static void preload(String line) throws Exception {
+		exclude = new NodeFilterMap();
+		include = new NodeFilterMap();
+		issues = new NodeFilterMap();
+		exclude.add(line);
+	}
+
 	public static boolean load() throws Exception {
 		String excludeFile = (String) Config.get(CFG.EXCLUDE_MAP);
 		String includeFile = (String) Config.get(CFG.INCLUDE_MAP);

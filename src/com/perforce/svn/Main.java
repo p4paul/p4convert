@@ -28,11 +28,13 @@ import com.perforce.cvs.prescan.CvsExtractUsers;
 import com.perforce.cvs.process.CvsProcessChange;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.SubversionWriter;
+import com.perforce.svn.prescan.ExcludeParser;
 import com.perforce.svn.prescan.ExtractRecord;
 import com.perforce.svn.prescan.LastRevision;
 import com.perforce.svn.prescan.SvnExtractUsers;
 import com.perforce.svn.prescan.UsageParser;
 import com.perforce.svn.process.SvnProcessChange;
+import com.perforce.svn.tag.TagParser;
 
 public class Main {
 
@@ -63,7 +65,8 @@ public class Main {
 				"Generate a configuration file");
 		options.addOption("r", "repo", true, "Repository file/path");
 		options.addOption(null, "tree", true,
-				"with --info, display tree to depth");
+				"(with --info), display tree to specified depth");
+		options.addOption(null, "tags", true, "find tags to specified depth");
 		options.addOption("i", "info", false, "Report on repository usage");
 		options.addOption("u", "users", false, "List repository users");
 		options.addOption("e", "extract", true, "Extract a revision");
@@ -137,6 +140,7 @@ public class Main {
 		if (line.hasOption("repo")) {
 			repoPath = line.getOptionValue("repo");
 			Config.set(CFG.SCM_TYPE, scmType);
+			setEndRevision(repoPath);
 		} else {
 			return ExitCode.USAGE;
 		}
@@ -152,6 +156,19 @@ public class Main {
 			case SVN:
 				Config.set(CFG.SVN_PROP_TYPE, ContentType.P4_BINARY);
 				prescanStats(repoPath, treeDepth);
+				return ExitCode.OK;
+			default:
+				return ExitCode.USAGE;
+			}
+		}
+
+		// --tags=VALUE
+		if (line.hasOption("tags")) {
+			int depth = Integer.parseInt(line.getOptionValue("tags"));
+			switch (scmType) {
+			case SVN:
+				Config.set(CFG.SVN_PROP_TYPE, ContentType.P4_BINARY);
+				prescanTags(repoPath, depth);
 				return ExitCode.OK;
 			default:
 				return ExitCode.USAGE;
@@ -242,16 +259,7 @@ public class Main {
 		}
 	}
 
-	private static void prescanStats(String dumpFile, int depth)
-			throws Exception {
-
-		String line = "--------------------------------------------------------------------------------";
-
-		Config.set(CFG.SVN_DUMPFILE, dumpFile);
-		if (logger.isInfoEnabled()) {
-			logger.info("Scanning: " + dumpFile);
-		}
-
+	private static void setEndRevision(String dumpFile) throws Exception {
 		// Revisions
 		LastRevision rev = new LastRevision(dumpFile);
 		String revLastString = rev.find();
@@ -265,7 +273,29 @@ public class Main {
 
 		// Run usage analysis
 		long revLast = Long.parseLong(revLastString);
-		UsageParser usage = new UsageParser(dumpFile, revLast);
+		Config.set(CFG.SVN_END, revLast);
+	}
+
+	private static void prescanTags(String dumpFile, int depth)
+			throws Exception {
+
+		Config.set(CFG.SVN_LABEL_DEPTH, depth);
+		Config.set(CFG.SVN_LABEL_FORMAT, "");
+
+		ExcludeParser.preload("tags/.*");
+
+		TagParser.parse(dumpFile);
+		logger.info(TagParser.toLog());
+	}
+
+	private static void prescanStats(String dumpFile, int depth)
+			throws Exception {
+
+		String line = "--------------------------------------------------------------------------------";
+
+		// Run usage analysis
+		UsageParser usage = new UsageParser(dumpFile);
+		long revLast = (long) Config.get(CFG.SVN_END);
 		int pathLength = usage.getPathLength();
 		long emptyNodes = usage.getEmptyNodes();
 		long revs = usage.getTree().toCount();
