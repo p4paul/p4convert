@@ -7,7 +7,7 @@ public class TagConvert {
 
 	public TagConvert(String path, int revision) {
 		this.revision = revision;
-		this.path = path;
+		this.path = path.intern();
 	}
 
 	public int getRevision() {
