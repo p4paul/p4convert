@@ -90,7 +90,7 @@
 		<copy file="${pdf.dir}/p4convert.pdf" todir="${release.dir}/${version}" />
 		<copy file="default.cfg" todir="${release.dir}/${version}" />
 		<copy file="types.map" todir="${release.dir}/${version}" />
-		<copy file="debug.log4j.xml" todir="${release.dir}/${version}" />
+		<copy file="debug.log4j.properties" todir="${release.dir}/${version}" />
 		<copy file="p4convert-notes.txt" todir="${release.dir}/${version}" />
 		<tar destfile="${release.dir}/${jar.name}.tar">
 			<tarfileset dir="${release.dir}/${version}/.." filemode="644">
