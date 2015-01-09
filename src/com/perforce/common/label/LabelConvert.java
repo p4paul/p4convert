@@ -7,6 +7,9 @@ import java.util.List;
 import com.perforce.common.depot.DepotConvert;
 import com.perforce.common.journal.BuildLabel;
 import com.perforce.common.process.ChangeInfo;
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
+import com.perforce.config.ScmType;
 
 public class LabelConvert implements LabelInterface {
 
@@ -36,7 +39,7 @@ public class LabelConvert implements LabelInterface {
 	public long getFromRev() {
 		return fromRev;
 	}
-	
+
 	public LabelConvert(String label, ChangeInfo change, DepotConvert depot) {
 		this.depot = depot;
 		this.name = label;
@@ -64,7 +67,7 @@ public class LabelConvert implements LabelInterface {
 	public void setAutomatic(boolean auto) {
 		this.automatic = auto;
 	}
-	
+
 	@Override
 	public boolean isAutomatic() {
 		return this.automatic;
@@ -97,7 +100,7 @@ public class LabelConvert implements LabelInterface {
 	public void addView(String view) throws Exception {
 		views.add(view);
 	}
-	
+
 	@Override
 	public ArrayList<String> getView() {
 		return views;
@@ -107,7 +110,7 @@ public class LabelConvert implements LabelInterface {
 		StringBuffer sb = new StringBuffer();
 		sb.append(name + " by: " + getOwner() + "\n");
 		int i = 0;
-		for(String view : views) {
+		for (String view : views) {
 			sb.append("   view[" + i + "] " + view);
 			i++;
 		}
@@ -122,6 +125,10 @@ public class LabelConvert implements LabelInterface {
 		ArrayList<String> journal = BuildLabel.toJournal(depot, this);
 		depot.getJournal().write(journal);
 		depot.getJournal().flush();
-		LabelHistory.add(this);
+
+		ScmType type = (ScmType) Config.get(CFG.SCM_TYPE);
+		if (type == ScmType.SVN) {
+			LabelHistory.add(this);
+		}
 	}
 }
