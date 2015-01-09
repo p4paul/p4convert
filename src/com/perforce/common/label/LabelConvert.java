@@ -14,11 +14,29 @@ public class LabelConvert implements LabelInterface {
 	private final String name;
 	private final ChangeInfo change;
 
-	private long automatic = 0;
+	private String fromPath;
+	private long fromRev;
+	private boolean automatic = false;
 
 	private ArrayList<String> views = new ArrayList<String>();
 	private List<TagConvert> revs = new ArrayList<TagConvert>();
 
+	@Override
+	public void setFrom(String fromPath, long fromRev) {
+		this.fromPath = fromPath;
+		this.fromRev = fromRev;
+	}
+
+	@Override
+	public String getFromPath() {
+		return fromPath;
+	}
+
+	@Override
+	public long getFromRev() {
+		return fromRev;
+	}
+	
 	public LabelConvert(String label, ChangeInfo change, DepotConvert depot) {
 		this.depot = depot;
 		this.name = label;
@@ -43,14 +61,19 @@ public class LabelConvert implements LabelInterface {
 	}
 
 	@Override
-	public void setAutomatic(long automatic) {
-		this.automatic = automatic;
+	public void setAutomatic(boolean auto) {
+		this.automatic = auto;
+	}
+	
+	@Override
+	public boolean isAutomatic() {
+		return this.automatic;
 	}
 
 	@Override
 	public String getAutomatic() {
-		if (automatic > 0) {
-			return "@" + automatic;
+		if (automatic) {
+			return "@" + getFromRev();
 		}
 		return "";
 	}
@@ -75,6 +98,7 @@ public class LabelConvert implements LabelInterface {
 		views.add(view);
 	}
 	
+	@Override
 	public ArrayList<String> getView() {
 		return views;
 	}
@@ -98,5 +122,6 @@ public class LabelConvert implements LabelInterface {
 		ArrayList<String> journal = BuildLabel.toJournal(depot, this);
 		depot.getJournal().write(journal);
 		depot.getJournal().flush();
+		LabelHistory.add(this);
 	}
 }

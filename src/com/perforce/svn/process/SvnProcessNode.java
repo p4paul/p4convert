@@ -15,6 +15,7 @@ import com.perforce.common.asset.ScanArchive;
 import com.perforce.common.asset.TypeMap;
 import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.journal.Digest;
+import com.perforce.common.label.LabelHistory;
 import com.perforce.common.node.NodeInterface;
 import com.perforce.common.process.AuditLogger;
 import com.perforce.common.process.ChangeInfo;
@@ -47,6 +48,7 @@ public class SvnProcessNode extends ProcessNode {
 	private Node record;
 	private QueryInterface query;
 	private ProcessLabel processLabel;
+	private boolean isLabels;
 
 	public SvnProcessNode(ChangeInterface changelist, DepotInterface depot,
 			Node record) throws Exception {
@@ -64,6 +66,8 @@ public class SvnProcessNode extends ProcessNode {
 			throw new ConverterException(
 					"ABORTING: Unable to read SVN Delta format.");
 		}
+
+		isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
 	}
 
 	/**
@@ -93,7 +97,6 @@ public class SvnProcessNode extends ProcessNode {
 		Action nodeAction = Action.parse(record);
 
 		// skip if excluded
-		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
 		if (ExcludeParser.isSkipped(nodePath) && !isLabels) {
 			char a = nodeAction.toString().charAt(0);
 			logger.info("skipping " + a + ":F " + nodePath);
@@ -271,8 +274,12 @@ public class SvnProcessNode extends ProcessNode {
 				processLabel.labelRev(tag, change);
 				break;
 
+			case REMOVE:
+				logger.warn("Skipping remove action on label.");
+				return;
+
 			default:
-				logger.warn("Skipping unknown action on label: " + nodeAction);
+				logger.warn("Unknown action on label: " + nodeAction);
 				Stats.inc(StatsType.warningCount);
 				return;
 			}
@@ -403,7 +410,6 @@ public class SvnProcessNode extends ProcessNode {
 		Action nodeAction = Action.parse(record);
 
 		// skip if excluded
-		boolean isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
 		if (ExcludeParser.isSkipped(nodePath) && !isLabels) {
 			char a = nodeAction.toString().charAt(0);
 			logger.info("skipping " + a + ":D " + nodePath);
@@ -430,7 +436,8 @@ public class SvnProcessNode extends ProcessNode {
 
 		// Label change if required
 		if (isLabels && TagParser.isLabel(nodePath)) {
-			if (nodeAction == Action.BRANCH) {
+			switch (nodeAction) {
+			case BRANCH:
 				TagEntry tag = TagParser.getLabel(nodePath);
 				tag.setToPath(nodePath);
 				tag.setFromPath(from.getFromPath());
@@ -446,6 +453,16 @@ public class SvnProcessNode extends ProcessNode {
 				ChangeInfo change = changelist.getChangeInfo();
 				nodeAction = Action.LABEL;
 				processLabel.labelChange(tag, change);
+				break;
+
+			case REMOVE:
+				logger.warn("Skipping remove action on label.");
+				return;
+
+			default:
+				logger.warn("Unknown action on label: " + nodeAction);
+				Stats.inc(StatsType.warningCount);
+				return;
 			}
 		}
 
@@ -602,9 +619,18 @@ public class SvnProcessNode extends ProcessNode {
 		// Note: there is a case for null fromPath, see case0039; so only need
 		// to check if fromRev is valid.
 		if (fromRev > 0) {
+			MergeSource from = null;
+
+			// Check if fromNode has been labelled
+			if (isLabels) {
+				from = LabelHistory.find(fromPath, fromRev);
+			}
+
 			// Create MergeSource object and populate by calling fetchNode.
 			// Only used for branch operation so assumes full range of credit.
-			MergeSource from = new MergeSource(fromPath, 1, fromRev);
+			if (from == null) {
+				from = new MergeSource(fromPath, 1, fromRev);
+			}
 			from.fetchNode(query);
 			return from;
 		}

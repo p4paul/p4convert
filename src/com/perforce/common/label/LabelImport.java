@@ -23,12 +23,30 @@ public class LabelImport implements LabelInterface {
 	private final String name;
 	private final ChangeInfo change;
 
+	private String fromPath;
+	private long fromRev;
+	private boolean automatic = false;
 	private ILabel ilabel;
 	private IOptionsServer iserver;
-	private long automatic;
 
 	private ArrayList<String> views = new ArrayList<String>();
 	private ArrayList<TagConvert> revs = new ArrayList<TagConvert>();
+
+	@Override
+	public void setFrom(String fromPath, long fromRev) {
+		this.fromPath = fromPath;
+		this.fromRev = fromRev;
+	}
+
+	@Override
+	public String getFromPath() {
+		return fromPath;
+	}
+
+	@Override
+	public long getFromRev() {
+		return fromRev;
+	}
 
 	public LabelImport(String label, ChangeInfo change, DepotImport depot)
 			throws Exception {
@@ -78,15 +96,20 @@ public class LabelImport implements LabelInterface {
 	}
 
 	@Override
-	public void setAutomatic(long automatic) {
-		this.automatic = automatic;
-		ilabel.setRevisionSpec(getAutomatic());
+	public void setAutomatic(boolean auto) {
+		this.automatic = auto;
+		ilabel.setRevisionSpec(String.valueOf(getFromRev()));
+	}
+	
+	@Override
+	public boolean isAutomatic() {
+		return this.automatic;
 	}
 
 	@Override
 	public String getAutomatic() {
-		if (automatic > 0) {
-			return "@" + automatic;
+		if (automatic) {
+			return "@" + getFromRev();
 		}
 		return "";
 	}
@@ -112,11 +135,16 @@ public class LabelImport implements LabelInterface {
 		views.add(view);
 	}
 
+	@Override
+	public ArrayList<String> getView() {
+		return views;
+	}
+
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(name + " by: " + getOwner() + "\n");
 		int i = 0;
-		for(String view : views) {
+		for (String view : views) {
 			sb.append("   view[" + i + "] " + view);
 			i++;
 		}

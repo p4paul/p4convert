@@ -1021,11 +1021,38 @@ public class ImportTests {
 
 		testCase(test, 0);
 	}
-	
+
 	@Test
 	public void case120() throws Exception {
 		String test = "job115";
 		testCase(test);
+	}
+
+	@Test
+	public void case121() throws Exception {
+		String test = "labels_delete";
+		Config.set(CFG.SVN_LABELS, true);
+		Config.set(CFG.SVN_LABEL_DEPTH, 2);
+		Config.set(CFG.SVN_LABEL_FORMAT, "label:{depth}");
+
+		String path = dumpPath + test + "/exclude.map";
+		Config.set(CFG.EXCLUDE_MAP, path);
+
+		// TODO testCase(test);
+	}
+
+	@Test
+	public void case122() throws Exception {
+		String test = "labels_tag_brFile";
+		Config.set(CFG.SVN_MERGEINFO, true);
+		Config.set(CFG.SVN_LABELS, true);
+		Config.set(CFG.SVN_LABEL_DEPTH, 2);
+		Config.set(CFG.SVN_LABEL_FORMAT, "label:{depth}");
+
+		String path = dumpPath + test + "/exclude.map";
+		Config.set(CFG.EXCLUDE_MAP, path);
+
+		// TODO testCase(test);
 	}
 
 	/**

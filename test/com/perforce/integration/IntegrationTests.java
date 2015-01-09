@@ -15,6 +15,7 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.TypeMap;
+import com.perforce.common.label.LabelHistory;
 import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
@@ -59,9 +60,12 @@ public class IntegrationTests {
 			Config.set(CFG.USER_MAP, "test_users.map");
 			Config.set(CFG.TYPE_MAP, "test_types.map");
 			Config.set(CFG.PATH_MAP, "test_path.map");
-			
+
 			// Set path translation map defaults
 			PathMapTranslator.setDefault();
+
+			// Clear LabelHistory Map
+			LabelHistory.clear();
 		} catch (ConfigException e) {
 			e.printStackTrace();
 		}
@@ -423,10 +427,10 @@ public class IntegrationTests {
 	@Test
 	public void case054() throws Exception {
 		Config.set(CFG.P4_DEPOT_SUB, "sub/");
-		
+
 		// Update translation map as P4_DEPOT_SUB has changed
 		PathMapTranslator.setDefault();
-		
+
 		String test = "subpath_del_br_del";
 		testCase(test);
 	}
@@ -668,10 +672,10 @@ public class IntegrationTests {
 		Config.set(CFG.P4_PASSWD, "Password");
 		Config.set(CFG.P4_OFFSET, 1000L);
 		Config.set(CFG.P4_DEPOT_PATH, "depot");
-		
+
 		// Update translation map as P4_DEPOT_PATH has changed
 		PathMapTranslator.setDefault();
-		
+
 		// This test largely ineffective in Convert mode
 		String test = "security";
 		testCase(test);
@@ -881,13 +885,40 @@ public class IntegrationTests {
 		String path = dumpPath + test + "/exclude.map";
 		Config.set(CFG.EXCLUDE_MAP, path);
 
-		testCase(test, 1);
+		testCase(test);
 	}
-	
+
 	@Test
 	public void case120() throws Exception {
 		String test = "job115";
 		testCase(test);
+	}
+
+	@Test
+	public void case121() throws Exception {
+		String test = "labels_delete";
+		Config.set(CFG.SVN_LABELS, true);
+		Config.set(CFG.SVN_LABEL_DEPTH, 2);
+		Config.set(CFG.SVN_LABEL_FORMAT, "label:{depth}");
+
+		String path = dumpPath + test + "/exclude.map";
+		Config.set(CFG.EXCLUDE_MAP, path);
+
+		// TODO testCase(test);
+	}
+
+	@Test
+	public void case122() throws Exception {
+		String test = "labels_tag_brFile";
+		Config.set(CFG.SVN_MERGEINFO, true);
+		Config.set(CFG.SVN_LABELS, true);
+		Config.set(CFG.SVN_LABEL_DEPTH, 2);
+		Config.set(CFG.SVN_LABEL_FORMAT, "label:{depth}");
+
+		String path = dumpPath + test + "/exclude.map";
+		Config.set(CFG.EXCLUDE_MAP, path);
+
+		// TODO testCase(test);
 	}
 
 	private void testCase(String dumpCase) {
