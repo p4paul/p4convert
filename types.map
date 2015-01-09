@@ -49,3 +49,6 @@ TypeMap:
 	binary		//....xls
 	binary		//....xlsx
 	binary		//....pdf
+
+# security
+	binary		//....der
