@@ -169,7 +169,7 @@ public abstract class ProcessNode {
 					path = URLDecoder.decode(path, "UTF-8");
 					Stats.inc(StatsType.warningCount);
 					logger.warn("URL encoded path - decoding...");
-				} catch (UnsupportedEncodingException e) {
+				} catch (Exception e) {
 					// must replace before other '@' and '#' symbols
 					path = path.replace("%", "%25"); 
 				}

@@ -337,7 +337,7 @@ public class ImportTests {
 	@Test
 	public void case035() throws Exception {
 		String test = "url-encoding-bug";
-		testCase(test);
+		testCase(test, 5);
 	}
 
 	@Test
