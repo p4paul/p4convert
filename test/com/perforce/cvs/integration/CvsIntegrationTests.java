@@ -3,6 +3,10 @@ package com.perforce.cvs.integration;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.text.Normalizer.Form;
 
 import org.junit.Assert;
@@ -11,6 +15,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
 import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
@@ -398,54 +404,85 @@ public class CvsIntegrationTests {
 		testCase("CVScluster01");
 	}
 
+	@Test
+	public void case052() throws Exception {
+		Config.set(CFG.CVS_MODULE, "uri_path");
+
+		String uri = "%E3%82%B9%E3%83%91%E3%83%A0_%E6%A4%9C%E7%96%AB_%2812%E6%9C%88_31_1969_04_00_%E5%8D%88%E5%BE%8C_%E3%81%8B%E3%82%89_12%E6%9C%88_31_1969_04_00_%E5%8D%88%E5%BE%8C_PST%29_add.txt,v";
+		String dir = cwd + cvsRootPath + "CVScluster01" + "/uri_path/src";
+		Path src = FileSystems.getDefault().getPath(dir, "short,v");
+		Path dst = FileSystems.getDefault().getPath(dir, uri);
+		Files.copy(src, dst, StandardCopyOption.REPLACE_EXISTING);
+
+		String testCase = (String) Config.get(CFG.CVS_MODULE);
+		runTest("CVScluster01");
+
+		String base = basePath + testCase + "/";
+		diffMetadata(base, 5);
+	}
+
 	private void testCase(String cvsCluster) {
 		try {
-			String p4_root = (String) Config.get(CFG.P4_ROOT);
-
-			// Select dump file for test case
 			String testCase = (String) Config.get(CFG.CVS_MODULE);
-			logger.info("testcase: " + testCase);
-			String cvsRootTest = cwd + cvsRootPath + cvsCluster + "/";
-			Config.set(CFG.CVS_ROOT, cvsRootTest);
+			runTest(cvsCluster);
 
-			// Paths and configurations
 			String base = basePath + testCase + "/";
-
-			// Remove old server
-			String rm = "rm" + " -rf " + p4_root;
-			SystemCaller.exec(rm, true, false);
-
-			// Remove temp dir
-			String tmp = "rm" + " -rf tmp";
-			SystemCaller.exec(tmp, true, false);
-
-			// Run test case
-			CvsProcessChange process = new CvsProcessChange();
-			process.runSingle();
-
-			// Diff archive files
-			String arcTest = p4_root + depotName;
-			String arcBase = base + depotName;
-			new File(arcTest).mkdir(); // some tests have no archive files
-			new File(arcBase).mkdir();
-
-			String cmd = "diff -r " + arcTest + " " + arcBase;
-			int arch = SystemCaller.exec(cmd, true, false);
-			Assert.assertEquals("Archive:", 0, arch);
-
-			// Diff metadata
-			String jnlTest = "p4_root/" + journalFile;
-			String jnlBase = base + journalFile;
-			String sortTest = "<(sort " + jnlTest + ")";
-			String sortBase = "<(sort " + jnlBase + ")";
-
-			String p4m = "diff " + sortTest + " " + sortBase;
-			int meta = SystemCaller.exec(p4m, true, false);
-			Assert.assertEquals("Metadata:", 0, meta);
-
+			diffArchive(base);
+			diffMetadata(base, 0);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail("Exception");
 		}
+	}
+
+	private void runTest(String cvsCluster) throws Exception {
+		String p4_root = (String) Config.get(CFG.P4_ROOT);
+
+		// Select dump file for test case
+		String testCase = (String) Config.get(CFG.CVS_MODULE);
+		logger.info("testcase: " + testCase);
+		String cvsRootTest = cwd + cvsRootPath + cvsCluster + "/";
+		Config.set(CFG.CVS_ROOT, cvsRootTest);
+
+		// Remove old server
+		String rm = "rm" + " -rf " + p4_root;
+		SystemCaller.exec(rm, true, false);
+
+		// Remove temp dir
+		String tmp = "rm" + " -rf tmp";
+		SystemCaller.exec(tmp, true, false);
+
+		// Run test case
+		CvsProcessChange process = new CvsProcessChange();
+		process.runSingle();
+	}
+
+	private void diffArchive(String base) throws Exception {
+		String p4_root = (String) Config.get(CFG.P4_ROOT);
+
+		String arcTest = p4_root + depotName;
+		String arcBase = base + depotName;
+		new File(arcTest).mkdir(); // some tests have no archive files
+		new File(arcBase).mkdir();
+
+		String cmd = "diff -r " + arcTest + " " + arcBase;
+		int arch = SystemCaller.exec(cmd, true, false);
+		Assert.assertEquals("Archive:", 0, arch);
+	}
+
+	private void diffMetadata(String base, long warn) throws Exception {
+
+		String jnlTest = "p4_root/" + journalFile;
+		String jnlBase = base + journalFile;
+		String sortTest = "<(sort " + jnlTest + ")";
+		String sortBase = "<(sort " + jnlBase + ")";
+
+		String p4m = "diff " + sortTest + " " + sortBase;
+		int meta = SystemCaller.exec(p4m, true, false);
+		Assert.assertEquals("Metadata:", 0, meta);
+
+		// check warning count
+		long count = Stats.getLong(StatsType.warningCount);
+		Assert.assertEquals("Warnings:", warn, count);
 	}
 }

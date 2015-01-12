@@ -30,17 +30,24 @@ public class TestPathMap {
 
 	@Test
 	public void testMultiMap() {
-		PathMapEntry entry1 = new PathMapEntry("(rel1)/projFoo/(bar/.*)",
-				"//depot/proj.FooBar/{1}-{2}");
-		PathMapTranslator.add(entry1);
-
-		PathMapEntry entry2 = new PathMapEntry("(.*)/projFoo/(bar/.*)",
+		PathMapEntry entry1 = new PathMapEntry("(.*)/projFoo/(bar/.*)",
 				"//depot/proj.FooBar/{1}/{2}");
+
+		PathMapEntry entry2 = new PathMapEntry("(rel1)/projFoo/(bar/.*)",
+				"//depot/proj.FooBar/{1}-{2}");
+
+		// add inserts entry at the top of list, so entry2 will be checked
+		// first.
+		PathMapTranslator.add(entry1);
 		PathMapTranslator.add(entry2);
 
-		String path = "main/projFoo/bar/src/baz.txt";
-		String base = "//depot/proj.FooBar/main/bar/src/baz.txt";
-		Assert.assertEquals(base, PathMapTranslator.translate(path));
+		String path1 = "rel1/projFoo/bar/src/baz.txt";
+		String base1 = "//depot/proj.FooBar/rel1-bar/src/baz.txt";
+		Assert.assertEquals(base1, PathMapTranslator.translate(path1));
+
+		String path2 = "main/projFoo/bar/src/baz.txt";
+		String base2 = "//depot/proj.FooBar/main/bar/src/baz.txt";
+		Assert.assertEquals(base2, PathMapTranslator.translate(path2));
 	}
 
 	@Test

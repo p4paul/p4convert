@@ -1,0 +1,63 @@
+head	1.2;
+access;
+symbols
+	branch:1.1.0.2
+	Root_branch:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2013.12.09.16.20.12;	author pallen;	state Exp;
+branches;
+next	1.1;
+commitid	UQi6b54UQQddAtgx;
+
+1.1
+date	2013.12.09.15.33.40;	author pallen;	state Exp;
+branches
+	1.1.2.1;
+next	;
+commitid	K3NkgPNbDTvfktgx;
+
+1.1.2.1
+date	2013.12.09.15.38.46;	author pallen;	state Exp;
+branches;
+next	;
+commitid	W0R8iunPEV60mtgx;
+
+
+desc
+@@
+
+
+1.2
+log
+@edits on MAIN
+@
+text
+@Content  --EDIT on MAIN
+@
+
+
+1.1
+log
+@ADD and EDIT
+@
+text
+@d1 1
+a1 1
+Content
+@
+
+
+1.1.2.1
+log
+@edit on branch
+@
+text
+@d1 1
+a1 1
+Content		-- on BRANCH
+@
+

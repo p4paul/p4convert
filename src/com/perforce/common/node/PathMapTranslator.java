@@ -1,5 +1,6 @@
 package com.perforce.common.node;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -27,6 +28,15 @@ public class PathMapTranslator {
 	public static void setDefault() throws ConfigException {
 		PathMapEntry map = null;
 
+		String scmPath = "(.*)";
+		String p4Path = depotPrefix() + "{1}";
+		map = new PathMapEntry(scmPath, p4Path);
+
+		list = new ArrayList<PathMapEntry>();
+		list.add(map);
+	}
+
+	private static String depotPrefix() throws ConfigException {
 		String depot = (String) Config.get(CFG.P4_DEPOT_PATH);
 
 		String sub = (String) Config.get(CFG.P4_DEPOT_SUB);
@@ -37,16 +47,19 @@ public class PathMapTranslator {
 			sub = new String("/" + sub);
 		}
 
-		String scmPath = "(.*)";
-		String p4Path = "//" + depot + sub + "{1}";
-		map = new PathMapEntry(scmPath, p4Path);
-
-		list = new ArrayList<PathMapEntry>();
-		list.add(map);
+		return "//" + depot + sub;
 	}
 
 	public static void add(PathMapEntry entry) {
-		list.add(entry);
+		list.add(0, entry);
+	}
+
+	public static void stash(File file) throws ConfigException {
+		int hashInt = file.getName().hashCode();
+		String hash = Integer.toHexString(hashInt);
+		String remap = depotPrefix() + "remapped/file_" + hash;
+		PathMapEntry entry = new PathMapEntry(file.getName(), remap);
+		PathMapTranslator.add(entry);
 	}
 
 	public static String getLbrPath(String path, DepotInterface depot)
