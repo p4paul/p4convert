@@ -336,6 +336,8 @@ public class ImportTests {
 
 	@Test
 	public void case035() throws Exception {
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
+		Config.set(CFG.P4_C1_MODE, true);
 		String test = "url-encoding-bug";
 		testCase(test, 5);
 	}
