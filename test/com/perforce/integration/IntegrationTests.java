@@ -890,6 +890,7 @@ public class IntegrationTests {
 
 	@Test
 	public void case120() throws Exception {
+		Config.set(CFG.P4_C1_MODE, true);
 		String test = "job115";
 		testCase(test);
 	}

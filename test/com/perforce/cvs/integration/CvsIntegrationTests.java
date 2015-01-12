@@ -400,6 +400,7 @@ public class CvsIntegrationTests {
 
 	@Test
 	public void case051() throws Exception {
+		Config.set(CFG.P4_C1_MODE, true);
 		Config.set(CFG.CVS_MODULE, "br-trunk-del");
 		testCase("CVScluster01");
 	}
