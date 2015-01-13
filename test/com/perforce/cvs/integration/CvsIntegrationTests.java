@@ -409,7 +409,7 @@ public class CvsIntegrationTests {
 	@Test
 	public void case052() throws Exception {
 		Form form = (Form) Config.get(CFG.P4_NORMALISATION);
-		if (form.equals(Normaliser.NFC)) {
+		if (form.equals(Form.NFC)) {
 			Config.set(CFG.CVS_MODULE, "uri_path_nfc");
 		} else {
 			Config.set(CFG.CVS_MODULE, "uri_path");
