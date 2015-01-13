@@ -21,6 +21,7 @@ import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
+import com.perforce.config.Normaliser;
 import com.perforce.config.ScmType;
 import com.perforce.cvs.process.CvsProcessChange;
 import com.perforce.integration.SystemCaller;
@@ -407,7 +408,12 @@ public class CvsIntegrationTests {
 
 	@Test
 	public void case052() throws Exception {
-		Config.set(CFG.CVS_MODULE, "uri_path");
+		Form form = (Form) Config.get(CFG.P4_NORMALISATION);
+		if (form.equals(Normaliser.NFC)) {
+			Config.set(CFG.CVS_MODULE, "uri_path_nfc");
+		} else {
+			Config.set(CFG.CVS_MODULE, "uri_path");
+		}
 
 		String uri = "%E3%82%B9%E3%83%91%E3%83%A0_%E6%A4%9C%E7%96%AB_%2812%E6%9C%88_31_1969_04_00_%E5%8D%88%E5%BE%8C_%E3%81%8B%E3%82%89_12%E6%9C%88_31_1969_04_00_%E5%8D%88%E5%BE%8C_PST%29_add.txt,v";
 		String dir = cwd + cvsRootPath + "CVScluster01" + "/uri_path/src";
