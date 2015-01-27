@@ -1,6 +1,8 @@
 package com.perforce.cvs.asset;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -79,6 +81,7 @@ public class CvsContentReader {
 	 */
 	private void cacheContent(RcsObjectNum id, RcsObjectNum last,
 			RcsObjectBlock fullBlock) throws Exception {
+		boolean parseError = false;
 		RcsObjectBlock lastBlock = new RcsObjectBlock(fullBlock);
 		do {
 			if (logger.isDebugEnabled()) {
@@ -92,20 +95,35 @@ public class CvsContentReader {
 			String path = tmp + "/" + base + "/" + id;
 
 			// undelta text; skip HEAD as it is already in full text
-			if (!rcsHEAD.equals(id)) {
-				RcsObjectBlock blockDelta = delta.getBlock();
-				if (blockDelta != null) {
-					lastBlock = undelta(lastBlock, blockDelta);
-				} else {
-					logger.warn("No data block: " + base + " " + delta.getID());
-					Stats.inc(StatsType.warningCount);
+			try {
+				if (parseError) {
+					throw new Exception("Exception due to previous RCS errors.");
 				}
-			}
 
-			// write blockFull to tmp file
-			AssetWriter asset = new AssetWriter(path);
-			Content content = new Content(lastBlock);
-			asset.write(content);
+				if (!rcsHEAD.equals(id)) {
+					RcsObjectBlock blockDelta = delta.getBlock();
+					if (blockDelta != null) {
+						lastBlock = undelta(lastBlock, blockDelta);
+					} else {
+						logger.warn("No data block: " + base + " "
+								+ delta.getID());
+						Stats.inc(StatsType.warningCount);
+					}
+				}
+
+				// write blockFull to tmp file
+				AssetWriter asset = new AssetWriter(path);
+				Content content = new Content(lastBlock);
+				asset.write(content);
+			} catch (Exception e) {
+				logger.warn("RCS parse error on: " + base + " " + delta.getID());
+				Stats.inc(StatsType.warningCount);
+
+				// write blockFull to tmp file
+				File dummy = new File(path);
+				new FileOutputStream(dummy).close();
+				parseError = true;
+			}
 
 			// recurse on branches
 			RcsObjectNumList tags = delta.getBranches();
