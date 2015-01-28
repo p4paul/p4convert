@@ -447,6 +447,12 @@ public class CvsImportTests {
 		String base = basePath + testCase + "/";
 		diffMetadata(base, 5);
 	}
+	
+	@Test
+	public void case053() throws Exception {
+		Config.set(CFG.CVS_MODULE, "symbols");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test

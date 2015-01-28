@@ -41,11 +41,14 @@ public class RcsReader {
 		cvsLineReader = new CvsLineReader(rcsFile.toString());
 
 		// parse permission bits
-		if(file.canExecute()) {
+		if (file.canExecute()) {
 			props.add(ContentProperty.EXECUTE);
 		}
-		
+
 		parseRcsAdmin();
+		if (logger.isTraceEnabled()) {
+			logger.trace(rcsAdmin.toString());
+		}
 
 		RcsObjectDelta rcsObject = parseRcsDeltas();
 		while (!rcsObject.isEmpty()) {
@@ -237,9 +240,9 @@ public class RcsReader {
 				}
 				rcs.add(type, sb.toString());
 				break;
-				
+
 			case COMMENT:
-				if(line.contains("@")) {
+				if (line.contains("@")) {
 					int begin = line.indexOf("@") + 1;
 					int end = line.lastIndexOf("@");
 					String comment = line.substring(begin, end);
@@ -248,6 +251,15 @@ public class RcsReader {
 				} else {
 					rcs.add(type, "");
 				}
+
+			case BRANCH:
+				if (args.length > 1) {
+					// parse remainder for values
+					String r = args[1];
+					r = r.trim();
+					rcs.add(type, r);
+				}
+				break;
 
 			default:
 				if (args.length > 1) {

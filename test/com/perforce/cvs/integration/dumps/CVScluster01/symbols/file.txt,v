@@ -1,0 +1,28 @@
+head	1.1;
+branch ;
+access;
+symbols
+	custom_tag:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.22.13.43.04;	author radek;	state Exp;
+branches;
+next	;
+commitid	1005420276521142949;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@adadadadadaddwrwrw
+yrtyry
+@

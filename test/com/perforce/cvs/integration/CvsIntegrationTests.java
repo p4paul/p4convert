@@ -21,7 +21,6 @@ import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
-import com.perforce.config.Normaliser;
 import com.perforce.config.ScmType;
 import com.perforce.cvs.process.CvsProcessChange;
 import com.perforce.integration.SystemCaller;
@@ -426,6 +425,12 @@ public class CvsIntegrationTests {
 
 		String base = basePath + testCase + "/";
 		diffMetadata(base, 5);
+	}
+
+	@Test
+	public void case053() throws Exception {
+		Config.set(CFG.CVS_MODULE, "symbols");
+		testCase("CVScluster01");
 	}
 
 	private void testCase(String cvsCluster) {
