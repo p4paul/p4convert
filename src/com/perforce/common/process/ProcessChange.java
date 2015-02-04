@@ -173,7 +173,6 @@ public abstract class ProcessChange implements Callable<Integer> {
 			}
 
 			// map change to subversion revision
-			change = currentChange.getChange();
 			ChangeMap.add(currentChange.getSvnRevision(), change);
 		}
 
