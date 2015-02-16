@@ -217,6 +217,10 @@ public class RcsReader {
 			// find key and detect if there is a value
 			RcsSchema type = RcsSchema.parse(args[0]);
 
+			// store remainder
+			int pos = line.indexOf(args[0]) + args[0].length();
+			String remainder = line.substring(pos);
+
 			// process value for key
 			switch (type) {
 			case LOG:
@@ -225,6 +229,7 @@ public class RcsReader {
 				break;
 
 			case TEXT:
+				cvsLineReader.returnLine(remainder);
 				RcsObjectBlock block = parseText();
 				rcs.add(type, block);
 				break;
@@ -287,8 +292,17 @@ public class RcsReader {
 
 		while (line != null) {
 			// check for terminating '@'
-			String end = line.replaceAll("@@", "");
-			if (end.endsWith("@")) {
+			String end = line.replaceAll("@@", "_");
+			if (end.contains("@")) {
+				if (!end.endsWith("@")) {
+					int pos = end.indexOf("@");
+					String remainder = end.substring(pos + 1);
+					cvsLineReader.returnLine(remainder);
+					line = line.replaceAll("@@", "@");
+					line = line.substring(0, pos);
+					log.append(line);
+					log.append("\n");
+				}
 				break;
 			} else {
 				line = line.replaceAll("@@", "@");

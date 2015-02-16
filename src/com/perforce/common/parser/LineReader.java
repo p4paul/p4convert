@@ -35,6 +35,15 @@ public abstract class LineReader {
 		}
 	}
 
+	public void returnLine(String line) {
+		if (line.isEmpty()) {
+			return;
+		}
+		long pos = getFilePointer();
+		pos -= line.length();
+		seek(pos);
+	}
+
 	public String getLine() {
 
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();

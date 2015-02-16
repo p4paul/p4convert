@@ -453,6 +453,19 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "symbols");
 		testCase("CVScluster01");
 	}
+	
+	
+	@Test
+	public void case054() throws Exception {
+		Config.set(CFG.CVS_MODULE, "parse_text");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case055() throws Exception {
+		Config.set(CFG.CVS_MODULE, "parse_dead");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test

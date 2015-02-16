@@ -16,11 +16,17 @@ public class RcsObjectBlock implements Iterable<ByteArrayOutputStream> {
 	}
 
 	public RcsObjectBlock(RcsObjectBlock block) {
-		lines.addAll(block.getLines());
+		if (block != null) {
+			lines.addAll(block.getLines());
+		}
 	}
 
 	public int size() {
 		return lines.size();
+	}
+
+	public boolean isEmpty() {
+		return size() == 0;
 	}
 
 	public void add(ByteArrayOutputStream line) {
@@ -54,7 +60,7 @@ public class RcsObjectBlock implements Iterable<ByteArrayOutputStream> {
 		int count = 0;
 		for (ByteArrayOutputStream line : lines) {
 			if (line != null) {
-				if(logger.isTraceEnabled()) {
+				if (logger.isTraceEnabled()) {
 					sb.append("\t" + count + ": ");
 					sb.append(line);
 					count++;
@@ -62,7 +68,7 @@ public class RcsObjectBlock implements Iterable<ByteArrayOutputStream> {
 				sum += line.size();
 			}
 		}
-		sb.append("total["  + lines.size() + "] " + sum + "\n");
+		sb.append("total[" + lines.size() + "] " + sum + "\n");
 		return sb.toString();
 	}
 

@@ -40,28 +40,6 @@ public class CvsContentReader {
 		this.rcsBlock = deltaHEAD.getBlock();
 	}
 
-	public RcsObjectBlock xxxgetContent(RcsObjectNum rcs) throws Exception {
-		RcsObjectDelta deltaNow = rcsDelta.getDelta(rcsHEAD);
-		RcsObjectBlock blockFull = deltaNow.getBlock();
-		while (deltaNow.getNext() != null && !rcs.equals(rcsHEAD)) {
-			RcsObjectNum rcsNEXT = deltaNow.getNext();
-			RcsObjectDelta deltaNext = rcsDelta.getDelta(rcsNEXT);
-			RcsObjectBlock blockNext = deltaNext.getBlock();
-
-			if (logger.isTraceEnabled()) {
-				logger.trace("undelta rev: " + rcsNEXT);
-			}
-			blockFull = undelta(blockFull, blockNext);
-
-			if (rcsNEXT.equals(rcs)) {
-				break;
-			} else {
-				deltaNow = deltaNext;
-			}
-		}
-		return blockFull;
-	}
-
 	/**
 	 * Writes out all RCS text revisions in full. Stores the text content in a
 	 * temporary directory, using the RCS id as a file name.
@@ -220,6 +198,11 @@ public class CvsContentReader {
 
 		List<RcsDeltaAction> list = parse(delta);
 
+		// If full is empty and no parsed deltas, then return the delta
+		if (full.isEmpty() && list.isEmpty()) {
+			return delta;
+		}
+
 		// Apply deltas in reverse order to preserve index references
 		Collections.reverse(list);
 		for (RcsDeltaAction d : list) {
@@ -243,8 +226,6 @@ public class CvsContentReader {
 				throw new Exception(sb.toString());
 			}
 		}
-
-		// full.clean();
 
 		if (logger.isTraceEnabled()) {
 			logger.trace("result: " + full);
