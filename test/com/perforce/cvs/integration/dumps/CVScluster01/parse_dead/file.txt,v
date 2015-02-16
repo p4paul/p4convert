@@ -1,0 +1,28 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2003.04.09.21.02.24;	author toby;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2003.04.09.20.02.24;	author toby;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@added unistd.h to allow calling of fsync and fstat @ text @content: line 1
+content: line 2
+content: eof
+@
