@@ -36,8 +36,12 @@ public class SubversionReader extends LineReader implements Iterator<Record> {
 		} while (line.isEmpty());
 
 		String[] args = line.split(": ");
+		String token = args[0];
 
-		if (args[0].contains("Revision-number")) {
+		NodeEntry entry = NodeEntry.parse(token);
+
+		switch (entry) {
+		case REVISION:
 			try {
 				Revision revision = new Revision(line, this);
 				currentChangeNumber = (int) revision
@@ -50,9 +54,11 @@ public class SubversionReader extends LineReader implements Iterator<Record> {
 				e.printStackTrace();
 			}
 			return true;
-		}
 
-		else if (args[0].contains("Node-path")) {
+		case NODE:
+		case TEXT:
+		case PROP:
+		case CONTENT:
 			try {
 				if (subBlock)
 					subBlock = false;
@@ -73,9 +79,8 @@ public class SubversionReader extends LineReader implements Iterator<Record> {
 				e.printStackTrace();
 			}
 			return true;
-		}
 
-		else {
+		default:
 			try {
 				Schema schema = new Schema(line, this);
 				currentValue = schema;
@@ -89,5 +94,4 @@ public class SubversionReader extends LineReader implements Iterator<Record> {
 	@Override
 	public void remove() {
 	}
-
 }
