@@ -749,6 +749,18 @@ public class RevisionImport {
 		if (dirty) {
 			dirtyEdit(depotToPath, content);
 		}
+
+		// Resolve target (ignore action)
+		ResolveFilesAutoOptions rsvOpts = new ResolveFilesAutoOptions();
+		rsvOpts.setAcceptYours(true);
+
+		List<IFileSpec> rsvMsg;
+		rsvMsg = iclient.resolveFilesAuto(brMsg, rsvOpts);
+		P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:",
+				"no file(s) to resolve", " - merging //", " - edit from //",
+				" - merge from //", " - ignored //", " - copy from //",
+				"tampered with before resolve - edit or revert", "- vs");
+
 	}
 
 	private void dirtyEdit(String localToPath, Content content)
@@ -768,7 +780,8 @@ public class RevisionImport {
 		iTargetFiles = FileSpecBuilder.makeFileSpecList(localToPath);
 		List<IFileSpec> editSpec = iclient.editFiles(iTargetFiles, editOpts);
 		P4Factory.validateFileSpecs(editSpec, "add of deleted file",
-				"currently opened for edit");
+				"currently opened for edit",
+				"can't edit (already opened for add)");
 
 		// write archive
 		writeClientFile(localToPath, content);

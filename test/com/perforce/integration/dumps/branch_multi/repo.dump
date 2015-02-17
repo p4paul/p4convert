@@ -1,0 +1,279 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 2d55694b-2e6d-0410-9482-807bda442703
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2010-06-02T15:47:53.172321Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 103
+Content-length: 103
+
+K 7
+svn:log
+V 3
+add
+K 10
+svn:author
+V 6
+pallen
+K 8
+svn:date
+V 27
+2010-06-02T15:49:11.776288Z
+PROPS-END
+
+Node-path: branches
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 197
+Content-length: 197
+
+K 7
+svn:log
+V 94
+fixed=CSCum86903
+Remove extraneous versions of JDBC drivers, xxxx, and xxxx connection
+pools.
+
+K 10
+svn:author
+V 8
+author00
+K 8
+svn:date
+V 27
+2014-11-25T20:20:33.040336Z
+PROPS-END
+
+Node-path: branches/xxx_14_xxx_br
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxx_br/cpm
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxx_br/cpm/parents
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxx_br/cpm/parents/cpm-parent
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxx_br/cpm/parents/cpm-parent/pom.xml
+Node-kind: file
+Node-action: add
+Text-content-length: 32
+Text-content-md5: 9f71f0fa6a2dd3f6afe9cd323f510d73
+Text-content-sha1: 7aee8536de7d6c875026f5e86234b856c742c6cf
+Content-length: 32
+
+e9aa13325d0d41e3a29832af2ecfcdb3
+
+
+Revision-number: 3
+Prop-content-length: 164
+Content-length: 164
+
+K 7
+svn:log
+V 61
+[IGNORE:COPYRIGHT] fixed=CSxxxxxxxx
+Merge down xxx to trunk.
+
+K 10
+svn:author
+V 8
+author00
+K 8
+svn:date
+V 27
+2014-12-02T01:46:09.185972Z
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/cpm
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/cpm/parents
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: trunk/cpm/parents/cpm-parent
+Node-kind: dir
+Node-action: add
+Prop-content-length: 85
+Content-length: 85
+
+K 13
+svn:mergeinfo
+V 50
+/branches/xxx_14_xxx_br/cpm/parents/cpm-parent:1-2
+PROPS-END
+
+
+Node-path: trunk/cpm/parents/cpm-parent/pom.xml
+Node-kind: file
+Node-action: change
+Text-content-length: 32
+Text-content-md5: fdb81c78e0e2527721d4696adaea5268
+Text-content-sha1: 296c2e8f9e71c3c9b1da0de16c0eb5437974e210
+Content-length: 32
+
+ab84b96b6a30338331d7ad86214c8f2e
+
+
+Revision-number: 4
+Prop-content-length: 173
+Content-length: 173
+
+K 10
+svn:author
+V 8
+author00
+K 8
+svn:date
+V 27
+2014-12-03T18:33:48.995671Z
+K 7
+svn:log
+V 70
+fixed=CSCum86903
+Update UPS code generator to stable version (1.0.0).
+
+PROPS-END
+
+Node-path: trunk/cpm/parents/cpm-parent/pom.xml
+Node-kind: file
+Node-action: change
+Text-content-length: 32
+Text-content-md5: 98d0c2daf196ddd5c5806786690f8a0f
+Text-content-sha1: b1d92229a4f7f8d576c5ca56b25d202ea26680c1
+Content-length: 32
+
+71925bcd9678ea659d7b6411193652f8
+
+
+Revision-number: 5
+Prop-content-length: 180
+Content-length: 180
+
+K 7
+svn:log
+V 77
+fixed=CSxxxxxxxx [IGNORE:COPYRIGHT] Rebase from trunk 1.5, adding upgrade SQL
+K 10
+svn:author
+V 8
+author01
+K 8
+svn:date
+V 27
+2014-12-10T12:58:26.039322Z
+PROPS-END
+
+Node-path: branches/xxx_14_xxxxxxxx_br
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxxxxxxx_br/cpm
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxxxxxxx_br/cpm/parents
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxxxxxxx_br/cpm/parents/cpm-parent
+Node-kind: dir
+Node-action: add
+Prop-content-length: 119
+Content-length: 119
+
+K 13
+svn:mergeinfo
+V 84
+/branches/xxx_14_xxx_br/cpm/parents/cpm-parent:1-2
+/trunk/cpm/parents/cpm-parent:1-4
+PROPS-END
+
+
+Node-path: branches/xxx_14_xxxxxxxx_br/cpm/parents/cpm-parent/pom.xml
+Node-kind: file
+Node-action: change
+Text-content-length: 32
+Text-content-md5: 985c35b490a5ba188a0840ad1cdc86c2
+Text-content-sha1: 973b63cf32178ce270e187551fbd1782f518bbe4
+Content-length: 32
+
+2c47a9a581e2cd0d6d536fa93fc78d7b

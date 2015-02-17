@@ -922,6 +922,14 @@ public class IntegrationTests {
 		// TODO testCase(test);
 	}
 
+	@Test
+	public void case123() throws Exception {
+		Config.set(CFG.SVN_PROP_ENABLED, false);
+		Config.set(CFG.SVN_MERGEINFO, true);
+		String test = "branch_multi";
+		testCase(test);
+	}
+
 	private void testCase(String dumpCase) {
 		testCase(dumpCase, 0);
 	}

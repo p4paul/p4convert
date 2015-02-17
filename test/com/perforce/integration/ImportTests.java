@@ -1057,6 +1057,14 @@ public class ImportTests {
 		// TODO testCase(test);
 	}
 
+	@Test
+	public void case123() throws Exception {
+		Config.set(CFG.SVN_PROP_ENABLED, false);
+		Config.set(CFG.SVN_MERGEINFO, true);
+		String test = "branch_multi";
+		testCase(test);
+	}
+
 	/**
 	 * Environment test
 	 * 
