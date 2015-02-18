@@ -85,7 +85,7 @@ public class LabelImport implements LabelInterface {
 
 	@Override
 	public String getOwner() {
-		return change.getUser();
+		return depot.getUser();
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class LabelImport implements LabelInterface {
 		this.automatic = auto;
 		ilabel.setRevisionSpec(String.valueOf(getFromRev()));
 	}
-	
+
 	@Override
 	public boolean isAutomatic() {
 		return this.automatic;
@@ -116,7 +116,14 @@ public class LabelImport implements LabelInterface {
 
 	@Override
 	public String getDesc() {
-		return change.getDescription();
+		StringBuffer sb = new StringBuffer();
+		sb.append("Created by p4convert. ");
+		if (automatic) {
+			sb.append("[Automatic Label]");
+		} else {
+			sb.append("[Static Label]");
+		}
+		return sb.toString();
 	}
 
 	@Override

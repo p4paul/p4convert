@@ -12,15 +12,15 @@
 @pv@ 0 @db.desc@ 2 @tag 1.0.0@ 
 @pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1417774765 1 @tag 1.0.0@ 
 @pv@ 0 @db.view@ @label:1.0.0@ 0 0 @@ @//import/trunk/...@ 
-@pv@ 5 @db.domain@ @label:1.0.0@ 108 @@@1@ @@ @@ @@ @pallen@ 1417774765 1417774765 0 @tag 1.0.0@ @@ 
+@pv@ 5 @db.domain@ @label:1.0.0@ 108 @@@1@ @@ @@ @@ @svn-user@ 1417774765 1417774765 0 @Created by p4convert. [Automatic Label]@ @@ 
 @pv@ 0 @db.desc@ 3 @tag 1.0.0->1.0.1@ 
 @pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1417774872 1 @tag 1.0.0->1.0.1@ 
 @pv@ 0 @db.view@ @label:1.0.1@ 0 0 @@ @//import/trunk/...@ 
-@pv@ 5 @db.domain@ @label:1.0.1@ 108 @@@1@ @@ @@ @@ @pallen@ 1417774872 1417774872 0 @tag 1.0.0->1.0.1@ @@ 
+@pv@ 5 @db.domain@ @label:1.0.1@ 108 @@@1@ @@ @@ @@ @svn-user@ 1417774872 1417774872 0 @Created by p4convert. [Automatic Label]@ @@ 
 @pv@ 0 @db.desc@ 4 @tag 2.0.0@ 
 @pv@ 0 @db.change@ 4 4 @svn-client@ @pallen@ 1417775243 1 @tag 2.0.0@ 
 @pv@ 0 @db.view@ @label:2.0.0@ 0 0 @@ @//import/trunk/...@ 
-@pv@ 5 @db.domain@ @label:2.0.0@ 108 @@@1@ @@ @@ @@ @pallen@ 1417775243 1417775243 0 @tag 2.0.0@ @@ 
+@pv@ 5 @db.domain@ @label:2.0.0@ 108 @@@1@ @@ @@ @@ @svn-user@ 1417775243 1417775243 0 @Created by p4convert. [Automatic Label]@ @@ 
 @pv@ 0 @db.desc@ 5 @tag 2.0.0 -> 2.0.1@ 
 @pv@ 0 @db.change@ 5 5 @svn-client@ @pallen@ 1417775308 1 @tag 2.0.0 -> 2.0.1@ 
 @pv@ 0 @db.integed@ @//import/tags/2.0.1/src/file1.txt@ @//import/trunk/src/file1.txt@ 0 1 0 1 2 5 

@@ -294,15 +294,14 @@ public class RcsReader {
 			// check for terminating '@'
 			String end = line.replaceAll("@@", "_");
 			if (end.contains("@")) {
+				int pos = end.indexOf("@");
 				if (!end.endsWith("@")) {
-					int pos = end.indexOf("@");
 					String remainder = end.substring(pos + 1);
 					cvsLineReader.returnLine(remainder);
-					line = line.replaceAll("@@", "@");
-					line = line.substring(0, pos);
-					log.append(line);
-					log.append("\n");
 				}
+				line = line.replaceAll("@@", "@");
+				line = line.substring(0, pos);
+				log.append(line);
 				break;
 			} else {
 				line = line.replaceAll("@@", "@");
