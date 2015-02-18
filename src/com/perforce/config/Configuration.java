@@ -2,6 +2,7 @@ package com.perforce.config;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -45,6 +46,8 @@ public class Configuration {
 	 * @throws Exception
 	 */
 	private void setDefault() throws ConfigException {
+		String pwd = System.getProperty("user.dir") + File.separator;
+
 		// General Configuration:
 		Version ver = new Version();
 		set(CFG.TEST, false);
@@ -59,16 +62,16 @@ public class Configuration {
 
 		// Perforce connection
 		set(CFG.P4_MODE, "IMPORT");
-		set(CFG.P4_ROOT, "<unset>"); // end with a '/'
+		set(CFG.P4_ROOT, pwd + "p4_root" + File.separator);
 		set(CFG.P4_PORT, "localhost:4444");
 		set(CFG.P4_USER, "p4-user");
 		set(CFG.P4_PASSWD, "");
 		set(CFG.P4_CLIENT, "p4-client");
-		set(CFG.P4_CLIENT_ROOT, "<unset>"); // end with a '/'
+		set(CFG.P4_CLIENT_ROOT, pwd + "ws" + File.separator);
 		set(CFG.P4_UNICODE, false);
 		set(CFG.P4_CHARSET, "<none>");
 		set(CFG.P4_DEPOT_PATH, "import");
-		set(CFG.P4_DEPOT_SUB, "/"); // end with a '/'
+		set(CFG.P4_DEPOT_SUB, File.separator);
 		set(CFG.P4_JNL_PREFIX, "jnl.");
 		set(CFG.P4_JNL_INDEX, 0);
 		set(CFG.P4_LOG_ID, "<description>");

@@ -5,11 +5,11 @@ import java.io.File;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.perforce.Main;
 import com.perforce.common.ExitCode;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ScmType;
-import com.perforce.svn.Main;
 
 public class TestUsage {
 	private final static String dumpPath = "test/com/perforce/integration/dumps/";

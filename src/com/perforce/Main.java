@@ -1,4 +1,4 @@
-package com.perforce.svn;
+package com.perforce;
 
 import java.util.Formatter;
 import java.util.List;

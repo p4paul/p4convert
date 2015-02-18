@@ -2,7 +2,7 @@
 <project default="main" name="Create Runnable Jar for Project p4convert.dev">
 
 	<!--PROPERTIES-->
-	<property name="main.class" value="com.perforce.svn.Main" />
+	<property name="main.class" value="com.perforce.Main" />
 	<property name="integ.class" value="com.perforce.integration.IntegrationTests" />
 	<property name="import.class" value="com.perforce.integration.ImportTests" />
 	<property name="cvs_integ.class" value="com.perforce.cvs.integration.CvsIntegrationTests" />
