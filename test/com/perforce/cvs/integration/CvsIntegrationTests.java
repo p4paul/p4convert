@@ -444,6 +444,13 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "parse_dead");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case056() throws Exception {
+		Config.set(CFG.P4_DEPOT_SUB, "sub/");
+		Config.set(CFG.CVS_MODULE, "subpath_basic");
+		testCase("CVScluster01");
+	}
 
 	private void testCase(String cvsCluster) {
 		try {

@@ -447,23 +447,29 @@ public class CvsImportTests {
 		String base = basePath + testCase + "/";
 		diffMetadata(base, 5);
 	}
-	
+
 	@Test
 	public void case053() throws Exception {
 		Config.set(CFG.CVS_MODULE, "symbols");
 		testCase("CVScluster01");
 	}
-	
-	
+
 	@Test
 	public void case054() throws Exception {
 		Config.set(CFG.CVS_MODULE, "parse_text");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case055() throws Exception {
 		Config.set(CFG.CVS_MODULE, "parse_dead");
+		testCase("CVScluster01");
+	}
+
+	@Test
+	public void case056() throws Exception {
+		Config.set(CFG.P4_DEPOT_SUB, "sub/");
+		Config.set(CFG.CVS_MODULE, "subpath_basic");
 		testCase("CVScluster01");
 	}
 
