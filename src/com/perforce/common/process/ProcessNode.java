@@ -1,6 +1,5 @@
 package com.perforce.common.process;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 import org.slf4j.Logger;
@@ -163,7 +162,7 @@ public abstract class ProcessNode {
 		if (path != null && !path.isEmpty()) {
 
 			// Manage URL encoded paths
-			if(path.contains("%")) {
+			if (path.contains("%")) {
 				try {
 					// if it decodes OK, don't replace '%'
 					path = URLDecoder.decode(path, "UTF-8");
@@ -171,10 +170,10 @@ public abstract class ProcessNode {
 					logger.warn("URL encoded path - decoding...");
 				} catch (Exception e) {
 					// must replace before other '@' and '#' symbols
-					path = path.replace("%", "%25"); 
+					path = path.replace("%", "%25");
 				}
 			}
-			
+
 			path = path.replace("@", "%40");
 			path = path.replace("#", "%23");
 

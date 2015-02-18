@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.svn.parser.Record;
-import com.perforce.svn.parser.RecordReader;
 import com.perforce.svn.parser.Record.Type;
+import com.perforce.svn.parser.RecordReader;
 
 public class ExtractRecord {
 
@@ -60,6 +60,9 @@ public class ExtractRecord {
 					}
 				}
 				break;
+
+			default:
+				break;
 			}
 		}
 		return null;
@@ -96,6 +99,9 @@ public class ExtractRecord {
 						return records;
 					}
 				}
+				break;
+
+			default:
 				break;
 			}
 		}
