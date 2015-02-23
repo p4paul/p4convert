@@ -85,7 +85,7 @@ com.p4convert.p4.clientRoot=<replaceable>/Users/bruno/ws/</replaceable>
             <replaceable>p4-user</replaceable> must have
             <emphasis>admin</emphasis> permissions in the Protection table and
             the password supplied as a string (the
-            default is no string after the '=' sign):
+            default is set to <envar>ws/</envar> under your local directory):
           </para>
 
 <programlisting language="ini">
@@ -139,7 +139,8 @@ com.p4convert.p4.mode=CONVERT
         <listitem>
           <para>
             Perforce server root address (path should end with a
-            slash (<literal>/</literal>)):
+            slash (<literal>/</literal>)), the default is set to 
+            <envar>p4_root/</envar> under you local directory:
           </para>
 
 <programlisting language="ini">
