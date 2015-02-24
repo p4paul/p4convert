@@ -472,6 +472,14 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "subpath_basic");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case057() throws Exception {
+		Config.set(CFG.CVS_LABELS, true);
+		Config.set(CFG.P4_DEPOT_SUB, "sub/foo/");
+		Config.set(CFG.CVS_MODULE, "subpath_label");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test

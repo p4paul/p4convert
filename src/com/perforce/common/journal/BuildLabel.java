@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.label.LabelConvert;
 import com.perforce.common.label.TagConvert;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.common.schema.JournalRecord;
 
 public class BuildLabel {
 
-	public static ArrayList<String> toJournal(DepotInterface d, LabelConvert lbl)
-			throws Exception {
+	public static
+			ArrayList<String>
+			toJournal(DepotInterface d, LabelConvert lbl) throws Exception {
 		ArrayList<String> label = new ArrayList<String>();
 		StringBuffer sb = new StringBuffer();
 
@@ -38,19 +40,21 @@ public class BuildLabel {
 
 		// Build label revisions
 		for (TagConvert t : lbl.getTags()) {
-			label.add(toJournal(d, lbl.getName(), t));
+			label.add(toJournal(lbl.getName(), t));
 		}
 
 		return label;
 	}
 
-	private static String toJournal(DepotInterface d, String name,
-			TagConvert tag) throws Exception {
+	private static String toJournal(String name, TagConvert tag)
+			throws Exception {
 		StringBuffer sb = new StringBuffer();
+
+		String p4path = PathMapTranslator.translate(tag.getPath());
 
 		JournalRecord dbTag = new JournalRecord("pv", "db.label", 0);
 		dbTag.addField("name", name);
-		dbTag.addField("file", depotPath(d, tag.getPath()));
+		dbTag.addField("file", p4path);
 		dbTag.addField("rev", tag.getRevision());
 		sb.append(dbTag.toJournalString() + "\n");
 

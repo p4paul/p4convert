@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.perforce.common.client.P4Factory;
 import com.perforce.common.depot.DepotImport;
+import com.perforce.common.node.PathMapTranslator;
 import com.perforce.common.process.ChangeInfo;
 import com.perforce.p4java.core.ILabel;
 import com.perforce.p4java.core.ILabelMapping;
@@ -182,12 +183,10 @@ public class LabelImport implements LabelInterface {
 	}
 
 	private void tagLabel(TagConvert tag) throws Exception {
-		StringBuffer fileStr = new StringBuffer();
-		fileStr.append("//" + depot.getName() + "/");
-		fileStr.append(tag.getPath());
-
+		String p4Path = PathMapTranslator.translate(tag.getPath());
+		
 		List<IFileSpec> fileSpecs;
-		fileSpecs = FileSpecBuilder.makeFileSpecList(fileStr.toString());
+		fileSpecs = FileSpecBuilder.makeFileSpecList(p4Path);
 
 		TagFilesOptions tagOpts = new TagFilesOptions();
 		List<IFileSpec> tagSpec = iserver.tagFiles(fileSpecs, name, tagOpts);
