@@ -41,14 +41,8 @@ public class UsageTree {
 			}
 
 			node = create(dirPath, nodeType);
-
-			if (action == Action.REMOVE) {
-				node.setHeadCount(-1);
-				node.setCount(1);
-			} else {
-				node.setHeadCount(1);
-				node.setCount(1);
-			}
+			node.setHeadCount(1);
+			node.setCount(1);
 		}
 
 		// [DIR]
