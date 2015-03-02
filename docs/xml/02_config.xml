@@ -282,6 +282,35 @@ com.p4convert.svn.start=101
 com.p4convert.svn.end=200
 </programlisting>
       </listitem>
+      
+      <listitem>
+        <para>
+          The start and end revisions can be override on the command line
+          using the <parameter>--start</parameter> and 
+          <parameter>--end</parameter> flags.  For example, importing just
+          Subversion revision 201.
+        </para>
+
+<programlisting language="ini">
+java -jar convert.jar --config=default.cfg --start=201 --end=201
+</programlisting>
+      </listitem>
+      
+      <listitem>
+        <para>
+          In adition to overriding the start and end revisions you can 
+          override Subversion dump file location using the 
+          <parameter>--repo</parameter> flags.  For example, a range of
+          revisions from an incremental dump.
+        </para>
+
+<programlisting language="ini">
+svnadmin dump /path/to/repo/ -r 202:300 --incremental > 202-300.dump
+
+java -jar convert.jar --config=default.cfg --repo=202-300.dump --start=202 --end=300
+</programlisting>
+      </listitem>
+      
     </orderedlist>
   </section>
 

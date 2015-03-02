@@ -223,7 +223,7 @@ public class Configuration {
 			out = new BufferedWriter(new FileWriter(file));
 
 			Date d = new Date();
-			out.write("# P4Convert-SVN configuration (" + d.toString()
+			out.write("# P4Convert configuration (" + d.toString()
 					+ ")\n\n");
 			out.write("# Please note that all paths should be absolute and must end with a path\n");
 			out.write("# delimiter e.g. '/' or '\\\\'.  For example:\n");

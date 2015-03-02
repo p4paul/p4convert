@@ -181,10 +181,14 @@ java -Xmx65536M -jar p4convert.jar --config=myConfig.cfg
 usage: java -jar p4convert.jar
  -c,--config &lt;arg&gt;    Use configuration file
  -d,--default         Generate a configuration file
+ -E,--end &lt;arg&gt;       End revision, for incremental (SVN)
  -e,--extract &lt;arg&gt;   Extract a revision
  -i,--info            Report on repository usage
  -r,--repo &lt;arg&gt;      Repository file/path
+ -S,--start &lt;arg&gt;     Start revision, for incremental (SVN)
  -t,--type &lt;arg&gt;      SCM type (CVS | SVN)
+    --tags &lt;arg&gt;      find tags to specified depth
+    --tree &lt;arg&gt;      (with --info), display tree to specified depth
  -u,--users           List repository users
  -v,--version         Version string
 

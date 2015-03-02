@@ -70,6 +70,8 @@ public class Main {
 		options.addOption("i", "info", false, "Report on repository usage");
 		options.addOption("u", "users", false, "List repository users");
 		options.addOption("e", "extract", true, "Extract a revision");
+		options.addOption("S", "start", true, "Start revision, for incremental (SVN)");
+		options.addOption("E", "end", true, "End revision, for incremental (SVN)");
 
 		// Process arguments
 		ExitCode exit = ExitCode.USAGE;
@@ -119,7 +121,7 @@ public class Main {
 		if (line.hasOption("config")) {
 			configFile = line.getOptionValue("config");
 			Config.load(configFile);
-			return startConversion();
+			return startConversion(line);
 		}
 
 		// --type=VALUE (REQUIRED for all the following options)
@@ -206,12 +208,45 @@ public class Main {
 		return ExitCode.USAGE;
 	}
 
-	private static ExitCode startConversion() throws Exception {
+	private static ExitCode startConversion(CommandLine line) throws Exception {
 		ExecutorService executor = Executors.newFixedThreadPool(1);
 
 		Callable<Integer> callable = null;
 		switch ((ScmType) Config.get(CFG.SCM_TYPE)) {
 		case SVN:
+			// override if --repo flag is used
+			if (line.hasOption("repo")) {
+				String repoPath = line.getOptionValue("repo");
+				StringBuffer sb = new StringBuffer();
+				sb.append("Override: ");
+				sb.append(CFG.SVN_DUMPFILE.name() + "=");
+				sb.append(repoPath);
+				logger.info(sb.toString());
+				Config.set(CFG.SVN_DUMPFILE, repoPath);
+			}
+
+			// override if --start flag is used
+			if (line.hasOption("start")) {
+				long start = Long.parseLong(line.getOptionValue("start"));
+				StringBuffer sb = new StringBuffer();
+				sb.append("Override: ");
+				sb.append(CFG.SVN_START + "=");
+				sb.append(start);
+				logger.info(sb.toString());
+				Config.set(CFG.SVN_START, start);
+			}
+
+			// override if --end flag is used
+			if (line.hasOption("end")) {
+				long end = Long.parseLong(line.getOptionValue("end"));
+				StringBuffer sb = new StringBuffer();
+				sb.append("Override: ");
+				sb.append(CFG.SVN_END + "=");
+				sb.append(end);
+				logger.info(sb.toString());
+				Config.set(CFG.SVN_END, end);
+			}
+
 			callable = new SvnProcessChange();
 			break;
 		case CVS:
