@@ -1,8 +1,14 @@
 # p4convert
 
 The `p4convert` is a Java based conversion tool. It imports data from Subversion or CVS
-and reconstructs the file revision history in Perforce. For CVS the data is read from the
-CVSROOT and for Subversion data is read from a dump file.
+and reconstructs the file revision history in Perforce. 
+
+CVS data is read from the CVSROOT and Subversion data from a dump file.  The converted 
+history is added to Perforce using our client interface (`IMPORT` mode / front-door) or 
+directly to a journal and versioned files (`CONVERT` mode / back-door).
+
+The `IMPORT` mode allows for incremental conversions and although slower, it generally 
+requires less memory and CPU resources.
 
 
 ## Distribution
@@ -52,6 +58,7 @@ on the Workshop.
 * P4D 12.2 or greater (10.2 is supported with a reduction in features)
 * Admin level access to the Perforce server (`IMPORT` mode)
 
+
 ### Recommendations
 
 * A server grade machine with at least 64GB RAM and fast local disks
@@ -68,15 +75,42 @@ on the Workshop.
 
 ## Support
 
+
 `TODO`
 
+converter.log
+
+audit.log
+
+--extract
+
+debug.log4j.properties
+
+Filtered data
+
+
+
+
 ### Issues
+
+Issues are tracked on the Workshop under the [Jobs](https://swarm.workshop.perforce.com/projects/perforce-software-p4convert/jobs/)
+tab.  Please check, using the search field, that no similar jobs exists before reporting 
+an issue.  Jobs are publicly visible, so please do not include any confidential 
+information in the report.
 
 `TODO`
 
 ## Quick Start
 
-`TODO`
+### Version Check
+
+### Generate a Configuration
+
+### Import mode
+
+### Convert mode
+
+
 
 ## Source
 
@@ -115,7 +149,7 @@ The tests rely on the Perforce broker and server, please insure you have the cor
 versions for your tests.  The broker `p4broker` and server `p4d` must be in your PATH.
 
 The tests use ports `4444` and `4445` please insure these are free and not used by any 
-other services.  Please check that these resources are freed from earlier test runs.
+other services.  Please check that these resources have been freed from earlier runs.
 
 To run all tests:
 
