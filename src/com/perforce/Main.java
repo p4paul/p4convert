@@ -70,8 +70,10 @@ public class Main {
 		options.addOption("i", "info", false, "Report on repository usage");
 		options.addOption("u", "users", false, "List repository users");
 		options.addOption("e", "extract", true, "Extract a revision");
-		options.addOption("S", "start", true, "Start revision, for incremental (SVN)");
-		options.addOption("E", "end", true, "End revision, for incremental (SVN)");
+		options.addOption("S", "start", true,
+				"Start revision, for incremental (SVN)");
+		options.addOption("E", "end", true,
+				"End revision, for incremental (SVN)");
 
 		// Process arguments
 		ExitCode exit = ExitCode.USAGE;
@@ -249,9 +251,22 @@ public class Main {
 
 			callable = new SvnProcessChange();
 			break;
+
 		case CVS:
+			// override if --repo flag is used
+			if (line.hasOption("repo")) {
+				String repoPath = line.getOptionValue("repo");
+				StringBuffer sb = new StringBuffer();
+				sb.append("Override: ");
+				sb.append(CFG.CVS_ROOT.name() + "=");
+				sb.append(repoPath);
+				logger.info(sb.toString());
+				Config.set(CFG.CVS_ROOT, repoPath);
+			}
+
 			callable = new CvsProcessChange();
 			break;
+
 		default:
 			logger.error("SCM type not specified in config ().");
 			System.exit(ExitCode.USAGE.value());
