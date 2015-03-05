@@ -15,8 +15,8 @@ requires less memory and CPU resources.
 
 Stable releases will be available from the Perforce Website and FTP server:
 
-* ftp://ftp.perforce.com/perforce/tools/p4convert/
-* TBC
+* __TBC__ ftp://ftp.perforce.com/perforce/tools/p4convert/
+* __TBC__ 
 
 Latest builds are available under the `release/` directory on the Workshop:
 
@@ -46,7 +46,7 @@ or fix is deemed stable.
 Documentation is available as a PDF document or in HTML. The PDF document `p4convert.pdf`
 is packaged with each release and the HTML documentation available on our website:
 
-* TBC
+* __TBC__
 
 The markdown file `README.md` (this document) is located in the project's root directory
 on the Workshop. 
@@ -75,40 +75,91 @@ on the Workshop.
 
 ## Support
 
+Customers with a support agreement can get support from the normal channels.  For everyone else (or to help with your own investigation) the following sets out what to look for.
+ 
+### Logs and tools
 
-`TODO`
+All log files are located in the converters working directroy (the location you execute the converter).
 
-converter.log
+#### converter.log
 
-audit.log
+* Contains a detailed listing of the console output from the converter.  Each subsequent execution appends to the log, providing a record of previous runs (essential for debugging incremental conversions).
 
---extract
+* If after a migration reports warnings, start with the `converter.log` log and grep for `WARN`.  In some situations you may choose to ignore warnings, if you are satisfied with the consequences e.g. Unicode traslation warnings or Case sensitive rename issues.
 
-debug.log4j.properties
+#### audit.log
 
-Filtered data
+* Contains a list of every revision imported into Perforce, reporting the original SCM path, revision, Perforce change number and MD5 sum.
 
+    ``` 
+#<SCM path>, <SCM id>, <P4 change>, <MD5 sum>
+trunk/file.txt, 1, 1, 16FED0121505838F492D0295BA547558
+trunk/file.txt, 3, 3, 0C5A8546AAB8197C98CA37805482955C
+    ```
+    
+#### log levels
 
+* By default the logging is set to `INFO` level, however more details logging can be achieved using the `FINE` and `TRACE` options.  To turn up the logging level for the whole tool or a specific class edit the `debug.log4j.properties` file and execute the JAR using the `-Dlog4j.configuration=file:debug.log4j.properties` JVM paramiter.
+
+* Please refer to Oracle's [documentation](http://docs.oracle.com/cd/E19717-01/819-7753/gcblo/index.html) for further details.
 
 
 ### Issues
 
 Issues are tracked on the Workshop under the [Jobs](https://swarm.workshop.perforce.com/projects/perforce-software-p4convert/jobs/)
-tab.  Please check, using the search field, that no similar jobs exists before reporting 
+tab.  
+
+Please check (using the search field) that no similar jobs exists before reporting 
 an issue.  Jobs are publicly visible, so please do not include any confidential 
 information in the report.
 
-`TODO`
 
 ## Quick Start
 
 ### Version Check
 
+````
+java -jar p4convert.jar --version
+
+PUBLIC.Main.11901
+````
+
 ### Generate a Configuration
+
+For Subversion set the type to `SVN`
+
+````
+java -jar p4convert.jar --type=SVN --default
+
+(creates a 'default.cfg' file)
+````
+
+For CVS set the type to `CVS`
+
+````
+java -jar p4convert.jar --type=CVS --default
+
+(creates a 'default.cfg' file)
+````
+
+### Setting the Configuration
+
+The latest version requires no modification for a basic conversion.  The only paramiter unset is the source location for the CVSROOT or SVN dump file, but the `--repo=` paramiter (if specified) will take precedence.
+
+The default configuration sets the converter up for `IMPORT` mode on port `localhost:4444`. The user is set to `p4-user` and client to `p4-client` with a new import depot called `import`.  The client root is set to `'ws/'` under your current working directory.
 
 ### Import mode
 
+1. Start a Perforce Server on port `localhost:4444`
+2. Run `java -jar p4convert.jar --config=default.cfg --repo=my_repo_location`
+
 ### Convert mode
+
+1. Edit the default.cfg and set the `com.p4convert.p4.mode=IMPORT` line to `CONVERT`
+2. Run `java -jar p4convert.jar --config=default.cfg --repo=my_repo_location`
+3. Change directory to `p4_root`
+4. Run `p4d -jr jnl.0` to restore the journal
+5. Run `p4d -xu` to correctly update the tables
 
 
 
@@ -170,4 +221,4 @@ To run just one test case use the following, for example test case 003:
 
 ### Contributing
 
-`TODO`
+__TBC__
