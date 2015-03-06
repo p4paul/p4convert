@@ -20,7 +20,7 @@
 	<property name="jar.name" value="p4convert" />
 	<property name="manifest.name" value="MANIFEST.MF" />
 	<property name="junit.dir" value="junit" />
-	<property name="p4java.ver" value="p4java-2013.2.858003.MAIN-TEST_ONLY-SNAPSHOT" />
+	<property name="p4java.ver" value="p4java-2014.1.965322" />
 	<property name="version" value="ENGINEERING.BUILD.${user.name}" />
 
 	<path id="classpath">

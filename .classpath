@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry exported="true" kind="lib" path="prop"/>
-	<classpathentry exported="true" kind="lib" path="ext/p4java-2013.2.858003.MAIN-TEST_ONLY-SNAPSHOT/p4java-2013.2.858003.MAIN-TEST_ONLY-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="ext/commons-cli-1.2.jar">
+	<classpathentry exported="true" kind="lib" path="ext/commons-cli-1.2.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/p4-convert.public/ext/commons-cli-1.2/commons-cli-1.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="ext/p4java-2014.1.965322/p4java-2014.1.965322.jar" sourcepath="ext/p4java-2014.1.965322/p4java-2014.1.965322.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/Users/pallen/Workspaces/main.p4-convert.svn/public/ext/p4java-2014.1.965322/docs/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
