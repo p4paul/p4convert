@@ -1,0 +1,26 @@
+@pv@ 9 @db.rev@ @//import/main/bar@ 2 1 1 5 1291238510 1291238510 ABE4C25984029780B8249F05511AD121 864 0 0 @//import/main/bar@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/main/bar@ 1 1 0 1 1238148014 1238148014 7929CFFB38FF7D59129826A85A8767D6 886 0 0 @//import/main/bar@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/foo@ 4 1 1 6 1292152333 1292152333 ABE4C25984029780B8249F05511AD121 864 0 0 @//import/main/foo@ @1.6@ 1 
+@pv@ 9 @db.rev@ @//import/main/foo@ 3 1 1 4 1272463055 1272463055 7929CFFB38FF7D59129826A85A8767D6 886 0 0 @//import/main/foo@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/main/foo@ 2 1 1 3 1269376200 1269376200 F3797A61D6C6D00750B93F17CB04E3AD 886 0 0 @//import/main/foo@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/main/foo@ 1 1 0 2 1238150437 1238150437 07A6269AD3A144568423FD2F5EB69525 915 0 0 @//import/main/foo@ @1.2@ 1 
+@pv@ 2 @db.change@ 6 6 @svn-client@ @user1@ 1292152333 1 @REL_1_1_0
+@pv@ 2 @db.change@ 5 5 @svn-client@ @user1@ 1291238510 1 @+ mark up comments with Doxygen@ @//import/main/*@ 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @user1@ 1272463055 1 @REL_1_0_2
+@pv@ 2 @db.change@ 3 3 @svn-client@ @user1@ 1269376200 1 @REL_1_0_1
+@pv@ 2 @db.change@ 2 2 @svn-client@ @user1@ 1238150437 1 @REL_1_0_0
+@pv@ 2 @db.change@ 1 1 @svn-client@ @user1@ 1238148014 1 @Initial revision
+@pv@ 0 @db.desc@ 6 @REL_1_1_0
+@pv@ 0 @db.desc@ 5 @+ mark up comments with Doxygen tags
+@pv@ 0 @db.desc@ 4 @REL_1_0_2
+@pv@ 0 @db.desc@ 3 @REL_1_0_1
+@pv@ 0 @db.desc@ 2 @REL_1_0_0
+@pv@ 0 @db.desc@ 1 @Initial revision
+@pv@ 0 @db.label@ @REL_1_0_0@ @//import/main/bar@ 1 
+@pv@ 0 @db.label@ @REL_1_0_0@ @//import/main/foo@ 1 
+@pv@ 0 @db.label@ @REL_1_0_1@ @//import/main/bar@ 1 
+@pv@ 0 @db.label@ @REL_1_0_1@ @//import/main/foo@ 2 
+@pv@ 0 @db.label@ @REL_1_0_2@ @//import/main/bar@ 1 
+@pv@ 0 @db.label@ @REL_1_0_2@ @//import/main/foo@ 3 
+@pv@ 0 @db.label@ @REL_1_1_0@ @//import/main/bar@ 2 
+@pv@ 0 @db.label@ @REL_1_1_0@ @//import/main/foo@ 4 

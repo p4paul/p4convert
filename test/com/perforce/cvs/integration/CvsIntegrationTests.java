@@ -432,31 +432,38 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "symbols");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case054() throws Exception {
 		Config.set(CFG.CVS_MODULE, "parse_text");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case055() throws Exception {
 		Config.set(CFG.CVS_MODULE, "parse_dead");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case056() throws Exception {
 		Config.set(CFG.P4_DEPOT_SUB, "sub/");
 		Config.set(CFG.CVS_MODULE, "subpath_basic");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case057() throws Exception {
 		Config.set(CFG.CVS_LABELS, true);
 		Config.set(CFG.P4_DEPOT_SUB, "sub/foo/");
 		Config.set(CFG.CVS_MODULE, "subpath_label");
+		testCase("CVScluster01");
+	}
+
+	@Test
+	public void case058() throws Exception {
+		Config.set(CFG.CVS_LABELS, true);
+		Config.set(CFG.CVS_MODULE, "label-view");
 		testCase("CVScluster01");
 	}
 

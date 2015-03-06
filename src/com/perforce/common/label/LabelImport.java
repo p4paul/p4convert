@@ -172,6 +172,11 @@ public class LabelImport implements LabelInterface {
 	}
 
 	private void buildViewMap() {
+		// Exit early if no views (leaving original map)
+		if (views.isEmpty()) {
+			return;
+		}
+
 		ViewMap<ILabelMapping> viewMap = new ViewMap<ILabelMapping>();
 		int i = 0;
 		for (String view : views) {
@@ -184,7 +189,7 @@ public class LabelImport implements LabelInterface {
 
 	private void tagLabel(TagConvert tag) throws Exception {
 		String p4Path = PathMapTranslator.translate(tag.getPath());
-		
+
 		List<IFileSpec> fileSpecs;
 		fileSpecs = FileSpecBuilder.makeFileSpecList(p4Path);
 
