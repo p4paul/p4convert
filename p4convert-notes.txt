@@ -1,10 +1,10 @@
                             Release Notes for
-             P4Convert-svn, An SVN and CVS to Perforce conversion tool.
+             P4Convert, a SVN and CVS to Perforce conversion tool.
 
-This documentation needs an update reflecting the new features on the Public release of the converter
-What follows is the last SVN only release information.
+This documentation needs an update reflecting the new features on the Public release of
+the converter.
 
-                             Version 2014.1
+                        Version PUBLIC.Main.11901
 
 Introduction
 
@@ -47,7 +47,477 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
+Current Workshop Changes (NOT IN LATEST RELEASE)
+
+
+  #11979 (Bug 166)
+
+  CVS: Fix label view when tagging files in later changes.
+
+
+  #11978 
+
+  Upgrade p4java to 2014.1
+
+
+  #11970 
+
+  CVS: added --repo override for CVSROOT.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11901
+
+
+  #11901 
+
+  SVN: Added command-line flags to support incremental conversions.
+
+  Users can now use --start and --end flags to control the SVN revision range imported.
+  The existing --repo flag if specified will override the configuration file.
+
+
+  #11843 
+
+  Change --info report to include 'delete' entires in revision count.
+
+  Previously 'delete' entries were counted as '-1' which could lead to a negative 
+  result. They still add to the rev table and so should be positive.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11836 
+
+
+  #11836 
+
+  CVS: Fix path translation for labels.
+
+  Allows the use of a path map or com.p4convert.p4.subPath definition when CVS labels are
+  enabled.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11823
+  
+
+  #11823 #11762 
+
+  Modified the --default flag to generate default entries for the client root and server
+  root.
+
+  The configuration defaults to:
+    com.p4convert.p4.root           [pwd] + 'p4_root/'
+    com.p4convert.p4.clientRoot     [pwd] + 'ws/'
+    
+
+  #11760 
+
+  Use default label description and append label type.
+
+  Previously I used the change description, which is ok for Automatic labels, but Static 
+  labels may include more than one change.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11751
+  
+
+  #11751 
+
+  SVN: Support branching with multiple sources.
+
+  Only applies when SVN_MERGEINFO is enabled.  Import mode requires a resolve step on 
+  the branch.
+
+
+  #11750 
+
+  SVN: Relax dump file parsing with NodeEntry order.
+
+  Allows the parsing of malformed data from svndumpfilter.
+
+
+  #11745 
+
+  CVS: Parse non-standard RCS file, where 'log' and 'text' are on the same line.  
+  Support alternative delete method
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11565
+
+
+  #11565 
+
+  SVN: Write submitted change number to Change Map.
+
+  The pending change was being written to the changeMap.txt even though the submitted 
+  number was reported in the log.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11457
+
+
+  #11457 
+
+  CVS: Support empty an 'branch' symbol.
+
+  Generally the branch symbol is only added with an ID, however the RCS spec does not
+  specify that an ID is mandatory.  This change is to support manufactured CVS data 
+  from 3rd party import tools.
+
+
+  #11453 
+
+  CVS: Write empty files for corrupt RCS revisions.
+
+  Fix for CVS crash on corrupt RCS data.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11310
+
+
+  #11309 
+
+  CVS/SVN: Avoid double encoding a URI path the converter decodes the path and stores 
+  it in UTF8.
+
+
+  #11297 
+
+  Added .der to types map. (DER extension is used for binary DER encoded certificates)
+
+
+  #11273 
+
+  SVN: Add --tag=n option to search for labels in the SVN data.
+
+  Example use:
+
+    java -jar p4convert.jar --type=SVN --repo=svn.dump --tags=2
+
+    Sample output:
+    ... A:1 tags/1.0.4/
+    ... D:2 tags/7.04.3/
+
+    Key:
+       A - Automatic label
+       S - Static label
+       D
+       
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11248
+
+
+  #11248 
+
+  CVS: When branching from a label downgrade to ADD and use RCS content.
+
+
+  #11227 
+
+  CVS: Create MERGE action for branch with content on deleted revisions.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11188
+
+
+  #11186 
+
+  Support standard command line arguments.
+
+  The change was needed to extend the current features like --info and --user for CVS
+  and future SCM support.
+  
+
+  #11171 
+
+  CVS/SVN: Path translation support for '$' and other regex chars.
+
+
+  #11156 
+
+  CVS/SVN: Path translation support for {nnn}
+
+  Some SCM path contail '{nnn}' where nnn is a number, this caused the group regex 
+  to fail.
+
+
+  #11144 
+
+  CVS: Bug fix for strange case of a (dead) 1.1 revision.
+
+  This seems to occur when the source is from another branch.  Not a perfect solution
+  as I change this action to an add, but it allows the conversion to complete and no
+  content is lost.
+
+
+  #11143 
+
+  (work around) CVS: Downgrade branching a deleted rev to a warning.
+
+  CVS seems to allow revisions to be added on a branch then moved to 1.1 at the same
+  point in time.  The strange part is 1.1 is marked as dead.
+
+
+  #11109 (Bug 115)
+
+  SVN: Import mode - avoid reverting a pending delete on a file revision if followed 
+  by a remove dir action. 
+
+
+  #11071 
+
+  (undoc) 	Path map translator for CVS and SVN paths.
+	
+	To use create a path.map file with regex and group match.  Only the first matching 
+	entry is used.  The regex and group match are seperated by ', ' (or in regex terms
+	',\s+').  Lines starting with '#' are ignored.
+	
+	For example, 'trunk' is renamed to 'main', but other entries are left as-is.
+	
+	# path.map
+	trunk/(.*), //import/main/{1}
+	(.*), //import/{1}
+	
+	Note: if no file is found the default 'depot' and 'subPath' options are used to 
+	generate the map, preserving the original behaviour.
+	
+	CVS paths will always stat with the 'branch' name.  'main' for 1.1 and the symbol for
+	other branches.
+	
+	# path.map
+	main/projA/(.*), //import/projA/MAIN/{1}
+	release_(.*)/projA/(.*), //import/projA/REL{1}/{2}
+	(.*)/projA/(.*), //import/projA/TAG-{1}/{2}
+	(.*), //import/unexpected/{1}
+
+
+  #11064 (Bug 80)
+
+  CVS: added detection and support for +x revisions
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11061
+
+
+  #11048 #11047 #11043 #11042 #11041 #11040 #11031 #11030 #11029 #11025 #11024 
+  #11018 #11017 #11016 (Bug 117)
+  
+  CVS/SVN: Label support for Automatic and static labels in both IMPORT and
+  CONVERT mode.
+
+
+  #11005 
+
+  Changed default user/client to 'p4-user' and 'p4-client'.  
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.11000
+
+
+  #10997 
+
+  CVS: use a dynamic time window when processing pseudo branches.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.10988
+
+
+  #10983 (Bug 118)
+
+  SVN: Updated change number mapping.
+
+  Use the submitted change number not the pending number, for the changeMap.
+
+
+  #10952 
+
+  CVS add 1ms delay to pseudo branches.
+
+
+  #10945 
+
+  CVS branch of a branch, RCS ID was not calculated for branch.
+
+
+  #10921 #10920 (Bug 89)
+
+  CVS intern Strings to help reduce memory. 
+  
+  (Use Java 7 or greater)
+
+
+  #10919 (Bug 88)
+
+  CVS parse detection of 'comment' in RCS header.
+
+
+  #10916 (Bug 78)
+
+  CVS Unicode Translation support.
+
+
+  #10910 
+
+  CVS progress counters for large conversion.
+
+
+  #10882 
+
+  CVS non branched revisions.
+
+  Address issue when adding files to a branch that have no connection to main.  CVS 
+  identifies these as 'dead' revisions on main with a branch.
+
+
+  #10877 (Bug 90)
+
+  Fix to add a warning if data block is missing.
+
+  Unbranch operation fixes to follow (when unrelated files are added to branches 
+  off main)
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.10795
+
+
+  #10774 (Bug 77)
+
+  CVS: Updated end of RCS content block detection.
+
+  An @ character at the end of the line followed by a blank line could fool the 
+  converter into exiting the block early.  Detection now uses original line with 
+  expanded @@ and counts odd/even.
+
+
+  #10773 (Bug 75)
+
+  Added Audit Log support to CVS.
+
+  CVS does not store an MD5 with the RCS delta, so the field is set to zeros.
+
+
+  #10772 (Bug 52)
+
+  Removed unused doc build files and old html docs.
+
+  Documentation is build with ant rules:
+
+    ant docs   (pdf documents)
+    ant web    (web pages)
+
+  Also included in release rules:
+
+    ant -Dversion=PUBLIC.change_number release
+
+
+  #10730 #10728 
+
+  CVS: new Label feature.
+
+  Scans the RCS tree counting revisions on a branch.  If the branch only has one 
+  revision it gets downgraded to a Label.  Support added for Import and Convert mode.
+
+  Activate using:
+
+    com.p4convert.cvs.labels=true
+
+
+  #10705 
+
+  CVS: Added condition to support a 'dead' 1.1 revision.
+
+
+  #10703 
+
+  Import Mode: Fix for add + branch in the same change.
+  Convert Mode: Allow add + branch, but copy +x and other properties to new object.	
+
+
+  #10689 
+
+  Port SVN symlink fix (missing target)
+
+
+  #10655 
+
+  Fixed buffered writer.  Fills buffer with one or more lines upto 8K and then save 
+  remainder. Includes line/EOF (null) detection.
+
+
+  #10654 
+
+  Added hidden configuration option for the max line buffer for reading a binary file.
+
+  hidden.maxLineBuffer = (default) 10*1024*1024
+
+
+  #10497 
+
+  New low-level RCS reader using a byte[] to manage CVS lines.  
+
+  Designed to help with the processing of BINARY data in RCS files.  The line reading
+  code still looks for a unix style '\n', but has a MAX LINE (hard coded to 10K). 
+ 
+
+  #9807 
+
+  Initial import of p4-convert (from change 894340)
+
+
+--------------------------------------------------------------------------
+
 Bugs fixed in 2014.1
+
+  #950218 (Bug #75190)
+  
+  Allow add + branch, but copy +x and other properties to new object.
+
+
+  #949303 (Bug #75631)
+  
+  Fix for Import mode; when a file is renamed (case only) and contains
+  an edit. The branch part of the rename is now downgraded to an EDIT.
+
+
+  #948124 
+  
+  New Web and PDF documents
+  
+  
+  #947285 (Bug #75642)
+  
+  Fix for Symlinks with no target.  Converter now report a warning and
+  uses a dummy '_unset_' value for the target.
+ 
+ 
+  #894336 (Bug #73985)
+  
+  Filter for'+x' modifier on Symlinks.
+
 
 	#872553 #872245 (Bug #73235 #72982)
 	
