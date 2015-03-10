@@ -155,7 +155,12 @@ public abstract class RcsNavigator {
 						String fromPath = fromBranch + "/" + basePath;
 						entry.setFromPath(fromPath);
 						entry.setReverse(node.isReverse());
-						foundBranchPoint(tag, entry);
+
+						if (entry.getState().equals("dead")) {
+							logger.info("skipping dead source: " + entry);
+						} else {
+							foundBranchPoint(tag, entry);
+						}
 					}
 				}
 			}

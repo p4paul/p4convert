@@ -427,6 +427,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case051() throws Exception {
+		Config.set(CFG.CVS_LABELS, true);
 		Config.set(CFG.CVS_MODULE, "br-trunk-del");
 		testCase("CVScluster01");
 	}
@@ -485,6 +486,12 @@ public class CvsImportTests {
 	public void case058() throws Exception {
 		Config.set(CFG.CVS_LABELS, true);
 		Config.set(CFG.CVS_MODULE, "label-view");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case059() throws Exception {
+		Config.set(CFG.CVS_MODULE, "no-main");
 		testCase("CVScluster01");
 	}
 

@@ -125,6 +125,15 @@ public class CvsProcessNode extends ProcessNode {
 			}
 		}
 
+		// skip REMOVE action on 1.1 revisions
+		if (nodeAction == Action.REMOVE) {
+			String id = revEntry.getId().toString();
+			if (id.equals("1.1")) {
+				logger.info("skipping dead revision: " + id);
+				return;
+			}
+		}
+
 		boolean subBlock = false;
 		boolean caseRename = false;
 
@@ -202,7 +211,6 @@ public class CvsProcessNode extends ProcessNode {
 
 		// Set node condition ('add', 'change' or 'delete')
 		String s = revEntry.getState();
-		String id = revEntry.getId().toString();
 		if (s != null) {
 			if ("Exp".equals(s)) {
 				action = Action.ADD;
@@ -211,11 +219,7 @@ public class CvsProcessNode extends ProcessNode {
 			} else if ("Rel".equals(s)) {
 				action = Action.ADD;
 			} else if ("dead".equals(s)) {
-				if (id.equals("1.1")) {
-					action = Action.ADD;
-				} else {
-					action = Action.REMOVE;
-				}
+				action = Action.REMOVE;
 			} else if ("BRANCH".equals(s)) {
 				action = Action.BRANCH;
 			} else {

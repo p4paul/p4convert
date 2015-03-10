@@ -1,27 +1,19 @@
-@pv@ 9 @db.rev@ @//import/main/src/foo@ 2 1 1 6 1049903497 1049903497 B6C0FDDDAA88F6B3C543B7AF9F5DDE11 20 0 0 @//import/main/src/foo@ @1.6@ 1 
-@pv@ 9 @db.rev@ @//import/main/src/foo@ 1 1 0 1 1034847014 1034847014 D41D8CD98F00B204E9800998ECF8427E 0 0 0 @//import/main/src/foo@ @1.1@ 1 
-@pv@ 9 @db.rev@ @//import/rel_3_0/src/foo@ 3 1 1 4 1034847242 1034847242 1D15DAB63E8E53ADAD3008A21798C8B2 46 0 0 @//import/rel_3_0/src/foo@ @1.4@ 1 
-@pv@ 9 @db.rev@ @//import/rel_3_0/src/foo@ 2 1 4 3 1034847014 1034847014 D41D8CD98F00B204E9800998ECF8427E 0 0 1 @//import/main/src/foo@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/main/src/foo@ 1 1 0 5 1049903497 1049903497 B6C0FDDDAA88F6B3C543B7AF9F5DDE11 20 0 0 @//import/main/src/foo@ @1.5@ 1 
+@pv@ 9 @db.rev@ @//import/rel_3_0/src/foo@ 2 1 1 3 1034847242 1034847242 1D15DAB63E8E53ADAD3008A21798C8B2 46 0 0 @//import/rel_3_0/src/foo@ @1.3@ 1 
 @pv@ 9 @db.rev@ @//import/rel_3_0/src/foo@ 1 1 0 2 1034847014 1034847014 E71BE17E30DA9C4FE5549E21420FD77C 23 0 0 @//import/rel_3_0/src/foo@ @1.2@ 1 
-@pv@ 9 @db.rev@ @//import/rel_3_0_ean/src/foo@ 1 1 3 5 1034847242 1034847242 1D15DAB63E8E53ADAD3008A21798C8B2 46 0 1 @//import/rel_3_0/src/foo@ @1.4@ 1 
-@pv@ 9 @db.rev@ @//import/rel_3_1/src/foo@ 1 1 3 7 1049903497 1049903497 B6C0FDDDAA88F6B3C543B7AF9F5DDE11 20 0 1 @//import/main/src/foo@ @1.6@ 1 
-@pv@ 0 @db.integed@ @//import/main/src/foo@ @//import/rel_3_0/src/foo@ 1 2 0 1 5 3 
-@pv@ 0 @db.integed@ @//import/main/src/foo@ @//import/rel_3_1/src/foo@ 0 1 0 2 3 7 
-@pv@ 0 @db.integed@ @//import/rel_3_0/src/foo@ @//import/main/src/foo@ 0 1 1 2 4 3 
-@pv@ 0 @db.integed@ @//import/rel_3_0/src/foo@ @//import/rel_3_0_ean/src/foo@ 0 1 0 3 3 5 
-@pv@ 0 @db.integed@ @//import/rel_3_0_ean/src/foo@ @//import/rel_3_0/src/foo@ 0 3 0 1 2 5 
-@pv@ 0 @db.integed@ @//import/rel_3_1/src/foo@ @//import/main/src/foo@ 0 2 0 1 2 7 
-@pv@ 2 @db.change@ 7 7 @svn-client@ @u2@ 1049903497 1 @desc A
+@pv@ 9 @db.rev@ @//import/rel_3_0_ean/src/foo@ 1 1 3 4 1034847242 1034847242 1D15DAB63E8E53ADAD3008A21798C8B2 46 0 1 @//import/rel_3_0/src/foo@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/rel_3_1/src/foo@ 1 1 3 6 1049903497 1049903497 B6C0FDDDAA88F6B3C543B7AF9F5DDE11 20 0 1 @//import/main/src/foo@ @1.5@ 1 
+@pv@ 0 @db.integed@ @//import/main/src/foo@ @//import/rel_3_1/src/foo@ 0 1 0 1 3 6 
+@pv@ 0 @db.integed@ @//import/rel_3_0/src/foo@ @//import/rel_3_0_ean/src/foo@ 0 1 0 2 3 4 
+@pv@ 0 @db.integed@ @//import/rel_3_0_ean/src/foo@ @//import/rel_3_0/src/foo@ 0 2 0 1 2 4 
+@pv@ 0 @db.integed@ @//import/rel_3_1/src/foo@ @//import/main/src/foo@ 0 1 0 1 2 6 
 @pv@ 2 @db.change@ 6 6 @svn-client@ @u2@ 1049903497 1 @desc A
-@pv@ 2 @db.change@ 5 5 @svn-client@ @u1@ 1034847242 1 @desc D
+@pv@ 2 @db.change@ 5 5 @svn-client@ @u2@ 1049903497 1 @desc A
 @pv@ 2 @db.change@ 4 4 @svn-client@ @u1@ 1034847242 1 @desc D
-@pv@ 2 @db.change@ 3 3 @svn-client@ @u1@ 1034847014 1 @desc B
+@pv@ 2 @db.change@ 3 3 @svn-client@ @u1@ 1034847242 1 @desc D
 @pv@ 2 @db.change@ 2 2 @svn-client@ @u1@ 1034847014 1 @desc C
-@pv@ 2 @db.change@ 1 1 @svn-client@ @u1@ 1034847014 1 @desc B
-@pv@ 0 @db.desc@ 7 @desc A
 @pv@ 0 @db.desc@ 6 @desc A
-@pv@ 0 @db.desc@ 5 @desc D
+@pv@ 0 @db.desc@ 5 @desc A
 @pv@ 0 @db.desc@ 4 @desc D
-@pv@ 0 @db.desc@ 3 @desc B
+@pv@ 0 @db.desc@ 3 @desc D
 @pv@ 0 @db.desc@ 2 @desc C
-@pv@ 0 @db.desc@ 1 @desc B
