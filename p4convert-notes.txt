@@ -50,6 +50,15 @@ Compatibility Statements
 Current Workshop Changes (NOT IN LATEST RELEASE)
 
 
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.12004
+
+  #12001 (Bug 145)
+
+  CVS: Fix 'dead' 1.1 revisions from showing up as branched revisions.
+
+
   #11979 (Bug 166)
 
   CVS: Fix label view when tagging files in later changes.
