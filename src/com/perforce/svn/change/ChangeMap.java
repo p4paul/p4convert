@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
-import java.util.Map;
 import java.util.TreeMap;
 
 import org.slf4j.Logger;
@@ -16,8 +15,8 @@ public class ChangeMap {
 	private static Logger logger = LoggerFactory.getLogger(ChangeMap.class);
 
 	private static Boolean loaded = false;
-	private static Map<Integer, Long> mapOfRevisions = new TreeMap<Integer, Long>();
-	private static Map<Long, Integer> mapOfChanges = new TreeMap<Long, Integer>();
+	private static TreeMap<Integer, Long> mapOfRevisions = new TreeMap<Integer, Long>();
+	private static TreeMap<Long, Integer> mapOfChanges = new TreeMap<Long, Integer>();
 
 	public static void add(long svnRevision, long p4Change) {
 		mapOfRevisions.put((int) svnRevision, p4Change);
@@ -28,14 +27,23 @@ public class ChangeMap {
 		if (mapOfRevisions.containsKey(revision)) {
 			return mapOfRevisions.get(revision);
 		}
-		return 0;
+		Integer change = mapOfRevisions.floorKey(revision);
+		if (change == null) {
+			return 0;
+		}
+		return change;
 	}
 
 	public static int getRevision(long change) {
 		if (mapOfChanges.containsKey(change)) {
 			return mapOfChanges.get(change);
 		}
-		return 0;
+		Long rev = mapOfChanges.floorKey(change);
+		if (rev == null) {
+			return 0;
+		}
+		// CAUTION if long is too big
+		return (int) (rev + 0);
 	}
 
 	public static void store(String file) throws Exception {
@@ -65,7 +73,7 @@ public class ChangeMap {
 		try {
 			rf = new RandomAccessFile(file, "r");
 			String line = null;
-			
+
 			if (logger.isInfoEnabled()) {
 				logger.info("loading ChangeMap: \t" + file);
 			}

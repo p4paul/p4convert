@@ -44,10 +44,7 @@ public class QueryPerforce implements QueryInterface {
 	}
 
 	@Override
-	public int findHeadRevision(String path, long svnRev) throws Exception {
-		// convert subversion revision to Perforce change for query
-		long change = ChangeMap.getChange((int) svnRev);
-
+	public int findHeadRevision(String path, long change) throws Exception {
 		// Find revision at specified change
 		IExtendedFileSpec rev = findRevision(path, change);
 		int head = 0;
@@ -77,7 +74,7 @@ public class QueryPerforce implements QueryInterface {
 
 		// convert subversion revision to Perforce change for query
 		long change = ChangeMap.getChange((int) svnRev);
-				
+
 		// Get connection and build file spec
 		IOptionsServer iserver = depot.getIServer();
 		if (change == 0) {
