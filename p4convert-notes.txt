@@ -52,6 +52,18 @@ Current Workshop Changes (NOT IN LATEST RELEASE)
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.12035
+
+  #12035
+
+	SVN: Look for previous change in ChangeMap when missing a Subversion revision 
+	entry. 
+	
+	Issue is normally due to filtered SVN dumps.
+	
+
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12004
 
   #12001 (Bug 145)
