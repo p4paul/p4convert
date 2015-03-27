@@ -32,12 +32,8 @@ public class RevisionNavigator extends RcsNavigator {
 		if (logger.isDebugEnabled()) {
 			logger.debug("tag entry: " + tagName + " " + entry.getId());
 		}
-
-		if (branchList.isBranch(tagName) || "main".equals(tagName) || !isLabel) {
-			revList.add(entry);
-		} else {
-			// added by parent in foundTagEntry()
-		}
+		
+		revList.add(entry);
 	}
 
 	@Override

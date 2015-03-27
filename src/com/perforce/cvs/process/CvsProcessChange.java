@@ -31,7 +31,8 @@ import com.perforce.svn.query.QueryInterface;
 
 public class CvsProcessChange extends ProcessChange {
 
-	private static Logger logger = LoggerFactory.getLogger(CvsProcessChange.class);
+	private static Logger logger = LoggerFactory
+			.getLogger(CvsProcessChange.class);
 
 	private DepotInterface depot;
 
@@ -327,7 +328,12 @@ public class CvsProcessChange extends ProcessChange {
 
 		// tag any labels
 		if (isLabels) {
-			processLabel.labelRev(entry, change.getChange());
+			String id = entry.getId().toString();
+			if (entry.getState().equals("dead") && id.equals("1.1")) {
+				logger.info("skip labelling dead revision: 1.1");
+			} else {
+				processLabel.labelRev(entry, change.getChange());
+			}
 		}
 		nodeID++;
 	}

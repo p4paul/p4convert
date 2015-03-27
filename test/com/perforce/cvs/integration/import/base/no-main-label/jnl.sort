@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/newbranch/trouble.c@ 1 1 0 1 1425651324 1425651324 CC615B5E69AA4B0F03D48415ABF3F5ED 13 0 0 @//import/newbranch/trouble.c@ @1.1@ 1 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @pallen@ 1425651324 1 @file trouble.c was initially ad@ @//import/newbranch/*@ 
+@pv@ 0 @db.desc@ 1 @file trouble.c was initially added on branch newbranch.

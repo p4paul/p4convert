@@ -494,6 +494,13 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "no-main");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case060() throws Exception {
+		Config.set(CFG.CVS_LABELS, true);
+		Config.set(CFG.CVS_MODULE, "no-main-label");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test

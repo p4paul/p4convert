@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols
+  main:1.1
+	newbranch:1.1.0.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2015.03.06.14.15.24;	author pallen;	state dead;
+branches
+	1.1.2.1;
+next	;
+commitid	5TgUaOUCXzWwmycy;
+
+1.1.2.1
+date	2015.03.06.14.15.24;	author pallen;	state Exp;
+branches;
+next	;
+commitid	5TgUaOUCXzWwmycy;
+
+
+desc
+@@
+
+
+1.1
+log
+@file trouble.c was initially added on branch newbranch.
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Add
+@
+text
+@a0 1
+just testing
+@
+
