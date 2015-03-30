@@ -52,6 +52,21 @@ Current Workshop Changes (NOT IN LATEST RELEASE)
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.12195
+
+  #12195
+
+  CVS - Use the RCS 'expand' field to detect BINARY files.  If set this will take 
+  precedence over the type map.
+
+
+  #12185
+
+  CVS: Avoid labeling dead revisions.
+  
+  
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12035
 
   #12035
