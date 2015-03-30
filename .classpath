@@ -11,10 +11,10 @@
 			<attribute name="javadoc_location" value="file:/Users/pallen/Workspaces/main.p4-convert.svn/public/ext/p4java-2014.1.965322/docs/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="ext/icu4j-51_2.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry exported="true" kind="lib" path="ext/icu4j-51_2.jar"/>
 	<classpathentry exported="true" kind="lib" path="ext/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
 	<classpathentry exported="true" kind="lib" path="ext/org.junit_4.8.1.v4_8_1_v20100427-1100/junit.jar"/>
 	<classpathentry exported="true" kind="lib" path="ext/slf4j-api-1.6.6.jar"/>

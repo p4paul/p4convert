@@ -164,6 +164,11 @@ public class CvsProcessNode extends ProcessNode {
 
 		ContentType type = ContentType.UNKNOWN;
 
+		// Check if RCS 'expand' for binary file
+		if (revEntry.isBinary()) {
+			type = ContentType.P4_BINARY;
+		}
+
 		// Check if extension is defined in typemap
 		if (type == ContentType.UNKNOWN) {
 			type = TypeMap.getContentType(nodePath);

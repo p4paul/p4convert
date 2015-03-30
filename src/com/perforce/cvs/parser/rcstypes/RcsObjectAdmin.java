@@ -28,11 +28,11 @@ public class RcsObjectAdmin extends RcsObject {
 		return (Boolean) get(RcsSchema.STRICT);
 	}
 
-	public RcsObjectString getComment() {
-		return (RcsObjectString) get(RcsSchema.COMMENT);
+	public String getComment() {
+		return (String) get(RcsSchema.COMMENT);
 	}
 
-	public RcsObjectString getExpand() {
-		return (RcsObjectString) get(RcsSchema.EXPAND);
+	public String getExpand() {
+		return (String) get(RcsSchema.EXPAND);
 	}
 }

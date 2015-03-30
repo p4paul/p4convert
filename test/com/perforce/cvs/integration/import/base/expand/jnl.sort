@@ -1,0 +1,6 @@
+@pv@ 9 @db.rev@ @//import/main/logo.png@ 1 65537 0 2 1411027655 1411027655 0A9F2B1E987FDFF7C7E231AD27E6C50D 3550 0 0 @//import/main/logo.png@ @1.2@ 65537 
+@pv@ 9 @db.rev@ @//import/main/win_line.txt@ 1 1 0 1 1410353804 1410353804 C3A74634E4463B020E86A4507705DD22 22 0 0 @//import/main/win_line.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @radek@ 1411027655 1 @added
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1410353804 1 @added
+@pv@ 0 @db.desc@ 2 @added
+@pv@ 0 @db.desc@ 1 @added

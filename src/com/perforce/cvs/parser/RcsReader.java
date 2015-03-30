@@ -247,6 +247,7 @@ public class RcsReader {
 				break;
 
 			case COMMENT:
+			case EXPAND:
 				if (line.contains("@")) {
 					int begin = line.indexOf("@") + 1;
 					int end = line.lastIndexOf("@");

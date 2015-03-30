@@ -123,6 +123,10 @@ public abstract class RcsNavigator {
 
 			// set file permission properties for entry
 			entry.setProps(rcsRevision.getProps());
+			
+			// set binary if 'expand' is set
+			RcsObjectAdmin admin = rcsRevision.getAdmin();
+			entry.setBinary(admin.getExpand());
 
 			// add label, before revision is added by foundBranch[Point|Entry]
 			List<String> labels = getLabels(id);

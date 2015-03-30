@@ -32,6 +32,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	private boolean pseudo = false;
 	private boolean reverse = false;
 	private List<ContentProperty> props = new ArrayList<ContentProperty>();
+	private boolean binary;
 
 	private String fromPath;
 	private List<String> labels = new ArrayList<String>();
@@ -157,6 +158,17 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 
 	public void setState(String s) {
 		state = s.intern();
+	}
+
+	public boolean isBinary() {
+		return binary;
+	}
+
+	public void setBinary(String expand) {
+		if(expand != null && expand.contains("b")) {
+			binary = true;
+		}
+		binary = false;
 	}
 
 	public String toString() {
