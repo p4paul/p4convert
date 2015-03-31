@@ -828,7 +828,7 @@ TypeMap:
       <itemizedlist>
         <listitem>
           <para>
-            <replaceable>>&lt;rev&gt;</replaceable> substituted with the
+            <replaceable>&lt;rev&gt;</replaceable> substituted with the
             Subversion revision
           </para>
         </listitem>
