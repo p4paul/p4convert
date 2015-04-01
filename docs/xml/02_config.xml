@@ -557,16 +557,37 @@ com.p4convert.log.changeMap=changeMap.txt
 
 <programlisting language="ini">
 com.p4convert.p4.unicode=false
+com.p4convert.p4.translate=true
 com.p4convert.p4.charset=&lt;none&gt;
 </programlisting>
 
     <para>
-      A UTF8 client example: (for a full list see <command>p4 help
-      charset</command>)
+      In some situations it is preferable to import text files as-is (untranslated).
+      Typically this is true for a non-unicode environment where all the user are on
+      Windows clients.  To disable translation set the following option to
+      <parameter>false</parameter>.
+    </para>
+
+<programlisting language="ini">
+com.p4convert.p4.translate=false
+</programlisting>
+
+    <para>
+      When translation is disabled high-ascii text uses the content type
+      <parameter>TEXT-RAW</parameter> and the following warning is disabled:
+    </para>
+    
+<programlisting language="ini">
+... Non-unicode server, downgrading file to text
+</programlisting>
+
+    <para>
+      Recommended configuration for a Unicode conversion:
     </para>
 
 <programlisting language="ini">
 com.p4convert.p4.unicode=true
+com.p4convert.p4.translate=true
 com.p4convert.p4.charset=utf8
 </programlisting>
 
