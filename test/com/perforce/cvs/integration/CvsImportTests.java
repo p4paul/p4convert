@@ -219,6 +219,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case019() throws Exception {
+		Config.set(CFG.P4_TRANSLATE, false);
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "win1251");
 		testCase("CVScluster01");
@@ -505,6 +506,14 @@ public class CvsImportTests {
 	@Test
 	public void case061() throws Exception {
 		Config.set(CFG.CVS_MODULE, "expand");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case062() throws Exception {
+		Config.set(CFG.P4_TRANSLATE, true);
+		Config.set(CFG.P4_UNICODE, false);
+		Config.set(CFG.CVS_MODULE, "win1251_tr");
 		testCase("CVScluster01");
 	}
 

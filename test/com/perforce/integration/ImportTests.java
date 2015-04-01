@@ -138,6 +138,7 @@ public class ImportTests {
 
 	@Test
 	public void case003() throws Exception { // TEST
+		TypeMap.add("gif", "binary");
 		String test = "binary_file";
 		testCase(test);
 	}
@@ -359,6 +360,7 @@ public class ImportTests {
 
 	@Test
 	public void case038() throws Exception {
+		Config.set(CFG.P4_TRANSLATE, true);
 		Config.set(CFG.P4_UNICODE, false);
 		// Test non-unicode server behaviour
 		String test = "utf8_files";
@@ -1062,6 +1064,15 @@ public class ImportTests {
 		Config.set(CFG.SVN_PROP_ENABLED, false);
 		Config.set(CFG.SVN_MERGEINFO, true);
 		String test = "branch_multi";
+		testCase(test);
+	}
+	
+	@Test
+	public void case124() throws Exception {
+		Config.set(CFG.P4_TRANSLATE, true);
+		Config.set(CFG.P4_UNICODE, false);
+
+		String test = "utf8_files_tr";
 		testCase(test);
 	}
 

@@ -23,6 +23,7 @@ public enum CFG {
 	P4_CLIENT("p4.client", String.class),
 	P4_CLIENT_ROOT("p4.clientRoot", String.class),
 	P4_UNICODE("p4.unicode", Boolean.class),
+	P4_TRANSLATE("p4.translate", Boolean.class),
 	P4_CHARSET("p4.charset", String.class),
 	P4_DEPOT_PATH("p4.depotPath", String.class),
 	P4_DEPOT_SUB("p4.subPath", String.class),

@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import com.ibm.icu.text.CharsetDetector;
 import com.ibm.icu.text.CharsetMatch;
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
 import com.perforce.svn.parser.Content;
 
 public class ScanArchive {
@@ -49,10 +51,26 @@ public class ScanArchive {
 		if (cm != null) {
 			confidence = cm.getConfidence();
 
-			if (confidence > minConfidenceLevel)
+			if (confidence > minConfidenceLevel) {
 				type = ContentType.parse(cm.getName());
-			else
+
+				// If translation is disabled, use RAW for unicode files.
+				if (!(Boolean) Config.get(CFG.P4_TRANSLATE)) {
+					switch (type) {
+					case UTF_16LE:
+					case UTF_16BE:
+					case UTF_32LE:
+					case UTF_32BE:
+						break;
+
+					default:
+						type = ContentType.P4_RAW;
+						break;
+					}
+				}
+			} else {
 				type = ContentType.P4_BINARY;
+			}
 
 			if (logger.isTraceEnabled()) {
 				logger.trace("icu4j detected:" + cm.getName() + " conf%:"

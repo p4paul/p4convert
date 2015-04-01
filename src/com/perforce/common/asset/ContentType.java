@@ -41,6 +41,7 @@ public enum ContentType {
 
 	// Perforce content types
 	P4_TEXT("UTF-8", TranslateCharsetType.TEXT),
+	P4_RAW("RAW-TEXT", TranslateCharsetType.TEXT),
 	P4_UTF16("UTF-16LE", TranslateCharsetType.UTF16),
 	P4_UNICODE("UTF-8", TranslateCharsetType.UTF8),
 	P4_BINARY("BINARY", TranslateCharsetType.BINARY),

@@ -5,9 +5,9 @@
 @pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
 @pv@ 0 @db.desc@ 1 @added
 @ 
-@pv@ 0 @db.change@ 1 1 @svn-client@ @radek@ 1410433755 1 @added
+@pv@ 0 @db.change@ 1 1 @svn-client@ @radek@ 1410336306 1 @added
 @ 
-@pv@ 3 @db.rev@ @//import/main/utf16_le.txt@ 1 17301505 0 1 1410433755 1410433755 00000000000000000000000000000000 @//import/main/utf16_le.txt@ @1.1@ 17301505 
-@pv@ 0 @db.revcx@ 1 @//import/main/utf16_le.txt@ 1 0 
+@pv@ 3 @db.rev@ @//import/main/file.txt@ 1 1 0 1 1410336306 1410336306 00000000000000000000000000000000 @//import/main/file.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/main/file.txt@ 1 0 
 @rv@ 1 @db.counters@ @change@ @1@ 
 @rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

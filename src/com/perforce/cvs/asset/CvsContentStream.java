@@ -2,14 +2,14 @@ package com.perforce.cvs.asset;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.perforce.common.Stats;
-import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentStream;
+import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.ScanContentStream;
 import com.perforce.svn.parser.Content;
 
@@ -25,7 +25,10 @@ public class CvsContentStream extends ContentStream {
 	private Iterator<ByteArrayOutputStream> markIterator;
 	private byte[] markRemainder;
 
+	private ContentType contentType;
+
 	public CvsContentStream(Content content) {
+		this.contentType = content.getType();
 		this.blockIterator = content.getBlock().iterator();
 		setFilter(true);
 	}
@@ -115,8 +118,43 @@ public class CvsContentStream extends ContentStream {
 
 	@Override
 	public boolean removeBOM() {
-		logger.warn("NOT IMPLEMENTED YET!");
-		Stats.inc(StatsType.warningCount);
+
+/*		byte[] bom = null;
+		byte[] b = null;
+		switch (contentType) {
+		case UTF_8:
+			bom = new byte[] { (byte) 0xEF, (byte) 0xBB, (byte) 0xBF };
+			b = new byte[bom.length];
+			break;
+
+		case UTF_16LE:
+			bom = new byte[] { (byte) 0xFF, (byte) 0xFE };
+			b = new byte[bom.length];
+			break;
+
+		case UTF_16BE:
+			bom = new byte[] { (byte) 0xFE, (byte) 0xFF };
+			b = new byte[bom.length];
+			break;
+
+		default:
+			return false;
+		}
+
+		// return to start position if no match
+		try {
+			mark(0);
+			read(b);
+			if (Arrays.equals(b, bom)) {
+				return true;
+			} else {
+				reset();
+				return false;
+			}
+		} catch (IOException e) {
+			return false;
+		}
+		*/
 		return true;
 	}
 

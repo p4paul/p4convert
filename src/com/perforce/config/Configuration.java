@@ -69,6 +69,7 @@ public class Configuration {
 		set(CFG.P4_CLIENT, "p4-client");
 		set(CFG.P4_CLIENT_ROOT, pwd + "ws" + File.separator);
 		set(CFG.P4_UNICODE, false);
+		set(CFG.P4_TRANSLATE, true);
 		set(CFG.P4_CHARSET, "<none>");
 		set(CFG.P4_DEPOT_PATH, "import");
 		set(CFG.P4_DEPOT_SUB, File.separator);
