@@ -52,6 +52,24 @@ Current Workshop Changes (NOT IN LATEST RELEASE)
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.12224
+
+  #12222
+
+  New non-translate mode for high-ascii files.
+
+  If the com.p4convert.p4.translate mode is disabled then text files with high-ascii
+  characters are given the new type RAW-TEXT. Raw types are not translated and the
+  content is used as-is. With the exception of UTF16/32 files.
+
+
+  #12219
+
+  Update ICU4J libs to 54_1_1
+
+
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12195
 
   #12195
