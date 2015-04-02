@@ -8,9 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.asset.ContentProperty;
+import com.perforce.common.process.ProcessUser;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
+import com.perforce.config.UserMapping;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
 import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 
@@ -109,7 +111,17 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public String getAuthor() {
-		return author;
+		// Rename users based on Mapping file
+		String user = UserMapping.get(author);
+
+		// No choice here; any reserved characters used are purged.
+		// Remove '@' and '#', but replace ' ' with '_'
+		user = ProcessUser.filter(user);
+
+		if (logger.isTraceEnabled()) {
+			logger.trace("username: " + author + " => " + user);
+		}
+		return user;
 	}
 
 	public void setAuthor(String user) {
@@ -165,7 +177,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	}
 
 	public void setBinary(String expand) {
-		if(expand != null && expand.contains("b")) {
+		if (expand != null && expand.contains("b")) {
 			binary = true;
 		}
 		binary = false;

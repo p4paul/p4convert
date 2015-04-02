@@ -46,11 +46,15 @@ public class UserMapping {
 		}
 	}
 
-	public static String get(String svnUser) {
-		if (map.containsKey(svnUser))
-			return map.get(svnUser);
+	public static String get(String scmUser) {
+		if (map.containsKey(scmUser))
+			return map.get(scmUser);
 		else
-			return svnUser;
+			return scmUser;
+	}
+	
+	public static void add(String scmUser, String p4User) {
+		map.put(scmUser, p4User);
 	}
 
 }

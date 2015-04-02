@@ -22,6 +22,7 @@ import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
 import com.perforce.config.ScmType;
+import com.perforce.config.UserMapping;
 import com.perforce.cvs.process.CvsProcessChange;
 import com.perforce.integration.SystemCaller;
 
@@ -494,6 +495,13 @@ public class CvsIntegrationTests {
 		Config.set(CFG.P4_TRANSLATE, true);
 		Config.set(CFG.P4_UNICODE, false);
 		Config.set(CFG.CVS_MODULE, "win1251_tr");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case063() throws Exception {
+		UserMapping.add("jen", "jennifer");
+		Config.set(CFG.CVS_MODULE, "username_map");
 		testCase("CVScluster01");
 	}
 

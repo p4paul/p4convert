@@ -143,8 +143,16 @@ public class Main {
 		// --repo=VALUE (REQUIRED for all the following options)
 		if (line.hasOption("repo")) {
 			repoPath = line.getOptionValue("repo");
-			Config.set(CFG.SCM_TYPE, scmType);
-			setEndRevision(repoPath);
+			switch (scmType) {
+			case SVN:
+				Config.set(CFG.SVN_DUMPFILE, repoPath);
+				setEndRevision(repoPath);
+				break;
+			case CVS:
+				Config.set(CFG.CVS_ROOT, repoPath);
+				break;
+			default:
+			}
 		} else {
 			return ExitCode.USAGE;
 		}
@@ -219,33 +227,21 @@ public class Main {
 			// override if --repo flag is used
 			if (line.hasOption("repo")) {
 				String repoPath = line.getOptionValue("repo");
-				StringBuffer sb = new StringBuffer();
-				sb.append("Override: ");
-				sb.append(CFG.SVN_DUMPFILE.name() + "=");
-				sb.append(repoPath);
-				logger.info(sb.toString());
+				logger.debug("... flag: --repo=" + repoPath);
 				Config.set(CFG.SVN_DUMPFILE, repoPath);
 			}
 
 			// override if --start flag is used
 			if (line.hasOption("start")) {
 				long start = Long.parseLong(line.getOptionValue("start"));
-				StringBuffer sb = new StringBuffer();
-				sb.append("Override: ");
-				sb.append(CFG.SVN_START + "=");
-				sb.append(start);
-				logger.info(sb.toString());
+				logger.debug("... flag: --start=" + start);
 				Config.set(CFG.SVN_START, start);
 			}
 
 			// override if --end flag is used
 			if (line.hasOption("end")) {
 				long end = Long.parseLong(line.getOptionValue("end"));
-				StringBuffer sb = new StringBuffer();
-				sb.append("Override: ");
-				sb.append(CFG.SVN_END + "=");
-				sb.append(end);
-				logger.info(sb.toString());
+				logger.debug("... flag: --end=" + end);
 				Config.set(CFG.SVN_END, end);
 			}
 
@@ -256,11 +252,7 @@ public class Main {
 			// override if --repo flag is used
 			if (line.hasOption("repo")) {
 				String repoPath = line.getOptionValue("repo");
-				StringBuffer sb = new StringBuffer();
-				sb.append("Override: ");
-				sb.append(CFG.CVS_ROOT.name() + "=");
-				sb.append(repoPath);
-				logger.info(sb.toString());
+				logger.debug("... flag: --repo=" + repoPath);
 				Config.set(CFG.CVS_ROOT, repoPath);
 			}
 
