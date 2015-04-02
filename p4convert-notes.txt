@@ -47,7 +47,12 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
-Current Workshop Changes (NOT IN LATEST RELEASE)
+Release PUBLIC.Main.12235
+
+  #12235 (Bug 84)
+
+  CVS Now supports the --users flag for CVS returning a list of usernames.
+  The map file can then be used to remap usernames during the import.
 
 
 --------------------------------------------------------------------------
