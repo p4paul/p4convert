@@ -17,6 +17,7 @@ import com.perforce.common.process.ProcessNode;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.cvs.RevisionEntry;
+import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 import com.perforce.svn.change.ChangeInterface;
 import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
@@ -125,10 +126,10 @@ public class CvsProcessNode extends ProcessNode {
 			}
 		}
 
-		// skip REMOVE action on 1.1 revisions
+		// skip REMOVE action on all first revisions in a branch
 		if (nodeAction == Action.REMOVE) {
-			String id = revEntry.getId().toString();
-			if (id.equals("1.1")) {
+			RcsObjectNum id = revEntry.getId();
+			if (id.getMinor() == 1) {
 				logger.info("skipping dead revision: " + id);
 				return;
 			}

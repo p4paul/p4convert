@@ -161,7 +161,7 @@ public abstract class RcsNavigator {
 						entry.setReverse(node.isReverse());
 
 						if (entry.getState().equals("dead")) {
-							logger.info("skipping dead source: " + entry);
+							logger.debug("skipping dead source: " + entry);
 						} else {
 							foundBranchPoint(tag, entry);
 						}
