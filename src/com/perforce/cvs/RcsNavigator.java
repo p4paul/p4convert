@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.RcsReader;
 import com.perforce.cvs.parser.RcsSchema;
 import com.perforce.cvs.parser.rcstypes.RcsObjectAdmin;
@@ -100,11 +101,36 @@ public abstract class RcsNavigator {
 				logger.debug("\tbranch: '" + name + "' " + branchId.toString());
 			}
 		} else {
+			// format label name, before adding to map.
+			name = formatName(name);
 			labelsMap.put(name, id);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("\tlabel: '" + name + "'");
 			}
+		}
+	}
+
+	/**
+	 * Format label name, by substituting '{symbol}' with the tag symbol.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	private String formatName(String name) {
+		String formatter;
+		try {
+			formatter = (String) Config.get(CFG.CVS_LABEL_FORMAT);
+		} catch (ConfigException e) {
+			return name;
+		}
+
+		if (!formatter.isEmpty()) {
+			String label = formatter;
+			label = label.replaceAll("\\{symbol\\}", name);
+			return label;
+		} else {
+			return name;
 		}
 	}
 
@@ -123,7 +149,7 @@ public abstract class RcsNavigator {
 
 			// set file permission properties for entry
 			entry.setProps(rcsRevision.getProps());
-			
+
 			// set binary if 'expand' is set
 			RcsObjectAdmin admin = rcsRevision.getAdmin();
 			entry.setBinary(admin.getExpand());

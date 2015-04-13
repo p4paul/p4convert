@@ -467,6 +467,7 @@ public class CvsIntegrationTests {
 	@Test
 	public void case058() throws Exception {
 		Config.set(CFG.CVS_LABELS, true);
+		Config.set(CFG.CVS_LABEL_FORMAT, "prefix:{symbol}:postfix");
 		Config.set(CFG.CVS_MODULE, "label-view");
 		testCase("CVScluster01");
 	}

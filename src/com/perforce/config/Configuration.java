@@ -112,6 +112,7 @@ public class Configuration {
 		set(CFG.CVS_WINDOW, 20 * 1000L); // milliseconds
 		set(CFG.CVS_TMPDIR, "tmp");
 		set(CFG.CVS_LABELS, false);
+		set(CFG.CVS_LABEL_FORMAT, "{symbol}");
 
 		// UTF8 path normalisation
 		String os = System.getProperty("os.name").toLowerCase();

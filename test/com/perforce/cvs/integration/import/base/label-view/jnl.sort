@@ -16,11 +16,11 @@
 @pv@ 0 @db.desc@ 3 @REL_1_0_1
 @pv@ 0 @db.desc@ 2 @REL_1_0_0
 @pv@ 0 @db.desc@ 1 @Initial revision
-@pv@ 0 @db.label@ @REL_1_0_0@ @//import/main/bar@ 1 
-@pv@ 0 @db.label@ @REL_1_0_0@ @//import/main/foo@ 1 
-@pv@ 0 @db.label@ @REL_1_0_1@ @//import/main/bar@ 1 
-@pv@ 0 @db.label@ @REL_1_0_1@ @//import/main/foo@ 2 
-@pv@ 0 @db.label@ @REL_1_0_2@ @//import/main/bar@ 1 
-@pv@ 0 @db.label@ @REL_1_0_2@ @//import/main/foo@ 3 
-@pv@ 0 @db.label@ @REL_1_1_0@ @//import/main/bar@ 2 
-@pv@ 0 @db.label@ @REL_1_1_0@ @//import/main/foo@ 4 
+@pv@ 0 @db.label@ @prefix:REL_1_0_0:postfix@ @//import/main/bar@ 1 
+@pv@ 0 @db.label@ @prefix:REL_1_0_0:postfix@ @//import/main/foo@ 1 
+@pv@ 0 @db.label@ @prefix:REL_1_0_1:postfix@ @//import/main/bar@ 1 
+@pv@ 0 @db.label@ @prefix:REL_1_0_1:postfix@ @//import/main/foo@ 2 
+@pv@ 0 @db.label@ @prefix:REL_1_0_2:postfix@ @//import/main/bar@ 1 
+@pv@ 0 @db.label@ @prefix:REL_1_0_2:postfix@ @//import/main/foo@ 3 
+@pv@ 0 @db.label@ @prefix:REL_1_1_0:postfix@ @//import/main/bar@ 2 
+@pv@ 0 @db.label@ @prefix:REL_1_1_0:postfix@ @//import/main/foo@ 4 

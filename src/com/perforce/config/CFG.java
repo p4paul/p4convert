@@ -60,6 +60,7 @@ public enum CFG {
 	CVS_WINDOW("cvs.timeWindow", Long.class),
 	CVS_TMPDIR("cvs.tmpDir", String.class),
 	CVS_LABELS("cvs.labels", Boolean.class),
+	CVS_LABEL_FORMAT("cvs.labelFormat", String.class),
 
 	// Hidden properties
 	EXCLUDE_MAP("hidden.excludeMap", String.class),
