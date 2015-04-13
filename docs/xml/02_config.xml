@@ -223,7 +223,7 @@ com.p4convert.cvs.tmpDir=<replaceable>tmp</replaceable>
     </orderedlist>     
   </section>
     
-  <section xml:id="config.general.selective_and_incremental_conversions">
+  <section xml:id="config.labeling_CVS_paths">
     <title>Labeling CVS Paths</title>
     
     <para>
