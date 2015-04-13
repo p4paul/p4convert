@@ -179,8 +179,9 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	public void setBinary(String expand) {
 		if (expand != null && expand.contains("b")) {
 			binary = true;
+		} else {
+			binary = false;
 		}
-		binary = false;
 	}
 
 	public String toString() {

@@ -7,7 +7,7 @@
 @ 
 @pv@ 0 @db.change@ 1 1 @svn-client@ @radek@ 1410353804 1 @added
 @ 
-@pv@ 3 @db.rev@ @//import/main/win_line.txt@ 1 1 0 1 1410353804 1410353804 00000000000000000000000000000000 @//import/main/win_line.txt@ @1.1@ 1 
+@pv@ 3 @db.rev@ @//import/main/win_line.txt@ 1 257 0 1 1410353804 1410353804 00000000000000000000000000000000 @//import/main/win_line.txt@ @1.1@ 257 
 @pv@ 0 @db.revcx@ 1 @//import/main/win_line.txt@ 1 0 
 @pv@ 0 @db.desc@ 2 @added
 @ 
