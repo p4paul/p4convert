@@ -189,7 +189,7 @@ com.p4convert.cvs.cvsroot=<replaceable>/Users/bruno/CVSROOT/</replaceable>
       
       <listitem>
         <para>
-          (Optionaly) specify a CVS module to import from within the CVSROOT. 
+          (Optionally) specify a CVS module to import from within the CVSROOT. 
         </para>
 <programlisting language="ini">
 com.p4convert.cvs.cvsmodule=<replaceable>projX</replaceable>
@@ -223,6 +223,51 @@ com.p4convert.cvs.tmpDir=<replaceable>tmp</replaceable>
     </orderedlist>     
   </section>
     
+  <section xml:id="config.general.selective_and_incremental_conversions">
+    <title>Labeling CVS Paths</title>
+    
+    <para>
+      CVS will tag revisions with symbols, some of these symbols may refer to 
+      labels, whilst others are branch names.  If labeling is disabled (default),
+      then only symbols with history are converted to Perforce branches, the
+      remaining symbols are ignored.  However, if labels are enabled then the 
+      remaining symbols from the branch detection are converted to Perforce Labels.
+    </para>
+
+    <orderedlist>
+    
+      <listitem>
+        <para>
+          To enable labeling of CVS symbols tags, set the 
+          <parameter>com.p4convert.cvs.labels</parameter> to 
+          <parameter>true</parameter>.
+        </para>
+      </listitem>
+      
+      <listitem>
+        <para>
+          In multiple CVS conversions there is the potential for namespace clashing 
+          if the label has been previously used. By default, the converter will use 
+          the CVS symbol as the name for the Perforce label.  However, this can be 
+          formatted by setting the following option:
+          <parameter>com.p4convert.cvs.labelFormat</parameter>. The parameter         
+          <parameter>{symbol}</parameter> will be substituted by the CVS symbol name.
+        </para>
+        
+        <para>
+          For example:
+<programlisting language="ini">
+com.p4convert.cvs.labels=true
+com.p4convert.cvs.labelFormat=import_{symbol}_label
+</programlisting>
+          Will import a CVS symbol called <parameter>REL1.0</parameter> as a Perforce
+          label <parameter>import_REL1.0_label</parameter>.
+        </para>
+      </listitem>
+      
+    </orderedlist>
+  </section>
+
   <section xml:id="config.general.selective_and_incremental_conversions">
     <title>Subversion: Selective and Incremental Conversions</title>
 

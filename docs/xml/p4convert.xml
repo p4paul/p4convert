@@ -9,13 +9,13 @@
   version="5.0"
 ><?dbhtml filename="copyright.html"?>
   <title>P4Convert: User Guide</title>
-  <subtitle>Oct 2014</subtitle>
+  <subtitle>April 2015</subtitle>
 
   <info>
     <publishername>Perforce</publishername>
 
     <copyright>
-      <year>2007-2014</year>
+      <year>2007-2015</year>
       <holder>Perforce Software.</holder>
     </copyright>
 
