@@ -59,6 +59,7 @@ public class RcsFileFinder {
 					}
 				}
 			}
+			stream.close();
 		} catch (IOException e) {
 			logger.error("Unable to list files: ", e);
 		}
