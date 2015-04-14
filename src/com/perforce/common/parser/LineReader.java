@@ -1,10 +1,11 @@
 package com.perforce.common.parser;
 
 import java.io.ByteArrayOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 
@@ -14,13 +15,15 @@ import com.perforce.config.ConfigException;
 
 public abstract class LineReader {
 
+	private long maxLineSize;
 	private String fileName;
 	private RandomAccessFile rf;
+	private FileChannel in;
 
 	public long getFilePointer() {
 		long pos = -1;
 		try {
-			pos = rf.getFilePointer();
+			pos = in.position();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -29,7 +32,7 @@ public abstract class LineReader {
 
 	public void seek(long pos) {
 		try {
-			rf.seek(pos);
+			in.position(pos);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,29 +49,20 @@ public abstract class LineReader {
 
 	public String getLine() {
 
-		ByteArrayOutputStream buf = new ByteArrayOutputStream();
-
-		boolean eol = false;
-		int c = 0;
-		do {
-			try {
-				byte b = rf.readByte();
-				if (b == '\n') {
-					eol = true;
-				} else if (b == '\n' || b == '\r') {
-					// chomp
-				} else {
-					buf.write(b);
-					c++;
-				}
-			} catch (IOException e) {
-				return null;
-			}
-		} while (!eol);
+		ByteArrayOutputStream buf = null;
+		try {
+			buf = getData(true);
+		} catch (ConfigException e) {
+			return null;
+		}
+		if (buf == null) {
+			return null;
+		}
 
 		// return empty string for empty lines
-		if (c == 0)
+		if (buf.size() == 0) {
 			return "";
+		}
 
 		// new buffer with the correct length
 		byte[] trim = buf.toByteArray();
@@ -96,48 +90,60 @@ public abstract class LineReader {
 	 * @throws ConfigException
 	 */
 	public ByteArrayOutputStream getData() throws ConfigException {
-		long maxLineSize = (long) Config.get(CFG.CVS_MAXLINE);
+		return getData(false);
+	}
 
-		ByteArrayOutputStream buf = new ByteArrayOutputStream();
-		int c = 0;
-		byte b;
-		do {
+	private ByteArrayOutputStream getData(boolean line) throws ConfigException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+		int totalRead = 0;
+		while (totalRead < maxLineSize) {
+			// read bytes (exit null if EOF)
 			try {
-				b = rf.readByte();
-				buf.write(b);
-				c++;
-			} catch (EOFException e) {
-				if (c == 0) {
-					// End of file and empty buffer
+				ByteBuffer dst = ByteBuffer.allocate(1024);
+				long mark = in.position();
+				int bytesRead = in.read(dst);
+				totalRead += bytesRead;
+				if (bytesRead == -1) {
 					return null;
-				} else {
-					// End of file, but buffer to process
-					break;
+				}
+				if (bytesRead == 0) {
+					return out;
+				}
+
+				// copy bytes to buffer (exit on '\n')
+				int pos = 0;
+				for (byte b : dst.array()) {
+					if (!line || (b != '\n' && b != '\r')) {
+						out.write(b);
+					}
+					pos++;
+					if (b == '\n') {
+						seek(mark + pos);
+						return out;
+					}
 				}
 			} catch (IOException e) {
 				return null;
 			}
-		} while (c < maxLineSize && b != '\n');
-		return buf;
+		}
+		return out;
 	}
 
 	public byte[] getBlob(int remainder) {
-		byte b[] = new byte[remainder];
+		ByteBuffer dst = ByteBuffer.allocate(remainder);
 		try {
-			int readCount = 0;
-			do {
-				readCount += rf.read(b, readCount, remainder - readCount);
-			} while (readCount < remainder);
-
+			in.read(dst);
+			return dst.array();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return b;
+		return null;
 	}
 
 	public long length() {
 		try {
-			return rf.length();
+			return in.size();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -147,7 +153,9 @@ public abstract class LineReader {
 	public void open(String path) {
 		fileName = path;
 		try {
+			maxLineSize = (long) Config.get(CFG.CVS_MAXLINE);
 			rf = new RandomAccessFile(fileName, "r");
+			in = rf.getChannel();
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
@@ -155,6 +163,7 @@ public abstract class LineReader {
 
 	public void close() {
 		try {
+			in.close();
 			rf.close();
 		} catch (IOException e) {
 			e.printStackTrace();

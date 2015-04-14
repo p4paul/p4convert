@@ -33,10 +33,9 @@ public class RcsFileFinder {
 			logger.warn("CVSROOT does not exist: " + base);
 			return;
 		}
-
-		DirectoryStream<Path> stream;
-		try {
-			stream = Files.newDirectoryStream(base.toPath());
+		
+		Path dir = base.toPath();
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 
 			Iterator<Path> iter = stream.iterator();
 			while (iter.hasNext()) {
@@ -59,7 +58,6 @@ public class RcsFileFinder {
 					}
 				}
 			}
-			stream.close();
 		} catch (IOException e) {
 			logger.error("Unable to list files: ", e);
 		}
@@ -77,7 +75,7 @@ public class RcsFileFinder {
 		} catch (FileNotFoundException e) {
 			String uriStr = path.toUri().toString();
 			uriStr = uriStr.replaceFirst("file://", "");
-			
+
 			// re-encode path with a guess of CP1252, or fall back to URI.
 			// Windows (Western Europe code page) most commonly miss read!
 			try {
