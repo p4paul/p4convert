@@ -47,11 +47,59 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.12339
+
+  #12339
+
+  Performance improvements for the early stages of the CVS list building:
+
+   - Building branch list
+   - Building revision list
+
+
+  #12334
+
+  Bug fix to close newDirectoryStream resource.
+
+
+  #12325
+
+  CVS fix for RCS @b@ expand binary detection.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.12320
+
+  #12319
+
+  CVS now supports formating label names using com.p4convert.cvs.labelFormat.
+
+  The default is '{symbol}', where the string '{symbol}' is replaced by the CVS
+  symbol used for that label.
+
+
+  #12300 (Bug 192)
+
+  Prevent first entry 'dead' revisions (n*.1) for CVS revisions from showing up
+  as branched revisions.
+
+
+  #12260
+
+  Rename badly encoded paths for CVS RCS files.
+  
+  First try CP1252, if that fails use a URI encoded path.  If a URI encoded path
+  is used then it will be decode to UTF8.
+
+
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12235
 
   #12235 (Bug 84)
 
-  CVS Now supports the --users flag for CVS returning a list of usernames.
+  CVS now supports the --users flag for CVS returning a list of usernames.
   The map file can then be used to remap usernames during the import.
 
 
