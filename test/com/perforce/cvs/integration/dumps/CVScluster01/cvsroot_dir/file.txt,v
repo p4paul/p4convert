@@ -1,0 +1,39 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2014.09.18.08.41.51;	state Exp;
+branches;
+next	;
+commitid	100541A9ACC17159EA6;
+
+
+desc
+@@
+
+
+1.1
+log
+@added
+@
+text
+@Retrieving a Project from Perforce
+
+To obtain access to files in Perforce depots, you define connections to servers. Using the connections, you can browse the contents of Perforce servers in the P4 Connections view. By default, all files in the depot are displayed, but typically you have access only to a subset of the files (depending on how your Perforce client view is defined). To display only the file to which you have access, click down arrow and choose Filter by Client Workspace from P4 Connections view menu.
+
+When browsing a server, you can right-click files and folders and perform the following tasks:
+
+    Get Latest Revision: retrieve the latest version from the depot into the client workspace
+    Get Revision...: retrieve specified versions from the depot into the workspace
+    Remove from Workspace: delete the local copy of a depot file
+    Check Out: check out a file that you intend to change
+    Mark for Delete: mark a file that you intend to delete
+    Revert Files: discard changes you have made to a file and restore the version you last retrieved
+    Import as Project: copy files and open them as a project in the workbench
+
+
+@

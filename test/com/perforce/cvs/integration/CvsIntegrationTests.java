@@ -505,6 +505,12 @@ public class CvsIntegrationTests {
 		Config.set(CFG.CVS_MODULE, "username_map");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case064() throws Exception {
+		Config.set(CFG.CVS_MODULE, "cvsroot_dir");
+		testCase("CVScluster01");
+	}
 
 	private void testCase(String cvsCluster) {
 		try {

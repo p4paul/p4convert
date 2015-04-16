@@ -42,7 +42,7 @@ public class RcsFileFinder {
 				Path path = iter.next();
 
 				if (path.toFile().isDirectory()) {
-					if (!"CVSROOT".equals(path.getFileName())) {
+					if (!"CVSROOT".equals(path.getFileName().toString())) {
 						findFiles(path.toFile());
 					}
 				} else {
