@@ -1,6 +1,8 @@
 package com.perforce.cvs.process;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +27,6 @@ import com.perforce.cvs.asset.CvsContentReader;
 import com.perforce.cvs.parser.RcsFileFinder;
 import com.perforce.cvs.parser.RcsReader;
 import com.perforce.svn.change.ChangeInterface;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.prescan.Progress;
 import com.perforce.svn.query.QueryInterface;
 
@@ -37,9 +38,8 @@ public class CvsProcessChange extends ProcessChange {
 	private DepotInterface depot;
 
 	private int nodeID = 0;
-	private long cvsChange = 1;
 
-	private RevisionSorter revSort;
+	// private RevisionSorter revSort;
 	private RevisionSorter delayedBranch = new RevisionSorter(true);
 
 	protected void processChange() throws Exception {
@@ -64,15 +64,17 @@ public class CvsProcessChange extends ProcessChange {
 			throw new ConverterException(err);
 		}
 
-		// Find all revisions in CVSROOT
+		// Find all RCS files in CVSROOT
 		String cvsroot = (String) Config.get(CFG.CVS_ROOT);
 		RcsFileFinder rcsFiles = find(cvsroot);
 
 		// Sort branches
 		BranchSorter brSort = buildBranchList(rcsFiles);
 
+		// Build revision list
+		RevisionSorter revSort = buildRevisionList(rcsFiles, brSort);
+
 		// Sort revisions by date/time
-		revSort = buildRevisionList(rcsFiles, brSort);
 		logger.info("Sorting revisions:");
 		revSort.sort();
 		if (logger.isTraceEnabled()) {
@@ -80,7 +82,46 @@ public class CvsProcessChange extends ProcessChange {
 		}
 		logger.info("... found " + revSort.size() + " revisions\n");
 
+		// Sort revisions into changes
+		List<CvsChange> cvsChanges = sortToChanges(revSort);
+
+		for (CvsChange cvsChange : cvsChanges) {
+
+			// initialise labels
+			if (isLabels) {
+				processLabel = new ProcessLabel(depot);
+			}
+			
+			ChangeInterface change;
+			long sequence = cvsChange.getChange();
+			long p4Change = sequence + (Long) Config.get(CFG.P4_OFFSET);
+
+			RevisionEntry changeEntry = cvsChange.getChangeInfo();
+			ChangeInfo info = new ChangeInfo(changeEntry, sequence);
+			change = ProcessFactory.getChange(p4Change, info, depot);
+			super.setCurrentChange(change);
+
+			for (RevisionEntry rev : cvsChange.getRevisions()) {
+				buildP4Change(rev, change, sequence);
+			}
+			submit();
+
+			// update counters
+			nodeID = 0;
+		}
+
+		// finish up conversion
+		close();
+	}
+
+	private List<CvsChange> sortToChanges(RevisionSorter revSort)
+			throws Exception {
+
+		List<CvsChange> changes = new ArrayList<CvsChange>();
+
 		// Initialise counters
+		long sequence = 1;
+
 		RevisionEntry changeEntry = revSort.next();
 		RevisionEntry entry;
 		revSort.reset();
@@ -94,22 +135,15 @@ public class CvsProcessChange extends ProcessChange {
 				logger.trace("... from remainder: " + revs.isRemainder());
 			}
 
-			// initialise labels
-			if (isLabels) {
-				processLabel = new ProcessLabel(depot);
-			}
+
 
 			// construct next change
-			ChangeInterface change;
-			long p4Change = cvsChange + (Long) Config.get(CFG.P4_OFFSET);
-			ChangeInfo info = new ChangeInfo(changeEntry, cvsChange);
-			change = ProcessFactory.getChange(p4Change, info, depot);
-			super.setCurrentChange(change);
+			CvsChange cvsChange = new CvsChange(sequence);
 
 			// add matching entries to current change
 			while (entry != null && entry.within(changeEntry, revs.getWindow())) {
 				if (entry.matches(changeEntry)) {
-					nextEntry(entry, revs, change);
+					buildCvsChange(entry, revs, cvsChange);
 				} else {
 					// else, revision belongs in another change
 					if (logger.isTraceEnabled()) {
@@ -118,9 +152,6 @@ public class CvsProcessChange extends ProcessChange {
 				}
 				entry = revs.next();
 			}
-
-			// submit changes
-			submit();
 
 			// update revision list
 			revs = revSort;
@@ -144,13 +175,89 @@ public class CvsProcessChange extends ProcessChange {
 			changeEntry = revs.next();
 			revs.reset();
 
-			// update counters
-			nodeID = 0;
-			cvsChange++;
+			// add change and update counters
+			changes.add(cvsChange);
+			sequence++;
 		} while (changeEntry != null);
 
-		// finish up conversion
-		close();
+		return changes;
+	}
+
+	/**
+	 * Calculates next entry.
+	 * 
+	 * @param entry
+	 * @param changeEntry
+	 * @throws Exception
+	 */
+	private void buildCvsChange(RevisionEntry entry, RevisionSorter revs,
+			CvsChange change) throws Exception {
+
+		if (entry.isPseudo() && !revs.isRemainder()) {
+			if (logger.isTraceEnabled()) {
+				logger.trace("... delaying: " + entry);
+			}
+
+			delayedBranch.add(entry);
+			revs.drop(entry);
+		} else {
+			// if no pending revisions...
+			if (!change.isPending(entry)) {
+				// add entry to current change
+				change.addEntry(entry);
+				revs.drop(entry);
+			} else {
+				// if pending revision is a REMOVE and current is a PSEUDO
+				// branch
+				if (entry.isPseudo() && "dead".equals(entry.getState())) {
+					// overlay REMOVE with branch and down-grade to ADD
+					entry.setState("Exp");
+					change.addEntry(entry);
+					revs.drop(entry);
+				} else {
+					// else, revision belongs in another change
+					if (logger.isTraceEnabled()) {
+						logger.trace("... leaving: " + entry + "(opened)");
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Adds Entry to current change-list
+	 * 
+	 * @param entry
+	 * @param revs
+	 * @param change
+	 * @throws Exception
+	 */
+	private void buildP4Change(RevisionEntry entry, ChangeInterface change,
+			long sequence) throws Exception {
+
+		if (logger.isTraceEnabled()) {
+			logger.trace("... adding: " + entry);
+		}
+
+		// update entry
+		entry.setNodeID(nodeID);
+		entry.setCvsChange(sequence);
+
+		// and add node to current change
+		CvsProcessNode node;
+		node = new CvsProcessNode(change, depot, entry);
+		node.process();
+
+		// tag any labels
+		if (isLabels) {
+			String id = entry.getId().toString();
+			if (entry.getState().equals("dead") && id.equals("1.1")) {
+				logger.info("skip labelling dead revision: 1.1");
+			} else {
+				processLabel.labelRev(entry, change.getChange());
+			}
+		}
+		nodeID++;
 	}
 
 	/**
@@ -258,83 +365,7 @@ public class CvsProcessChange extends ProcessChange {
 		return revSorter;
 	}
 
-	/**
-	 * Calculates next entry.
-	 * 
-	 * @param entry
-	 * @param changeEntry
-	 * @throws Exception
-	 */
-	private void nextEntry(RevisionEntry entry, RevisionSorter revs,
-			ChangeInterface change) throws Exception {
+	private void storeRevisions() {
 
-		String path = entry.getPath();
-
-		if (entry.isPseudo() && !revs.isRemainder()) {
-			if (logger.isTraceEnabled()) {
-				logger.trace("... delaying: " + entry);
-			}
-
-			delayedBranch.add(entry);
-			revs.drop(entry);
-		} else {
-			// if no pending revisions...
-			if (!change.isPendingRevision(path)) {
-				// add entry to current change
-				addEntry(entry, change);
-				revs.drop(entry);
-			} else {
-				// if pending revision is a REMOVE and current is a PSEUDO
-				// branch
-				Action pendingAct = change.getPendingAction(path);
-				if (entry.isPseudo() && pendingAct == Action.REMOVE) {
-					// overlay REMOVE with branch and down-grade to ADD
-					entry.setState("Exp");
-					addEntry(entry, change);
-					revs.drop(entry);
-				} else {
-					// else, revision belongs in another change
-					if (logger.isTraceEnabled()) {
-						logger.trace("... leaving: " + entry + "(opened)");
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Adds Entry to current change-list
-	 * 
-	 * @param entry
-	 * @param revs
-	 * @param change
-	 * @throws Exception
-	 */
-	private void addEntry(RevisionEntry entry, ChangeInterface change)
-			throws Exception {
-
-		if (logger.isTraceEnabled()) {
-			logger.trace("... adding: " + entry);
-		}
-
-		// update entry
-		entry.setNodeID(nodeID);
-		entry.setCvsChange(cvsChange);
-
-		// and add node to current change
-		CvsProcessNode node;
-		node = new CvsProcessNode(change, depot, entry);
-		node.process();
-
-		// tag any labels
-		if (isLabels) {
-			String id = entry.getId().toString();
-			if (entry.getState().equals("dead") && id.equals("1.1")) {
-				logger.info("skip labelling dead revision: 1.1");
-			} else {
-				processLabel.labelRev(entry, change.getChange());
-			}
-		}
-		nodeID++;
 	}
 }
