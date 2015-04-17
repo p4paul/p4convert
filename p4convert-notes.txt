@@ -47,6 +47,33 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.12406
+
+  #12406
+
+  CVS: Bug fix for labels on dead RCS *n.1 revisions.
+
+  Skip labeling a 'dead' RCS file if it is the first revision on that branch,
+  as 'dead' revisions are not added to Perforce, there is not revision to Label.
+
+
+  #12405
+
+  CVS: Save change list data to a JSON formatted file 'changes.json'.
+
+
+  #12397
+
+  CVS: Separate sort behaviour from Perforce changelist processing.
+
+
+  #12386
+
+  CVS: Prevent CVSROOT dir from being added.
+
+
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12339
 
   #12339
