@@ -24,6 +24,7 @@ import com.perforce.cvs.RevisionSorter;
 import com.perforce.cvs.asset.CvsContentReader;
 import com.perforce.cvs.parser.RcsFileFinder;
 import com.perforce.cvs.parser.RcsReader;
+import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 import com.perforce.svn.change.ChangeInterface;
 import com.perforce.svn.prescan.Progress;
 import com.perforce.svn.query.QueryInterface;
@@ -133,9 +134,9 @@ public class CvsProcessChange extends ProcessChange {
 
 		// tag any labels
 		if (isLabels) {
-			String id = entry.getId().toString();
-			if (entry.getState().equals("dead") && id.equals("1.1")) {
-				logger.info("skip labelling dead revision: 1.1");
+			RcsObjectNum id = entry.getId();
+			if (entry.getState().equals("dead") && id.getMinor() == 1) {
+				logger.info("skip labelling dead revision: " + id);
 			} else {
 				processLabel.labelRev(entry, change.getChange());
 			}
