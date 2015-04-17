@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class RevisionSorter {
+
+	private static Logger logger = LoggerFactory
+			.getLogger(RevisionSorter.class);
 
 	private int index = 0;
 	private long window = 0;
@@ -20,7 +26,14 @@ public class RevisionSorter {
 	}
 
 	public void sort() {
+		logger.info("Sorting revisions:");
+
 		Collections.sort((List<RevisionEntry>) list);
+
+		if (logger.isTraceEnabled()) {
+			logger.trace(toString());
+		}
+		logger.info("... found " + size() + " revisions\n");
 	}
 
 	public String toString() {

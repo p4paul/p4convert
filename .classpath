@@ -12,6 +12,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="ext/icu4j-54_1_1.jar"/>
+	<classpathentry exported="true" kind="lib" path="ext/gson-2.3.1.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>

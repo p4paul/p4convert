@@ -18,7 +18,7 @@ import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 
 public class RevisionEntry implements Comparable<RevisionEntry> {
 
-	private Logger logger = LoggerFactory.getLogger(RevisionEntry.class);
+	transient private static Logger logger = LoggerFactory.getLogger(RevisionEntry.class);
 
 	private RcsObjectNum id;
 	private Date date;

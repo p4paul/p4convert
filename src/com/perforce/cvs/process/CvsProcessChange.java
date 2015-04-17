@@ -1,8 +1,6 @@
 package com.perforce.cvs.process;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,11 +34,7 @@ public class CvsProcessChange extends ProcessChange {
 			.getLogger(CvsProcessChange.class);
 
 	private DepotInterface depot;
-
 	private int nodeID = 0;
-
-	// private RevisionSorter revSort;
-	private RevisionSorter delayedBranch = new RevisionSorter(true);
 
 	protected void processChange() throws Exception {
 		// Initialise labels
@@ -75,23 +69,22 @@ public class CvsProcessChange extends ProcessChange {
 		RevisionSorter revSort = buildRevisionList(rcsFiles, brSort);
 
 		// Sort revisions by date/time
-		logger.info("Sorting revisions:");
 		revSort.sort();
-		if (logger.isTraceEnabled()) {
-			logger.trace(revSort.toString());
-		}
-		logger.info("... found " + revSort.size() + " revisions\n");
 
 		// Sort revisions into changes
-		List<CvsChange> cvsChanges = sortToChanges(revSort);
+		ChangeSorter changeSort = new ChangeSorter();
+		// changeSort.load("cvsChanges.json");
+		changeSort.build(revSort);
+		changeSort.store("cvsChanges.json");
 
-		for (CvsChange cvsChange : cvsChanges) {
+		// Iterate over changes and submit
+		for (CvsChange cvsChange : changeSort.getChanges()) {
 
 			// initialise labels
 			if (isLabels) {
 				processLabel = new ProcessLabel(depot);
 			}
-			
+
 			ChangeInterface change;
 			long sequence = cvsChange.getChange();
 			long p4Change = sequence + (Long) Config.get(CFG.P4_OFFSET);
@@ -102,7 +95,7 @@ public class CvsProcessChange extends ProcessChange {
 			super.setCurrentChange(change);
 
 			for (RevisionEntry rev : cvsChange.getRevisions()) {
-				buildP4Change(rev, change, sequence);
+				buildChange(rev, change, sequence);
 			}
 			submit();
 
@@ -114,116 +107,6 @@ public class CvsProcessChange extends ProcessChange {
 		close();
 	}
 
-	private List<CvsChange> sortToChanges(RevisionSorter revSort)
-			throws Exception {
-
-		List<CvsChange> changes = new ArrayList<CvsChange>();
-
-		// Initialise counters
-		long sequence = 1;
-
-		RevisionEntry changeEntry = revSort.next();
-		RevisionEntry entry;
-		revSort.reset();
-		RevisionSorter revs = revSort;
-
-		// Iterate over all revisions
-		do {
-			entry = changeEntry;
-			if (logger.isTraceEnabled()) {
-				logger.trace("... next change uses: " + entry);
-				logger.trace("... from remainder: " + revs.isRemainder());
-			}
-
-
-
-			// construct next change
-			CvsChange cvsChange = new CvsChange(sequence);
-
-			// add matching entries to current change
-			while (entry != null && entry.within(changeEntry, revs.getWindow())) {
-				if (entry.matches(changeEntry)) {
-					buildCvsChange(entry, revs, cvsChange);
-				} else {
-					// else, revision belongs in another change
-					if (logger.isTraceEnabled()) {
-						logger.trace("... leaving: " + entry + "(outside)");
-					}
-				}
-				entry = revs.next();
-			}
-
-			// update revision list
-			revs = revSort;
-			revSort.reset();
-			delayedBranch.reset();
-			if (delayedBranch.hasNext()) {
-				revs = delayedBranch;
-				if (revSort.hasNext()) {
-					long rDate = revSort.next().getDate().getTime();
-					long dDate = delayedBranch.next().getDate().getTime();
-					if (rDate < dDate) {
-						revs = revSort;
-					} else {
-						revs.setWindow(rDate - dDate);
-					}
-				}
-			}
-			revs.reset();
-
-			// fetch revision for next change
-			changeEntry = revs.next();
-			revs.reset();
-
-			// add change and update counters
-			changes.add(cvsChange);
-			sequence++;
-		} while (changeEntry != null);
-
-		return changes;
-	}
-
-	/**
-	 * Calculates next entry.
-	 * 
-	 * @param entry
-	 * @param changeEntry
-	 * @throws Exception
-	 */
-	private void buildCvsChange(RevisionEntry entry, RevisionSorter revs,
-			CvsChange change) throws Exception {
-
-		if (entry.isPseudo() && !revs.isRemainder()) {
-			if (logger.isTraceEnabled()) {
-				logger.trace("... delaying: " + entry);
-			}
-
-			delayedBranch.add(entry);
-			revs.drop(entry);
-		} else {
-			// if no pending revisions...
-			if (!change.isPending(entry)) {
-				// add entry to current change
-				change.addEntry(entry);
-				revs.drop(entry);
-			} else {
-				// if pending revision is a REMOVE and current is a PSEUDO
-				// branch
-				if (entry.isPseudo() && "dead".equals(entry.getState())) {
-					// overlay REMOVE with branch and down-grade to ADD
-					entry.setState("Exp");
-					change.addEntry(entry);
-					revs.drop(entry);
-				} else {
-					// else, revision belongs in another change
-					if (logger.isTraceEnabled()) {
-						logger.trace("... leaving: " + entry + "(opened)");
-					}
-				}
-			}
-		}
-	}
-
 	/**
 	 * Adds Entry to current change-list
 	 * 
@@ -232,7 +115,7 @@ public class CvsProcessChange extends ProcessChange {
 	 * @param change
 	 * @throws Exception
 	 */
-	private void buildP4Change(RevisionEntry entry, ChangeInterface change,
+	private void buildChange(RevisionEntry entry, ChangeInterface change,
 			long sequence) throws Exception {
 
 		if (logger.isTraceEnabled()) {
@@ -363,9 +246,5 @@ public class CvsProcessChange extends ProcessChange {
 		logger.info("... done          \n");
 
 		return revSorter;
-	}
-
-	private void storeRevisions() {
-
 	}
 }

@@ -8,7 +8,7 @@ import com.perforce.cvs.RevisionEntry;
 public class CvsChange {
 
 	private final long change;
-	private List<RevisionEntry> list = new ArrayList<RevisionEntry>();
+	private ArrayList<RevisionEntry> list = new ArrayList<RevisionEntry>();
 
 	public CvsChange(long change) {
 		this.change = change;
