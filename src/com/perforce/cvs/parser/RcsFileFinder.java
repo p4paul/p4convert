@@ -33,33 +33,39 @@ public class RcsFileFinder {
 			logger.warn("CVSROOT does not exist: " + base);
 			return;
 		}
-		
-		Path dir = base.toPath();
-		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 
+		// copy paths to local list to free up file handle recursion
+		List<Path> paths = new ArrayList<Path>();
+		try {
+			Path dir = base.toPath();
+			DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
 			Iterator<Path> iter = stream.iterator();
 			while (iter.hasNext()) {
-				Path path = iter.next();
-
-				if (path.toFile().isDirectory()) {
-					if (!"CVSROOT".equals(path.getFileName().toString())) {
-						findFiles(path.toFile());
-					}
-				} else {
-					if (path.toString().endsWith(",v")) {
-						File file = verifyFile(path);
-						if (logger.isDebugEnabled()) {
-							logger.debug("file: " + file);
-						}
-						files.add(file);
-
-						count++;
-						System.out.print("Found: " + count + "\r");
-					}
-				}
+				paths.add(iter.next());
 			}
+			stream.close();
 		} catch (IOException e) {
 			logger.error("Unable to list files: ", e);
+		}
+
+		// loop over found paths and recurse into directories
+		for (Path path : paths) {
+			if (path.toFile().isDirectory()) {
+				if (!"CVSROOT".equals(path.getFileName().toString())) {
+					findFiles(path.toFile());
+				}
+			} else {
+				if (path.toString().endsWith(",v")) {
+					File file = verifyFile(path);
+					if (logger.isDebugEnabled()) {
+						logger.debug("file: " + file);
+					}
+					files.add(file);
+
+					count++;
+					System.out.print("Found: " + count + "\r");
+				}
+			}
 		}
 	}
 
