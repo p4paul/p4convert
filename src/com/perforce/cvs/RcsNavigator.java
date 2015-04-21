@@ -67,7 +67,7 @@ public abstract class RcsNavigator {
 		}
 
 		// get (default) branch if defined
-		if (rcsRevision.getAdmin().containsKey(RcsSchema.BRANCH)) {
+		if (rcs.getAdmin().containsKey(RcsSchema.BRANCH)) {
 			RcsObjectNum branch = (RcsObjectNum) admin.get(RcsSchema.BRANCH);
 			String tag = "branch_" + branch;
 			branchMap.put(branch, tag);

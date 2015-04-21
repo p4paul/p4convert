@@ -34,7 +34,7 @@ public class RcsReader {
 
 	private CvsLineReader cvsLineReader;
 
-	public RcsReader(File file) throws Exception {
+	public RcsReader(File file, boolean getContent) throws Exception {
 		rcsFile = file;
 		rcsPath = parseBasePath();
 		rcsAdmin = new RcsObjectAdmin();
@@ -58,6 +58,10 @@ public class RcsReader {
 			}
 
 			if (rcsObject.containsKey(RcsSchema.DESC)) {
+				// Exit early if content is not needed
+				if(!getContent) {
+					break;
+				}
 				rcsDesc = rcsObject;
 			}
 

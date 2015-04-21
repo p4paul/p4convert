@@ -33,7 +33,7 @@ public class CvsExtractUsers {
 		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
-				RcsReader rcs = new RcsReader(file);
+				RcsReader rcs = new RcsReader(file, false);
 				ArrayList<RcsObjectNum> deltas = rcs.getIDs();
 				for (RcsObjectNum id : deltas) {
 					RcsObjectDelta revision = rcs.getDelta(id);

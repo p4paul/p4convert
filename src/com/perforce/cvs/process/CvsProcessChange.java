@@ -196,7 +196,7 @@ public class CvsProcessChange extends ProcessChange {
 		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
-				RcsReader rcs = new RcsReader(file);
+				RcsReader rcs = new RcsReader(file, false);
 				brNav.add(rcs);
 				progress.update(++count);
 			} catch (Exception e) {
@@ -231,7 +231,7 @@ public class CvsProcessChange extends ProcessChange {
 		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
-				RcsReader rcs = new RcsReader(file);
+				RcsReader rcs = new RcsReader(file, true);
 				revNav.add(rcs);
 
 				// Extract all RCS deltas to tmp store
