@@ -76,7 +76,7 @@ public class CvsProcessChange extends ProcessChange {
 		ChangeSorter changeSort = new ChangeSorter();
 		// changeSort.load("cvsChanges.json");
 		changeSort.build(revSort);
-		changeSort.store("cvsChanges.json");
+		// changeSort.store("cvsChanges.json");
 
 		// Iterate over changes and submit
 		for (CvsChange cvsChange : changeSort.getChanges()) {
