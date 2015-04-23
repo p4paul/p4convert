@@ -57,6 +57,12 @@ public class ScanArchive {
 				// If translation is disabled, use RAW for unicode files.
 				if (!(Boolean) Config.get(CFG.P4_TRANSLATE)) {
 					switch (type) {
+					case UTF_16LE:
+					case UTF_16BE:
+					case UTF_32LE:
+					case UTF_32BE:
+						type = ContentType.P4_BINARY;
+						break;
 
 					default:
 						type = ContentType.P4_RAW;
