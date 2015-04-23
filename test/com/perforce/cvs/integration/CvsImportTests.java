@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
+import com.perforce.common.asset.TypeMap;
 import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
@@ -529,6 +530,13 @@ public class CvsImportTests {
 	@Test
 	public void case064() throws Exception {
 		Config.set(CFG.CVS_MODULE, "cvsroot_dir");
+		testCase("CVScluster01");
+	}
+	
+	@Test
+	public void case065() throws Exception {
+		Config.set(CFG.P4_TRANSLATE, false);
+		Config.set(CFG.CVS_MODULE, "utf16_le_binary");
 		testCase("CVScluster01");
 	}
 

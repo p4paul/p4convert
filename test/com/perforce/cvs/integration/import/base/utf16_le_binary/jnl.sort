@@ -1,0 +1,3 @@
+@pv@ 9 @db.rev@ @//import/main/utf16_le.txt@ 1 1 0 1 1410433755 1410433755 E5B30BBDB4F442E767B8B36A3F9619C4 1332 0 0 @//import/main/utf16_le.txt@ @1.1@ 1 
+@pv@ 2 @db.change@ 1 1 @svn-client@ @radek@ 1410433755 1 @added
+@pv@ 0 @db.desc@ 1 @added
