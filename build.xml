@@ -89,7 +89,8 @@
 	<target name="release" depends="release.jar, docs, test-ver, run">
 		<mkdir dir="${release.dir}/${version}" />
 		<copy file="${pdf.dir}/p4convert.pdf" todir="${release.dir}/${version}" />
-		<copy file="default.cfg" todir="${release.dir}/${version}" />
+		<copy file="SVN-sample.cfg" todir="${release.dir}/${version}" />
+		<copy file="CVS-sample.cfg" todir="${release.dir}/${version}" />
 		<copy file="types.map" todir="${release.dir}/${version}" />
 		<copy file="debug.log4j.properties" todir="${release.dir}/${version}" />
 		<copy file="p4convert-notes.txt" todir="${release.dir}/${version}" />
@@ -156,9 +157,17 @@
 			<classpath>
 				<path id="svn2p4.cli.id" location="${dist.dir}/${jar.name}.jar" />
 			</classpath>
-			<jvmarg value="-Dfile.encoding=UTF-8" />
 			<arg line="--type=SVN --default" />
+		</java>	
+		<move file="default.cfg" tofile="SVN-sample.cfg" />
+		
+		<java fork="true" classname="${main.class}">
+			<classpath>
+				<path id="svn2p4.cli.id" location="${dist.dir}/${jar.name}.jar" />
+			</classpath>
+			<arg line="--type=CVS --default" />
 		</java>
+		<move file="default.cfg" tofile="CVS-sample.cfg" />
 	</target>
 
 	
