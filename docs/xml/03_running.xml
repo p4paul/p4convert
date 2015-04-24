@@ -103,6 +103,13 @@ com.p4convert.p4.passwd=<replaceable>PaSSwoRd</replaceable>
           </para>
         </listitem>
       </orderedlist>
+      
+      <warning>
+        <para>
+          For long running conversions where authentication is required, please
+          insure that the conversion user has an "Unlimited" login timeout.
+        </para>
+      </warning>
     </section>
   </section>
 
