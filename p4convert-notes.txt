@@ -47,6 +47,67 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.12492
+
+  #12492
+
+  CVS: Do not add empty CVS changes to the process list.
+
+  Fix for: java.lang.NullPointerException
+       at com.perforce.common.process.ChangeInfo.<init>(ChangeInfo.java:37)
+       
+
+  #12488 (Bug 210)
+
+  DOC: Update online web docs.
+
+
+  #12487 (Bug 210)
+
+  DOC: Added a warning note for granting the conversion user an "Unlimited" 
+  login timeout.
+
+
+  #12485 (Bug 203)
+
+  DOC: Update Markdown and build release rules for web based docs.
+
+
+  #12481 (Bug 207)
+
+  Build: Generate a sample CVS and SVN configuration on release.
+
+
+  #12476
+
+  CVS: When Translation is disabled downgrade UTF16 to BINARY
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.12441
+
+  #12441
+
+  CVS: Toggle off CVS change list storage.
+
+
+  #12440
+
+  CVS: More efficient parsing of RCS files.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.12418
+
+  #12418 (Bug)
+
+  CVS: When scanning for RCS files, store listing and close handle before recursion.
+
+
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12406
 
   #12406
