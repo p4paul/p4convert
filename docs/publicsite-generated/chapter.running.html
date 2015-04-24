@@ -1,0 +1,452 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Running P4Convert // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="prev" href="chapter.config.html" title="Configuration" />
+      <link rel="next" href="chapter.notes.html" title="Notes" />
+      <meta name="Section-title" content="Running P4Convert" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><noscript>
+         <div id="noscript">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</div>
+      </noscript>
+      <div id="header"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                (April 2015)
+                              </span></a></h1><button name="search" type="button" class="search"><span class="glyphicon glyphicon-search"></span></button></div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="chapter" id="chapter.running">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h1 class="title">Running P4Convert</h1>
+                     </div>
+                  </div>
+               </div>
+               <div class="section" id="running.import_mode">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h2 class="title" style="clear: both">Import Mode</h2>
+                        </div>
+                     </div>
+                  </div>
+                  <p>
+                           Import Mode will pull in file revisions from a Subversion dump file or CVS repository,
+                           adding them to the Perforce Server specified by the connection details in the
+                           configuration options. To use this mode set:
+                         
+                  </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.mode=IMPORT
+</pre><p>
+                           Care should be taken when adding data to a pre-existing Perforce Server
+                           that the revision actions do not conflict with revisions already in the
+                           Perforce Server; typically, this can occur if the Server has been in-use
+                           since the previous migration.
+                         
+                  </p>
+                  <p>
+                           To avoid such scenarios the import should either be to a unique depot, to
+                           avoid conflict, or the Perforce Server should be Read Only during
+                           subsequent migrations. After a conversion is complete, it is possible to
+                           merge the new data with an existing depot using tools like
+                           <span class="application">PerfMerge++</span>.
+                         
+                  </p>
+                  <p>
+                           The converter will check that your Perforce Server has no pending changes,
+                           and will abort a conversion if any are detected.
+                         
+                  </p>
+                  <div class="section" id="running.import_mode.configuration">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h3 class="title">Configuration options specific to Import Mode</h3>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="orderedlist">
+                        <ol class="orderedlist" type="1">
+                           <li class="listitem">
+                              <p>
+                                             Perforce server address and port (escape the '<code class="literal">:</code>'
+                                             with '<code class="literal">\:</code>'):
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.port=<em class="replaceable"><code>localhost\:4444</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Default user and client for server connection:
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.client=<em class="replaceable"><code>p4-client</code></em>
+com.p4convert.p4.user=<em class="replaceable"><code>p4-user</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Client workspace root used to import files into Perforce:
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.clientRoot=<em class="replaceable"><code>/Users/bruno/ws/</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             If Security is set to level 1 or greater, then the
+                                             <em class="replaceable"><code>p4-user</code></em> must have
+                                             <span class="emphasis"><em>admin</em></span> permissions in the Protection table and
+                                             the password supplied as a string (the
+                                             default is set to <code class="envar">ws/</code> under your local directory):
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.passwd=<em class="replaceable"><code>PaSSwoRd</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Alternatively if the user is already logged in and there is a valid
+                                             ticket, then leave the password field unset and set your environment
+                                             for <code class="envar">P4TICKETS</code> (don't rely on the
+                                             <code class="envar">P4TICKETS</code> unset default as <span class="command"><strong>p4-java</strong></span>
+                                             will not find your ticket file).
+                                           
+                              </p>
+                           </li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+               <div class="section" id="running.convert_mode">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h2 class="title" style="clear: both">Convert Mode</h2>
+                        </div>
+                     </div>
+                  </div>
+                  <p>
+                           Convert Mode is more advanced and requires knowledge of the Perforce
+                           Journal replay and Archive file store. This mode can only be used for
+                           single shot conversions and cannot be used incrementally. The performance
+                           of Convert Mode is significantly better than Import Mode (x100
+                           sometimes!).
+                         
+                  </p>
+                  <p>
+                           After using Convert Mode the administrator will need to run
+                           several commands to rebuild the Perforce server and upgrade the
+                           metadata. Please refer to the <a class="xref" href="chapter.running.html#running.post_conversion" title="Post Conversion [Conversion Mode]">Post Conversion [Conversion Mode]</a>
+                           section for step-by-step instructions.
+                         
+                  </p>
+                  <p>
+                           To use this mode set:
+                         
+                  </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.mode=CONVERT
+</pre><div class="section" id="running.convert_mode.configuration">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h3 class="title">Configuration options specific to Conversion Mode</h3>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="orderedlist">
+                        <ol class="orderedlist" type="1">
+                           <li class="listitem">
+                              <p>
+                                             Perforce server root address (path should end with a
+                                             slash (<code class="literal">/</code>)), the default is set to 
+                                             <code class="envar">p4_root/</code> under you local directory:
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.root=<em class="replaceable"><code>/full/path/to/p4_root/</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Change list offset from which to start conversion (handy for batched conversions):
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.offset=<em class="replaceable"><code>0</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Generated journal names (useful to increment the prefix when running
+                                             batched conversions):
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.jnlIndex=<em class="replaceable"><code>0</code></em>
+com.p4convert.p4.jnlPrefix=<em class="replaceable"><code>jnl.</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Mimic the 2011.1 or greater credit behavior on rollbacks /
+                                             downgrades (to enable set value to <code class="literal">true</code>):
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.downgrade=<em class="replaceable"><code>false</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Perforce normalises line-endings when storing the file on the server
+                                             and restores them based on the client workspace options and platform
+                                             type. However, in special cases it can be useful to store
+                                             line-ending in the server and use the 'share' option in the client.
+                                             To disable normal line-ending support set the following option to
+                                             <code class="literal">false</code>:
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.lineEnding=<em class="replaceable"><code>true</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             For non Unicode servers, or to simplify storage of hi-ASCII files,
+                                             setting the following option to <code class="literal">false</code> will store the file
+                                             as <code class="literal">binary</code>:
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.unicode=<em class="replaceable"><code>false</code></em>
+</pre></li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+               <div class="section" id="running.post_conversion">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h2 class="title" style="clear: both">Post Conversion [Conversion Mode]</h2>
+                        </div>
+                     </div>
+                  </div>
+                  <p>
+                           To finish a Convert Mode conversion you will need to install <span class="command"><strong>p4</strong></span>
+                           and <span class="command"><strong>p4d</strong></span> and run a few Perforce commands.
+                         
+                  </p>
+                  <div class="orderedlist">
+                     <ol class="orderedlist" type="1">
+                        <li class="listitem" id="running.post_conversion.step1">
+                           <p>
+                                        <span class="bold"><strong>[Required]</strong></span> Change directory to
+                                        <code class="envar">P4ROOT</code>, check there are no <code class="filename">db.*</code>
+                                        files present and then replay the journal file(s):
+                                      
+                           </p><pre class="screen">
+$ cd p4_root
+$ p4d -r . -jr jnl.0
+Perforce db files in '.' will be created if missing...
+Recovering from jnl.0...
+Perforce server info:
+	Server version 33 is replaying a version 0 journal/checkpoint.
+</pre><div class="note admonition">
+                              <h3 class="title">Note</h3>
+                              <p>
+                                             The Server version is set to <code class="literal">0</code> to remind the
+                                             administrator that an upgrade is required, see
+                                             <a class="link" href="chapter.running.html#running.post_conversion.step3">step 3</a>.
+                                           
+                              </p>
+                           </div>
+                        </li>
+                        <li class="listitem" id="running.post_conversion.step2">
+                           <p>
+                                        or, for multiple journal files:
+                                      
+                           </p><pre class="programlisting">
+$ p4d -r . -jr jnl.0 jnl.1 ....
+</pre><p>
+                                        and with nohup:
+                                      
+                           </p><pre class="programlisting">
+nohup p4d -r . -jr jnl.0 jnl.1 .... &amp;
+</pre></li>
+                        <li class="listitem" id="running.post_conversion.step3">
+                           <p>
+                                        <span class="bold"><strong>[Required]</strong></span> Upgrade the database from
+                                        2004.2 schema. For simplicity the conversion generates a database
+                                        using an old schema, allowing you to upgrade to a Perforce Server
+                                        version of your choice. From the <code class="envar">P4ROOT</code> directory run
+                                        the upgrade command:
+                                      
+                           </p><pre class="screen">
+$ p4d -r . -xu
+Perforce db files in '.' will be created if missing...
+2001.1: splitting db.integ into db.integed/db.resolve.
+2001.1: splitting db.have into db.have and db.label.
+2002.1: splitting pending db.change into db.changex.
+2002.2: upgrading tempobj filetype in db.rev.
+2002.2: upgrading tempobj filetype in db.working.
+2003.1: initialize default depot.
+2003.2: upgrading db.user.
+2005.1: building db.revhx (headrev) table.
+2005.1: building db.locks from db.working.
+2005.2: building db.revdx (delrev) table.
+2005.2: moving spec depot entries into db.revsx.
+2007.3: (re)building haveMap from db.have/db.working.
+2007.3: (re)building db.archmap (lazy-copy map) table.
+2007.3: removing old db.archive.
+2008.1: upgrading db.change.
+2009.2: moving db.boddate/db.ixdate into db.bodtext/db.ixtext.
+2009.2: removing db.boddate/db.ixdate.
+2010.2: adding db.config.
+2011.1: upgrading tiny.db.
+...upgrades done
+</pre></li>
+                        <li class="listitem" id="running.post_conversion.step4">
+                           <p>
+                                        [Optional] If the conversion was run in Unicode mode (where
+                                        <code class="code">com.p4convert.p4.unicode=true</code>) and users are going to
+                                        continue to add Unicode content then you may wish to set the server to
+                                        Unicode mode. To enable Unicode run the following command from the
+                                        P4ROOT directory:
+                                      
+                           </p><pre lang="bash" class="programlisting">
+$ p4d -r . -xi
+</pre></li>
+                        <li class="listitem" id="running.post_conversion.step5">
+                           <p>
+                                        [Alternative] If you are running your Perforce Server on Linux and
+                                        your user base is predominantly Windows you may wish to force the
+                                        server to run as case insensitive (only allowing one version of case
+                                        for paths and files). The conversion option
+                                        <code class="code">com.p4convert.adv.lowerCase=true</code> will have been used with
+                                        the case mode set to <code class="code">com.p4convert.adv.caseMode=FIRST</code>.
+                                        All p4d commands must be include the <em class="parameter"><code>-C1</code></em> flag,
+                                        this includes the earlier
+                                        <a class="link" href="chapter.running.html#running.post_conversion.step1">step 1</a> and
+                                        <a class="link" href="chapter.running.html#running.post_conversion.step2">step 2</a>.
+                                      
+                           </p>
+                           <p>
+                                        For example:
+                                      
+                           </p><pre lang="bash" class="programlisting">
+$ cd p4_root
+$ p4d -C1 -r . -jr jnl.0
+$ p4d -C1 -r . -xu
+</pre></li>
+                        <li class="listitem" id="running.post_conversion.step6">
+                           <p>
+                                        [Recommended] Some archive files may not have MD5 sum digests
+                                        (typically where Subversion did not store the digest or the digest
+                                        does not match due to the use of keyword expansion). To fill in the
+                                        metadata for MD5 sum digests and archive file sizes use the verify
+                                        command (this might be best split into depots and sub directories for
+                                        large servers):
+                                      
+                           </p><pre lang="bash" class="programlisting">
+$ p4 verify -u //...
+</pre></li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc">
+         <div class="cover"></div>
+         <ul class="toc nav">
+            <li><a href="index.html"><span class="prefix"></span>What is p4convert for?</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                  <li><a href="index.html#about.import_mode"><span class="prefix"></span>Import Mode (front door)</a></li>
+                  <li><a href="index.html#about.convert_mode"><span class="prefix"></span>Convert Mode (back door)</a></li>
+                  <li><a href="index.html#about.incremental_updates"><span class="prefix"></span>Incremental Updates (front door)</a></li>
+               </ul>
+            </li>
+            <li><a href="chapter.setup.html"><span class="prefix">1. </span>Setup</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                  <li><a href="chapter.setup.html#setup.requirements"><span class="prefix"></span>System Requirements</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                        <li><a href="chapter.setup.html#setup.requirements.resource_tips"><span class="prefix"></span>Resource Tips:</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="chapter.setup.html#setup.caveats"><span class="prefix"></span>Caveats</a></li>
+                  <li><a href="chapter.setup.html#setup.usage"><span class="prefix"></span>Setup and Usage</a></li>
+                  <li><a href="chapter.setup.html#setup.generate_dump_file"><span class="prefix"></span>Generating a Subversion Dump file</a></li>
+                  <li><a href="chapter.setup.html#setup.cvs_root"><span class="prefix"></span>Selecting a CVS root</a></li>
+               </ul>
+            </li>
+            <li><a href="chapter.config.html"><span class="prefix">2. </span>Configuration</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                  <li><a href="chapter.config.html#config.general.core"><span class="prefix"></span>Core converter settings.</a></li>
+                  <li><a href="chapter.config.html#config.general.p4"><span class="prefix"></span>General Perforce converter settings.</a></li>
+                  <li><a href="chapter.config.html#config.general.svn"><span class="prefix"></span>General Subversion converter settings.</a></li>
+                  <li><a href="chapter.config.html#config.general.cvs"><span class="prefix"></span>General CVS converter settings.</a></li>
+                  <li><a href="chapter.config.html#config.labeling_CVS_paths"><span class="prefix"></span>Labeling CVS Paths</a></li>
+                  <li><a href="chapter.config.html#config.general.selective_and_incremental_conversions"><span class="prefix"></span>Subversion: Selective and Incremental Conversions</a></li>
+                  <li><a href="chapter.config.html#config.filtering_subversion_paths"><span class="prefix"></span>Filtering Subversion paths</a></li>
+                  <li><a href="chapter.config.html#config.labeling_subversion_paths"><span class="prefix"></span>Labeling Subversion Paths</a></li>
+                  <li><a href="chapter.config.html#config.changelist_offset_options"><span class="prefix"></span>Changelist Offset options</a></li>
+                  <li><a href="chapter.config.html#config.unicode_support"><span class="prefix"></span>Unicode Support</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                        <li><a href="chapter.config.html#config.unicode_support.normalization"><span class="prefix"></span>Normalisation</a></li>
+                        <li><a href="chapter.config.html#config.unicode_support.subversion_properties"><span class="prefix"></span>Subversion Properties</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="chapter.config.html#config.advanced"><span class="prefix"></span>Advanced Configuration</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                        <li><a href="chapter.config.html#config.advanced.directory_properties"><span class="prefix"></span>Directory Properties</a></li>
+                        <li><a href="chapter.config.html#config.advanced.empty_changelists"><span class="prefix"></span>Empty changelists</a></li>
+                        <li><a href="chapter.config.html#config.advanced.username_translation"><span class="prefix"></span>Username translation</a></li>
+                        <li><a href="chapter.config.html#config.advanced.binary_file_detection"><span class="prefix"></span>Binary file detection</a></li>
+                        <li><a href="chapter.config.html#config.advanced.changelist_description_format"><span class="prefix"></span>Changelist Description Format</a></li>
+                        <li><a href="chapter.config.html#config.advanced.case_sensitivity"><span class="prefix"></span>Case Sensitivity</a></li>
+                        <li><a href="chapter.config.html#config.advanced.rcs_keyword_expansion"><span class="prefix"></span>RCS Keyword expansion (svn:keywords)</a></li>
+                        <li><a href="chapter.config.html#config.advanced.merge_information"><span class="prefix"></span>Merge Information (svn:mergeinfo)</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li class="active"><a href="chapter.running.html"><span class="prefix">3. </span>Running P4Convert</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                  <li><a href="chapter.running.html#running.import_mode"><span class="prefix"></span>Import Mode</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                        <li><a href="chapter.running.html#running.import_mode.configuration"><span class="prefix"></span>Configuration options specific to Import Mode</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="chapter.running.html#running.convert_mode"><span class="prefix"></span>Convert Mode</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                        <li><a href="chapter.running.html#running.convert_mode.configuration"><span class="prefix"></span>Configuration options specific to Conversion Mode</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="chapter.running.html#running.post_conversion"><span class="prefix"></span>Post Conversion [Conversion Mode]</a></li>
+               </ul>
+            </li>
+            <li><a href="chapter.notes.html"><span class="prefix">4. </span>Notes</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                  <li><a href="chapter.notes.html#notes.keyword_expansion_issues"><span class="prefix"></span>Keyword Expansion Issues:</a></li>
+                  <li><a href="chapter.notes.html#notes.verification"><span class="prefix"></span>Verification</a></li>
+                  <li><a href="chapter.notes.html#notes.output"><span class="prefix"></span>Output and Logs</a><a class="expander"><span class="glyphicon glyphicon-chevron-down"></span></a><ul class="nav">
+                        <li><a href="chapter.notes.html#notes.output.console"><span class="prefix"></span>Console output and logging configuration options</a></li>
+                        <li><a href="chapter.notes.html#notes.output.future"><span class="prefix"></span>These options are reserved for testing or future enhancements:</a></li>
+                        <li><a href="chapter.notes.html#notes.output.reading"><span class="prefix"></span>Reading Console/Logging output</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="chapter.notes.html#notes.errors"><span class="prefix"></span>Errors</a></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="chapter.config.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Configuration</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="chapter.notes.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Notes</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.10.2.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script type="text/javascript" src="js/index.js"></script><script type="text/javascript" src="js/perforce.js"></script></body>
+</html>
