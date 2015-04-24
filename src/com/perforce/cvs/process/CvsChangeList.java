@@ -11,11 +11,10 @@ import com.perforce.cvs.RevisionSorter;
 
 public class CvsChangeList {
 
-	private static Logger logger = LoggerFactory
-			.getLogger(CvsChangeList.class);
+	private static Logger logger = LoggerFactory.getLogger(CvsChangeList.class);
 
 	transient private RevisionSorter delayedBranch = new RevisionSorter(true);
-	
+
 	private ArrayList<CvsChange> list = new ArrayList<CvsChange>();
 
 	public CvsChangeList(RevisionSorter revSort) throws Exception {
@@ -75,8 +74,11 @@ public class CvsChangeList {
 			revs.reset();
 
 			// add change and update counters
-			list.add(cvsChange);
-			sequence++;
+			if (!cvsChange.isEmpty()) {
+				list.add(cvsChange);
+				sequence++;
+				System.out.print("Creating change: " + sequence + "\r");
+			}
 		} while (changeEntry != null);
 	}
 

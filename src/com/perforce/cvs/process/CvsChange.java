@@ -28,6 +28,10 @@ public class CvsChange {
 		}
 		return false;
 	}
+	
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
 
 	public long getChange() {
 		return change;

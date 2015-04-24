@@ -25,7 +25,7 @@ public class ChangeSorter {
 	 * @throws Exception
 	 */
 	public void build(RevisionSorter revSort) throws Exception {
-		logger.info("Sorting revision into changes:");
+		logger.info("Sorting revisions into changes:");
 
 		changes = new CvsChangeList(revSort);
 
