@@ -12,7 +12,7 @@
 	<property name="bin.dir" value="bin" />
 	<property name="dist.dir" value="dist" />
 	<property name="pdf.dir" value="docs/pdf-generated" />
-	<property name="web.dir" value="docs/pdf-generated" />
+	<property name="web.dir" value="docs/publicsite-generated" />
 	<property name="release.dir" value="release" />
 	<property name="cvs_tmp.dir" value="tmp" />
 	<property name="ext.dir" value="ext" />
@@ -86,9 +86,12 @@
 
 
 	<!--RULE: build release-->
-	<target name="release" depends="release.jar, docs, test-ver, run">
+	<target name="release" depends="release.jar, web, test-ver, run">
 		<mkdir dir="${release.dir}/${version}" />
-		<copy file="${pdf.dir}/p4convert.pdf" todir="${release.dir}/${version}" />
+		<mkdir dir="${release.dir}/${version}/docs" />
+		<copy todir="${release.dir}/${version}/docs" > 
+		  <fileset dir="${web.dir}" includes="**/*"/>
+		</copy>
 		<copy file="SVN-sample.cfg" todir="${release.dir}/${version}" />
 		<copy file="CVS-sample.cfg" todir="${release.dir}/${version}" />
 		<copy file="types.map" todir="${release.dir}/${version}" />

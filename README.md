@@ -13,14 +13,9 @@ requires less memory and CPU resources.
 
 ## Distribution
 
-Stable releases will be available from the Perforce Website and FTP server:
+Stable releases will be available from the Perforce Website and [`FTP`](ftp://ftp.perforce.com/perforce/tools/p4convert/) server.
 
-* __TBC__ ftp://ftp.perforce.com/perforce/tools/p4convert/
-* __TBC__ 
-
-Latest builds are available under the `release/` directory on the Workshop:
-
-* https://swarm.workshop.perforce.com/projects/perforce-software-p4convert/files/main/release
+Latest builds are available under the [`release/`](https://swarm.workshop.perforce.com/projects/perforce-software-p4convert/files/main/release) directory on the Workshop.
 
 
 ## Packaging
@@ -43,10 +38,8 @@ or fix is deemed stable.
 
 ## Documentation
 
-Documentation is available as a PDF document or in HTML. The PDF document `p4convert.pdf`
-is packaged with each release and the HTML documentation available on our website:
-
-* __TBC__
+Documentation is available as a PDF document or in HTML. The HTML documention is
+packaged with each release under the `docs` directory and [online](https://swarm.workshop.perforce.com/projects/perforce-software-p4convert/view/main/docs/publicsite-generated/index.html).
 
 The markdown file `README.md` (this document) is located in the project's root directory
 on the Workshop. 
