@@ -101,36 +101,11 @@ public abstract class RcsNavigator {
 				logger.debug("\tbranch: '" + name + "' " + branchId.toString());
 			}
 		} else {
-			// format label name, before adding to map.
-			name = formatName(name);
 			labelsMap.put(name, id);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("\tlabel: '" + name + "'");
 			}
-		}
-	}
-
-	/**
-	 * Format label name, by substituting '{symbol}' with the tag symbol.
-	 * 
-	 * @param name
-	 * @return
-	 */
-	private String formatName(String name) {
-		String formatter;
-		try {
-			formatter = (String) Config.get(CFG.CVS_LABEL_FORMAT);
-		} catch (ConfigException e) {
-			return name;
-		}
-
-		if (!formatter.isEmpty()) {
-			String label = formatter;
-			label = label.replaceAll("\\{symbol\\}", name);
-			return label;
-		} else {
-			return name;
 		}
 	}
 
@@ -158,7 +133,8 @@ public abstract class RcsNavigator {
 			List<String> labels = getLabels(id);
 			if (!labels.isEmpty()) {
 				for (String l : labels) {
-					entry.addLabel(l);
+					String format = formatName(l);
+					entry.addLabel(format);
 				}
 			}
 
@@ -226,6 +202,29 @@ public abstract class RcsNavigator {
 			// next...
 			id = revision.getNext();
 		} while (id != null);
+	}
+	
+	/**
+	 * Format label name, by substituting '{symbol}' with the tag symbol.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	protected String formatName(String name) {
+		String formatter;
+		try {
+			formatter = (String) Config.get(CFG.CVS_LABEL_FORMAT);
+		} catch (ConfigException e) {
+			return name;
+		}
+
+		if (!formatter.isEmpty()) {
+			String label = formatter;
+			label = label.replaceAll("\\{symbol\\}", name);
+			return label;
+		} else {
+			return name;
+		}
 	}
 
 	/**

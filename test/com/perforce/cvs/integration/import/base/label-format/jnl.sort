@@ -1,0 +1,8 @@
+@pv@ 9 @db.rev@ @//import/main/Common.pm@ 2 1 1 2 1027366492 1027366492 C3CD39E0F76A54FB1F1774CA1D2D61F6 168 0 0 @//import/main/Common.pm@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/main/Common.pm@ 1 1 0 1 1027364562 1027364562 2C28B513E508E6219F0977990CA1C74F 174 0 0 @//import/main/Common.pm@ @1.1@ 1 
+@pv@ 2 @db.change@ 2 2 @svn-client@ @user1@ 1027366492 1 @baseline_1_1
+@pv@ 2 @db.change@ 1 1 @svn-client@ @user2@ 1027364562 1 @Initial revision
+@pv@ 0 @db.desc@ 2 @baseline_1_1
+@pv@ 0 @db.desc@ 1 @Initial revision
+@pv@ 0 @db.label@ @prefix_baseline_1_0@ @//import/main/Common.pm@ 1 
+@pv@ 0 @db.label@ @prefix_bldrm_0_1_0@ @//import/main/Common.pm@ 2 

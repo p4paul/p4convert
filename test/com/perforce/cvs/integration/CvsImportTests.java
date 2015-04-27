@@ -539,6 +539,14 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "utf16_le_binary");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case066() throws Exception {
+		Config.set(CFG.CVS_LABELS, true);
+		Config.set(CFG.CVS_LABEL_FORMAT, "prefix_{symbol}");
+		Config.set(CFG.CVS_MODULE, "label-format");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test

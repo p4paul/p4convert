@@ -32,7 +32,7 @@ public class RevisionNavigator extends RcsNavigator {
 		if (logger.isDebugEnabled()) {
 			logger.debug("tag entry: " + tagName + " " + entry.getId());
 		}
-		
+
 		revList.add(entry);
 	}
 
@@ -46,7 +46,8 @@ public class RevisionNavigator extends RcsNavigator {
 			RevisionEntry brRev = createBranch(toTag, from);
 			revList.add(brRev);
 		} else {
-			from.addLabel(toTag);
+			String format = formatName(toTag);
+			from.addLabel(format);
 		}
 	}
 
