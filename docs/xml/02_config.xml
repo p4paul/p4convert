@@ -222,6 +222,78 @@ com.p4convert.cvs.tmpDir=<replaceable>tmp</replaceable>
             
     </orderedlist>     
   </section>
+  
+  <section xml:id="config.mapping_CVS_paths">
+    <title>Mapping CVS Paths</title>
+    
+    <para>
+      CVS paths are mapped into Perforce using the original RCS file structure, but
+      prefixed with the branch name. The converter uses a branch name 'main' for the
+      initial 1.1 branch and the symbol names for subsequent branches.
+    </para>
+    
+    <para>  
+      If requires an optional path map can be provided to remap the CVS path to a new
+      structure within Perforce.  When designing a path map, care must be taken to 
+      insure that all CVS paths have a destination mapping.
+    </para>
+    
+    <orderedlist>
+      <listitem>
+        <para>   
+          To enable CVS path mapping create a file called <parameter>path.map</parameter>
+          with regex and group match.
+        </para>
+      </listitem>
+    
+      <listitem>
+        <para>
+          Only the first matching entry is used.  
+        </para>
+      </listitem>
+    
+      <listitem>
+        <para>  
+          The regex and group match are seperated by ', ' (or in regex terms ',\s+').
+        </para>
+      </listitem>
+    
+      <listitem>
+        <para>  
+          Lines starting with '#' are ignored.
+        </para>
+      </listitem>
+    </orderedlist>
+    
+    <para> 
+      For example, 'trunk' is renamed to 'main', but other entries are left as-is.
+      
+<programlisting language="perl">
+# path.map
+trunk/(.*), //import/main/{1}
+(.*), //import/{1}
+</programlisting>
+
+      Note: if no file is found the default 'depot' and 'subPath' options are used to
+      generate the map, preserving the original behaviour.
+
+      CVS paths will always stat with the 'branch' name.  'main' for 1.1 and the symbol
+      for other branches.
+
+<programlisting language="perl">
+# path.map
+main/projA/(.*), //import/projA/MAIN/{1}
+release_(.*)/projA/(.*), //import/projA/REL{1}/{2}
+(.*)/projA/(.*), //import/projA/TAG-{1}/{2}
+(.*), //import/unexpected/{1}
+</programlisting>
+
+      <note>
+        Adding a catch all is a good idea (as shown in the last line with the
+        'unexpected' directory).
+      </note>
+    </para>      
+  </section>
     
   <section xml:id="config.labeling_CVS_paths">
     <title>Labeling CVS Paths</title>

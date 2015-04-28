@@ -235,6 +235,92 @@ com.p4convert.cvs.tmpDir=<em class="replaceable"><code>tmp</code></em>
                      </ol>
                   </div>
                </div>
+               <div class="section" id="config.mapping_CVS_paths">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h2 class="title" style="clear: both">Mapping CVS Paths</h2>
+                        </div>
+                     </div>
+                  </div>
+                  <p>
+                           CVS paths are mapped into Perforce using the original RCS file structure, but
+                           prefixed with the branch name. The converter uses a branch name 'main' for the
+                           initial 1.1 branch and the symbol names for subsequent branches.
+                         
+                  </p>
+                  <p>  
+                           If requires an optional path map can be provided to remap the CVS path to a new
+                           structure within Perforce.  When designing a path map, care must be taken to 
+                           insure that all CVS paths have a destination mapping.
+                         
+                  </p>
+                  <div class="orderedlist">
+                     <ol class="orderedlist" type="1">
+                        <li class="listitem">
+                           <p>   
+                                        To enable CVS path mapping create a file called <em class="parameter"><code>path.map</code></em>
+                                        with regex and group match.
+                                      
+                           </p>
+                        </li>
+                        <li class="listitem">
+                           <p>
+                                        Only the first matching entry is used.  
+                                      
+                           </p>
+                        </li>
+                        <li class="listitem">
+                           <p>  
+                                        The regex and group match are seperated by ', ' (or in regex terms ',\s+').
+                                      
+                           </p>
+                        </li>
+                        <li class="listitem">
+                           <p>  
+                                        Lines starting with '#' are ignored.
+                                      
+                           </p>
+                        </li>
+                     </ol>
+                  </div>
+                  <p> 
+                           For example, 'trunk' is renamed to 'main', but other entries are left as-is.
+                           
+                     
+                  </p><pre lang="perl" class="programlisting">
+# path.map
+trunk/(.*), //import/main/{1}
+(.*), //import/{1}
+</pre><p>
+                     
+                           Note: if no file is found the default 'depot' and 'subPath' options are used to
+                           generate the map, preserving the original behaviour.
+                     
+                           CVS paths will always stat with the 'branch' name.  'main' for 1.1 and the symbol
+                           for other branches.
+                     
+                     
+                  </p><pre lang="perl" class="programlisting">
+# path.map
+main/projA/(.*), //import/projA/MAIN/{1}
+release_(.*)/projA/(.*), //import/projA/REL{1}/{2}
+(.*)/projA/(.*), //import/projA/TAG-{1}/{2}
+(.*), //import/unexpected/{1}
+</pre><p>
+                     
+                           
+                  </p>
+                  <div class="note admonition">
+                     <h3 class="title">Note</h3>
+                             Adding a catch all is a good idea (as shown in the last line with the
+                             'unexpected' directory).
+                           
+                  </div>
+                  <p>
+                         
+                  </p>
+               </div>
                <div class="section" id="config.labeling_CVS_paths">
                   <div class="titlepage">
                      <div>
@@ -1075,6 +1161,7 @@ com.p4convert.svn.mergeInfoEnabled=true
                   <li><a href="chapter.config.html#config.general.p4"><span class="prefix"></span>General Perforce converter settings.</a></li>
                   <li><a href="chapter.config.html#config.general.svn"><span class="prefix"></span>General Subversion converter settings.</a></li>
                   <li><a href="chapter.config.html#config.general.cvs"><span class="prefix"></span>General CVS converter settings.</a></li>
+                  <li><a href="chapter.config.html#config.mapping_CVS_paths"><span class="prefix"></span>Mapping CVS Paths</a></li>
                   <li><a href="chapter.config.html#config.labeling_CVS_paths"><span class="prefix"></span>Labeling CVS Paths</a></li>
                   <li><a href="chapter.config.html#config.general.selective_and_incremental_conversions"><span class="prefix"></span>Subversion: Selective and Incremental Conversions</a></li>
                   <li><a href="chapter.config.html#config.filtering_subversion_paths"><span class="prefix"></span>Filtering Subversion paths</a></li>
