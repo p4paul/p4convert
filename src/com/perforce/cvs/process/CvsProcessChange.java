@@ -231,6 +231,9 @@ public class CvsProcessChange extends ProcessChange {
 		int count = 0;
 		for (File file : rcsFiles.getFiles()) {
 			try {
+				if ((Boolean) Config.get(CFG.CVS_TMPLOG_ENABLED)) {
+					TmpFileLogger.logRcsFile(file);
+				}
 				RcsReader rcs = new RcsReader(file, true);
 				revNav.add(rcs);
 

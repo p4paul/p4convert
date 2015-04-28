@@ -61,6 +61,7 @@ public enum CFG {
 	CVS_TMPDIR("cvs.tmpDir", String.class),
 	CVS_LABELS("cvs.labels", Boolean.class),
 	CVS_LABEL_FORMAT("cvs.labelFormat", String.class),
+	CVS_TMPLOG_ENABLED("cvs.audit.tmp", Boolean.class),
 
 	// Hidden properties
 	EXCLUDE_MAP("hidden.excludeMap", String.class),

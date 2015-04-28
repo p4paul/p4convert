@@ -20,6 +20,7 @@ import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
+import com.perforce.cvs.process.TmpFileLogger;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.parser.Content;
 
@@ -108,7 +109,7 @@ public class AssetWriter {
 		File directory = new File(dir);
 		if (!directory.mkdirs()) {
 			if (!directory.exists()) {
-				throw new ConverterException("Cannot create diretory: "
+				throw new ConverterException("Cannot create directory: "
 						+ directory.getPath());
 			}
 		}
@@ -139,6 +140,9 @@ public class AssetWriter {
 
 	private void writeCache(Content content) throws Exception {
 		String path = open();
+		if ((Boolean) Config.get(CFG.CVS_TMPLOG_ENABLED)) {
+			TmpFileLogger.logTmpFile(path);
+		}
 		TranslateContent translate = new TranslateContent(content, path);
 
 		// Links may need to be deleted before update to content.
