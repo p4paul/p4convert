@@ -47,6 +47,36 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.12523
+
+  #12522 (Bug 206)
+
+  Document the CVS part mapping feature.
+
+
+  #12521
+
+  CVS: Audit logging when generating Tmp files from RCS.
+
+  Creates a file "tmpFile.log" under the com.perforce.cvs.tmpDir and logging 
+  is enabled by default.
+
+   com.perforce.cvs.audit.tmp=true
+
+
+  #12520
+
+  Change log formatting to include date and remove thread info.
+
+
+  #12516 (Bug)
+
+  Fix to label name formatting. CVS branches downgraded to labels were missed
+  during formatting.
+  
+  
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12492
 
   #12492
