@@ -203,6 +203,9 @@ public class TagParser {
 				m = pattern.matcher(id);
 			}
 		}
+		
+		// replace all spaces with '_'
+		id = id.replaceAll(" ", "_");
 		return id;
 	}
 

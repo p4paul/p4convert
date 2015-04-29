@@ -114,7 +114,7 @@ V 9
 tag 1.0.0
 PROPS-END
 
-Node-path: tags/1.0.0
+Node-path: tags/1.0.0 part
 Node-kind: dir
 Node-action: add
 Node-copyfrom-rev: 1

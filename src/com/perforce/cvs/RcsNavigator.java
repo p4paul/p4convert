@@ -220,11 +220,12 @@ public abstract class RcsNavigator {
 
 		if (!formatter.isEmpty()) {
 			String label = formatter;
-			label = label.replaceAll("\\{symbol\\}", name);
-			return label;
-		} else {
-			return name;
-		}
+			name = label.replaceAll("\\{symbol\\}", name);
+			
+			// replace all spaces with '_'
+			name = name.replaceAll(" ", "_");
+		} 
+		return name;
 	}
 
 	/**
