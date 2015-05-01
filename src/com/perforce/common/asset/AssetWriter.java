@@ -104,14 +104,42 @@ public class AssetWriter {
 		// Main.updateNodeStats();
 	}
 
-	private String open() throws Exception {
-		// create directory if needed
-		File directory = new File(dir);
-		if (!directory.mkdirs()) {
-			if (!directory.exists()) {
-				throw new ConverterException("Cannot create directory: "
-						+ directory.getPath());
-			}
+	public String open() throws Exception {
+		// create directory if needed.
+		File d = new File(dir);
+
+		if (d.mkdirs()) {
+			// all OK, return.
+			return path;
+		}
+
+		if (d.exists()) {
+			// already exists, return.
+			return path;
+		}
+
+		// try and fix the path
+		logger.warn("Cannot create directory: " + d.getPath());
+		fixPath(d);
+
+		if (d.mkdirs()) {
+			// all OK, return.
+			return path;
+		}
+
+		if (d.exists()) {
+			// already exists, return.
+			return path;
+		}
+
+		throw new ConverterException("Unable to fix path: " + d.getPath());
+	}
+
+	private File fixPath(File path) {
+		if (!path.isDirectory()) {
+			logger.info("... cleaning: " + path);
+			path.delete();
+			path = fixPath(path.getParentFile());
 		}
 		return path;
 	}
