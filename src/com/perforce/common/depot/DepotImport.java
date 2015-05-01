@@ -54,7 +54,6 @@ public class DepotImport implements DepotInterface {
 		if (!defaultClientRoot.endsWith("/")
 				&& !defaultClientRoot.endsWith("\\")) {
 			defaultClientRoot = new String(defaultClientRoot + "/");
-			Stats.inc(StatsType.warningCount);
 			logger.info("Adding missing delimiter '/' or '\\' to end of Client path");
 			Config.set(CFG.P4_CLIENT_ROOT, defaultClientRoot);
 		}
