@@ -43,10 +43,7 @@ public class SvnProcessNode extends ProcessNode {
 
 	private Logger logger = LoggerFactory.getLogger(SvnProcessNode.class);
 
-	private ChangeInterface changelist;
-	private DepotInterface depot;
 	private Node record;
-	private QueryInterface query;
 	private ProcessLabel processLabel;
 	private boolean isLabels;
 
@@ -54,8 +51,6 @@ public class SvnProcessNode extends ProcessNode {
 			Node record) throws Exception {
 
 		super(depot);
-		this.query = super.getQuery();
-		this.depot = super.getDepot();
 
 		this.record = record;
 		this.changelist = changelist;
@@ -104,8 +99,7 @@ public class SvnProcessNode extends ProcessNode {
 		}
 
 		// find last action using path and Perforce change number
-		ChangeAction lastAction = query.findLastAction(nodePath,
-				changelist.getChange());
+		ChangeAction lastAction = getLastAction(nodePath);
 
 		// if node has archive content (including empty files), then ...
 		Content content = record.getContent();
@@ -187,7 +181,8 @@ public class SvnProcessNode extends ProcessNode {
 					&& nodeAction == Action.EDIT) {
 
 				// check history for latest merge and remove previous
-				MergeInfo lastMerge = query.getLastMerge(mergeInfo.getPath());
+				MergeInfo lastMerge = getQuery().getLastMerge(
+						mergeInfo.getPath());
 				if (logger.isDebugEnabled()) {
 					logger.debug("lastMerge: " + lastMerge);
 					logger.debug("currentMerge: " + mergeInfo);
@@ -200,7 +195,7 @@ public class SvnProcessNode extends ProcessNode {
 
 				// get merge sources for new merges
 				ArrayList<MergeSource> mergeSources = deltaMerge
-						.getMergeSources(nodePath, query);
+						.getMergeSources(nodePath, getQuery());
 
 				if (mergeSources != null && !mergeSources.isEmpty()) {
 					if (logger.isDebugEnabled()) {
@@ -232,25 +227,8 @@ public class SvnProcessNode extends ProcessNode {
 			}
 		}
 
-		// check typemap for properties
-		List<ContentProperty> typemapProps;
-		typemapProps = TypeMap.getContentProperty(nodePath);
-
-		// check for file properties
-		List<ContentProperty> contentProps;
-		contentProps = processFileProperty();
-
-		// add typemap and file properties
-		contentProps.addAll(typemapProps);
-
-		// Set properties or use previous
-		if (content.isBlob() && contentProps.isEmpty()) {
-			if (lastAction != null) {
-				content.setProps(lastAction.getProps());
-			}
-		} else {
-			content.setProps(contentProps);
-		}
+		// set property using type map and content
+		setContentProp(nodePath, content);
 
 		// Label change if required
 		if (isLabels && TagParser.isLabel(nodePath)) {
@@ -297,7 +275,7 @@ public class SvnProcessNode extends ProcessNode {
 		 * property file infrastructure)
 		 */
 		if (!content.isBlob() && nodeAction == Action.ADD) {
-			ChangeAction queryAction = query.findLastAction(nodePath, 0);
+			ChangeAction queryAction = getQuery().findLastAction(nodePath, 0);
 			if (queryAction == null) {
 				content.setAttributes(null);
 				if (logger.isDebugEnabled()) {
@@ -307,8 +285,8 @@ public class SvnProcessNode extends ProcessNode {
 		}
 
 		// Create Node object
-		NodeInterface node = ProcessFactory
-				.getNode(changelist, depot, subBlock);
+		NodeInterface node = ProcessFactory.getNode(changelist, getDepot(),
+				subBlock);
 		node.setTo(nodePath, svnRev);
 		node.setFrom(fromList);
 		node.setContent(content);
@@ -471,8 +449,8 @@ public class SvnProcessNode extends ProcessNode {
 				subBlock);
 
 		// create node for current action
-		NodeInterface node = ProcessFactory
-				.getNode(changelist, depot, subBlock);
+		NodeInterface node = ProcessFactory.getNode(changelist, getDepot(),
+				subBlock);
 		node.setTo(nodePath, nodeRev); // nodeRev is not used
 		node.setFrom(fromList);
 		node.setProperty(record.getProperty());
@@ -502,7 +480,7 @@ public class SvnProcessNode extends ProcessNode {
 		String nodeKind = record.findHeaderString("Node-kind");
 
 		if (nodeKind == null) {
-			QueryInterface query = ProcessFactory.getQuery(depot);
+			QueryInterface query = ProcessFactory.getQuery(getDepot());
 			String nodePath = record.findHeaderString("Node-path");
 			nodePath = formatPath(nodePath);
 
@@ -521,6 +499,32 @@ public class SvnProcessNode extends ProcessNode {
 			throw new ConverterException("unknown Node-kind(" + record + ")");
 		}
 		return nodeType;
+	}
+
+	/**
+	 * Splits properties set on file into identified Perforce types Supports:
+	 * Keyword +k, Execute +x and Locked +l
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected List<ContentProperty> getContentProp() throws Exception {
+		List<ContentProperty> contentProps = new ArrayList<ContentProperty>();
+	
+		if (record.getProperty() != null) {
+			if (record.findPropertyString("svn:keywords") != null) {
+				if ((boolean) Config.get(CFG.SVN_KEEP_KEYWORD)) {
+					contentProps.add(ContentProperty.KEYWORD);
+				}
+			}
+			if (record.findPropertyString("svn:executable") != null) {
+				contentProps.add(ContentProperty.EXECUTE);
+			}
+			if (record.findPropertyString("svn:needs-lock") != null) {
+				contentProps.add(ContentProperty.LOCK);
+			}
+		}
+		return contentProps;
 	}
 
 	/**
@@ -548,32 +552,6 @@ public class SvnProcessNode extends ProcessNode {
 			rename = true;
 		}
 		return rename;
-	}
-
-	/**
-	 * Splits properties set on file into identified Perforce types Supports:
-	 * Keyword +k, Execute +x and Locked +l
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private List<ContentProperty> processFileProperty() throws Exception {
-		List<ContentProperty> contentProps = new ArrayList<ContentProperty>();
-
-		if (record.getProperty() != null) {
-			if (record.findPropertyString("svn:keywords") != null) {
-				if ((boolean) Config.get(CFG.SVN_KEEP_KEYWORD)) {
-					contentProps.add(ContentProperty.KEYWORD);
-				}
-			}
-			if (record.findPropertyString("svn:executable") != null) {
-				contentProps.add(ContentProperty.EXECUTE);
-			}
-			if (record.findPropertyString("svn:needs-lock") != null) {
-				contentProps.add(ContentProperty.LOCK);
-			}
-		}
-		return contentProps;
 	}
 
 	/**
@@ -631,7 +609,7 @@ public class SvnProcessNode extends ProcessNode {
 			if (from == null) {
 				from = new MergeSource(fromPath, 1, fromRev);
 			}
-			from.fetchNode(query);
+			from.fetchNode(getQuery());
 			return from;
 		}
 		return null;

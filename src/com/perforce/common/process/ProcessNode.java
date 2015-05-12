@@ -1,6 +1,7 @@
 package com.perforce.common.process;
 
 import java.net.URLDecoder;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +11,10 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentProperty;
 import com.perforce.common.asset.ContentType;
+import com.perforce.common.asset.TypeMap;
 import com.perforce.common.depot.DepotInterface;
 import com.perforce.config.ConfigException;
+import com.perforce.svn.change.ChangeInterface;
 import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree.NodeType;
@@ -23,8 +26,11 @@ public abstract class ProcessNode {
 
 	private Logger logger = LoggerFactory.getLogger(ProcessNode.class);
 
-	QueryInterface query;
-	DepotInterface depot;
+	private ChangeAction lastAction;
+	private DepotInterface depot;
+	private QueryInterface query;
+
+	protected ChangeInterface changelist;
 
 	public ProcessNode(DepotInterface depot) throws Exception {
 		this.depot = depot;
@@ -68,6 +74,44 @@ public abstract class ProcessNode {
 	protected NodeType getNodeType() throws Exception {
 		logger.error("common.ProcessNode.getNodeType() should be extended");
 		throw new Exception();
+	}
+
+	protected List<ContentProperty> getContentProp() throws Exception {
+		logger.error("common.ProcessNode.getContentProp() should be extended");
+		throw new Exception();
+	}
+
+	protected void setContentProp(String path, Content content)
+			throws Exception {
+		// check typemap for properties
+		List<ContentProperty> typemapProps;
+		typemapProps = TypeMap.getContentProperty(path);
+
+		// check for file properties
+		List<ContentProperty> contentProps = getContentProp();
+
+		// add typemap and file properties
+		contentProps.addAll(typemapProps);
+
+		// Set properties or use previous
+		if (content.isBlob() && contentProps.isEmpty()) {
+			ChangeAction last = getLastAction(path);
+			if (last != null) {
+				content.setProps(last.getProps());
+			}
+		} else {
+			content.setProps(contentProps);
+		}
+	}
+
+	protected ChangeAction getLastAction(String path) throws Exception {
+		if (lastAction == null) {
+			// find last action using path and Perforce change number
+			long change = changelist.getChange();
+			ChangeAction last = query.findLastAction(path, change);
+			lastAction = last;
+		}
+		return lastAction;
 	}
 
 	/**

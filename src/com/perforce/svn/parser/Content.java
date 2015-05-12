@@ -45,7 +45,9 @@ public class Content {
 			if (type == ContentType.SYMLINK && p == ContentProperty.EXECUTE) {
 				logger.info("Ignoring +x modifer; disallowed combination (executable symlinks)");
 			} else {
-				props.add(p);
+				if (!props.contains(p)) {
+					props.add(p);
+				}
 			}
 		}
 	}

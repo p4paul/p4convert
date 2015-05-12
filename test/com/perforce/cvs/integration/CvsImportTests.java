@@ -356,6 +356,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case040() throws Exception {
+		TypeMap.add("exe", "binary+l");
 		Config.set(CFG.CVS_MODULE, "exec-file");
 		testCase("CVScluster01");
 	}

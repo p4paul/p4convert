@@ -1,11 +1,13 @@
 package com.perforce.cvs.process;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
+import com.perforce.common.asset.ContentProperty;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.ScanArchive;
 import com.perforce.common.asset.TypeMap;
@@ -24,25 +26,19 @@ import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree.NodeType;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.process.MergeSource;
-import com.perforce.svn.query.QueryInterface;
 
 public class CvsProcessNode extends ProcessNode {
 
 	private Logger logger = LoggerFactory.getLogger(CvsProcessNode.class);
 
-	private ChangeInterface changelist;
-	private DepotInterface depot;
 	private RevisionEntry revEntry;
-	private QueryInterface query;
 
 	public CvsProcessNode(ChangeInterface changelist, DepotInterface depot,
 			RevisionEntry revEntry) throws Exception {
 
 		super(depot);
-		this.depot = super.getDepot();
 		this.changelist = changelist;
 		this.revEntry = revEntry;
-		this.query = super.getQuery();
 	}
 
 	protected void processFile() throws Exception {
@@ -61,8 +57,7 @@ public class CvsProcessNode extends ProcessNode {
 		Action nodeAction = getNodeAction();
 
 		// find last action using path and Perforce change number
-		ChangeAction lastAction = query.findLastAction(nodePath,
-				changelist.getChange());
+		ChangeAction lastAction = getLastAction(nodePath);
 
 		// if node has archive content (including empty files), then ...
 		Content content = new Content(revEntry);
@@ -75,7 +70,7 @@ public class CvsProcessNode extends ProcessNode {
 			// Find branch from point
 			long lastChange = cvsChange - 1;
 			for (long c = lastChange; c > 0; c--) {
-				ChangeAction next = query.findLastAction(fromPath, c);
+				ChangeAction next = getQuery().findLastAction(fromPath, c);
 
 				if (next == null) {
 					logger.warn("No history (branch from label): "
@@ -90,7 +85,7 @@ public class CvsProcessNode extends ProcessNode {
 				if (!next.getAction().equals(Action.REMOVE)) {
 					MergeSource from = new MergeSource(fromPath, 1, c);
 					processMergeCredit(from, content, nodeAction);
-					from.fetchNode(query);
+					from.fetchNode(getQuery());
 					fromList.add(from);
 					break;
 				} else {
@@ -115,6 +110,9 @@ public class CvsProcessNode extends ProcessNode {
 				AuditLogger.log(nodePath, rev, cvsChange, md5);
 			}
 		}
+
+		// set property using type map and content
+		setContentProp(nodePath, content);
 
 		// upgrade edits from ADD to EDIT
 		if (nodeAction == Action.ADD) {
@@ -143,8 +141,8 @@ public class CvsProcessNode extends ProcessNode {
 				content, subBlock);
 
 		// Create Node object
-		NodeInterface node = ProcessFactory
-				.getNode(changelist, depot, subBlock);
+		NodeInterface node = ProcessFactory.getNode(changelist, getDepot(),
+				subBlock);
 		node.setTo(nodePath, cvsChange);
 		node.setFrom(fromList);
 		node.setContent(content);
@@ -158,6 +156,11 @@ public class CvsProcessNode extends ProcessNode {
 
 	protected NodeType getNodeType() throws Exception {
 		return NodeType.FILE;
+	}
+
+	protected List<ContentProperty> getContentProp() {
+		Content content = new Content(revEntry);
+		return content.getProps();
 	}
 
 	private ContentType findContentType(String nodePath, Content content,
