@@ -219,6 +219,21 @@ public class Main {
 	}
 
 	private static ExitCode startConversion(CommandLine line) throws Exception {
+		
+		// override if --start flag is used
+		if (line.hasOption("start")) {
+			long start = Long.parseLong(line.getOptionValue("start"));
+			logger.debug("... flag: --start=" + start);
+			Config.set(CFG.P4_START, start);
+		}
+
+		// override if --end flag is used
+		if (line.hasOption("end")) {
+			long end = Long.parseLong(line.getOptionValue("end"));
+			logger.debug("... flag: --end=" + end);
+			Config.set(CFG.P4_END, end);
+		}
+		
 		ExecutorService executor = Executors.newFixedThreadPool(1);
 
 		Callable<Integer> callable = null;
@@ -229,20 +244,6 @@ public class Main {
 				String repoPath = line.getOptionValue("repo");
 				logger.debug("... flag: --repo=" + repoPath);
 				Config.set(CFG.SVN_DUMPFILE, repoPath);
-			}
-
-			// override if --start flag is used
-			if (line.hasOption("start")) {
-				long start = Long.parseLong(line.getOptionValue("start"));
-				logger.debug("... flag: --start=" + start);
-				Config.set(CFG.SVN_START, start);
-			}
-
-			// override if --end flag is used
-			if (line.hasOption("end")) {
-				long end = Long.parseLong(line.getOptionValue("end"));
-				logger.debug("... flag: --end=" + end);
-				Config.set(CFG.SVN_END, end);
 			}
 
 			callable = new SvnProcessChange();
@@ -315,7 +316,7 @@ public class Main {
 
 		// Run usage analysis
 		long revLast = Long.parseLong(revLastString);
-		Config.set(CFG.SVN_END, revLast);
+		Config.set(CFG.P4_END, revLast);
 	}
 
 	private static void prescanTags(String dumpFile, int depth)
@@ -337,7 +338,7 @@ public class Main {
 
 		// Run usage analysis
 		UsageParser usage = new UsageParser(dumpFile);
-		long revLast = (long) Config.get(CFG.SVN_END);
+		long revLast = (long) Config.get(CFG.P4_END);
 		int pathLength = usage.getPathLength();
 		long emptyNodes = usage.getEmptyNodes();
 		long revs = usage.getTree().toCount();

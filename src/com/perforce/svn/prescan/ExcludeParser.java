@@ -47,7 +47,7 @@ public class ExcludeParser {
 			logger.info("Verifying exclusion map...");
 		}
 
-		long end = (Long) Config.get(CFG.SVN_END);
+		long end = (Long) Config.get(CFG.P4_END);
 		Progress progress = new Progress(end);
 
 		// Open dump file reader and iterate over entries

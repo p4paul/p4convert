@@ -80,6 +80,8 @@ public class Configuration {
 		set(CFG.P4_LINEEND, true);
 		set(CFG.P4_SKIP_EMPTY, false);
 		set(CFG.P4_DOWNGRADE, false);
+		set(CFG.P4_START, 1L);
+		set(CFG.P4_END, 0L);
 
 		// Check system for case sensitivity
 		if (Config.isCaseSensitive()) {
@@ -92,8 +94,6 @@ public class Configuration {
 
 		// Subversion specific modes
 		set(CFG.SVN_DUMPFILE, "<unset>");
-		set(CFG.SVN_START, 1L);
-		set(CFG.SVN_END, 0L);
 		set(CFG.SVN_PROP_NAME, ".svn.properties");
 		set(CFG.SVN_PROP_ENCODE, "ini");
 		set(CFG.SVN_PROP_ENABLED, false);

@@ -21,7 +21,7 @@ public class UsageParser {
 	private long emptyNodes;
 
 	public UsageParser(String dumpFile) throws ConfigException {
-		long endRev = (long) Config.get(CFG.SVN_END);
+		long endRev = (long) Config.get(CFG.P4_END);
 		Progress progress = new Progress(endRev);
 		pathLength = 0;
 		emptyNodes = 0;

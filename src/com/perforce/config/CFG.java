@@ -37,11 +37,11 @@ public enum CFG {
 	P4_SKIP_EMPTY("p4.skipEmpty", Boolean.class),
 	P4_NORMALISATION("p4.normalisation", Normaliser.class),
 	P4_DOWNGRADE("p4.downgrade", Boolean.class),
+	P4_START("p4.start", Long.class),
+	P4_END("p4.end", Long.class),
 
 	// Subversion specific modes
 	SVN_DUMPFILE("svn.dumpFile", String.class),
-	SVN_START("svn.start", Long.class),
-	SVN_END("svn.end", Long.class),
 	SVN_PROP_NAME("svn.propName", String.class),
 	SVN_PROP_ENCODE("svn.propEncoding", String.class),
 	SVN_PROP_ENABLED("svn.propEnabled", Boolean.class),

@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.ConverterException;
 import com.perforce.common.ExitCode;
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
@@ -21,6 +22,8 @@ public abstract class ProcessChange implements Callable<Integer> {
 
 	private Logger logger = LoggerFactory.getLogger(ProcessChange.class);
 
+	protected long revStart;
+	protected long revEnd;
 	protected boolean isLabels;
 	protected ProcessLabel processLabel;
 
@@ -246,5 +249,36 @@ public abstract class ProcessChange implements Callable<Integer> {
 
 	public void setCurrentChange(ChangeInterface currentChange) {
 		this.currentChange = currentChange;
+	}
+
+	protected void setChangeRange(long revLast) throws Exception {
+		// Test start and end revisions
+		if (revStart > revLast || revEnd > revLast) {
+			String err = "Specified revision range exceeds last revision";
+			logger.error(err);
+			throw new ConverterException(err);
+		}
+
+		// Auto set end revision
+		if (revLast > 0 && revEnd == 0) {
+			Config.set(CFG.P4_END, revLast);
+			revEnd = revLast;
+		}
+
+		// Test start vs end range
+		if (revStart > revEnd) {
+			String err = "Specified start revision exceeds end revision";
+			logger.error(err);
+			throw new ConverterException(err);
+		}
+
+		// Log import range
+		if (logger.isInfoEnabled()) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("importing revs: \t");
+			sb.append(revStart + " to " + revEnd);
+			sb.append(" out of " + revLast);
+			logger.info(sb.toString());
+		}
 	}
 }

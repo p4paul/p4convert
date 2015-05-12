@@ -28,20 +28,44 @@ public class SvnProcessChange extends ProcessChange {
 
 	private ChangeInfo changeInfo;
 
+	private final String dumpFile;
+
+	public SvnProcessChange() throws Exception {
+		if (logger.isDebugEnabled()) {
+			logger.debug(Config.summary());
+		}
+
+		// Read configuration settings
+		dumpFile = (String) Config.get(CFG.SVN_DUMPFILE);
+		revStart = (Long) Config.get(CFG.P4_START);
+		revEnd = (Long) Config.get(CFG.P4_END);
+
+		// Set imported change range
+		long revLast = getLastChange();
+		setChangeRange(revLast);
+	}
+
+	private long getLastChange() throws Exception {
+		// Find last revision
+		LastRevision rev = new LastRevision(dumpFile);
+		String revLastString = rev.find();
+		rev.close();
+		if (revLastString == null) {
+			String err = "Cannot find last revision in dumpfile";
+			logger.error(err);
+			throw new ConverterException(err);
+		}
+		long revLast = Long.parseLong(revLastString);
+		return revLast;
+	}
+
 	protected void processChange() throws Exception {
 		// Initialise labels
 		isLabels = (Boolean) Config.get(CFG.SVN_LABELS);
 
-		// Read configuration settings for locals
-		String dumpFile = (String) Config.get(CFG.SVN_DUMPFILE);
-		long revStart = (Long) Config.get(CFG.SVN_START);
-		long revEnd = (Long) Config.get(CFG.SVN_END);
 		String depotPath = (String) Config.get(CFG.P4_DEPOT_PATH);
 		CaseSensitivity caseMode;
 		caseMode = (CaseSensitivity) Config.get(CFG.P4_CASE);
-		if (logger.isDebugEnabled()) {
-			logger.debug(Config.summary());
-		}
 
 		// Create revision tree and depot
 		DepotInterface depot = ProcessFactory.getDepot(depotPath, caseMode);
@@ -53,39 +77,6 @@ public class SvnProcessChange extends ProcessChange {
 			String err = "Pending change detected, conversion aborted";
 			logger.error(err);
 			throw new ConverterException(err);
-		}
-
-		// Find last revision
-		LastRevision rev = new LastRevision(dumpFile);
-		String revLastString = rev.find();
-		rev.close();
-		if (revLastString == null) {
-			String err = "Cannot find last revision in dumpfile";
-			logger.error(err);
-			throw new ConverterException(err);
-		}
-		long revLast = Long.parseLong(revLastString);
-
-		// Test start and end revisions
-		if (revStart > revLast || revEnd > revLast) {
-			String err = "Specified revision range exceeds last revision";
-			logger.error(err);
-			throw new ConverterException(err);
-		}
-
-		// Auto set end revision
-		if (revLastString != null && revEnd == 0) {
-			Config.set(CFG.SVN_END, revLast);
-			revEnd = revLast;
-		}
-
-		// Log import range
-		if (logger.isInfoEnabled()) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("importing revs: \t");
-			sb.append(revStart + " to " + revEnd);
-			sb.append(" out of " + revLast);
-			logger.info(sb.toString());
 		}
 
 		// Check offset
@@ -147,7 +138,7 @@ public class SvnProcessChange extends ProcessChange {
 				if (super.isStop() || (nextChange > revEnd && revEnd != 0)) {
 					if (super.isStop()) {
 						// Premature stop -- update end rev
-						Config.set(CFG.SVN_END, nextChange - 1);
+						Config.set(CFG.P4_END, nextChange - 1);
 					}
 					// Close changelist
 					close();

@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
 import com.perforce.cvs.RevisionEntry;
 import com.perforce.cvs.RevisionSorter;
 
@@ -26,6 +28,9 @@ public class CvsChangeList {
 		RevisionEntry entry;
 		revSort.reset();
 		RevisionSorter revs = revSort;
+
+		long revStart = (Long) Config.get(CFG.P4_START);
+		long revEnd = (Long) Config.get(CFG.P4_END);
 
 		// Iterate over all revisions
 		do {
@@ -76,8 +81,8 @@ public class CvsChangeList {
 			// add change and update counters
 			if (!cvsChange.isEmpty()) {
 				list.add(cvsChange);
-				sequence++;
 				System.out.print("Creating change: " + sequence + "\r");
+				sequence++;
 			}
 		} while (changeEntry != null);
 	}

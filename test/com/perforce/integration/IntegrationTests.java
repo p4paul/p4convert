@@ -51,7 +51,7 @@ public class IntegrationTests {
 			Config.set(CFG.SVN_PROP_NAME, ".svn.properties");
 			Config.set(CFG.SVN_PROP_ENCODE, "ini");
 			Config.set(CFG.SVN_PROP_ENABLED, true);
-			Config.set(CFG.SVN_END, 0L);
+			Config.set(CFG.P4_END, 0L);
 			Config.set(CFG.P4_CLIENT_ROOT, "/ws");
 
 			Config.set(CFG.EXCLUDE_MAP, "test_exclude.map");

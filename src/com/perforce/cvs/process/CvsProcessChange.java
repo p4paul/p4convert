@@ -37,6 +37,16 @@ public class CvsProcessChange extends ProcessChange {
 	private DepotInterface depot;
 	private int nodeID = 0;
 
+	public CvsProcessChange() throws Exception {
+		if (logger.isDebugEnabled()) {
+			logger.debug(Config.summary());
+		}
+
+		// Read configuration settings for locals
+		revStart = (Long) Config.get(CFG.P4_START);
+		revEnd = (Long) Config.get(CFG.P4_END);
+	}
+
 	protected void processChange() throws Exception {
 		// Initialise labels
 		isLabels = (Boolean) Config.get(CFG.CVS_LABELS);
@@ -78,6 +88,10 @@ public class CvsProcessChange extends ProcessChange {
 		changeSort.build(revSort);
 		// changeSort.store("cvsChanges.json");
 
+		// Set imported change range
+		long lastRev = changeSort.getLastChange();
+		setChangeRange(lastRev);
+
 		// Iterate over changes and submit
 		for (CvsChange cvsChange : changeSort.getChanges()) {
 
@@ -89,6 +103,12 @@ public class CvsProcessChange extends ProcessChange {
 			ChangeInterface change;
 			long sequence = cvsChange.getChange();
 			long p4Change = sequence + (Long) Config.get(CFG.P4_OFFSET);
+
+			// skip revision outside of starting position
+			if (sequence < revStart) {
+				logger.info("skipping change " + sequence + "...");
+				continue;
+			}
 
 			RevisionEntry changeEntry = cvsChange.getChangeInfo();
 			ChangeInfo info = new ChangeInfo(changeEntry, sequence);
@@ -102,6 +122,16 @@ public class CvsProcessChange extends ProcessChange {
 
 			// update counters
 			nodeID = 0;
+
+			if (super.isStop() || (sequence >= revEnd && revEnd != 0)) {
+				if (super.isStop()) {
+					// Premature stop -- update end rev
+					Config.set(CFG.P4_END, sequence);
+				}
+				// Close changelist
+				close();
+				return;
+			}
 		}
 
 		// finish up conversion

@@ -29,7 +29,7 @@ public class TagParser {
 		logger.info("Searching for labels...");
 		tags = new HashMap<String, TagEntry>();
 
-		long end = (Long) Config.get(CFG.SVN_END);
+		long end = (Long) Config.get(CFG.P4_END);
 		Progress progress = new Progress(end);
 
 		// Initialise per change tag counter

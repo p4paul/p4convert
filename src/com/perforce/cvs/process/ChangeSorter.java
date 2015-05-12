@@ -79,4 +79,7 @@ public class ChangeSorter {
 		return changes.getChanges();
 	}
 
+	public long getLastChange() {
+		return changes.getChanges().size();
+	}
 }

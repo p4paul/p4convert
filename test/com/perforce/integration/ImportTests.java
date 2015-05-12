@@ -99,7 +99,7 @@ public class ImportTests {
 			Config.set(CFG.SVN_PROP_NAME, ".svn.properties");
 			Config.set(CFG.SVN_PROP_ENCODE, "ini");
 			Config.set(CFG.SVN_PROP_ENABLED, true);
-			Config.set(CFG.SVN_END, 0L);
+			Config.set(CFG.P4_END, 0L);
 
 			Config.set(CFG.EXCLUDE_MAP, "test_exclude.map");
 			Config.set(CFG.INCLUDE_MAP, "test_include.map");
@@ -689,7 +689,7 @@ public class ImportTests {
 	@Test
 	public void case080() throws Exception {
 		Config.set(CFG.SVN_MERGEINFO, true);
-		Config.set(CFG.SVN_START, 6L);
+		Config.set(CFG.P4_START, 6L);
 		String test = "merge_offset";
 		String seed = dumpPath + test + "/";
 		testCase(test, seed);
