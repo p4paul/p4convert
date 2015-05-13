@@ -62,8 +62,13 @@ on the Workshop.
 ## Limitations
 
 * Symbolic links are not supported in `IMPORT` mode on Windows.
+
 * CVS keyword expansion is not supported.
-* SVN keyword expansion may yield different results when synced. 
+
+* SVN keyword expansion may yield different results when synced.
+
+* SVN property `svn:needs-lock` cannot be imported to a distributed Perforce server and may raise the error:
+	`can't change +l type with reopen; use revert -k and then edit -t to change type.`
 
 
 ## Support
