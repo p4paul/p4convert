@@ -4,7 +4,7 @@
 This documentation needs an update reflecting the new features on the Public release of
 the converter.
 
-                        Version PUBLIC.Main.11901
+                        Version PUBLIC.Main.12912
 
 Introduction
 
@@ -44,6 +44,50 @@ Compatibility Statements
 	Java Virtual Machine
 	
 	  This release is certified to run on Java SE Runtime Environment 1.7.*
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.12912
+
+  #12912
+  
+  Document SVN limitation with +l on edge/commit servers
+
+
+  #12893
+
+  CVS: Enable merging of Content Properties with the Type Map.
+
+
+  #12890
+
+  Extended start/stop change limits to CVS.
+
+
+  #12552 (Bug 219)
+
+  Remove warning count on message: 
+  
+  "Adding missing delimiter '/' or '\\' to end of Client path."
+
+
+  #12551
+
+  Import mode workspace path fix code and logging.
+
+  The issues only seems to occure when the configuration option 
+  'com.p4convert.svn.mergeInfoEnabled' is true.  The merge seems to create a 
+  symlink or label then merge a directory over the top.
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.12535
+
+  #12535 (Bug 218 220)
+
+  CVS/SVN: Substitute spaces with an '_' for label names.
+
 
 --------------------------------------------------------------------------
 
