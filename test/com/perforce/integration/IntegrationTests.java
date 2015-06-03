@@ -931,13 +931,19 @@ public class IntegrationTests {
 		String test = "branch_multi";
 		testCase(test);
 	}
-	
+
 	@Test
 	public void case124() throws Exception {
 		Config.set(CFG.P4_TRANSLATE, true);
 		Config.set(CFG.P4_UNICODE, false);
 
 		String test = "utf8_files_tr";
+		testCase(test);
+	}
+
+	@Test
+	public void case125() throws Exception {
+		String test = "dots_path";
 		testCase(test);
 	}
 

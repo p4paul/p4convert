@@ -1,0 +1,14 @@
+@pv@ 9 @db.rev@ @//import/trunk/_ELLIPSIS_path/foo@ 1 1 0 2 1433324352 1433324352 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/_ELLIPSIS_path/foo@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo..@ 1 1 0 3 1433325022 1433325022 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/foo..@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo_ELLIPSIS_@ 1 1 0 2 1433324352 1433324352 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/foo_ELLIPSIS_@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo_ELLIPSIS_.@ 1 1 0 3 1433325022 1433325022 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/foo_ELLIPSIS_.@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo_ELLIPSIS_..@ 1 1 0 4 1433325614 1433325614 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/foo_ELLIPSIS_..@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo_ELLIPSIS__ELLIPSIS_@ 1 1 0 4 1433325614 1433325614 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/foo_ELLIPSIS__ELLIPSIS_@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/foo_ELLIPSIS__ELLIPSIS_.@ 1 1 0 4 1433325614 1433325614 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/foo_ELLIPSIS__ELLIPSIS_.@ @1.4@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/path_ELLIPSIS_/foo@ 1 1 0 2 1433324352 1433324352 F75B8179E4BBE7E2B4A074DCEF62DE95 8 0 0 @//import/trunk/path_ELLIPSIS_/foo@ @1.2@ 1 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @pallen@ 1433325614 1 @even more
+@pv@ 2 @db.change@ 3 3 @svn-client@ @pallen@ 1433325022 1 @more
+@pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1433324352 1 @files
+@pv@ 0 @db.desc@ 4 @even more
+@pv@ 0 @db.desc@ 3 @more
+@pv@ 0 @db.desc@ 2 @files

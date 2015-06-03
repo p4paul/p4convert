@@ -227,12 +227,20 @@ public abstract class ProcessNode {
 				if (os.contains("win")) {
 					StringBuffer sb = new StringBuffer();
 					sb.append("Windows does not support asterisk in filenames, ");
-					sb.append("replacing with '*' with tag '_ASTERISK_'.");
+					sb.append("replacing '*' with tag '_ASTERISK_'.");
 					logger.warn(sb.toString());
 					path = path.replace("*", "_ASTERISK_");
 				} else {
 					path = path.replace("*", "%2A");
 				}
+			}
+			
+			if(path.contains("...")) {
+				StringBuffer sb = new StringBuffer();
+				sb.append("Perforce does not allow '...' in filenames, ");
+				sb.append("replacing '...' with tag '_ELLIPSIS_'.");
+				logger.warn(sb.toString());
+				path = path.replace("...", "_ELLIPSIS_");
 			}
 
 			path = getQuery().getPath(path);
