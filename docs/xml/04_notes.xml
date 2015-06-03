@@ -101,11 +101,11 @@ trunk/src/foo.c, 1, 1, 1234567890abcdef1234567890abcdef
       </para>
 
 <programlisting language="bash">
-java -Dlog4j.configuration=file:log4j.xml -jar p4convert.jar
+java -Dlog4j.configuration=file:debug.log4j.properties -jar p4convert.jar
 </programlisting>
 
       <para>
-        Please use or refer to the sample <filename>debug.log4j.xml</filename>
+        Please use or refer to the sample <filename>debug.log4j.properties</filename>
         for logging options.
       </para>
     </section>
