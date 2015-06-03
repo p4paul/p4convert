@@ -47,6 +47,20 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.13755
+
+  #13755 (Bug 292)
+
+  DOC: Updated debug.log4j.properties and reference in the docs.
+
+
+  #13754
+
+  SVN: Remove ilegal "..." from the path and replace with _ELLIPSIS_ tag.
+  
+  
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.12912
 
   #12912
