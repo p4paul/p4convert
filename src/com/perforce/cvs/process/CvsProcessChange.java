@@ -9,6 +9,7 @@ import com.perforce.common.ConverterException;
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.depot.DepotInterface;
+import com.perforce.common.node.Action;
 import com.perforce.common.process.ChangeInfo;
 import com.perforce.common.process.ProcessChange;
 import com.perforce.common.process.ProcessFactory;
@@ -165,7 +166,7 @@ public class CvsProcessChange extends ProcessChange {
 		// tag any labels
 		if (isLabels) {
 			RcsObjectNum id = entry.getId();
-			if (entry.getState().equals("dead") && id.getMinor() == 1) {
+			if (entry.getState() == Action.REMOVE && id.getMinor() == 1) {
 				logger.info("skip labelling dead revision: " + id);
 			} else {
 				processLabel.labelRev(entry, change.getChange());

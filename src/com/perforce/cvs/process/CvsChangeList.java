@@ -6,8 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.perforce.config.CFG;
-import com.perforce.config.Config;
+import com.perforce.common.node.Action;
 import com.perforce.cvs.RevisionEntry;
 import com.perforce.cvs.RevisionSorter;
 
@@ -28,9 +27,6 @@ public class CvsChangeList {
 		RevisionEntry entry;
 		revSort.reset();
 		RevisionSorter revs = revSort;
-
-		long revStart = (Long) Config.get(CFG.P4_START);
-		long revEnd = (Long) Config.get(CFG.P4_END);
 
 		// Iterate over all revisions
 		do {
@@ -113,9 +109,9 @@ public class CvsChangeList {
 			} else {
 				// if pending revision is a REMOVE and current is a PSEUDO
 				// branch
-				if (entry.isPseudo() && "dead".equals(entry.getState())) {
+				if (entry.isPseudo() && entry.getState() == Action.REMOVE) {
 					// overlay REMOVE with branch and down-grade to ADD
-					entry.setState("Exp");
+					entry.setState(Action.ADD);
 					change.addEntry(entry);
 					revs.drop(entry);
 				} else {

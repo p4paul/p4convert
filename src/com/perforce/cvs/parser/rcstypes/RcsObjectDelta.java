@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import com.perforce.common.node.Action;
 import com.perforce.common.process.ProcessUser;
 import com.perforce.cvs.parser.RcsSchema;
 
@@ -85,11 +86,16 @@ public class RcsObjectDelta extends RcsObject {
 		return block;
 	}
 
-	public String getState() {
+	public Action getState() {
 		if (containsKey(RcsSchema.STATE)) {
-			return (String) get(RcsSchema.STATE);
+			String state = (String) get(RcsSchema.STATE);
+			if(state.equals("dead")) {
+				return Action.REMOVE;
+			} else {
+				return Action.ADD;
+			}
 		} else {
-			return "unknown";
+			return Action.UNKNOWN;
 		}
 	}
 }

@@ -3,11 +3,11 @@ package com.perforce.cvs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.node.Action;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.rcstypes.RcsObjectDelta;
-import com.perforce.svn.history.Action;
 
 public class RevisionNavigator extends RcsNavigator {
 
@@ -64,7 +64,7 @@ public class RevisionNavigator extends RcsNavigator {
 		RcsObjectDelta revision = getRcsRevision().getDelta(from.getId());
 
 		RevisionEntry branch = new RevisionEntry(revision);
-		branch.setState(Action.BRANCH.toString());
+		branch.setState(Action.BRANCH);
 		branch.setPseudo(true);
 		branch.setReverse(from.isReverse());
 		branch.addDate(1L);

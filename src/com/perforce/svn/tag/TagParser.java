@@ -8,10 +8,10 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.node.Action;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Record;
 import com.perforce.svn.parser.RecordReader;

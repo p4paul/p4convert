@@ -2,7 +2,6 @@ package com.perforce.common.node;
 
 import java.util.ArrayList;
 
-import com.perforce.svn.history.Action;
 import com.perforce.svn.history.RevisionTree.NodeType;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.parser.Property;

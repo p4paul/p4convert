@@ -3,8 +3,8 @@ package com.perforce.svn.process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.node.Action;
 import com.perforce.svn.change.ChangeMap;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.query.QueryInterface;
 

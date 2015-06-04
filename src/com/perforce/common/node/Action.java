@@ -1,4 +1,4 @@
-package com.perforce.svn.history;
+package com.perforce.common.node;
 
 import com.perforce.svn.parser.Record;
 

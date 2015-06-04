@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.asset.ContentProperty;
+import com.perforce.common.node.Action;
 import com.perforce.common.process.ProcessUser;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
@@ -25,7 +26,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	private String commitId;
 	private String author;
 	private String comment;
-	private String state;
+	private Action state;
 
 	private String tmpFile;
 	private String path;
@@ -45,7 +46,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		this.commitId = revision.getCommitId().intern();
 		this.author = revision.getAuthor().intern();
 		this.comment = revision.getLog().intern();
-		this.state = revision.getState().intern();
+		this.state = revision.getState();
 	}
 
 	public boolean matches(Object obj) {
@@ -164,12 +165,12 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		this.cvsChange = cvsChange;
 	}
 
-	public String getState() {
+	public Action getState() {
 		return state;
 	}
 
-	public void setState(String s) {
-		state = s.intern();
+	public void setState(Action s) {
+		state = s;
 	}
 
 	public boolean isBinary() {

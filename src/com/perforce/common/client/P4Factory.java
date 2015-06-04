@@ -15,10 +15,10 @@ import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentProperty;
 import com.perforce.common.asset.ContentType;
+import com.perforce.common.node.Action;
 import com.perforce.p4java.core.file.FileAction;
 import com.perforce.p4java.core.file.FileSpecOpStatus;
 import com.perforce.p4java.core.file.IFileSpec;
-import com.perforce.svn.history.Action;
 
 public class P4Factory {
 

@@ -18,6 +18,7 @@ import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.TranslateCharsetType;
 import com.perforce.common.client.P4Factory;
 import com.perforce.common.depot.DepotImport;
+import com.perforce.common.node.Action;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.p4java.client.IClient;
@@ -38,7 +39,6 @@ import com.perforce.p4java.option.client.RevertFilesOptions;
 import com.perforce.p4java.option.client.SyncOptions;
 import com.perforce.p4java.option.server.GetDepotFilesOptions;
 import com.perforce.p4java.option.server.OpenedFilesOptions;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.parser.Content;
 
 public class RevisionImport {

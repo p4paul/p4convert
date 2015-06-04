@@ -10,6 +10,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.common.node.Action;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
@@ -162,7 +163,7 @@ public abstract class RcsNavigator {
 						entry.setFromPath(fromPath);
 						entry.setReverse(node.isReverse());
 
-						if (entry.getState().equals("dead")) {
+						if (entry.getState() == Action.REMOVE) {
 							logger.debug("skipping dead source: " + entry);
 						} else {
 							foundBranchPoint(tag, entry);

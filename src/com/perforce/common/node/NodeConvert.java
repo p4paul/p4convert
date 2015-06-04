@@ -17,7 +17,6 @@ import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
 import com.perforce.svn.change.ChangeConvert;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree;
 import com.perforce.svn.history.RevisionTree.NodeType;

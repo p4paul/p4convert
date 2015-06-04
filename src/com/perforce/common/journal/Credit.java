@@ -1,7 +1,7 @@
 package com.perforce.common.journal;
 
 import com.perforce.common.ConverterException;
-import com.perforce.svn.history.Action;
+import com.perforce.common.node.Action;
 
 public class Credit {
 

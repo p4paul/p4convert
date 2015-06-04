@@ -5,8 +5,6 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.perforce.common.Stats;
-import com.perforce.common.StatsType;
 import com.perforce.common.client.Connection;
 import com.perforce.common.client.ConnectionFactory;
 import com.perforce.common.node.PathMapTranslator;

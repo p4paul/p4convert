@@ -3,10 +3,10 @@ package com.perforce.svn.prescan;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.perforce.common.node.Action;
 import com.perforce.config.CFG;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
-import com.perforce.svn.history.Action;
 
 public class UsageTree {
 

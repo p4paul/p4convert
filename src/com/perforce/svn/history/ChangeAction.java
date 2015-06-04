@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.perforce.common.asset.ContentProperty;
 import com.perforce.common.asset.ContentType;
 import com.perforce.common.journal.Digest;
+import com.perforce.common.node.Action;
 
 public class ChangeAction {
 

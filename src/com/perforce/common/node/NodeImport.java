@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
 import com.perforce.svn.change.ChangeImport;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.history.RevisionTree;
 import com.perforce.svn.history.RevisionTree.NodeType;
 import com.perforce.svn.parser.Content;

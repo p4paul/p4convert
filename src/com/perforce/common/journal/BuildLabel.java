@@ -10,8 +10,7 @@ import com.perforce.common.schema.JournalRecord;
 
 public class BuildLabel {
 
-	public static
-			ArrayList<String>
+	public static ArrayList<String>
 			toJournal(DepotInterface d, LabelConvert lbl) throws Exception {
 		ArrayList<String> label = new ArrayList<String>();
 		StringBuffer sb = new StringBuffer();
@@ -74,9 +73,5 @@ public class BuildLabel {
 		sb.append(dbView.toJournalString() + "\n");
 
 		return sb.toString();
-	}
-
-	private static String depotPath(DepotInterface d, String path) {
-		return (d.getPath(path));
 	}
 }

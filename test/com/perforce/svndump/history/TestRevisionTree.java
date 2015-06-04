@@ -4,11 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.perforce.common.ConverterException;
+import com.perforce.common.node.Action;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
 import com.perforce.config.ConfigException;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree;
 import com.perforce.svn.history.RevisionTree.NodeType;

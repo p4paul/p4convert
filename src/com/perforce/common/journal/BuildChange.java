@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 import com.perforce.common.depot.DepotConvert;
 import com.perforce.common.depot.DepotInterface;
 import com.perforce.common.journal.Credit.How;
+import com.perforce.common.node.Action;
 import com.perforce.common.schema.JournalRecord;
 import com.perforce.svn.change.ChangeConvert;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.process.MergeSource;
 
 public class BuildChange {

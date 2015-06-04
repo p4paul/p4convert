@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.perforce.common.ConverterException;
+import com.perforce.common.node.Action;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.svn.parser.Content;
 import com.perforce.svn.process.MergeInfo;

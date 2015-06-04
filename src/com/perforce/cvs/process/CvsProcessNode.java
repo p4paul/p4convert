@@ -12,6 +12,7 @@ import com.perforce.common.asset.ContentType;
 import com.perforce.common.asset.ScanArchive;
 import com.perforce.common.asset.TypeMap;
 import com.perforce.common.depot.DepotInterface;
+import com.perforce.common.node.Action;
 import com.perforce.common.node.NodeInterface;
 import com.perforce.common.process.AuditLogger;
 import com.perforce.common.process.ProcessFactory;
@@ -21,7 +22,6 @@ import com.perforce.config.Config;
 import com.perforce.cvs.RevisionEntry;
 import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 import com.perforce.svn.change.ChangeInterface;
-import com.perforce.svn.history.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree.NodeType;
 import com.perforce.svn.parser.Content;
@@ -54,7 +54,7 @@ public class CvsProcessNode extends ProcessNode {
 		ArrayList<MergeSource> fromList = new ArrayList<MergeSource>();
 
 		// find action and node type
-		Action nodeAction = getNodeAction();
+		Action nodeAction = revEntry.getState();
 
 		// find last action using path and Perforce change number
 		ChangeAction lastAction = getLastAction(nodePath);
@@ -207,37 +207,5 @@ public class CvsProcessNode extends ProcessNode {
 		}
 
 		return type;
-	}
-
-	/**
-	 * Reads parsed STATE field from the RCS file and returns the Perforce
-	 * action
-	 * 
-	 * @return
-	 */
-	private Action getNodeAction() {
-		Action action = null;
-
-		// Set node condition ('add', 'change' or 'delete')
-		String s = revEntry.getState();
-		if (s != null) {
-			if ("Exp".equals(s)) {
-				action = Action.ADD;
-			} else if ("Stab".equals(s)) {
-				action = Action.ADD;
-			} else if ("Rel".equals(s)) {
-				action = Action.ADD;
-			} else if ("dead".equals(s)) {
-				action = Action.REMOVE;
-			} else if ("BRANCH".equals(s)) {
-				action = Action.BRANCH;
-			} else {
-				throw new RuntimeException("unknown STATE " + s);
-			}
-		} else {
-			throw new RuntimeException("no STATE in RCS");
-		}
-
-		return action;
 	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.perforce.svn.history.Action;
+import com.perforce.common.node.Action;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.history.RevisionTree;
 import com.perforce.svn.process.MergeInfo;
