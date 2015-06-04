@@ -4,7 +4,7 @@
 This documentation needs an update reflecting the new features on the Public release of
 the converter.
 
-                        Version PUBLIC.Main.13755
+                        Version PUBLIC.Main.13776
 
 Introduction
 
@@ -44,6 +44,18 @@ Compatibility Statements
 	Java Virtual Machine
 	
 	  This release is certified to run on Java SE Runtime Environment 1.7.*
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.13776
+
+  #13776
+
+  CVS: Update to node Action detection.
+
+  The RCS State is normally set to 'Exp' and 'dead', but this change allows 
+  more user defined states.
+
 
 --------------------------------------------------------------------------
 
