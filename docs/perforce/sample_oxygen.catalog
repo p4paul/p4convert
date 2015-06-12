@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This is a sample catalog that can assist in resolving computed
+  include paths in GUI XML editors, such as oXygen Editor.
+
+  The entries below need to be customized to reflect where the
+  contents within doc_build exist on your system.
+-->
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN" "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+  <!-- redirect @common-xml@ to correct location -->
+  <rewriteSystem
+    systemIdStartString="file://@common-xml@"
+    rewritePrefix="file:///path/to/doc_build/perforce/common_xml"
+  />
+  <rewriteURI
+    uriStartString="file://@common-xml@"
+    rewritePrefix="file:///path/to/doc_build/perforce/common_xml"
+  />
+
+  <!-- redirect @guides-dir@ to correct location -->
+  <rewriteSystem
+    systemIdStartString="file://@guides-dir@"
+    rewritePrefix="file:///path/to/documentation"
+  />
+  <rewriteURI
+    uriStartString="file://@guides-dir@"
+    rewritePrefix="file:///path/to/documentation"
+  />
+</catalog>

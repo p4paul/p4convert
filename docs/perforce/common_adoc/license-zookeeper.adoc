@@ -1,0 +1,3 @@
+Perforce software includes software from the Apache ZooKeeper project,
+developed by the Apache Software Foundation and its contributors.
+(http://zookeeper.apache.org/)

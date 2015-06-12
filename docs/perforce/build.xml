@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim: set ts=2 sw=2 tw=80 ai si: -->
+<project name="mainbuild" default="help" basedir="${ant.file.dir}">
+  <description>
+This is the generic Perforce documentation build script. It implements build
+targets for several different output formats:
+
+* pdf        - Adobe PDF format documentation
+* publicsite - HTML formatted for the Perforce public web site.
+* product    - HTML formatted for the hosting product.
+* htmlhelp   - HTML formatted for compilatin into CHM files.
+
+Questions? Contact Ewan Edwards [eedwards@perforce.com].
+  </description>
+
+  <!-- load the generic build properties -->
+  <dirname property="ant.file.dir" file="${ant.file.mainbuild}"/>
+  <loadproperties srcFile="${ant.file.dir}/build.properties"/>
+  <property environment="env"/>
+
+  <!-- command-line targets =========================================== -->
+
+  <target name="product"
+          depends="product-params,global-params,z-validate,z-html-chunk,z-html-filter,z-html-index,z-xdelete"
+          description="[HTML] produce HTML for the hosting product"
+  />
+
+  <target name="htmlhelp"
+          depends="htmlhelp-params,global-params,z-validate,z-html-chunk,z-html-filter,z-xdelete"
+          description="[HTML] produce HTML Help files, destined for CHM format"
+  />
+
+  <target name="publicsite"
+          depends="publicsite-params,global-params,z-validate,z-html-chunk,z-html-filter,z-html-index,z-xdelete"
+          description="[HTML] produce HTML for public web site"
+  />
+
+  <target name="pdf"
+          depends="pdf-params,global-params,z-validate,z-pdf-fo,z-xdelete"
+          description="[PDF] produce PDF via Apache FO"
+  />
+
+  <target name="help"
+          description="Display this help"
+  >
+    <exec executable="ant">
+      <arg value="-p"/>
+    </exec>
+  </target>
+
+  <!-- per-target intermediaries ====================================== -->
+
+  <!-- These set generic parameters based on per-target settings -->
+  <target name="check-product-build">
+    <available file="${book.build.dir}/assets/product/build.properties" property="continue.build"/>
+  </target>
+
+  <!-- The 'product' target is provided to distinguish between HTML destined for
+       perforce.com, and HTML hosted within a product. However, the default
+       styles, assets, and functionality are identical to the publicsite target;
+       product-specific customizations can adapt or override as necessary.
+  -->
+  <target name="product-params" depends="check-product-build" if="continue.build">
+    <loadproperties srcFile="${book.build.dir}/assets/product/build.properties"/>
+    <property name="assettype" value="product"/>
+    <property name="p4-assets-dir" value="${p4-build-dir}/perforce/assets/publicsite"/>
+
+    <property name="generate.toc" value="nop"/>
+  </target>
+
+  <target name="htmlhelp-params">
+    <loadproperties srcFile="${book.build.dir}/assets/htmlhelp/build.properties"/>
+    <property name="assettype" value="htmlhelp"/>
+    <property name="p4-assets-dir" value="${p4-build-dir}/perforce/assets/htmlhelp"/>
+
+    <property name="generate.toc" value="nop"/>
+    <property name="continue.build" value="1"/>
+  </target>
+
+  <target name="publicsite-params">
+    <loadproperties srcFile="${book.build.dir}/assets/publicsite/build.properties"/>
+    <property name="assettype" value="publicsite"/>
+    <property name="p4-assets-dir" value="${p4-build-dir}/perforce/assets/publicsite"/>
+
+    <property name="generate.toc" value="nop"/>
+    <property name="continue.build" value="1"/>
+  </target>
+
+  <target name="pdf-params">
+    <loadproperties srcFile="${book.build.dir}/assets/pdf/build.properties"/>
+    <property name="assettype" value="pdf"/>
+    <property name="p4-assets-dir" value="${p4-build-dir}/perforce/assets/pdf"/>
+    <property name="continue.build" value="1"/>
+  </target>
+
+  <target name="global-params" if="continue.build">
+    <loadproperties srcFile="${ant.file.dir}/global.properties"/>
+
+    <condition property="perform-validation-dtd">
+      <equals arg1="${validate-against-dtd}" arg2="true"/>
+    </condition>
+
+    <condition property="do-search-indexing">
+      <equals arg1="${webhelp.include.search.tab}" arg2="true"/>
+    </condition>
+  </target>
+
+  <!-- internal targets =============================================== -->
+
+  <!-- copy common assets to output directory -->
+  <target name="-z-assets-common" if="continue.build">
+    <echo>Copy common Perforce-generic assets</echo>
+    <copy todir="${output-dir}">
+      <fileset dir="${p4-assets-dir}">
+        <include name="images/**"/>
+        <include name="css/**"/>
+        <include name="js/**"/>
+        <include name="vendor/**"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- copy guide-specific assets, and filter guide-specific XSL -->
+  <target name="-z-assets-guide" if="continue.build">
+    <echo>Copy guide-specific assets</echo>
+    <copy todir="${output-dir}" failonerror="true" overwrite="true">
+      <fileset dir="${assets-basedir}" includes="${assets-dirs}" />
+    </copy>
+
+    <echo>Copy and filter the guide-specific stylesheet</echo>
+    <tempfile destdir="${assets-basedir}"
+              deleteonexit="true"
+              suffix=".xsl"
+              property="filtered-stylesheet"
+    />
+    <copy file="${stylesheet-path}" tofile="${filtered-stylesheet}" failonerror="true">
+      <filterset>
+        <filter token="p4-assets-dir" value="${p4-assets-dir}"/>
+      </filterset>
+    </copy>
+
+    <!-- determine whether "extra" assets should be copied -->
+    <condition property="copy.extra.assets">
+      <and>
+        <isset property="continue.build"/>
+        <isset property="assets-basedir-extra"/>
+      </and>
+    </condition>
+  </target>
+
+  <target name="-z-assets-extra" if="copy.extra.assets">
+    <echo>Copy guide-specific extra assets</echo>
+    <copy todir="${output-dir}" failonerror="true" overwrite="true">
+      <fileset dir="${assets-basedir-extra}" includes="${assets-dirs-extra}" />
+    </copy>
+  </target>
+
+  <!-- asset handling task placeholder -->
+  <target name="z-assets" depends="-z-assets-common,-z-assets-guide,-z-assets-extra"/>
+
+  <!-- filter xmlns attributes from generated HTML -->
+  <target name="z-html-filter" if="continue.build">
+    <echo>Filtering "xmlns" attributes and image src paths</echo>
+    <replace dir="${output-dir}">
+      <include name="*.html"/>
+      <replacefilter token='a xmlns="http://www.w3.org/1999/xhtml"'
+                     value="a"/>
+      <replacefilter token='code xmlns="http://www.w3.org/1999/xhtml"'
+                     value="code"/>
+      <replacefilter token='div xmlns="http://www.w3.org/1999/xhtml"'
+                     value="div"/>
+      <replacefilter token='em xmlns="http://www.w3.org/1999/xhtml"'
+                     value="em"/>
+      <replacefilter token='h1 xmlns="http://www.w3.org/1999/xhtml"'
+                     value="h1"/>
+      <replacefilter token='h2 xmlns="http://www.w3.org/1999/xhtml"'
+                     value="h2"/>
+      <replacefilter token='h3 xmlns="http://www.w3.org/1999/xhtml"'
+                     value="h3"/>
+      <replacefilter token='h4 xmlns="http://www.w3.org/1999/xhtml"'
+                     value="h4"/>
+      <replacefilter token='head xmlns="http://www.w3.org/1999/xhtml"'
+                     value="head"/>
+      <replacefilter token='img xmlns="http://www.w3.org/1999/xhtml"'
+                     value="img"/>
+      <replacefilter token='li xmlns="http://www.w3.org/1999/xhtml"'
+                     value="li"/>
+      <replacefilter token='meta xmlns="http://www.w3.org/1999/xhtml"'
+                     value="meta"/>
+      <replacefilter token='p xmlns="http://www.w3.org/1999/xhtml"'
+                     value="p"/>
+      <replacefilter token='pre xmlns="http://www.w3.org/1999/xhtml"'
+                     value="pre"/>
+      <replacefilter token='span xmlns="http://www.w3.org/1999/xhtml"'
+                     value="span"/>
+      <replacefilter token='title xmlns="http://www.w3.org/1999/xhtml"'
+                     value="title"/>
+      <replacefilter token=' xmlns=""'
+                     value=""/>
+
+      <replacefilter token='img src="assets/html/images'
+                     value='img src="images'/>
+      <replacefilter token='img src="../assets/html/images'
+                     value='img src="images'/>
+      <replacefilter token='img src="../../assets/html/images'
+                     value='img src="images'/>
+      <replacefilter token='img src="../assets/publicsite/images'
+                     value='img src="images'/>
+      <replacefilter token='img src="../../assets/publisite/images'
+                     value='img src="images'/>
+      <replacefilter token='img src="../images'
+                     value='img src="images'/>
+    </replace>
+  </target>
+
+  <!-- remove the output directory and its contents -->
+  <target name="z-clean" if="output-dir" unless="clean.done">
+    <delete dir="${output-dir}"/>
+    <property name="clean.done" value="true"/>
+  </target>
+
+  <target name="z-validate" if="perform-validation-dtd" depends="z-clean">
+    <xmlvalidate file="${input-xml}" classname="org.apache.xerces.parsers.SAXParser"/>
+  </target>
+
+  <!-- prepare the output directory -->
+  <target name="z-prepout" depends="z-clean">
+    <mkdir dir="${output-dir}"/>
+    <tempfile destdir="${output-dir}" deleteonexit="true" property="xincluded-profiled.xml"/>
+  </target>
+
+  <!-- copy the source XML, filtering for ANT tokens -->
+  <target name="z-xcopy" depends="z-is-asciidoc" unless="is.asciidoc">
+    <copy todir="${output-dir}/xml">
+      <fileset dir="xml" />
+      <filterset>
+        <filter token="common-xml" value="${p4-build-dir}/perforce/common_xml"/>
+        <filter token="guides-dir" value="${p4-build-dir}/.."/>
+      </filterset>
+    </copy>
+  </target>
+
+  <!-- delete the copied source XML -->
+  <target name="z-xdelete" if="continue.build" unless="xdelete.done">
+    <delete dir="${output-dir}/xml"/>
+    <property name="xdelete.done" value="true"/>
+  </target>
+
+  <!-- check if the build.urls file exists -->
+  <target name="check-build.urls">
+    <available file="${book.build.dir}/build.urls" property="build.urls-exists"/>
+  </target>
+
+  <!-- if the build.urls file exists, apply its string replacement definitions
+       to the copy of the guide's XML. -->
+  <target name="z-release" depends="check-build.urls" if="build.urls-exists">
+    <echo>Filtering perforce.com links</echo>
+    <replace
+      replacefilterfile="${book.build.dir}/build.urls"
+    >
+      <fileset dir="${output-dir}">
+        <include name="xml/*.xml"/>
+        <include name="adoc/*"/>
+      </fileset>
+    </replace>
+  </target>
+
+  <!-- determine whether guide is AsciiDoc -->
+  <target name="z-is-asciidoc">
+    <condition property="is.asciidoc">
+      <equals arg1="${input-type}" arg2="adoc"/>
+    </condition>
+  </target>
+
+  <target name="z-can-asciidoc" depends="z-is-asciidoc" if="is.asciidoc">
+    <fail message="Cannot find one of [ruby] or [asciidoctor] in PATH [${env.PATH}]">
+      <condition>
+        <or>
+          <not><available file="ruby" filepath="${env.PATH}"/></not>
+          <not><available file="asciidoctor" filepath="${env.PATH}"/></not>
+        </or>
+      </condition>
+    </fail>
+    <property name="asciidoctor.avail" value="true"/>
+  </target>
+
+  <!-- process an AsciiDoc guide with AsciiDoctor -->
+  <target name="z-asciidoctor" depends="z-can-asciidoc" if="asciidoctor.avail">
+    <property name="asciidoc-xml-path" value="${output-dir}/${input-xml}"/>
+    <echo>Processing AsciiDoctor guide [${input-xml}] to [${asciidoc-xml-path}]</echo>
+    <exec executable="ruby" failonerror="true">
+      <arg line="${p4-build-dir}/perforce/ad_generator.rb -t ${assettype} -p ${p4-build-dir} -x ${asciidoc-xml-path} -a ${input-xml}"/>
+    </exec>
+    <!-- sleep seconds="30"/ -->
+  </target>
+
+  <!-- perform the profiling transformation -->
+  <target name="z-profile" depends="z-clean, z-prepout, z-xcopy, z-asciidoctor, z-release" if="continue.build">
+    <property name="input-xml-path" value="${input-xml}" relative="yes"/>
+    <xslt
+      in="${output-dir}/${input-xml-path}"
+      out="${xincluded-profiled.xml}"
+      style="${profile-xsl}"
+      classpath="${xalan.jar};${xercesImpl.jar}"
+    >
+      <!-- xmlcatalog>
+        <catalogpath>
+          <pathelement location="${basedir}/catalog.xml"/>
+        </catalogpath>
+      </xmlcatalog -->
+
+      <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration"
+        value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+
+      <!-- pass through profile XSLT params, if provided -->
+      <param name="profile.arch" expression="${profile.arch}" if="profile.arch"/>
+      <param name="profile.attribute" expression="${profile.attribute}" if="profile.attribute"/>
+      <param name="profile.audience" expression="${profile.audience}" if="profile.audience"/>
+      <param name="profile.condition" expression="${profile.condition}" if="profile.condition"/>
+      <param name="profile.conformance" expression="${profile.conformance}" if="profile.conformance"/>
+      <param name="profile.lang" expression="${profile.lang}" if="profile.lang"/>
+      <param name="profile.os" expression="${profile.os}" if="profile.os"/>
+      <param name="profile.revision" expression="${profile.revision}" if="profile.revision"/>
+      <param name="profile.revisionflag" expression="${profile.revisionflag}" if="profile.revisionflag"/>
+      <param name="profile.role" expression="${profile.role}" if="profile.role"/>
+      <param name="profile.security" expression="${profile.security}" if="profile.security"/>
+      <param name="profile.status" expression="${profile.status}" if="profile.status"/>
+      <param name="profile.userlevel" expression="${profile.userlevel}" if="profile.userlevel"/>
+      <param name="profile.value" expression="${profile.value}" if="profile.value"/>
+      <param name="profile.vendor" expression="${profile.vendor}" if="profile.vendor"/>
+      <param name="profile.wordsize" expression="${profile.wordsize}" if="profile.wordsize"/>
+
+      <param name="ARGS_CSS" expression="${html.stylesheet}" if="html.stylesheet"/>
+      <param name="DEFAULTLANG" expression="${webhelp.language}" if="webhelp.language"/>
+      <param name="WEBHELP_FOOTER_FILE" expression="${webhelp.footer.file}" if="webhelp.footer.file"/>
+      <param name="WEBHELP_FOOTER_INCLUDE" expression="${webhelp.footer.include}" if="webhelp.footer.include"/>
+      <param name="WEBHELP_PRODUCT_ID" expression="${webhelp.product.id}" if="webhelp.product.id"/>
+      <param name="WEBHELP_PRODUCT_VERSION" expression="${webhelp.product.version}" if="webhelp.product.version"/>
+    </xslt>
+  </target>
+
+  <!-- chunks the profiled source, produces HTML -->
+  <target name="z-html-chunk" depends="z-profile,z-assets" if="continue.build">
+    <tempfile destdir="${output-dir}" deleteonexit="true" property="dummy.html"/>
+
+    <!-- produce HTML -->
+    <xslt
+      in="${xincluded-profiled.xml}"
+      out="${dummy.html}"
+      style="${filtered-stylesheet}"
+      scanincludeddirectories="false"
+      classpath="${xslt-processor-classpath}"
+    >
+      <!-- catalog example definition here until I can decide
+           whether it is necessary or not -->
+      <!-- xmlcatalog>
+        <catalogpath>
+          <pathelement location="${basedir}/catalog.xml"/>
+        </catalogpath>
+      </xmlcatalog -->
+      <!-- pass through XSLT parameters, if provided -->
+      <param name="admon.graphics" expression="${admon.graphics}" if="admon.graphics"/>
+      <param name="admon.graphics.extension" expression="${admon.graphics.extension}" if="admon.graphics.extension"/>
+      <param name="admon.graphics.path" expression="${admon.graphics.path}" if="admon.graphics.path"/>
+      <param name="admon.style" expression="${admon.style}" if="admon.style"/>
+      <param name="admon.textlabel" expression="${admon.textlabel}" if="admon.textlabel"/>
+      <param name="annotate.toc" expression="${annotate.toc}" if="annotate.toc"/>
+      <param name="annotation.css" expression="${annotation.css}" if="annotation.css"/>
+      <param name="annotation.graphic.close" expression="${annotation.graphic.close}" if="annotation.graphic.close"/>
+      <param name="annotation.graphic.open" expression="${annotation.graphic.open}" if="annotation.graphic.open"/>
+      <param name="annotation.js" expression="${annotation.js}" if="annotation.js"/>
+      <param name="annotation.support" expression="${annotation.support}" if="annotation.support"/>
+      <param name="appendix.autolabel" expression="${appendix.autolabel}" if="appendix.autolabel"/>
+      <param name="author.othername.in.middle" expression="${author.othername.in.middle}" if="author.othername.in.middle"/>
+      <param name="autotoc.label.in.hyperlink" expression="${autotoc.label.in.hyperlink}" if="autotoc.label.in.hyperlink"/>
+      <param name="autotoc.label.separator" expression="${autotoc.label.separator}" if="autotoc.label.separator"/>
+      <param name="base.dir" expression="${base.dir}" if="base.dir"/>
+      <param name="biblioentry.item.separator" expression="${biblioentry.item.separator}" if="biblioentry.item.separator"/>
+      <param name="bibliography.collection" expression="${bibliography.collection}" if="bibliography.collection"/>
+      <param name="bibliography.numbered" expression="${bibliography.numbered}" if="bibliography.numbered"/>
+      <param name="bibliography.style" expression="${bibliography.style}" if="bibliography.style"/>
+      <param name="blurb.on.titlepage.enabled" expression="${blurb.on.titlepage.enabled}" if="blurb.on.titlepage.enabled"/>
+      <param name="branding" expression="${branding}" if="branding"/>
+      <param name="brandname" expression="${brandname}" if="brandname"/>
+      <param name="bridgehead.in.toc" expression="${bridgehead.in.toc}" if="bridgehead.in.toc"/>
+      <param name="callout.defaultcolumn" expression="${callout.defaultcolumn}" if="callout.defaultcolumn"/>
+      <param name="callout.graphics" expression="${callout.graphics}" if="callout.graphics"/>
+      <param name="callout.graphics.extension" expression="${callout.graphics.extension}" if="callout.graphics.extension"/>
+      <param name="callout.graphics.number.limit" expression="${callout.graphics.number.limit}" if="callout.graphics.number.limit"/>
+      <param name="callout.graphics.path" expression="${callout.graphics.path}" if="callout.graphics.path"/>
+      <param name="callout.list.table" expression="${callout.list.table}" if="callout.list.table"/>
+      <param name="callout.unicode" expression="${callout.unicode}" if="callout.unicode"/>
+      <param name="callout.unicode.number.limit" expression="${callout.unicode.number.limit}" if="callout.unicode.number.limit"/>
+      <param name="callout.unicode.start.character" expression="${callout.unicode.start.character}" if="callout.unicode.start.character"/>
+      <param name="callouts.extension" expression="${callouts.extension}" if="callouts.extension"/>
+      <param name="chapter.autolabel" expression="${chapter.autolabel}" if="chapter.autolabel"/>
+      <param name="chunk.append" expression="${chunk.append}" if="chunk.append"/>
+      <param name="chunk.first.sections" expression="${chunk.first.sections}" if="chunk.first.sections"/>
+      <param name="chunk.quietly" expression="${chunk.quietly}" if="chunk.quietly"/>
+      <param name="chunk.section.depth" expression="${chunk.section.depth}" if="chunk.section.depth"/>
+      <param name="chunk.separate.lots" expression="${chunk.separate.lots}" if="chunk.separate.lots"/>
+      <param name="chunk.toc" expression="${chunk.toc}" if="chunk.toc"/>
+      <param name="chunk.tocs.and.lots" expression="${chunk.tocs.and.lots}" if="chunk.tocs.and.lots"/>
+      <param name="chunk.tocs.and.lots.has.title" expression="${chunk.tocs.and.lots.has.title}" if="chunk.tocs.and.lots.has.title"/>
+      <param name="chunked.filename.prefix" expression="${chunked.filename.prefix}" if="chunked.filename.prefix"/>
+      <param name="chunker.output.encoding" expression="${chunker.output.encoding}" if="chunker.output.encoding"/>
+      <param name="citerefentry.link" expression="${citerefentry.link}" if="citerefentry.link"/>
+      <param name="collect.xref.targets" expression="${collect.xref.targets}" if="collect.xref.targets"/>
+      <param name="component.label.includes.part.label" expression="${component.label.includes.part.label}" if="component.label.includes.part.label"/>
+      <param name="contrib.inline.enabled" expression="${contrib.inline.enabled}" if="contrib.inline.enabled"/>
+      <param name="css.decoration" expression="${css.decoration}" if="css.decoration"/>
+      <param name="current.docid" expression="${current.docid}" if="current.docid"/>
+      <param name="custom.css.source" expression="${custom.css.source}" if="custom.css.source"/>
+      <param name="default.float.class" expression="${default.float.class}" if="default.float.class"/>
+      <param name="default.image.width" expression="${default.image.width}" if="default.image.width"/>
+      <param name="default.table.frame" expression="${default.table.frame}" if="default.table.frame"/>
+      <param name="default.table.width" expression="${default.table.width}" if="default.table.width"/>
+      <param name="docbook.css.link" expression="${docbook.css.link}" if="docbook.css.link"/>
+      <param name="docbook.css.source" expression="${docbook.css.source}" if="docbook.css.source"/>
+      <param name="draft.mode" expression="${draft.mode}" if="draft.mode"/>
+      <param name="draft.watermark.image" expression="${draft.watermark.image}" if="draft.watermark.image"/>
+      <param name="ebnf.assignment" expression="${ebnf.assignment}" if="ebnf.assignment"/>
+      <param name="ebnf.statement.terminator" expression="${ebnf.statement.terminator}" if="ebnf.statement.terminator"/>
+      <param name="ebnf.table.bgcolor" expression="${ebnf.table.bgcolor}" if="ebnf.table.bgcolor"/>
+      <param name="ebnf.table.border" expression="${ebnf.table.border}" if="ebnf.table.border"/>
+      <param name="editedby.enabled" expression="${editedby.enabled}" if="editedby.enabled"/>
+      <param name="email.delimiters.enabled" expression="${email.delimiters.enabled}" if="email.delimiters.enabled"/>
+      <param name="emphasis.propagates.style" expression="${emphasis.propagates.style}" if="emphasis.propagates.style"/>
+      <param name="entry.propagates.style" expression="${entry.propagates.style}" if="entry.propagates.style"/>
+      <param name="exsl.node.set.available" expression="${exsl.node.set.available}" if="exsl.node.set.available"/>
+      <param name="firstterm.only.link" expression="${firstterm.only.link}" if="firstterm.only.link"/>
+      <param name="footer.rule" expression="${footer.rule}" if="footer.rule"/>
+      <param name="footnote.number.format" expression="${footnote.number.format}" if="footnote.number.format"/>
+      <param name="footnote.number.symbols" expression="${footnote.number.symbols}" if="footnote.number.symbols"/>
+      <param name="formal.procedures" expression="${formal.procedures}" if="formal.procedures"/>
+      <param name="formal.title.placement" expression="${formal.title.placement}" if="formal.title.placement"/>
+      <param name="funcsynopsis.decoration" expression="${funcsynopsis.decoration}" if="funcsynopsis.decoration"/>
+      <param name="funcsynopsis.style" expression="${funcsynopsis.style}" if="funcsynopsis.style"/>
+      <param name="function.parens" expression="${function.parens}" if="function.parens"/>
+      <param name="generate.consistent.ids" expression="${generate.consistent.ids}" if="generate.consistent.ids"/>
+      <param name="generate.css.header" expression="${generate.css.header}" if="generate.css.header"/>
+      <param name="generate.id.attributes" expression="${generate.id.attributes}" if="generate.id.attributes"/>
+      <param name="generate.id.attributes" expression="1"/>
+      <param name="generate.index" expression="${generate.index}" if="generate.index"/>
+      <param name="generate.legalnotice.link" expression="${generate.legalnotice.link}" if="generate.legalnotice.link"/>
+      <param name="generate.manifest" expression="${generate.manifest}" if="generate.manifest"/>
+      <param name="generate.meta.abstract" expression="${generate.meta.abstract}" if="generate.meta.abstract"/>
+      <param name="generate.revhistory.link" expression="${generate.revhistory.link}" if="generate.revhistory.link"/>
+      <param name="generate.section.toc.level" expression="${generate.section.toc.level}" if="generate.section.toc.level"/>
+      <param name="generate.toc" expression="${generate.toc}" if="generate.toc"/>
+      <param name="glossary.collection" expression="${glossary.collection}" if="glossary.collection"/>
+      <param name="glossary.sort" expression="${glossary.sort}" if="glossary.sort"/>
+      <param name="glossentry.show.acronym" expression="${glossentry.show.acronym}" if="glossentry.show.acronym"/>
+      <param name="glossterm.auto.link" expression="${glossterm.auto.link}" if="glossterm.auto.link"/>
+      <param name="graphic.default.extension" expression="${graphic.default.extension}" if="graphic.default.extension"/>
+      <param name="graphicsize.extension" expression="${graphicsize.extension}" if="graphicsize.extension"/>
+      <param name="graphicsize.use.img.src.path" expression="${graphicsize.use.img.src.path}" if="graphicsize.use.img.src.path"/>
+      <param name="header.rule" expression="${header.rule}" if="header.rule"/>
+      <param name="highlight.default.language" expression="${highlight.default.language}" if="highlight.default.language"/>
+      <param name="highlight.source" expression="${highlight.source}" if="highlight.source"/>
+      <param name="highlight.xslthl.config" expression="${highlight.xslthl.config}" if="highlight.xslthl.config"/>
+      <param name="html.append" expression="${html.append}" if="html.append"/>
+      <param name="html.base" expression="${html.base}" if="html.base"/>
+      <param name="html.cellpadding" expression="${html.cellpadding}" if="html.cellpadding"/>
+      <param name="html.cellspacing" expression="${html.cellspacing}" if="html.cellspacing"/>
+      <param name="html.cleanup" expression="${html.cleanup}" if="html.cleanup"/>
+      <param name="html.ext" expression="${html.ext}" if="html.ext"/>
+      <param name="html.extra.head.links" expression="${html.extra.head.links}" if="html.extra.head.links"/>
+      <param name="html.head.legalnotice.link.multiple" expression="${html.head.legalnotice.link.multiple}" if="html.head.legalnotice.link.multiple"/>
+      <param name="html.head.legalnotice.link.types" expression="${html.head.legalnotice.link.types}" if="html.head.legalnotice.link.types"/>
+      <param name="html.longdesc" expression="${html.longdesc}" if="html.longdesc"/>
+      <param name="html.longdesc.link" expression="${html.longdesc.link}" if="html.longdesc.link"/>
+      <param name="html.script" expression="${html.script}" if="html.script"/>
+      <param name="html.script.type" expression="${html.script.type}" if="html.script.type"/>
+      <param name="html.stylesheet" expression="${html.stylesheet}" if="html.stylesheet"/>
+      <param name="html.stylesheet.type" expression="${html.stylesheet.type}" if="html.stylesheet.type"/>
+      <param name="htmlhelp.autolabel" expression="${htmlhelp.autolabel}" if="htmlhelp.autolabel"/>
+      <param name="htmlhelp.chm" expression="${htmlhelp.chm}" if="htmlhelp.chm"/>
+      <param name="htmlhelp.default.topic" expression="${htmlhelp.default.topic}" if="htmlhelp.default.topic"/>
+      <param name="htmlhelp.hhp" expression="${htmlhelp.hhp}" if="htmlhelp.hhp"/>
+      <param name="id.warnings" expression="${id.warnings}" if="id.warnings"/>
+      <param name="ignore.image.scaling" expression="${ignore.image.scaling}" if="ignore.image.scaling"/>
+      <param name="img.src.path" expression="${img.src.path}" if="img.src.path"/>
+      <param name="index.links.to.section" expression="${index.links.to.section}" if="index.links.to.section"/>
+      <param name="index.method" expression="${index.method}" if="index.method"/>
+      <param name="index.number.separator" expression="${index.number.separator}" if="index.number.separator"/>
+      <param name="index.on.role" expression="${index.on.role}" if="index.on.role"/>
+      <param name="index.on.type" expression="${index.on.type}" if="index.on.type"/>
+      <param name="index.prefer.titleabbrev" expression="${index.prefer.titleabbrev}" if="index.prefer.titleabbrev"/>
+      <param name="index.range.separator" expression="${index.range.separator}" if="index.range.separator"/>
+      <param name="index.term.separator" expression="${index.term.separator}" if="index.term.separator"/>
+      <param name="inherit.keywords" expression="${inherit.keywords}" if="inherit.keywords"/>
+      <param name="insert.olink.page.number" expression="${insert.olink.page.number}" if="insert.olink.page.number"/>
+      <param name="insert.olink.pdf.frag" expression="${insert.olink.pdf.frag}" if="insert.olink.pdf.frag"/>
+      <param name="insert.xref.page.number" expression="${insert.xref.page.number}" if="insert.xref.page.number"/>
+      <param name="keep.relative.image.uris" expression="${keep.relative.image.uris}" if="keep.relative.image.uris"/>
+      <param name="keep.relative.image.uris" expression="0"/>
+      <param name="l10n.gentext.default.language" expression="${webhelp.language}" if="webhelp.language"/>
+      <param name="l10n.gentext.language" expression="${webhelp.language}" if="webhelp.language"/>
+      <param name="l10n.lang.value.rfc.compliant" expression="${l10n.lang.value.rfc.compliant}" if="l10n.lang.value.rfc.compliant"/>
+      <param name="label.from.part" expression="${label.from.part}" if="label.from.part"/>
+      <param name="linenumbering.everyNth" expression="${linenumbering.everyNth}" if="linenumbering.everyNth"/>
+      <param name="linenumbering.extension" expression="${linenumbering.extension}" if="linenumbering.extension"/>
+      <param name="linenumbering.separator" expression="${linenumbering.separator}" if="linenumbering.separator"/>
+      <param name="linenumbering.width" expression="${linenumbering.width}" if="linenumbering.width"/>
+      <param name="link.mailto.url" expression="${link.mailto.url}" if="link.mailto.url"/>
+      <param name="make.clean.html" expression="${make.clean.html}" if="make.clean.html"/>
+      <param name="make.graphic.viewport" expression="${make.graphic.viewport}" if="make.graphic.viewport"/>
+      <param name="make.single.year.ranges" expression="${make.single.year.ranges}" if="make.single.year.ranges"/>
+      <param name="make.valid.html" expression="${make.valid.html}" if="make.valid.html"/>
+      <param name="make.year.ranges" expression="${make.year.ranges}" if="make.year.ranges"/>
+      <param name="manifest" expression="${manifest}" if="manifest"/>
+      <param name="manifest.in.base.dir" expression="${manifest.in.base.dir}" if="manifest.in.base.dir"/>
+      <param name="manual.toc" expression="${manual.toc}" if="manual.toc"/>
+      <param name="menuchoice.menu.separator" expression="${menuchoice.menu.separator}" if="menuchoice.menu.separator"/>
+      <param name="menuchoice.separator" expression="${menuchoice.separator}" if="menuchoice.separator"/>
+      <param name="navig.graphics" expression="${navig.graphics}" if="navig.graphics"/>
+      <param name="navig.graphics.extension" expression="${navig.graphics.extension}" if="navig.graphics.extension"/>
+      <param name="navig.graphics.path" expression="${navig.graphics.path}" if="navig.graphics.path"/>
+      <param name="navig.showtitles" expression="${navig.showtitles}" if="navig.showtitles"/>
+      <param name="nominal.image.depth" expression="${nominal.image.depth}" if="nominal.image.depth"/>
+      <param name="nominal.image.width" expression="${nominal.image.width}" if="nominal.image.width"/>
+      <param name="nominal.table.width" expression="${nominal.table.width}" if="nominal.table.width"/>
+      <param name="olink.base.uri" expression="${olink.base.uri}" if="olink.base.uri"/>
+      <param name="olink.debug" expression="${olink.debug}" if="olink.debug"/>
+      <param name="olink.doctitle" expression="${olink.doctitle}" if="olink.doctitle"/>
+      <param name="olink.fragid" expression="${olink.fragid}" if="olink.fragid"/>
+      <param name="olink.lang.fallback.sequence" expression="${olink.lang.fallback.sequence}" if="olink.lang.fallback.sequence"/>
+      <param name="olink.outline.ext" expression="${olink.outline.ext}" if="olink.outline.ext"/>
+      <param name="olink.properties" expression="${olink.properties}" if="olink.properties"/>
+      <param name="olink.pubid" expression="${olink.pubid}" if="olink.pubid"/>
+      <param name="olink.resolver" expression="${olink.resolver}" if="olink.resolver"/>
+      <param name="olink.sysid" expression="${olink.sysid}" if="olink.sysid"/>
+      <param name="othercredit.like.author.enabled" expression="${othercredit.like.author.enabled}" if="othercredit.like.author.enabled"/>
+      <param name="output.dir" expression="${output.dir}" if="output.dir"/>
+      <param name="output_file_name" expression="${output_file_name}"/>
+      <param name="para.propagates.style" expression="${para.propagates.style}" if="para.propagates.style"/>
+      <param name="part.autolabel" expression="${part.autolabel}" if="part.autolabel"/>
+      <param name="pdf.available" expression="${pdf.available}" if="pdf.available"/>
+      <param name="phrase.propagates.style" expression="${phrase.propagates.style}" if="phrase.propagates.style"/>
+      <param name="pixels.per.inch" expression="${pixels.per.inch}" if="pixels.per.inch"/>
+      <param name="points.per.em" expression="${points.per.em}" if="points.per.em"/>
+      <param name="preface.autolabel" expression="${preface.autolabel}" if="preface.autolabel"/>
+      <param name="prefer.internal.olink" expression="${prefer.internal.olink}" if="prefer.internal.olink"/>
+      <param name="preferred.mediaobject.role" expression="${preferred.mediaobject.role}" if="preferred.mediaobject.role"/>
+      <param name="process.empty.source.toc" expression="${process.empty.source.toc}" if="process.empty.source.toc"/>
+      <param name="process.source.toc" expression="${process.source.toc}" if="process.source.toc"/>
+      <param name="punct.honorific" expression="${punct.honorific}" if="punct.honorific"/>
+      <param name="qanda.defaultlabel" expression="${qanda.defaultlabel}" if="qanda.defaultlabel"/>
+      <param name="qanda.in.toc" expression="${qanda.in.toc}" if="qanda.in.toc"/>
+      <param name="qanda.inherit.numeration" expression="${qanda.inherit.numeration}" if="qanda.inherit.numeration"/>
+      <param name="qanda.nested.in.toc" expression="${qanda.nested.in.toc}" if="qanda.nested.in.toc"/>
+      <param name="qandadiv.autolabel" expression="${qandadiv.autolabel}" if="qandadiv.autolabel"/>
+      <param name="refclass.suppress" expression="${refclass.suppress}" if="refclass.suppress"/>
+      <param name="refentry.generate.name" expression="${refentry.generate.name}" if="refentry.generate.name"/>
+      <param name="refentry.generate.title" expression="${refentry.generate.title}" if="refentry.generate.title"/>
+      <param name="refentry.separator" expression="${refentry.separator}" if="refentry.separator"/>
+      <param name="refentry.xref.manvolnum" expression="${refentry.xref.manvolnum}" if="refentry.xref.manvolnum"/>
+      <param name="reference.autolabel" expression="${reference.autolabel}" if="reference.autolabel"/>
+      <param name="root.filename" expression="${root.filename}" if="root.filename"/>
+      <param name="rootid" expression="${rootid}" if="rootid"/>
+      <param name="runinhead.default.title.end.punct" expression="${runinhead.default.title.end.punct}" if="runinhead.default.title.end.punct"/>
+      <param name="runinhead.title.end.punct" expression="${runinhead.title.end.punct}" if="runinhead.title.end.punct"/>
+      <param name="section.autolabel" expression="${section.autolabel}" if="section.autolabel"/>
+      <param name="section.autolabel.max.depth" expression="${section.autolabel.max.depth}" if="section.autolabel.max.depth"/>
+      <param name="section.label.includes.component.label" expression="${section.label.includes.component.label}" if="section.label.includes.component.label"/>
+      <param name="segmentedlist.as.table" expression="${segmentedlist.as.table}" if="segmentedlist.as.table"/>
+      <param name="shade.verbatim" expression="${shade.verbatim}" if="shade.verbatim"/>
+      <param name="shade.verbatim.style" expression="${shade.verbatim.style}" if="shade.verbatim.style"/>
+      <param name="show.comments" expression="${show.comments}" if="show.comments"/>
+      <param name="show.revisionflag" expression="${show.revisionflag}" if="show.revisionflag"/>
+      <param name="simplesect.in.toc" expression="${simplesect.in.toc}" if="simplesect.in.toc"/>
+      <param name="spacing.paras" expression="${spacing.paras}" if="spacing.paras"/>
+      <param name="suppress.footer.navigation" expression="${suppress.footer.navigation}" if="suppress.footer.navigation"/>
+      <param name="suppress.header.navigation" expression="${suppress.header.navigation}" if="suppress.header.navigation"/>
+      <param name="suppress.navigation" expression="${suppress.navigation}" if="suppress.navigation"/>
+      <param name="table.borders.with.css" expression="${table.borders.with.css}" if="table.borders.with.css"/>
+      <param name="table.cell.border.color" expression="${table.cell.border.color}" if="table.cell.border.color"/>
+      <param name="table.cell.border.style" expression="${table.cell.border.style}" if="table.cell.border.style"/>
+      <param name="table.cell.border.thickness" expression="${table.cell.border.thickness}" if="table.cell.border.thickness"/>
+      <param name="table.footnote.number.format" expression="${table.footnote.number.format}" if="table.footnote.number.format"/>
+      <param name="table.footnote.number.symbols" expression="${table.footnote.number.symbols}" if="table.footnote.number.symbols"/>
+      <param name="table.frame.border.color" expression="${table.frame.border.color}" if="table.frame.border.color"/>
+      <param name="table.frame.border.style" expression="${table.frame.border.style}" if="table.frame.border.style"/>
+      <param name="table.frame.border.thickness" expression="${table.frame.border.thickness}" if="table.frame.border.thickness"/>
+      <param name="tablecolumns.extension" expression="${tablecolumns.extension}" if="tablecolumns.extension"/>
+      <param name="target.database.document" expression="${target.database.document}" if="target.database.document"/>
+      <param name="targets.filename" expression="${targets.filename}" if="targets.filename"/>
+      <param name="tex.math.delims" expression="${tex.math.delims}" if="tex.math.delims"/>
+      <param name="tex.math.file" expression="${tex.math.file}" if="tex.math.file"/>
+      <param name="tex.math.in.alt" expression="${tex.math.in.alt}" if="tex.math.in.alt"/>
+      <param name="textdata.default.encoding" expression="${textdata.default.encoding}" if="textdata.default.encoding"/>
+      <param name="textinsert.extension" expression="${textinsert.extension}" if="textinsert.extension"/>
+      <param name="toc.list.type" expression="${toc.list.type}" if="toc.list.type"/>
+      <param name="toc.max.depth" expression="${toc.max.depth}" if="toc.max.depth"/>
+      <param name="toc.section.depth" expression="${toc.section.depth}" if="toc.section.depth"/>
+      <param name="ulink.show" expression="${ulink.show}" if="ulink.show"/>
+      <param name="ulink.target" expression="${ulink.target}" if="ulink.target"/>
+      <param name="use.embed.for.svg" expression="${use.embed.for.svg}" if="use.embed.for.svg"/>
+      <param name="use.extensions" expression="${use.extensions}" if="use.extensions"/>
+      <param name="use.id.as.filename" expression="${use.id.as.filename}" if="use.id.as.filename"/>
+      <param name="use.id.as.filename" expression="1"/>
+      <param name="use.local.olink.style" expression="${use.local.olink.style}" if="use.local.olink.style"/>
+      <param name="use.role.as.xrefstyle" expression="${use.role.as.xrefstyle}" if="use.role.as.xrefstyle"/>
+      <param name="use.role.for.mediaobject" expression="${use.role.for.mediaobject}" if="use.role.for.mediaobject"/>
+      <param name="use.svg" expression="${use.svg}" if="use.svg"/>
+      <param name="variablelist.as.table" expression="${variablelist.as.table}" if="variablelist.as.table"/>
+      <param name="variablelist.term.break.after" expression="${variablelist.term.break.after}" if="variablelist.term.break.after"/>
+      <param name="variablelist.term.separator" expression="${variablelist.term.separator}" if="variablelist.term.separator"/>
+      <param name="webhelp.autolabel" expression="${webhelp.autolabel}" if="webhelp.autolabel"/>
+      <param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
+      <param name="webhelp.include.search.tab" expression="${webhelp.include.search.tab}" if="webhelp.include.search.tab"/>
+      <param name="webhelp.indexer.language" expression="${webhelp.indexer.language}" if="webhelp.indexer.language"/>
+      <param name="writing.mode" expression="${writing.mode}" if="writing.mode"/>
+      <param name="xref.label-page.separator" expression="${xref.label-page.separator}" if="xref.label-page.separator"/>
+      <param name="xref.label-title.separator" expression="${xref.label-title.separator}" if="xref.label-title.separator"/>
+      <param name="xref.title-page.separator" expression="${xref.title-page.separator}" if="xref.title-page.separator"/>
+      <param name="xref.with.number.and.title" expression="${xref.with.number.and.title}" if="xref.with.number.and.title"/>
+    </xslt>
+  </target>
+
+  <!-- perform new indexing -->
+  <target name="z-html-index" if="do-search-indexing">
+    <echo>Generating index: ${output-dir}/js/index.js</echo>
+    <apply executable="${p4-build-dir}/perforce/indexer.py" parallel="true">
+      <arg value="-i"/>
+      <arg value="${output-dir}/js/index.js"/>
+      <srcfile/>
+      <fileset dir="${output-dir}">
+        <include name="*.html"/>
+      </fileset>
+    </apply>
+
+    <!-- convert JSON index to valid javascript -->
+    <replaceregexp file="${output-dir}/js/index.js"
+                   match="^\{"
+                   replace="var document_index = \{"
+    />
+  </target>
+
+  <!-- produce the intermediary FO files, and process that with Apache FOP
+       to generate a PDF -->
+  <target name="z-pdf-fo" depends="z-profile,z-assets" if="continue.build">
+    <tempfile destdir="${output-dir}" deleteonexit="true" property="dummy.fo"/>
+
+    <!-- produce FO document from DocBook source -->
+    <xslt
+      in="${xincluded-profiled.xml}"
+      out="${dummy.fo}"
+      style="${filtered-stylesheet}"
+      scanincludeddirectories="false"
+      classpath="${xslt-processor-classpath}"
+    >
+      <!-- pass through XSLT parameters, if provided -->
+      <param name="admon.graphics" expression="${admon.graphics}" if="admon.graphics"/>
+      <param name="admon.graphics.extension" expression="${admon.graphics.extension}" if="admon.graphics.extension"/>
+      <param name="admon.graphics.path" expression="${admon.graphics.path}" if="admon.graphics.path"/>
+      <param name="admon.style" expression="${admon.style}" if="admon.style"/>
+      <param name="admon.textlabel" expression="${admon.textlabel}" if="admon.textlabel"/>
+      <param name="annotate.toc" expression="${annotate.toc}" if="annotate.toc"/>
+      <param name="annotation.css" expression="${annotation.css}" if="annotation.css"/>
+      <param name="annotation.graphic.close" expression="${annotation.graphic.close}" if="annotation.graphic.close"/>
+      <param name="annotation.graphic.open" expression="${annotation.graphic.open}" if="annotation.graphic.open"/>
+      <param name="annotation.js" expression="${annotation.js}" if="annotation.js"/>
+      <param name="annotation.support" expression="${annotation.support}" if="annotation.support"/>
+      <param name="appendix.autolabel" expression="${appendix.autolabel}" if="appendix.autolabel"/>
+      <param name="author.othername.in.middle" expression="${author.othername.in.middle}" if="author.othername.in.middle"/>
+      <param name="autotoc.label.in.hyperlink" expression="${autotoc.label.in.hyperlink}" if="autotoc.label.in.hyperlink"/>
+      <param name="autotoc.label.separator" expression="${autotoc.label.separator}" if="autotoc.label.separator"/>
+      <param name="base.dir" expression="${base.dir}" if="base.dir"/>
+      <param name="biblioentry.item.separator" expression="${biblioentry.item.separator}" if="biblioentry.item.separator"/>
+      <param name="bibliography.collection" expression="${bibliography.collection}" if="bibliography.collection"/>
+      <param name="bibliography.numbered" expression="${bibliography.numbered}" if="bibliography.numbered"/>
+      <param name="bibliography.style" expression="${bibliography.style}" if="bibliography.style"/>
+      <param name="blurb.on.titlepage.enabled" expression="${blurb.on.titlepage.enabled}" if="blurb.on.titlepage.enabled"/>
+      <param name="branding" expression="${branding}" if="branding"/>
+      <param name="brandname" expression="${brandname}" if="brandname"/>
+      <param name="bridgehead.in.toc" expression="${bridgehead.in.toc}" if="bridgehead.in.toc"/>
+      <param name="callout.defaultcolumn" expression="${callout.defaultcolumn}" if="callout.defaultcolumn"/>
+      <param name="callout.graphics" expression="${callout.graphics}" if="callout.graphics"/>
+      <param name="callout.graphics.extension" expression="${callout.graphics.extension}" if="callout.graphics.extension"/>
+      <param name="callout.graphics.number.limit" expression="${callout.graphics.number.limit}" if="callout.graphics.number.limit"/>
+      <param name="callout.graphics.path" expression="${callout.graphics.path}" if="callout.graphics.path"/>
+      <param name="callout.list.table" expression="${callout.list.table}" if="callout.list.table"/>
+      <param name="callout.unicode" expression="${callout.unicode}" if="callout.unicode"/>
+      <param name="callout.unicode.number.limit" expression="${callout.unicode.number.limit}" if="callout.unicode.number.limit"/>
+      <param name="callout.unicode.start.character" expression="${callout.unicode.start.character}" if="callout.unicode.start.character"/>
+      <param name="callouts.extension" expression="${callouts.extension}" if="callouts.extension"/>
+      <param name="chapter.autolabel" expression="${chapter.autolabel}" if="chapter.autolabel"/>
+      <param name="chunk.append" expression="${chunk.append}" if="chunk.append"/>
+      <param name="chunk.first.sections" expression="${chunk.first.sections}" if="chunk.first.sections"/>
+      <param name="chunk.quietly" expression="${chunk.quietly}" if="chunk.quietly"/>
+      <param name="chunk.section.depth" expression="${chunk.section.depth}" if="chunk.section.depth"/>
+      <param name="chunk.separate.lots" expression="${chunk.separate.lots}" if="chunk.separate.lots"/>
+      <param name="chunk.toc" expression="${chunk.toc}" if="chunk.toc"/>
+      <param name="chunk.tocs.and.lots" expression="${chunk.tocs.and.lots}" if="chunk.tocs.and.lots"/>
+      <param name="chunk.tocs.and.lots.has.title" expression="${chunk.tocs.and.lots.has.title}" if="chunk.tocs.and.lots.has.title"/>
+      <param name="chunked.filename.prefix" expression="${chunked.filename.prefix}" if="chunked.filename.prefix"/>
+      <param name="chunker.output.encoding" expression="${chunker.output.encoding}" if="chunker.output.encoding"/>
+      <param name="citerefentry.link" expression="${citerefentry.link}" if="citerefentry.link"/>
+      <param name="collect.xref.targets" expression="${collect.xref.targets}" if="collect.xref.targets"/>
+      <param name="component.label.includes.part.label" expression="${component.label.includes.part.label}" if="component.label.includes.part.label"/>
+      <param name="contrib.inline.enabled" expression="${contrib.inline.enabled}" if="contrib.inline.enabled"/>
+      <param name="css.decoration" expression="${css.decoration}" if="css.decoration"/>
+      <param name="current.docid" expression="${current.docid}" if="current.docid"/>
+      <param name="default.float.class" expression="${default.float.class}" if="default.float.class"/>
+      <param name="default.image.width" expression="${default.image.width}" if="default.image.width"/>
+      <param name="default.table.frame" expression="${default.table.frame}" if="default.table.frame"/>
+      <param name="default.table.width" expression="${default.table.width}" if="default.table.width"/>
+      <param name="docbook.css.link" expression="${docbook.css.link}" if="docbook.css.link"/>
+      <param name="docbook.css.source" expression="${docbook.css.source}" if="docbook.css.source"/>
+      <param name="double.sided" expression="${double.sided}" if="double.sided"/>
+      <param name="draft.mode" expression="${draft.mode}" if="draft.mode"/>
+      <param name="draft.watermark.image" expression="${draft.watermark.image}" if="draft.watermark.image"/>
+      <param name="ebnf.assignment" expression="${ebnf.assignment}" if="ebnf.assignment"/>
+      <param name="ebnf.statement.terminator" expression="${ebnf.statement.terminator}" if="ebnf.statement.terminator"/>
+      <param name="ebnf.table.bgcolor" expression="${ebnf.table.bgcolor}" if="ebnf.table.bgcolor"/>
+      <param name="ebnf.table.border" expression="${ebnf.table.border}" if="ebnf.table.border"/>
+      <param name="editedby.enabled" expression="${editedby.enabled}" if="editedby.enabled"/>
+      <param name="email.delimiters.enabled" expression="${email.delimiters.enabled}" if="email.delimiters.enabled"/>
+      <param name="emphasis.propagates.style" expression="${emphasis.propagates.style}" if="emphasis.propagates.style"/>
+      <param name="entry.propagates.style" expression="${entry.propagates.style}" if="entry.propagates.style"/>
+      <param name="exsl.node.set.available" expression="${exsl.node.set.available}" if="exsl.node.set.available"/>
+      <param name="firstterm.only.link" expression="${firstterm.only.link}" if="firstterm.only.link"/>
+      <param name="footer.column.widths" expression="${footer.column.widths}" if="footer.column.widths"/>
+      <param name="footer.rule" expression="${footer.rule}" if="footer.rule"/>
+      <param name="footnote.number.format" expression="${footnote.number.format}" if="footnote.number.format"/>
+      <param name="footnote.number.symbols" expression="${footnote.number.symbols}" if="footnote.number.symbols"/>
+      <param name="fop.extensions" expression="${fop.extensions}" if="fop.extensions"/>
+      <param name="fop1.extensions" expression="${fop1.extensions}" if="fop1.extensions"/>
+      <param name="formal.procedures" expression="${formal.procedures}" if="formal.procedures"/>
+      <param name="formal.title.placement" expression="${formal.title.placement}" if="formal.title.placement"/>
+      <param name="funcsynopsis.decoration" expression="${funcsynopsis.decoration}" if="funcsynopsis.decoration"/>
+      <param name="funcsynopsis.style" expression="${funcsynopsis.style}" if="funcsynopsis.style"/>
+      <param name="function.parens" expression="${function.parens}" if="function.parens"/>
+      <param name="generate.consistent.ids" expression="${generate.consistent.ids}" if="generate.consistent.ids"/>
+      <param name="generate.id.attributes" expression="${generate.id.attributes}" if="generate.id.attributes"/>
+      <param name="generate.id.attributes" expression="1"/>
+      <param name="generate.index" expression="${generate.index}" if="generate.index"/>
+      <param name="generate.legalnotice.link" expression="${generate.legalnotice.link}" if="generate.legalnotice.link"/>
+      <param name="generate.manifest" expression="${generate.manifest}" if="generate.manifest"/>
+      <param name="generate.meta.abstract" expression="${generate.meta.abstract}" if="generate.meta.abstract"/>
+      <param name="generate.revhistory.link" expression="${generate.revhistory.link}" if="generate.revhistory.link"/>
+      <param name="generate.section.toc.level" expression="${generate.section.toc.level}" if="generate.section.toc.level"/>
+      <param name="generate.toc" expression="${generate.toc}" if="generate.toc"/>
+      <param name="glossary.collection" expression="${glossary.collection}" if="glossary.collection"/>
+      <param name="glossary.sort" expression="${glossary.sort}" if="glossary.sort"/>
+      <param name="glossentry.show.acronym" expression="${glossentry.show.acronym}" if="glossentry.show.acronym"/>
+      <param name="glossterm.auto.link" expression="${glossterm.auto.link}" if="glossterm.auto.link"/>
+      <param name="graphic.default.extension" expression="${graphic.default.extension}" if="graphic.default.extension"/>
+      <param name="graphicsize.extension" expression="${graphicsize.extension}" if="graphicsize.extension"/>
+      <param name="graphicsize.use.img.src.path" expression="${graphicsize.use.img.src.path}" if="graphicsize.use.img.src.path"/>
+      <param name="header.column.widths" expression="${header.column.widths}" if="header.column.widths"/>
+      <param name="header.rule" expression="${header.rule}" if="header.rule"/>
+      <param name="highlight.default.language" expression="${highlight.default.language}" if="highlight.default.language"/>
+      <param name="highlight.source" expression="${highlight.source}" if="highlight.source"/>
+      <param name="highlight.xslthl.config" expression="${highlight.xslthl.config}" if="highlight.xslthl.config"/>
+      <param name="id.warnings" expression="${id.warnings}" if="id.warnings"/>
+      <param name="ignore.image.scaling" expression="${ignore.image.scaling}" if="ignore.image.scaling"/>
+      <param name="img.src.path" expression="${img.src.path}" if="img.src.path"/>
+      <param name="index.links.to.section" expression="${index.links.to.section}" if="index.links.to.section"/>
+      <param name="index.method" expression="${index.method}" if="index.method"/>
+      <param name="index.number.separator" expression="${index.number.separator}" if="index.number.separator"/>
+      <param name="index.on.role" expression="${index.on.role}" if="index.on.role"/>
+      <param name="index.on.type" expression="${index.on.type}" if="index.on.type"/>
+      <param name="index.prefer.titleabbrev" expression="${index.prefer.titleabbrev}" if="index.prefer.titleabbrev"/>
+      <param name="index.range.separator" expression="${index.range.separator}" if="index.range.separator"/>
+      <param name="index.term.separator" expression="${index.term.separator}" if="index.term.separator"/>
+      <param name="inherit.keywords" expression="${inherit.keywords}" if="inherit.keywords"/>
+      <param name="insert.olink.page.number" expression="${insert.olink.page.number}" if="insert.olink.page.number"/>
+      <param name="insert.olink.pdf.frag" expression="${insert.olink.pdf.frag}" if="insert.olink.pdf.frag"/>
+      <param name="insert.xref.page.number" expression="${insert.xref.page.number}" if="insert.xref.page.number"/>
+      <param name="keep.relative.image.uris" expression="${keep.relative.image.uris}" if="keep.relative.image.uris"/>
+      <param name="keep.relative.image.uris" expression="0"/>
+      <param name="l10n.gentext.default.language" expression="${webhelp.language}" if="webhelp.language"/>
+      <param name="l10n.gentext.language" expression="${webhelp.language}" if="webhelp.language"/>
+      <param name="l10n.lang.value.rfc.compliant" expression="${l10n.lang.value.rfc.compliant}" if="l10n.lang.value.rfc.compliant"/>
+      <param name="label.from.part" expression="${label.from.part}" if="label.from.part"/>
+      <param name="linenumbering.everyNth" expression="${linenumbering.everyNth}" if="linenumbering.everyNth"/>
+      <param name="linenumbering.extension" expression="${linenumbering.extension}" if="linenumbering.extension"/>
+      <param name="linenumbering.separator" expression="${linenumbering.separator}" if="linenumbering.separator"/>
+      <param name="linenumbering.width" expression="${linenumbering.width}" if="linenumbering.width"/>
+      <param name="link.mailto.url" expression="${link.mailto.url}" if="link.mailto.url"/>
+      <param name="make.graphic.viewport" expression="${make.graphic.viewport}" if="make.graphic.viewport"/>
+      <param name="make.single.year.ranges" expression="${make.single.year.ranges}" if="make.single.year.ranges"/>
+      <param name="make.year.ranges" expression="${make.year.ranges}" if="make.year.ranges"/>
+      <param name="manifest" expression="${manifest}" if="manifest"/>
+      <param name="manifest.in.base.dir" expression="${manifest.in.base.dir}" if="manifest.in.base.dir"/>
+      <param name="manual.toc" expression="${manual.toc}" if="manual.toc"/>
+      <param name="menuchoice.menu.separator" expression="${menuchoice.menu.separator}" if="menuchoice.menu.separator"/>
+      <param name="menuchoice.separator" expression="${menuchoice.separator}" if="menuchoice.separator"/>
+      <param name="navig.graphics" expression="${navig.graphics}" if="navig.graphics"/>
+      <param name="navig.graphics.extension" expression="${navig.graphics.extension}" if="navig.graphics.extension"/>
+      <param name="navig.graphics.path" expression="${navig.graphics.path}" if="navig.graphics.path"/>
+      <param name="navig.showtitles" expression="${navig.showtitles}" if="navig.showtitles"/>
+      <param name="nominal.image.depth" expression="${nominal.image.depth}" if="nominal.image.depth"/>
+      <param name="nominal.image.width" expression="${nominal.image.width}" if="nominal.image.width"/>
+      <param name="nominal.table.width" expression="${nominal.table.width}" if="nominal.table.width"/>
+      <param name="olink.base.uri" expression="${olink.base.uri}" if="olink.base.uri"/>
+      <param name="olink.debug" expression="${olink.debug}" if="olink.debug"/>
+      <param name="olink.doctitle" expression="${olink.doctitle}" if="olink.doctitle"/>
+      <param name="olink.fragid" expression="${olink.fragid}" if="olink.fragid"/>
+      <param name="olink.lang.fallback.sequence" expression="${olink.lang.fallback.sequence}" if="olink.lang.fallback.sequence"/>
+      <param name="olink.outline.ext" expression="${olink.outline.ext}" if="olink.outline.ext"/>
+      <param name="olink.properties" expression="${olink.properties}" if="olink.properties"/>
+      <param name="olink.pubid" expression="${olink.pubid}" if="olink.pubid"/>
+      <param name="olink.resolver" expression="${olink.resolver}" if="olink.resolver"/>
+      <param name="olink.sysid" expression="${olink.sysid}" if="olink.sysid"/>
+      <param name="othercredit.like.author.enabled" expression="${othercredit.like.author.enabled}" if="othercredit.like.author.enabled"/>
+      <param name="output.dir" expression="${output.dir}" if="output.dir"/>
+      <param name="output_file_name" expression="${output_file_name}"/>
+      <param name="paper.type" expression="${paper.type}" if="paper.type"/>
+      <param name="para.propagates.style" expression="${para.propagates.style}" if="para.propagates.style"/>
+      <param name="part.autolabel" expression="${part.autolabel}" if="part.autolabel"/>
+      <param name="pdf.available" expression="${pdf.available}"/>
+      <param name="phrase.propagates.style" expression="${phrase.propagates.style}" if="phrase.propagates.style"/>
+      <param name="pixels.per.inch" expression="${pixels.per.inch}" if="pixels.per.inch"/>
+      <param name="points.per.em" expression="${points.per.em}" if="points.per.em"/>
+      <param name="preface.autolabel" expression="${preface.autolabel}" if="preface.autolabel"/>
+      <param name="prefer.internal.olink" expression="${prefer.internal.olink}" if="prefer.internal.olink"/>
+      <param name="preferred.mediaobject.role" expression="${preferred.mediaobject.role}" if="preferred.mediaobject.role"/>
+      <param name="process.empty.source.toc" expression="${process.empty.source.toc}" if="process.empty.source.toc"/>
+      <param name="process.source.toc" expression="${process.source.toc}" if="process.source.toc"/>
+      <param name="punct.honorific" expression="${punct.honorific}" if="punct.honorific"/>
+      <param name="qanda.defaultlabel" expression="${qanda.defaultlabel}" if="qanda.defaultlabel"/>
+      <param name="qanda.in.toc" expression="${qanda.in.toc}" if="qanda.in.toc"/>
+      <param name="qanda.inherit.numeration" expression="${qanda.inherit.numeration}" if="qanda.inherit.numeration"/>
+      <param name="qanda.nested.in.toc" expression="${qanda.nested.in.toc}" if="qanda.nested.in.toc"/>
+      <param name="qandadiv.autolabel" expression="${qandadiv.autolabel}" if="qandadiv.autolabel"/>
+      <param name="refclass.suppress" expression="${refclass.suppress}" if="refclass.suppress"/>
+      <param name="refentry.generate.name" expression="${refentry.generate.name}" if="refentry.generate.name"/>
+      <param name="refentry.generate.title" expression="${refentry.generate.title}" if="refentry.generate.title"/>
+      <param name="refentry.separator" expression="${refentry.separator}" if="refentry.separator"/>
+      <param name="refentry.xref.manvolnum" expression="${refentry.xref.manvolnum}" if="refentry.xref.manvolnum"/>
+      <param name="reference.autolabel" expression="${reference.autolabel}" if="reference.autolabel"/>
+      <param name="root.filename" expression="${root.filename}" if="root.filename"/>
+      <param name="rootid" expression="${rootid}" if="rootid"/>
+      <param name="runinhead.default.title.end.punct" expression="${runinhead.default.title.end.punct}" if="runinhead.default.title.end.punct"/>
+      <param name="runinhead.title.end.punct" expression="${runinhead.title.end.punct}" if="runinhead.title.end.punct"/>
+      <param name="section.autolabel" expression="${section.autolabel}" if="section.autolabel"/>
+      <param name="section.autolabel.max.depth" expression="${section.autolabel.max.depth}" if="section.autolabel.max.depth"/>
+      <param name="section.label.includes.component.label" expression="${section.label.includes.component.label}" if="section.label.includes.component.label"/>
+      <param name="segmentedlist.as.table" expression="${segmentedlist.as.table}" if="segmentedlist.as.table"/>
+      <param name="shade.verbatim" expression="${shade.verbatim}" if="shade.verbatim"/>
+      <param name="shade.verbatim.style" expression="${shade.verbatim.style}" if="shade.verbatim.style"/>
+      <param name="show.comments" expression="${show.comments}" if="show.comments"/>
+      <param name="show.revisionflag" expression="${show.revisionflag}" if="show.revisionflag"/>
+      <param name="simplesect.in.toc" expression="${simplesect.in.toc}" if="simplesect.in.toc"/>
+      <param name="spacing.paras" expression="${spacing.paras}" if="spacing.paras"/>
+      <param name="suppress.footer.navigation" expression="${suppress.footer.navigation}" if="suppress.footer.navigation"/>
+      <param name="suppress.header.navigation" expression="${suppress.header.navigation}" if="suppress.header.navigation"/>
+      <param name="suppress.navigation" expression="${suppress.navigation}" if="suppress.navigation"/>
+      <param name="table.cell.border.color" expression="${table.cell.border.color}" if="table.cell.border.color"/>
+      <param name="table.cell.border.style" expression="${table.cell.border.style}" if="table.cell.border.style"/>
+      <param name="table.cell.border.thickness" expression="${table.cell.border.thickness}" if="table.cell.border.thickness"/>
+      <param name="table.footnote.number.format" expression="${table.footnote.number.format}" if="table.footnote.number.format"/>
+      <param name="table.footnote.number.symbols" expression="${table.footnote.number.symbols}" if="table.footnote.number.symbols"/>
+      <param name="table.frame.border.color" expression="${table.frame.border.color}" if="table.frame.border.color"/>
+      <param name="table.frame.border.style" expression="${table.frame.border.style}" if="table.frame.border.style"/>
+      <param name="table.frame.border.thickness" expression="${table.frame.border.thickness}" if="table.frame.border.thickness"/>
+      <param name="tablecolumns.extension" expression="${tablecolumns.extension}" if="tablecolumns.extension"/>
+      <param name="target.database.document" expression="${target.database.document}" if="target.database.document"/>
+      <param name="targets.filename" expression="${targets.filename}" if="targets.filename"/>
+      <param name="tex.math.delims" expression="${tex.math.delims}" if="tex.math.delims"/>
+      <param name="tex.math.file" expression="${tex.math.file}" if="tex.math.file"/>
+      <param name="tex.math.in.alt" expression="${tex.math.in.alt}" if="tex.math.in.alt"/>
+      <param name="textdata.default.encoding" expression="${textdata.default.encoding}" if="textdata.default.encoding"/>
+      <param name="textinsert.extension" expression="${textinsert.extension}" if="textinsert.extension"/>
+      <param name="toc.list.type" expression="${toc.list.type}" if="toc.list.type"/>
+      <param name="toc.max.depth" expression="${toc.max.depth}" if="toc.max.depth"/>
+      <param name="toc.section.depth" expression="${toc.section.depth}" if="toc.section.depth"/>
+      <param name="ulink.show" expression="${ulink.show}" if="ulink.show"/>
+      <param name="ulink.target" expression="${ulink.target}" if="ulink.target"/>
+      <param name="use.embed.for.svg" expression="${use.embed.for.svg}" if="use.embed.for.svg"/>
+      <param name="use.extensions" expression="${use.extensions}" if="use.extensions"/>
+      <param name="use.id.as.filename" expression="${use.id.as.filename}" if="use.id.as.filename"/>
+      <param name="use.id.as.filename" expression="1"/>
+      <param name="use.local.olink.style" expression="${use.local.olink.style}" if="use.local.olink.style"/>
+      <param name="use.role.as.xrefstyle" expression="${use.role.as.xrefstyle}" if="use.role.as.xrefstyle"/>
+      <param name="use.role.for.mediaobject" expression="${use.role.for.mediaobject}" if="use.role.for.mediaobject"/>
+      <param name="use.svg" expression="${use.svg}" if="use.svg"/>
+      <param name="variablelist.as.table" expression="${variablelist.as.table}" if="variablelist.as.table"/>
+      <param name="variablelist.term.break.after" expression="${variablelist.term.break.after}" if="variablelist.term.break.after"/>
+      <param name="variablelist.term.separator" expression="${variablelist.term.separator}" if="variablelist.term.separator"/>
+      <param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
+      <param name="webhelp.include.search.tab" expression="${webhelp.include.search.tab}" if="webhelp.include.search.tab"/>
+      <param name="writing.mode" expression="${writing.mode}" if="writing.mode"/>
+      <param name="xref.label-page.separator" expression="${xref.label-page.separator}" if="xref.label-page.separator"/>
+      <param name="xref.label-title.separator" expression="${xref.label-title.separator}" if="xref.label-title.separator"/>
+      <param name="xref.title-page.separator" expression="${xref.title-page.separator}" if="xref.title-page.separator"/>
+      <param name="xref.with.number.and.title" expression="${xref.with.number.and.title}" if="xref.with.number.and.title"/>
+    </xslt>
+
+    <!-- customize the fop-config.xml for the build paths -->
+    <tempfile destdir="${output-dir}"
+              deleteonexit="true"
+              suffix=".xml"
+              property="fop-config"
+    />
+    <copy file="${p4-build-dir}/perforce/assets/pdf/fop-config.xml"
+          tofile="${fop-config}"
+          failonerror="true"
+    >
+      <filterset>
+        <filter token="fonts-dir" value="${p4-build-dir}/fonts"/>
+      </filterset>
+    </copy>
+
+    <!-- produce PDF document from FO source -->
+    <fop format="application/pdf"
+        userconfig="${fop-config}"
+        basedir="${output-dir}"
+        messagelevel="warn"
+        fofile="${dummy.fo}"
+        outfile="${output-dir}/${pdf-output-filename}" />
+  </target>
+
+  <!-- tasks ========================================================== -->
+
+  <taskdef name="fop"
+           classname="org.apache.fop.tools.anttasks.Fop">
+    <classpath>
+      <fileset dir="${fop.home}/lib">
+        <include name="*.jar"/>
+      </fileset>
+      <fileset dir="${fop.home}/build">
+        <include name="fop.jar"/>
+        <include name="fop-hyph.jar" />
+      </fileset>
+    </classpath>
+  </taskdef>
+</project>

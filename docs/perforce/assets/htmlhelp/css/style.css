@@ -1,0 +1,664 @@
+/* Perforce CHM Styles */
+/* vim: set ts=2 sw=2 tw=80 ai si: */
+
+/* body styling -------------------------------------------------------- */
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5em;
+}
+
+#footer {
+  margin-top: 1em;
+  padding-top: 9;
+  border-top: 1px solid #000;
+}
+
+#footer a, #footer img {
+  text-decoration: none;
+  border: 0 none;
+}
+
+/* content styling ----------------------------------------------------- */
+
+code, pre, .command {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  color: #000;
+}
+
+pre {
+  white-space: pre;
+  word-wrap: normal;
+  word-break: normal;
+  overflow-x: auto;
+  line-height: 1.5;
+  font-size: 13px;
+  background-color: #fafafa;
+  border: 1px solid #e4e4e4;
+  margin: 10px 0 0 0;
+}
+
+code {
+  background-color: inherit;
+  padding: 0;
+  line-height: 1.5;
+  border: 0 none;
+  white-space: nowrap;
+}
+
+code.uri a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+code.filename {
+  color: #669;
+}
+
+a > code {
+  color: #428bca;
+}
+
+em.parameter, .xref em {
+  font-style: normal;
+}
+
+.command {
+  white-space: nowrap;
+  color: #373;
+}
+
+.command strong {
+  font-weight: normal;
+}
+
+.replaceable, .replaceable code {
+  color: #555;
+}
+
+.command .replaceable, .command .replaceable code,
+.filename .replaceable, .filename .replaceable code {
+  color: inherit;
+}
+
+.highlight {
+  background-color: #ff0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+h1, h2, h3 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 2px;
+}
+
+h1, h2 {
+  color: #DD5F38;
+  font-family: "Myriad Pro", "AvenirNextLTW01-Regular", Arial, Helvetica, sans-serif;
+  font-size: 35px;
+  margin: 30px 0 10px;
+  line-height: 37px;
+}
+
+.chapter h2, h3, h4, h5, h6 {
+  color: #111;
+  font-family: 'AvenirNextLTW01-Medium', Arial, Helvetica, sans-serif;
+}
+
+.chapter h2, .preface h2, .appendix h2, .reference h2,
+.reference .partintro h1,
+.refentry .refsynopsisdiv h2,
+.refentry .refsection h2 {
+  color: #333;
+  font-size: 26px;
+  line-height: 31px;
+}
+
+h3 {
+  color: #222;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+h4 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+h5 {
+  font-size: 17px;
+  line-height: 20px;
+}
+
+h6 {
+  font-size: 16;
+  line-height: 19px;
+}
+
+.reference .titlepage hr {
+  display: none;
+}
+
+.section {
+  clear: both;
+}
+
+.section + .section h2,
+.refentry .refsynopsisdiv h2,
+.refentry .refsection h2 {
+  padding-top: 24px;
+}
+
+a[href ^= "http"]:after {
+     content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
+}
+
+a.btn[href ^= "http"]:after {
+  content: "";
+}
+
+a > img {
+  text-decoration: none;
+  border: 0 none;
+}
+
+dl dd {
+  margin-left: 30px;
+}
+
+.variablelist dd p {
+  margin-bottom: 10px;
+}
+
+.literallayout p br:last-child {
+  display: none;
+}
+
+span.guibutton,
+span.guilabel,
+span.guimenu,
+span.guimenuitem,
+span.guisubmenu {
+  font-weight: bold;
+}
+
+p {
+  position: relative;
+}
+
+p, td, th {
+  font-family: Tahoma,Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  line-height: 1.5em;
+  margin: 10px 0 0 0;
+}
+
+p.clear {
+  clear: both;
+}
+
+p:first-child {
+  margin-top: 0;
+}
+
+/* targeted element styling -------------------------------------------- */
+
+dt:target,
+div:target > .titlepage h1,
+div:target > .titlepage h2,
+div:target > .titlepage h3,
+div:target > .titlepage h4,
+div:target > .titlepage h5,
+div:target > .titlepage h6,
+span:target + h2,
+span:target + * + h2,
+.glossary dt:target + dd {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: #dd5f38;
+    background-color: rgba(221, 95, 56, 0.2);
+
+    animation-duration: 0.3s;
+    animation-name: pulse;
+    animation-iteration-count: 3;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+.glossary dt:target + dd {
+  padding-left: 44px;
+}
+
+span:target + h2 > a.headerlink,
+span:target + * + h2 > a.headerlink {
+  color: #f0f0ff;
+}
+
+span:target + h2 > a.headerlink:hover,
+span:target + * + h2 > a.headerlink:hover {
+  color: #449;
+  background: #eaeaf8;
+}
+
+@keyframes pulse {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+dl.glossary dt:target {
+  border-bottom: 0 none;
+}
+
+dl.glossary dt:target + dd {
+  border-top: 0 none;
+  padding-left: 34px;
+  padding-right: 6px;
+}
+
+/* special image styling ----------------------------------------------- */
+
+span.thumb {
+  margin: 0 0 6px 12px;
+  float: right;
+}
+
+p.thumb + p {
+  margin-top: 0;
+}
+
+span.frame img {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 3px 3px 6px 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+ul.popup-image {
+  float: right;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+ul.popup-image li {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+span.popup {
+  float: right;
+  cursor: pointer;
+  margin: 0 0 6px 12px;
+  text-align: right;
+  position: relative;
+  z-index: 50;
+}
+
+span.popup img {
+  max-width: 100px;
+}
+
+span.popup span.expand {
+  display: block;
+  font-size: 10px;
+  color: #999;
+}
+
+span.popup:hover span.expand {
+  color: #111;
+}
+
+.doc-image-popup {
+  position: absolute;
+  top: 1px;
+  right: -18px;
+  z-index: 100;
+}
+
+.doc-image-popup img,
+span.popup .doc-image-popup img {
+  position: absolute;
+  top: -2px;
+  right: 18px;
+  margin: 0;
+  max-width: 600px;
+}
+
+.doc-image-popup span.close-icon:before {
+  content: "X";
+  font-size: 16px;
+}
+
+.doc-image-popup span.close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+p.popup {
+  position: relative;
+}
+
+/* ordered list styling ------------------------------------------------ */
+
+ol.loweralpha, ol[type=a] {
+  list-style-type: lower-alpha;
+}
+
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+
+ol.lowerroman, ol[type=i] {
+  list-style-type: lower-roman;
+}
+
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+li ol {
+  margin-top: 6px;
+}
+
+li ul {
+  list-style-type: disc;
+}
+
+ol.procedure li.step > p:first-child {
+  font-weight: bold;
+}
+
+ul.itemizedlist li + li {
+  margin-top: 10px;
+}
+
+/* table styling ------------------------------------------------------- */
+
+div.informaltable {
+  margin-top: 10px;
+}
+
+div.informaltable table, table.simplelist {
+  border: 0 none;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+div.informaltable table thead tr:last-child th {
+  border-bottom: 1px solid #000;
+}
+
+div.informaltable table th {
+  background-color: #ddd;
+  vertical-align: top;
+  padding: 10px 10px;
+}
+
+div.informaltable table td {
+  vertical-align: top;
+  padding: 10px 10px;
+}
+
+div.informaltable table tbody tr td {
+  border-bottom: 1px solid #bcbab1;
+}
+
+div.informaltable table tbody tr:last-child td {
+  border-bottom: 1px solid #bcbab1;
+}
+
+div.informaltable table tbody tr:nth-child(even) td {
+  background-color: inherit;
+}
+
+div.informaltable table p:last-child {
+  margin: 0;
+}
+
+table.simplelist {
+  margin-top: 10px;
+}
+
+table.simplelist td {
+  vertical-align: top;
+  padding: 0 15px 3px 0;
+}
+
+table.simplelist td:last-child {
+  padding: 0;
+}
+
+/* tweaks for size-specified images */
+div.mediaobject table td {
+  padding: 0;
+}
+
+div.mediaobject table tbody tr:last-child td {
+  border: 0 none;
+}
+
+div.mediaobject table img {
+  max-width: none;
+}
+
+/* TOC styling --------------------------------------------------------- */
+
+dl.toc span.preface,
+dl.toc span.chapter,
+dl.toc span.appendix {
+  display: block;
+  border-bottom: 1px solid #bcbab1;
+  margin-top: 12px;
+}
+
+dl.toc dl {
+  margin: 0;
+}
+
+dl.toc dd {
+  margin-left: 18px;
+}
+
+dl.toc a {
+  color: #000;
+  text-decoration: none;
+}
+
+dl.toc a:hover {
+  color: #ddd;
+}
+
+/* admonition styling -------------------------------------------------- */
+
+div.admonition {
+  position: relative;
+  padding: 0px 12px 9px 12px;
+  background-color: #eee;
+  color: #000;
+  z-index: 10;
+  clear: both;
+  margin: 36px 0 10px 0;
+  border-top: 6px solid #ccc;
+  border-bottom: 1px dotted #ccc;
+}
+
+div.admonition h1,
+div.admonition h2,
+div.admonition h3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0px 8px 0px 8px;
+  z-index: 0;
+  border-bottom: 0 none;
+  border-right: 1px solid #ccc;
+  margin: -25px 0 0 0;
+}
+
+div.admonition pre {
+  margin: 10px 0 0 0;
+}
+
+div.admonition h1 + p,
+div.admonition h2 + p,
+div.admonition h3 + p,
+div.admonition .literallayout + p {
+  margin: 0;
+}
+
+li p + .admonition {
+  margin-top: 36px;
+}
+
+/* warning */
+div.admonition.warning {
+  border-color: #f00;
+  background-color: #fee;
+}
+
+div.admonition.warning h1,
+div.admonition.warning h1,
+div.admonition.warning h3 {
+  color: #f00;
+  border-color: #f00;
+}
+
+div.admonition.warning pre {
+  border-color: #ffe4e4;
+  background-color: #ffe4e4;
+}
+
+div.admonition.warning ol > li {
+  border-left-color: #ddc2c2;
+}
+
+div.admonition.warning ol > li:before {
+  border-color: #ddc2c2;
+  background-color: #f7c2c2;
+}
+
+/* caution */
+div.admonition.caution {
+  border-color: #f79319;
+  background-color: #fdeedc;
+}
+
+div.admonition.caution h1,
+div.admonition.caution h1,
+div.admonition.caution h3 {
+  color: #f79319;
+  border-color: #f79319;
+}
+
+div.admonition.caution pre {
+  border-color: #e7d8c6;
+  background-color: #f3e4d2;
+}
+
+div.admonition.caution ol > li {
+  border-left-color: #c5b6a4;
+}
+
+div.admonition.caution ol > li:before {
+  border-color: #c5b6a4;
+  background-color: #d1c2b0;
+}
+
+/* important */
+div.admonition.important {
+  border-color: #408;
+  background-color: #e3d9ed;
+}
+
+div.admonition.important h1,
+div.admonition.important h1,
+div.admonition.important h3 {
+  color: #408;
+  border-color: #408;
+}
+
+div.admonition.important pre {
+  border-color: #cdbfd7;
+  background-color: #d9cfe3;
+}
+
+div.admonition.important ol > li {
+  border-left-color: #ab9db5;
+}
+
+div.admonition.important ol > li:before {
+  border-color: #ab9db5; /* - 22 */
+  background-color: #d2c8db; /* - 07 */
+}
+
+/* note */
+div.admonition.note {
+  border-color: #068;
+  background-color: #d9e8ed;
+}
+
+div.admonition.note h1,
+div.admonition.note h1,
+div.admonition.note h3 {
+  color: #068;
+  border-color: #068;
+}
+
+div.admonition.note pre {
+  border-color: #c3d2d7;
+  background-color: #cfdee3;
+}
+
+div.admonition.note ol > li {
+  border-left-color: #a1b0b5;
+}
+
+div.admonition.note ol > li:before {
+  border-color: #a1b0b5;
+  background-color: #adbcc1;
+}
+
+/* tip */
+div.admonition.tip {
+  border-color: #00f;
+  background-color: #eef;
+}
+
+div.admonition.tip h1,
+div.admonition.tip h1,
+div.admonition.tip h3 {
+  color: #00f;
+  border-color: #00f;
+}
+
+/* styling for the index page ------------------------------------------ */
+
+div.index dl dt {
+  font-weight: normal;
+}
+
+div.index dl dl {
+  margin-top: 0;
+}
+
+div.index dl dd {
+  margin-left: 18px;
+}
