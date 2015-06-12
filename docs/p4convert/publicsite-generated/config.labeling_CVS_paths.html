@@ -1,0 +1,102 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Labeling CVS Paths // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="chapter.config.html" title="Configuration" />
+      <link rel="prev" href="config.mapping_CVS_paths.html" title="Mapping CVS Paths" />
+      <link rel="next" href="config.general.selective_and_incremental_conversions.html" title="Subversion: Selective and Incremental Conversions" />
+      <meta name="Section-title" content="Labeling CVS Paths" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="section" id="config.labeling_CVS_paths">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both">Labeling CVS Paths</h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                  CVS will tag revisions with symbols, some of these symbols may refer to 
+                  labels, whilst others are branch names.  If labeling is disabled (default),
+                  then only symbols with history are converted to Perforce branches, the
+                  remaining symbols are ignored.  However, if labels are enabled then the 
+                        remaining symbols from the branch detection are converted to Perforce Labels.
+                      
+               </p>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem">
+                        <p>
+                                     To enable labeling of CVS symbols tags, set the 
+                                     <em class="parameter"><code>com.p4convert.cvs.labels</code></em> to 
+                                     <em class="parameter"><code>true</code></em>.
+                                   
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>
+                                     In multiple CVS conversions there is the potential for namespace clashing 
+                                     if the label has been previously used. By default, the converter will use 
+                                     the CVS symbol as the name for the Perforce label.  However, this can be 
+                                     formatted by setting the following option:
+                                     <em class="parameter"><code>com.p4convert.cvs.labelFormat</code></em>. The parameter         
+                                     <em class="parameter"><code>{symbol}</code></em> will be substituted by the CVS symbol name.
+                                   
+                        </p>
+                        <p>
+                                     For example:
+                           
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.cvs.labels=true
+com.p4convert.cvs.labelFormat=import_{symbol}_label
+</pre><p>
+                                     Will import a CVS symbol called <em class="parameter"><code>REL1.0</code></em> as a Perforce
+                                     label <em class="parameter"><code>import_REL1.0_label</code></em>.
+                                   
+                        </p>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="config.mapping_CVS_paths.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Mapping CVS Paths</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="config.general.selective_and_incremental_conversions.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Subversion: Selective and Incremental Conversions</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>

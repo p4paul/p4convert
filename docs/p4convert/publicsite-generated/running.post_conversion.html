@@ -1,0 +1,181 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Post Conversion [Conversion Mode] // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="chapter.running.html" title="Running P4Convert" />
+      <link rel="prev" href="running.convert_mode.html" title="Convert Mode" />
+      <link rel="next" href="chapter.notes.html" title="Notes" />
+      <meta name="Section-title" content="Post Conversion [Conversion Mode]" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="section" id="running.post_conversion">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both">Post Conversion [Conversion Mode]</h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                        To finish a Convert Mode conversion you will need to install <span class="command"><strong>p4</strong></span>
+                        and <span class="command"><strong>p4d</strong></span> and run a few Perforce commands.
+                      
+               </p>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem" id="running.post_conversion.step1">
+                        <p>
+                                     <span class="bold"><strong>[Required]</strong></span> Change directory to
+                                     <code class="envar">P4ROOT</code>, check there are no <code class="filename">db.*</code>
+                                     files present and then replay the journal file(s):
+                                   
+                        </p><pre class="screen">
+$ cd p4_root
+$ p4d -r . -jr jnl.0
+Perforce db files in '.' will be created if missing...
+Recovering from jnl.0...
+Perforce server info:
+	Server version 33 is replaying a version 0 journal/checkpoint.
+</pre><div class="note admonition">
+                           <h3 class="title">Note</h3>
+                           <p>
+                                          The Server version is set to <code class="literal">0</code> to remind the
+                                          administrator that an upgrade is required, see
+                                          <a class="link" href="running.post_conversion.html#running.post_conversion.step3">step 3</a>.
+                                        
+                           </p>
+                        </div>
+                     </li>
+                     <li class="listitem" id="running.post_conversion.step2">
+                        <p>
+                                     or, for multiple journal files:
+                                   
+                        </p><pre class="programlisting">
+$ p4d -r . -jr jnl.0 jnl.1 ....
+</pre><p>
+                                     and with nohup:
+                                   
+                        </p><pre class="programlisting">
+nohup p4d -r . -jr jnl.0 jnl.1 .... &amp;
+</pre></li>
+                     <li class="listitem" id="running.post_conversion.step3">
+                        <p>
+                                     <span class="bold"><strong>[Required]</strong></span> Upgrade the database from
+                                     2004.2 schema. For simplicity the conversion generates a database
+                                     using an old schema, allowing you to upgrade to a Perforce Server
+                                     version of your choice. From the <code class="envar">P4ROOT</code> directory run
+                                     the upgrade command:
+                                   
+                        </p><pre class="screen">
+$ p4d -r . -xu
+Perforce db files in '.' will be created if missing...
+2001.1: splitting db.integ into db.integed/db.resolve.
+2001.1: splitting db.have into db.have and db.label.
+2002.1: splitting pending db.change into db.changex.
+2002.2: upgrading tempobj filetype in db.rev.
+2002.2: upgrading tempobj filetype in db.working.
+2003.1: initialize default depot.
+2003.2: upgrading db.user.
+2005.1: building db.revhx (headrev) table.
+2005.1: building db.locks from db.working.
+2005.2: building db.revdx (delrev) table.
+2005.2: moving spec depot entries into db.revsx.
+2007.3: (re)building haveMap from db.have/db.working.
+2007.3: (re)building db.archmap (lazy-copy map) table.
+2007.3: removing old db.archive.
+2008.1: upgrading db.change.
+2009.2: moving db.boddate/db.ixdate into db.bodtext/db.ixtext.
+2009.2: removing db.boddate/db.ixdate.
+2010.2: adding db.config.
+2011.1: upgrading tiny.db.
+...upgrades done
+</pre></li>
+                     <li class="listitem" id="running.post_conversion.step4">
+                        <p>
+                                     [Optional] If the conversion was run in Unicode mode (where
+                                     <code class="code">com.p4convert.p4.unicode=true</code>) and users are going to
+                                     continue to add Unicode content then you may wish to set the server to
+                                     Unicode mode. To enable Unicode run the following command from the
+                                     P4ROOT directory:
+                                   
+                        </p><pre lang="bash" class="programlisting">
+$ p4d -r . -xi
+</pre></li>
+                     <li class="listitem" id="running.post_conversion.step5">
+                        <p>
+                                     [Alternative] If you are running your Perforce Server on Linux and
+                                     your user base is predominantly Windows you may wish to force the
+                                     server to run as case insensitive (only allowing one version of case
+                                     for paths and files). The conversion option
+                                     <code class="code">com.p4convert.adv.lowerCase=true</code> will have been used with
+                                     the case mode set to <code class="code">com.p4convert.adv.caseMode=FIRST</code>.
+                                     All p4d commands must be include the <em class="parameter"><code>-C1</code></em> flag,
+                                     this includes the earlier
+                                     <a class="link" href="running.post_conversion.html#running.post_conversion.step1">step 1</a> and
+                                     <a class="link" href="running.post_conversion.html#running.post_conversion.step2">step 2</a>.
+                                   
+                        </p>
+                        <p>
+                                     For example:
+                                   
+                        </p><pre lang="bash" class="programlisting">
+$ cd p4_root
+$ p4d -C1 -r . -jr jnl.0
+$ p4d -C1 -r . -xu
+</pre></li>
+                     <li class="listitem" id="running.post_conversion.step6">
+                        <p>
+                                     [Recommended] Some archive files may not have MD5 sum digests
+                                     (typically where Subversion did not store the digest or the digest
+                                     does not match due to the use of keyword expansion). To fill in the
+                                     metadata for MD5 sum digests and archive file sizes use the verify
+                                     command (this might be best split into depots and sub directories for
+                                     large servers):
+                                   
+                        </p><pre lang="bash" class="programlisting">
+$ p4 verify -u //...
+</pre></li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="running.convert_mode.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Convert Mode</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="chapter.notes.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Notes</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>

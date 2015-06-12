@@ -1,0 +1,141 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Labeling Subversion Paths // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="chapter.config.html" title="Configuration" />
+      <link rel="prev" href="config.filtering_subversion_paths.html" title="Filtering Subversion paths" />
+      <link rel="next" href="config.changelist_offset_options.html" title="Changelist Offset options" />
+      <meta name="Section-title" content="Labeling Subversion Paths" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="section" id="config.labeling_subversion_paths">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both">Labeling Subversion Paths</h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                  Whilst Subversion does not have a specific label entity may users follow 
+                  the 'tags' convention.  If a 'tag' path is pure (in that it has not had 
+                        subsequent changes to the content) it can be converted to a Perforce 
+                        label. 
+                      
+               </p>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem">
+                        <p>
+                                     To enable labeling of Subversion tags, set the 
+                                     <em class="parameter"><code>com.p4convert.svn.labels</code></em> to 
+                                     <em class="parameter"><code>true</code></em> and define maps: 
+                                     <code class="filename">exclude.map</code> and <code class="filename">include.map</code>.
+                                   
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.svn.labels=true
+</pre></li>
+                     <li class="listitem">
+                        <p>
+                                     The maps are designed with resect to branches.  The default behaviour is
+                                     for all Subversion tag operations to be imported as Perforce branches. 
+                                     In order to change the behaviour and attempt to import the Subversion tag
+                                     as a Perforce label the path must be in the exclude map.      
+                                   
+                        </p>
+                        <p>
+                                     For example; to import all Subversion tags in the folder 'tags/' as 
+                                     Perforce labels, create an exclusion map file
+                                     <code class="filename">exclude.map</code>:
+                                   
+                        </p><pre lang="ini" class="programlisting">
+# exclude Subversion tags:
+^tags/.*
+</pre></li>
+                     <li class="listitem">
+                        <p>
+                                     A Perforce label will need a unique name space derived from the 'tags'
+                                     path.  The conversion tool provides a depth and regular expression 
+                                     configuration option to assist.
+                                   
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.svn.labelFormat=svn_label:{depth}
+</pre><pre lang="ini" class="programlisting">
+com.p4convert.svn.labelDepth=2
+</pre><p>
+                                     The depth determins how much of the path to use for the unique label 
+                                     name.  Typically a value of '2' for convertional Subversion usage. 
+                                     With a depth of '2' the first two elements of the 'tags' path are then
+                                     held in an array and used by a regular expression to generate the label
+                                     name.
+                                   
+                        </p>
+                        <p>
+                                     For example, given a Subversion tag located <code class="filename">tags/1.0.0/</code>
+                                     the following regular expressions provide the coresponding label names:
+                                   
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.svn.labelFormat=label:{2}         label:1.0.0
+com.p4convert.svn.labelFormat={1}-{2}           tags-1.0.0
+</pre><div class="note admonition">
+                           <h3 class="title">Note</h3>
+                           <p>
+                                          An empty expression will use the original path.
+                                        
+                           </p>
+                        </div><pre lang="ini" class="programlisting">
+com.p4convert.svn.labelFormat=                  tags/1.0.0/
+</pre><div class="note admonition">
+                           <h3 class="title">Note</h3>
+                           <p>
+                                          If a keyword of <em class="parameter"><code>{depth}</code></em> is used it will be 
+                                          substituted with it's value.
+                                        
+                           </p>
+                        </div><pre lang="ini" class="programlisting">
+com.p4convert.svn.labelFormat=label_{depth}     label_1.0.0
+</pre></li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="config.filtering_subversion_paths.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Filtering Subversion paths</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="config.changelist_offset_options.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Changelist Offset options</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>

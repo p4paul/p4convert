@@ -1,0 +1,83 @@
+/**
+ * Copyright (C) 2015 Perforce Software. All rights reserved.
+ *
+ * Please see README-LICENSE.txt in top-level folder of this distribution.
+ */
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+project.ext.ver = project.hasProperty('ver') ? project.ext.ver : 'ENGINEERING.BUILD' 
+version = project.ext.ver
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'log4j:log4j:1.2.17'
+	compile 'org.slf4j:slf4j-api:1.6.6' //1.7.12
+	compile 'org.slf4j:slf4j-log4j12:1.6.6' //1.7.12
+	compile 'com.perforce:p4java:2014.1.965322' //2015.1.1067177
+	compile 'com.ibm.icu:icu4j:54.1.1' //55.1
+	compile 'commons-cli:commons-cli:1.2' //1.3
+	compile 'com.google.code.gson:gson:2.3.1'
+	
+	testCompile 'ant-contrib:ant-contrib:1.0b3'
+	testCompile 'org.hamcrest:hamcrest-core:1.3'
+    testCompile 'junit:junit:4.10'
+}
+
+
+jar {
+	archiveName = baseName + '.jar'
+	manifest { 
+        attributes 'Main-Class': 'com.perforce.Main',
+			'Class-Path': '.',
+			'Specification-Title': 'P4 Convert',
+			'Specification-Version': version,
+			'Specification-Vendor': 'Perforce Software',
+			'Implementation-Title': archiveName,
+			'Implementation-Version': version,
+			'Implementation-Vendor': 'Perforce Software'
+	}  
+	from {
+		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
+
+task genConfigs(dependsOn:jar) {
+	javaexec { main='-jar'; args 'build/libs/p4convert.jar', '--type=SVN', '--default' }
+	file("default.cfg").renameTo(file("SVN-sample.cfg"))
+	
+	javaexec { main='-jar'; args 'build/libs/p4convert.jar', '--type=CVS', '--default' }
+	file("default.cfg").renameTo(file("CVS-sample.cfg"))
+}
+
+
+task docWeb(type:Exec) {
+	workingDir 'docs/p4convert'
+	commandLine 'ant'
+	args 'publicsite'
+}
+
+task rel(type: Zip, dependsOn: [jar, genConfigs, docWeb]) {
+	destinationDir = new File(projectDir, 'release')
+	archiveName = baseName + '.zip'
+
+	from(jar) { into version }
+	from('CVS-sample.cfg') { into version }
+	from('SVN-sample.cfg') { into version }
+	from('types.map') { into version }
+	from('p4convert-notes.txt') { into version }
+	from('debug.log4j.properties') { into version }
+
+    from('docs/p4convert/publicsite-generated') {
+        into version + '/docs'
+    }
+}

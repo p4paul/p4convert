@@ -1,0 +1,163 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Caveats // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="chapter.setup.html" title="Setup" />
+      <link rel="prev" href="chapter.setup.html" title="Setup" />
+      <link rel="next" href="setup.usage.html" title="Setup and Usage" />
+      <meta name="Section-title" content="Caveats" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="section" id="setup.caveats">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both">Caveats</h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem">
+                        <p>
+                           The following table lists the combinations of tested operating systems
+                                     and Perforce Server versions.
+                                   
+                        </p>
+                        <div class="informaltable">
+                           <table border="0">
+                              <colgroup>
+                                 <col class="os" />
+                                 <col class="10.2" />
+                                 <col class="14.1" />
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th>
+                                       <p>Operating System</p>
+                                    </th>
+                                    <th>
+                                       <p>10.2</p>
+                                    </th>
+                                    <th>
+                                       <p>14.1</p>
+                                    </th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <p>Ubuntu 10.04</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>Darwin 11.4.0</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>Windows 7x64</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>SunOS 5.10</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                    <td>
+                                       <p>supported</p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <p>
+                                     It is likely that other combinations will work, however it is not
+                                     possible to test all combinations.
+                                   
+                        </p>
+                        <p>
+                                     Please contact Perforce if you have any OS or version queries.
+                                   
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>
+                                     [Import Mode] Symbolic links are not supported in Import Mode on
+                                     Windows.
+                                   
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>
+                                     Perforce keyword expansions are different from the Subversion 
+                                     standard and may yield different results when synced.  CVS keyword
+                                     detection is not yet supported.
+                                   
+                        </p>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="chapter.setup.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Setup</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="setup.usage.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Setup and Usage</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>

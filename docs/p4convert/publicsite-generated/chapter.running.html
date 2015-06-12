@@ -1,0 +1,161 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Running P4Convert // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="prev" href="config.advanced.html" title="Advanced Configuration" />
+      <link rel="next" href="running.convert_mode.html" title="Convert Mode" />
+      <meta name="Section-title" content="Running P4Convert" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="chapter" id="chapter.running">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h1 class="title">Running P4Convert</h1>
+                     </div>
+                  </div>
+               </div>
+               <div class="section" id="running.import_mode">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h2 class="title" style="clear: both">Import Mode</h2>
+                        </div>
+                     </div>
+                  </div>
+                  <p>
+                     Import Mode will pull in file revisions from a Subversion dump file or CVS repository,
+                           adding them to the Perforce Server specified by the connection details in the
+                           configuration options. To use this mode set:
+                         
+                  </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.mode=IMPORT
+</pre><p>
+                           Care should be taken when adding data to a pre-existing Perforce Server
+                           that the revision actions do not conflict with revisions already in the
+                           Perforce Server; typically, this can occur if the Server has been in-use
+                           since the previous migration.
+                         
+                  </p>
+                  <p>
+                           To avoid such scenarios the import should either be to a unique depot, to
+                           avoid conflict, or the Perforce Server should be Read Only during
+                           subsequent migrations. After a conversion is complete, it is possible to
+                           merge the new data with an existing depot using tools like
+                           <span class="application">PerfMerge++</span>.
+                         
+                  </p>
+                  <p>
+                           The converter will check that your Perforce Server has no pending changes,
+                           and will abort a conversion if any are detected.
+                         
+                  </p>
+                  <div class="section" id="running.import_mode.configuration">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h3 class="title">Configuration options specific to Import Mode</h3>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="orderedlist">
+                        <ol class="orderedlist" type="1">
+                           <li class="listitem">
+                              <p>
+                                             Perforce server address and port (escape the '<code class="literal">:</code>'
+                                             with '<code class="literal">\:</code>'):
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.port=<em class="replaceable"><code>localhost\:4444</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Default user and client for server connection:
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.client=<em class="replaceable"><code>p4-client</code></em>
+com.p4convert.p4.user=<em class="replaceable"><code>p4-user</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Client workspace root used to import files into Perforce:
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.clientRoot=<em class="replaceable"><code>/Users/bruno/ws/</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             If Security is set to level 1 or greater, then the
+                                             <em class="replaceable"><code>p4-user</code></em> must have
+                                             <span class="emphasis"><em>admin</em></span> permissions in the Protection table and
+                                             the password supplied as a string (the
+                                             default is set to <code class="envar">ws/</code> under your local directory):
+                                           
+                              </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.passwd=<em class="replaceable"><code>PaSSwoRd</code></em>
+</pre></li>
+                           <li class="listitem">
+                              <p>
+                                             Alternatively if the user is already logged in and there is a valid
+                                             ticket, then leave the password field unset and set your environment
+                                             for <code class="envar">P4TICKETS</code> (don't rely on the
+                                             <code class="envar">P4TICKETS</code> unset default as <span class="command"><strong>p4-java</strong></span>
+                                             will not find your ticket file).
+                                           
+                              </p>
+                           </li>
+                        </ol>
+                     </div>
+                     <div class="warning admonition">
+                        <h3 class="title">Warning</h3>
+                        <p>
+                                     For long running conversions where authentication is required, please
+                                     insure that the conversion user has an "Unlimited" login timeout.
+                                   
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="config.advanced.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Advanced Configuration</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="running.convert_mode.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Convert Mode</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>

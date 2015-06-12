@@ -1,0 +1,275 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Unicode Support // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="chapter.config.html" title="Configuration" />
+      <link rel="prev" href="config.changelist_offset_options.html" title="Changelist Offset options" />
+      <link rel="next" href="config.advanced.html" title="Advanced Configuration" />
+      <meta name="Section-title" content="Unicode Support" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="section" id="config.unicode_support">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both">Unicode Support</h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                  The following Unicode enable options apply to Unicode support for Import
+                  Mode and Convert Mode. The Charset options are only applicable to Import
+                  Mode, when translating a file through the Perforce client. In Convert Mode
+                        archive files are always written in UTF-8 for a Unicode enabled Perforce
+                        server.
+                      
+               </p>
+               <p>
+                        Defaults (for non-Unicode servers):
+                      
+               </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.unicode=false
+com.p4convert.p4.translate=true
+com.p4convert.p4.charset=&lt;none&gt;
+</pre><p>
+                        In some situations it is preferable to import text files as-is (untranslated).
+                        Typically this is true for a non-unicode environment where all the user are on
+                        Windows clients.  To disable translation set the following option to
+                        <em class="parameter"><code>false</code></em>.
+                      
+               </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.translate=false
+</pre><p>
+                        When translation is disabled high-ascii text uses the content type
+                        <em class="parameter"><code>TEXT-RAW</code></em> and the following warning is disabled:
+                      
+               </p><pre lang="ini" class="programlisting">
+... Non-unicode server, downgrading file to text
+</pre><p>
+                        Recommended configuration for a Unicode conversion:
+                      
+               </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.unicode=true
+com.p4convert.p4.translate=true
+com.p4convert.p4.charset=utf8
+</pre><p>
+                        For Unicode conversions set the JVM arg:
+                      
+               </p><pre lang="ini" class="programlisting">
+-Dfile.encoding=UTF-8
+</pre><p>
+                        Some Solaris and Linux conversions may need the locale set:
+                      
+               </p><pre lang="bash" class="programlisting">
+export LC_ALL=en_GB.UTF-8 
+</pre><p>
+                        Once a Perforce server is switched to Unicode enabled mode
+                        (<em class="parameter"><code>-xi</code></em>), all client workspaces need to define a
+                        character set. For details see:
+                      
+               </p>
+               <p>
+                        <a class="link" href="http://answers.perforce.com/articles/KB_Article/Internationalization-and-Localization" target="_top">http://answers.perforce.com/articles/KB_Article/Internationalization-and-Localization</a>
+                      
+               </p>
+               <div class="note admonition">
+                  <h3 class="title">Note</h3>
+                  <p>
+                             A non-Unicode enabled Perforce Server will accept UTF16 files.
+                           
+                  </p>
+               </div>
+               <div class="section" id="config.unicode_support.normalization">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title">Normalisation</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>
+                             Platform Unicode normalisation is detected when the configuration file
+                             is generated, however it can be changed by setting the following
+                             configuration option to <code class="literal">NFC</code> or
+                             <code class="literal">NFD</code>:
+                           
+                  </p><pre lang="ini" class="programlisting">
+com.p4convert.p4.normalisation=NFD
+</pre><p>
+                             The default detection is based on the following:
+                           
+                  </p>
+                  <div class="informaltable">
+                     <table border="0">
+                        <colgroup>
+                           <col class="platform" />
+                           <col class="normalization" />
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th>
+                                 <p>Platform</p>
+                              </th>
+                              <th>
+                                 <p>Normalization</p>
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <p>Windows</p>
+                              </td>
+                              <td>
+                                 <p><code class="literal">NFC</code></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Mac</p>
+                              </td>
+                              <td>
+                                 <p><code class="literal">NFD</code></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>*nix/*nux</p>
+                              </td>
+                              <td>
+                                 <p><code class="literal">NFC</code></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Sun</p>
+                              </td>
+                              <td>
+                                 <p><code class="literal">NFC</code></p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div class="section" id="config.unicode_support.subversion_properties">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title">Subversion Properties</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>
+                             By default, the converter parses Subversion properties as UTF-8 strings.
+                             The conversion uses properties such as <code class="literal">svn:log</code>,
+                             <code class="literal">svn:author</code> for attributes in Perforce and must decode
+                             the byte sequence to UTF-8. In some data sets Windows users may have
+                             added high ASCII characters in one or more code pages. This release now
+                             supports a configuration option:
+                           
+                  </p><pre lang="ini" class="programlisting">
+com.p4convert.svn.propTextType=UNKNOWN
+</pre><p>
+                             The following strings denote the supported char-sets:
+                           
+                  </p>
+                  <table border="0" summary="Simple list" class="simplelist">
+                     <tr>
+                        <td>Big5</td>
+                        <td>IBM424_rtl</td>
+                        <td>ISO-8859-7</td>
+                        <td>UTF-16LE</td>
+                     </tr>
+                     <tr>
+                        <td>BINARY</td>
+                        <td>ISO-2022-CN</td>
+                        <td>ISO-8859-8</td>
+                        <td>UTF-32BE</td>
+                     </tr>
+                     <tr>
+                        <td>EUC-JP</td>
+                        <td>ISO-2022-JP</td>
+                        <td>ISO-8859-9</td>
+                        <td>UTF-32LE</td>
+                     </tr>
+                     <tr>
+                        <td>EUC-KR</td>
+                        <td>ISO-2022-KR</td>
+                        <td>KOI8-R</td>
+                        <td>UTF-8</td>
+                     </tr>
+                     <tr>
+                        <td>GB18030</td>
+                        <td>ISO-8859-1</td>
+                        <td>Shift_JIS</td>
+                        <td>windows-1251</td>
+                     </tr>
+                     <tr>
+                        <td>IBM420_ltr</td>
+                        <td>ISO-8859-2</td>
+                        <td>UNKNOWN</td>
+                        <td>windows-1252</td>
+                     </tr>
+                     <tr>
+                        <td>IBM420_rtl</td>
+                        <td>ISO-8859-5</td>
+                        <td>US-ASCII</td>
+                        <td>windows-1254</td>
+                     </tr>
+                     <tr>
+                        <td>IBM424_ltr</td>
+                        <td>ISO-8859-6</td>
+                        <td>UTF-16BE</td>
+                        <td>windows-1256</td>
+                     </tr>
+                  </table>
+                  <p>
+                             The first scan is always <code class="literal">UTF-8</code> followed by the
+                             configuration option. <code class="literal">BINARY</code> implies a skip and the
+                             string <code class="literal">&lt;binary property&gt;</code> is inserted.
+                           
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="config.changelist_offset_options.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Changelist Offset options</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="config.advanced.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Advanced Configuration</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>

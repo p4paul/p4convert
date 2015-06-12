@@ -1,0 +1,111 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>General CVS converter settings. // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="chapter.config.html" title="Configuration" />
+      <link rel="prev" href="config.general.svn.html" title="General Subversion converter settings." />
+      <link rel="next" href="config.mapping_CVS_paths.html" title="Mapping CVS Paths" />
+      <meta name="Section-title" content="General CVS converter settings." />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="section" id="config.general.cvs">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both">General CVS converter settings.</h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                        If the configuration file has been correctly generated using the 
+                        <em class="parameter"><code>--type=CVS --default</code></em> the CVS configuration
+                        options will appear as a block using the <em class="parameter"><code>com.p4convert.cvs
+                              </code></em> name space.  These settings will only apply if the SCM
+                        mode is set to <em class="parameter"><code>CVS</code></em>:
+                  
+               </p><pre lang="ini" class="programlisting">
+com.p4convert.core.scmType=<em class="replaceable"><code>CVS</code></em>
+</pre><p>      
+                      
+               </p>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem">
+                        <p>
+                                     Local path to CVSROOT files. (A deeper path is permitted to limit 
+                                     the scope of the import).
+                                   
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.cvs.cvsroot=<em class="replaceable"><code>/Users/bruno/CVSROOT/</code></em>
+</pre></li>
+                     <li class="listitem">
+                        <p>
+                                     (Optionally) specify a CVS module to import from within the CVSROOT. 
+                                   
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.cvs.cvsmodule=<em class="replaceable"><code>projX</code></em>
+</pre></li>
+                     <li class="listitem">
+                        <p>
+                                     CVS time window.  When no <em class="parameter"><code>commitid</code></em> is 
+                                     defined in the RCS file, the converter will calculate which
+                                     revisions should be grouped into a changelist.  The time window
+                                     specifies the maximum range the converter should look ahead for
+                                     matching revisions. (milliseconds)
+                                   
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.cvs.timeWindow=<em class="replaceable"><code>20000</code></em>
+</pre></li>
+                     <li class="listitem">
+                        <p>
+                                     CVS temporary directory.  All the CVS assets are reformatted into
+                                     full text files. The specified temporary directory is used to store
+                                     the content during conversion. 
+                                   
+                        </p><pre lang="ini" class="programlisting">
+com.p4convert.cvs.tmpDir=<em class="replaceable"><code>tmp</code></em>
+</pre></li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="config.general.svn.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">General Subversion converter settings.</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="config.mapping_CVS_paths.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Mapping CVS Paths</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>

@@ -1,4 +1,8 @@
 MANIFEST.MF
+audit.log
+.settings
+*.cfg
+docs/beautifulsoup4-4.3.2
 changeMap.txt
 converter.log
 junit
@@ -9,3 +13,7 @@ dist
 p4_root
 ws
 out.dump
+.gradle
+src/test
+bin
+build

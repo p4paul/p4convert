@@ -1,0 +1,122 @@
+<!DOCTYPE html><html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Filtering Subversion paths // P4Convert: User Guide</title>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.78.1 with Perforce customizations" />
+      <link rel="home" href="copyright.html" title="P4Convert: User Guide" />
+      <link rel="up" href="chapter.config.html" title="Configuration" />
+      <link rel="prev" href="config.general.selective_and_incremental_conversions.html" title="Subversion: Selective and Incremental Conversions" />
+      <link rel="next" href="config.labeling_subversion_paths.html" title="Labeling Subversion Paths" />
+      <meta name="Section-title" content="Filtering Subversion paths" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+      <link rel="stylesheet" href="vendor/prettify/prettify.css" />
+      <link rel="stylesheet" href="css/perforce.css" />
+      <link rel="stylesheet" href="css/print.css" media="print" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="vendor/respond/respond.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+<![endif]-->
+   </head>
+   <body><a id="page-top"></a><div id="header">
+         <div class="container"><button name="toc" type="button" class="toc"><span class="glyphicon glyphicon-list"></span></button><span class="logo"><a href="http://www.perforce.com/documentation"></a></span><h1><a href="index.html" class="title"><span class="brand"></span><span class="guide-title">P4Convert: User Guide</span><span class="guide-subtitle">
+                                   (April 2015)
+                                 </span></a></h1><a title="Download a PDF version of this guide" class="pdf" href="ethel.pdf"><span class="glyphicon glyphicon-book"></span></a><button name="search" type="button" class="search" title="Search this guide"><span class="glyphicon glyphicon-search"></span></button></div>
+         <div id="progress"></div>
+      </div>
+      <div id="content" class="content" tabindex="-1">
+         <div class="container">
+            <!---->
+            <div class="section" id="config.filtering_subversion_paths">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both">Filtering Subversion paths</h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                        The default behavior is not to exclude any path in Subversion; however for
+                        large repositories with many <code class="filename">tags/</code> folders or
+                        situations where only part of a Subversion repository is to be converted
+                        you may wish to exclude certain Subversion paths. Subversion path
+                        exclusion is possible using two map files <code class="filename">exclude.map</code>
+                        and <code class="filename">include.map</code>.
+                      
+               </p>
+               <p>
+                        The filtering is based on matching the Subversion path to a regular
+                        expression in the map files. The <code class="filename">exclude.map</code> file is
+                        processed first and if the pattern matches part of the path then that path
+                        is skipped. The <code class="filename">include.map</code> file can be used to
+                        overlay the <code class="filename">exclude.map</code> file re-adding paths that
+                        were skipped. Before a conversion can start the filters must be verified
+                        against the Dump file (typically this is fairly quick and a displays a
+                        progress indicator).
+                      
+               </p>
+               <p>
+                        The verification step is to prevent the situation where an excluded path
+                        is relied on at a later point in the history for a branch, copy or merge
+                        action. If such a situation is found the paths are logged and the excluded
+                        <em class="replaceable"><code>source path</code></em> is added to the
+                        <code class="filename">issue.map</code> file. To resolve the issue the exclusion
+                        should be removed from the <code class="filename">exclude.map</code> file or a
+                        regular expression, based on the <code class="filename">issue.map</code> file,
+                        added to the <code class="filename">include.map</code> file.
+                      
+               </p>
+               <p>
+                        For example; to exclude all Subversion tags in the folder 'tags/', create
+                        an exclusion map file <code class="filename">exclude.map</code>:
+                      
+               </p><pre lang="ini" class="programlisting">
+# exclude Subversion tags:
+^tags/.*
+</pre><p>
+                        Then start the conversion to verify the map:
+                      
+               </p><pre class="programlisting">
+pallen-mac:main$ java -jar dist/p4convert.jar --config=Config/foo.cfg 
+loading ChangeMap: 	changeMap.txt
+loading TypeMap: 	types.map
+importing revisions: 	1 to 20635 out of 20635
+exclude.map: ^tags/.*
+Verifying exclusion map...
+issue: tags/rel-1.0.14/api
+issue: tags/rel-1.0.14/sys
+issue: tags/rel-2.0.3
+Issues found, saving issue map...
+Caught EXIT shutting down ...
+</pre><p>
+                        Looking at the reported issues the tags 'rel-1.0.14' and 'rel-2.0.3' have
+                        some actions that conflict with our exclusion, to resolve this simply add
+                        the exclusions to the 'include.map' file:
+                      
+               </p><pre lang="ini" class="programlisting">
+# issues reported for tags/ folder
+^tags/rel-1.0.14/.*
+^tags/rel-2.0.3/.*
+</pre></div>
+         </div>
+      </div>
+      <div id="nav" class="toc"></div>
+      <div id="search">
+         <div class="input"><input id="search-text" type="search" placeholder="Search this guide" /><button name="clear" type="button" class="clear"><span class="glyphicon glyphicon-remove-sign"></span></button></div>
+         <div class="controls">
+            <div class="substring"><input type="checkbox" class="substring" name="substring" value="hide" checked="1" /><span class="description">Hide partial matches</span></div>
+            <div class="highlighter"><input type="checkbox" class="highlight" name="highlight" value="show" checked="1" /><span class="description">Highlight matches</span></div>
+         </div>
+         <div class="count"><span class="number">0</span> matching pages
+                  
+         </div>
+         <ul class="results"></ul>
+      </div>
+      <div id="footer">
+         <div class="container"><a accesskey="p" class="nav-prev" title="Press 'p', or left-arrow, to view the previous page" href="config.general.selective_and_incremental_conversions.html"><span class="glyphicon glyphicon-chevron-left"></span><div class="label">Previous</div>
+               <div class="title">Subversion: Selective and Incremental Conversions</div></a><a accesskey="n" class="nav-next" title="Press 'n', or right-arrow, to view the next page" href="config.labeling_subversion_paths.html"><span class="glyphicon glyphicon-chevron-right"></span><div class="label">Next</div>
+               <div class="title">Labeling Subversion Paths</div></a></div>
+      </div><script type="text/javascript" src="vendor/jquery/jquery-1.11.3.min.js"></script><script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script><script type="text/javascript" src="vendor/cookie/jquery.cookie.js"></script><script type="text/javascript" src="vendor/highlight/jquery.highlight.js"></script><script type="text/javascript" src="vendor/jsrender/jsrender.js"></script><script type="text/javascript" src="vendor/touchwipe/jquery.touchwipe.min.js"></script><script type="text/javascript" src="vendor/prettify/prettify.js"></script><script defer="1" type="text/javascript" src="js/index.js"></script><script defer="1" type="text/javascript" src="js/toc.js"></script><script defer="1" type="text/javascript" src="js/perforce.js"></script></body>
+</html>
