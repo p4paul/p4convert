@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.nio.file.Files;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,6 +17,7 @@ import com.perforce.integration.SystemCaller;
 public class TestSymlink {
 
 	@Before
+	@After
 	public void cleanup() throws Exception {
 		String tmp = "rm" + " -rf tmp";
 		SystemCaller.exec(tmp, true, false);

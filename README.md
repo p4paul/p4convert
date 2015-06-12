@@ -171,25 +171,21 @@ to sync the code with Perforce, sign up to the Workshop and use the following se
 
 ### Build
 
-Building from source requires Apache `ant` version 1.8.x or greater and a Java JDK 7.
-To build, change to the project's rood directory (the location of `build.xml`) and run:
+Building from source requires [Gradle](https://gradle.org/) version 2.2.1 or greater and a Java JDK 7.
+To build, change to the project's rood directory (the location of `build.gradle) and run:
 
-    ant
+    gradle jar
     
 If the build succeeds then the jar is written to `dist/p4convert.jar`.
 
-To build the PDF user guide:
+To build the HTML web document pages:
 
-    ant docs
-    
-or to build the HTML web pages:
-
-    ant web
+    gradle docWeb
     
 Finally if all looks good to build a release tar-ball package:
 
-    ant clean
-    ant -Dversion=PUBLIC.Main.nnnnnn release
+    gradle clean
+    gradle -Pver=PUBLIC.Main.nnnnnn rel
 
 
 ### Testing
@@ -202,21 +198,9 @@ other services.  Please check that these resources have been freed from earlier 
 
 To run all tests:
 
-    ant junit
+    gradle test
     
-To run just the CVS tests or SVN tests use:
-
-    ant cvs
-    ant svn
-
-To run just one test case use the following, for example test case 003:
-
-    ant -Dcase=003 cvs-back           (CVS in CONVERT mode)
-    ant -Dcase=003 cvs-front          (CVS in IMPORT mode)
-    ant -Dcase=003 back               (SVN in CONVERT mode)
-    ant -Dcase=003 front              (SVN in IMPORT mode)
-
-
+    
 ### Contributing
 
 __TBC__
