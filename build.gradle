@@ -51,7 +51,7 @@ jar {
 	}
 }
 
-task genConfigs(dependsOn:jar) {
+task genConfigs(dependsOn:jar) << {
 	javaexec { main='-jar'; args 'build/libs/p4convert.jar', '--type=SVN', '--default' }
 	file("default.cfg").renameTo(file("SVN-sample.cfg"))
 	
