@@ -39,7 +39,7 @@ or fix is deemed stable.
 ## Documentation
 
 Documentation is available as a PDF document or in HTML. The HTML documention is
-packaged with each release under the `docs` directory and [online](https://swarm.workshop.perforce.com/projects/perforce-software-p4convert/view/main/docs/publicsite-generated/index.html).
+packaged with each release under the `docs` directory and [online](https://swarm.workshop.perforce.com/projects/perforce-software-p4convert/view/main/docs/p4convert/publicsite-generated/index.html).
 
 The markdown file `README.md` (this document) is located in the project's root directory
 on the Workshop. 
