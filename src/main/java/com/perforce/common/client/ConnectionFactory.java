@@ -57,12 +57,17 @@ public class ConnectionFactory {
 
 			// set super user and login if password set
 			superUser = (String) Config.get(CFG.P4_USER);
-			String passwd = (String) Config.get(CFG.P4_PASSWD);
-			if (!passwd.isEmpty()) {
-				iserver.setUserName(superUser);
-				iserver.login(passwd);
-			} else {
-				createUser(superUser);
+			iserver.setUserName(superUser);
+
+			// check if login is required
+			if (!isLogin()) {
+				String passwd = (String) Config.get(CFG.P4_PASSWD);
+				try {
+					iserver.login(passwd);
+				} catch (Exception e) {
+					// try to create a user
+					createUser(superUser);
+				}
 			}
 
 			// create import depot, or use existing
@@ -73,6 +78,21 @@ public class ConnectionFactory {
 
 			init = true;
 		}
+	}
+
+	private static boolean isLogin() throws Exception {
+		String status = iserver.getLoginStatus();
+		if (status.contains("not necessary")) {
+			return true;
+		}
+		if (status.contains("ticket expires in")) {
+			return true;
+		}
+		// If there is a broker or something else that swallows the message
+		if (status.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 
 	private static void createUser(String user) throws Exception {
