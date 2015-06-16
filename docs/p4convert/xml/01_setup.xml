@@ -31,7 +31,7 @@
 
       <listitem>
         <para>
-          System must have <emphasis role="bold">Java SE Runtime 1.7</emphasis>.
+          System must have <emphasis role="bold">Java SE Runtime 7</emphasis> or greater.
         </para>
       </listitem>
 
@@ -170,7 +170,7 @@ java -Xmx65536M -jar p4convert.jar --config=myConfig.cfg
 
     <para>
       Download the self-contained JAR from Perforce and check that Java SE
-      runtime is installed with version 1.7 or greater.
+      runtime is installed with version 7 or greater.
     </para>
 
     <para>
