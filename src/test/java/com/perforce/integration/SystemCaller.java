@@ -52,11 +52,7 @@ public class SystemCaller {
 		for (String a : command) {
 			sb.append(a + " ");
 		}
-		String log = sb.toString();
-		String end = "...";
-		if (log.length() > CROP)
-			log = log.substring(0, CROP - end.length()) + end;
-		logger.info("running: " + log);
+		logger.info("running: " + sb.toString());
 
 		// run command
 		Process process = null;

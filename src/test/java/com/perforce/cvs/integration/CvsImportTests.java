@@ -1,15 +1,11 @@
 package com.perforce.cvs.integration;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.text.Normalizer.Form;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,23 +29,20 @@ public class CvsImportTests {
 	private static Logger logger = LoggerFactory
 			.getLogger(CvsImportTests.class);
 
-	// Fetch system properties
-	private final static String p4broker = "p4broker";
-	private final static String p4d = "p4d";
-	private final static String p4 = "p4";
-
 	// Set fixed paths
+	private final static String p4dVersion = "r15.1";
+	private final static String p4dPath = "src/test/resources/";
 	private final static String basePath = "src/test/java/com/perforce/cvs/integration/import/base/";
-	private final static String cvsRootPath = "/src/test/java/com/perforce/cvs/integration/dumps/";
+	private final static String cvsRootPath = "src/test/java/com/perforce/cvs/integration/dumps/";
 	private final static String journalFile = "jnl.sort";
 	private final static String seedFile = "ckp.seed";
 	private final static String seedLbr = "lbr.seed/";
 	private final static String depotName = "import";
 
 	// Globals
+	private static String p4d;
 	private static String cwd;
 	private static String p4root;
-	private static String p4user;
 	private static String p4ws;
 
 	// Once at start of regression tests
@@ -58,20 +51,23 @@ public class CvsImportTests {
 			Config.setDefault();
 
 			p4ws = System.getProperty("user.dir") + "/ws/";
-			cwd = System.getProperty("user.dir");
+			cwd = System.getProperty("user.dir") + "/";
 			p4root = "p4_root/";
-			p4user = (String) Config.get(CFG.P4_USER);
+
+			String os = System.getProperty("os.name").toLowerCase();
+			p4d = cwd + p4dPath + p4dVersion + "/";
+			if (os.contains("win")) {
+				p4d += "bin.ntx64/p4d.exe";
+			}
+			if (os.contains("mac")) {
+				p4d += "bin.darwin90x86_64/p4d";
+			}
+			if (os.contains("nix") || os.contains("nux")) {
+				p4d += "bin.linux26x86_64/p4d";
+			}
 
 			// Check environment
 			checkEnvironment();
-
-			// Kill brokers
-			logger.info("Setting up p4brokers...");
-			SystemCaller.killAll("p4broker");
-
-			// Start broker (used for all tests)
-			startBroker(cwd + "/" + p4root, "localhost:4444", "-C1 -vserver=1");
-			startBroker(cwd + "/" + p4root, "localhost:4445", "-vserver=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,10 +87,12 @@ public class CvsImportTests {
 			Config.set(CFG.P4_MODE, "IMPORT");
 			Config.set(CFG.P4_USER, "svn-user");
 			Config.set(CFG.P4_CLIENT, "svn-client");
-			Config.set(CFG.P4_PORT, "localhost:4444");
 			Config.set(CFG.P4_CLIENT_ROOT, p4ws);
 			Config.set(CFG.P4_ROOT, p4root);
 			Config.set(CFG.VERSION, "alpha/TestMode");
+
+			String rsh = "rsh:" + p4d + " -r " + p4root + " -i";
+			Config.set(CFG.P4_PORT, rsh);
 
 			Config.set(CFG.EXCLUDE_MAP, "test_exclude.map");
 			Config.set(CFG.INCLUDE_MAP, "test_include.map");
@@ -493,26 +491,26 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "label-view");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case059() throws Exception {
 		Config.set(CFG.CVS_MODULE, "no-main");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case060() throws Exception {
 		Config.set(CFG.CVS_LABELS, true);
 		Config.set(CFG.CVS_MODULE, "no-main-label");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case061() throws Exception {
 		Config.set(CFG.CVS_MODULE, "expand");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case062() throws Exception {
 		Config.set(CFG.P4_TRANSLATE, true);
@@ -520,7 +518,7 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "win1251_tr");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case063() throws Exception {
 		UserMapping.add("jen", "jennifer");
@@ -533,14 +531,14 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "cvsroot_dir");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case065() throws Exception {
 		Config.set(CFG.P4_TRANSLATE, false);
 		Config.set(CFG.CVS_MODULE, "utf16_le_binary");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case066() throws Exception {
 		Config.set(CFG.CVS_LABELS, true);
@@ -555,17 +553,12 @@ public class CvsImportTests {
 	 * @throws Exception
 	 */
 	private static void checkEnvironment() throws Exception {
-
-		String[] p4bins = { p4, p4d, p4broker };
-
 		// Test binary exists and report version
-		for (String bin : p4bins) {
-			int test = SystemCaller.exec(bin + " -V", true, false);
-			if (test != 0) {
-				logger.info("Cannot find " + bin + ", please check PATH!");
-				logger.info("PATH = " + System.getenv("PATH"));
-				System.exit(test);
-			}
+		int test = SystemCaller.exec(p4d + " -V", true, false);
+		if (test != 0) {
+			logger.info("Cannot find " + p4d + ", please check PATH!");
+			logger.info("PATH = " + System.getenv("PATH"));
+			System.exit(test);
 		}
 	}
 
@@ -589,55 +582,12 @@ public class CvsImportTests {
 	}
 
 	/**
-	 * Start broker for Perforce connections Listen: <p4_port> Server: RSH
-	 * <p4_root>
-	 * 
-	 * @throws Exception
-	 */
-	private static void startBroker(String p4root, String p4port, String flags)
-			throws Exception {
-
-		Map<String, String> broker = new LinkedHashMap<String, String>();
-		String brokerConfig = "broker." + p4port + ".cfg";
-		brokerConfig = brokerConfig.replace(":", ".");
-		String rsh = "rsh:" + p4d + " -r " + p4root;
-		rsh += " -Llog " + flags + " -i";
-
-		// Build broker configuration file
-		broker.put("target", "\"" + rsh + "\"");
-		broker.put("listen", p4port);
-		broker.put("directory", p4root);
-		broker.put("logfile", "broker.log");
-		broker.put("debug-level", "server=1");
-		broker.put("admin-name", "svn-admin");
-		broker.put("admin-phone", "svn-phone");
-		broker.put("admin-email", "svn@email");
-		broker.put("redirection", "selective");
-
-		BufferedWriter out = new BufferedWriter(new FileWriter(brokerConfig));
-		for (String key : broker.keySet()) {
-			out.write(key + "=" + broker.get(key) + ";\n");
-		}
-		out.flush();
-		out.close();
-
-		String p4b = p4broker + " -c " + cwd + "/" + brokerConfig + " -d";
-		SystemCaller.exec(p4b, false, false);
-	}
-
-	/**
 	 * Cleans the perforce server (db files and archives)
 	 * 
 	 * @throws Exception
 	 */
 	private void cleanPerforce() throws Exception {
-		// Stop (flush) old perforce instance
-		String p4_port = (String) Config.get(CFG.P4_PORT);
-		String stop = p4 + " -u " + p4user + " -p " + p4_port + " admin stop";
-		SystemCaller.exec(stop, true, false);
-
 		// Remove old server and workspace
-		Thread.sleep(1000);
 		String rm = "rm" + " -rf " + p4root + "/* " + p4ws;
 		SystemCaller.exec(rm, true, false);
 
@@ -654,7 +604,7 @@ public class CvsImportTests {
 		String upd = p4d + " -C1 -r " + p4root + " -xu";
 		SystemCaller.exec(upd, true, false);
 
-		String cp = "cp -rfv " + lbr + " " + cwd + "/" + p4root + "import";
+		String cp = "cp -rfv " + lbr + " " + cwd + p4root + "import";
 		SystemCaller.exec(cp, true, false);
 
 		String cpMap = "cp -f " + map + " " + cwd;
@@ -685,8 +635,6 @@ public class CvsImportTests {
 	}
 
 	private void runTest(String cvsCluster, String seed) throws Exception {
-		String p4_port = (String) Config.get(CFG.P4_PORT);
-
 		// Select dump file for test case
 		String testCase = (String) Config.get(CFG.CVS_MODULE);
 		logger.info("testcase: " + testCase);
@@ -703,8 +651,7 @@ public class CvsImportTests {
 
 		// Switch to unicode in enabled
 		if ((Boolean) Config.get(CFG.P4_UNICODE)) {
-			String p4uni = p4 + " -u " + p4user + " -p " + p4_port
-					+ " counter -f unicode 1";
+			String p4uni = p4d + " -r " + p4root + " -xi ";
 			SystemCaller.exec(p4uni, true, false);
 		}
 

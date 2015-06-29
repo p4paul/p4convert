@@ -1,13 +1,9 @@
 package com.perforce.integration;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.text.Normalizer.Form;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,12 +29,9 @@ public class ImportTests {
 
 	private static Logger logger = LoggerFactory.getLogger(ImportTests.class);
 
-	// Fetch system properties
-	private final static String p4broker = "p4broker";
-	private final static String p4d = "p4d";
-	private final static String p4 = "p4";
-
 	// Set fixed paths
+	private final static String p4dVersion = "r15.1";
+	private final static String p4dPath = "src/test/resources/";
 	private final static String basePath = "src/test/java/com/perforce/integration/import/base/";
 	private final static String dumpPath = "src/test/java/com/perforce/integration/dumps/";
 	private final static String dumpFile = "repo.dump";
@@ -48,9 +41,9 @@ public class ImportTests {
 	private final static String depotName = "import";
 
 	// Globals
+	private static String p4d;
 	private static String cwd;
 	private static String p4root;
-	private static String p4user;
 	private static String p4ws;
 
 	// Once at start of regression tests
@@ -59,20 +52,23 @@ public class ImportTests {
 			Config.setDefault();
 
 			p4ws = System.getProperty("user.dir") + "/ws/";
-			cwd = System.getProperty("user.dir");
-			p4root = "p4_root/";
-			p4user = (String) Config.get(CFG.P4_USER);
+			cwd = System.getProperty("user.dir") + "/";
+			p4root = System.getProperty("user.dir") + "/p4_root/";
+
+			String os = System.getProperty("os.name").toLowerCase();
+			p4d = cwd + p4dPath + p4dVersion + "/";
+			if (os.contains("win")) {
+				p4d += "bin.ntx64/p4d.exe";
+			}
+			if (os.contains("mac")) {
+				p4d += "bin.darwin90x86_64/p4d";
+			}
+			if (os.contains("nix") || os.contains("nux")) {
+				p4d += "bin.linux26x86_64/p4d";
+			}
 
 			// Check environment
 			checkEnvironment();
-
-			// Kill brokers
-			logger.info("Setting up p4brokers...");
-			SystemCaller.killAll("p4broker");
-
-			// Start broker (used for all tests)
-			startBroker(cwd + "/" + p4root, "localhost:4444", "-C1 -vserver=1");
-			startBroker(cwd + "/" + p4root, "localhost:4445", "-vserver=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,10 +88,13 @@ public class ImportTests {
 			Config.set(CFG.P4_MODE, "IMPORT");
 			Config.set(CFG.P4_USER, "svn-user");
 			Config.set(CFG.P4_CLIENT, "svn-client");
-			Config.set(CFG.P4_PORT, "localhost:4444");
 			Config.set(CFG.P4_CLIENT_ROOT, p4ws);
 			Config.set(CFG.P4_ROOT, p4root);
 			Config.set(CFG.VERSION, "alpha/TestMode");
+
+			String rsh = "rsh:" + p4d + " -r " + p4root + " -i";
+			Config.set(CFG.P4_PORT, rsh);
+
 			Config.set(CFG.SVN_PROP_NAME, ".svn.properties");
 			Config.set(CFG.SVN_PROP_ENCODE, "ini");
 			Config.set(CFG.SVN_PROP_ENABLED, true);
@@ -1088,17 +1087,12 @@ public class ImportTests {
 	 * @throws Exception
 	 */
 	private static void checkEnvironment() throws Exception {
-
-		String[] p4bins = { p4, p4d, p4broker };
-
 		// Test binary exists and report version
-		for (String bin : p4bins) {
-			int test = SystemCaller.exec(bin + " -V", true, false);
-			if (test != 0) {
-				logger.info("Cannot find " + bin + ", please check PATH!");
-				logger.info("PATH = " + System.getenv("PATH"));
-				System.exit(test);
-			}
+		int test = SystemCaller.exec(p4d + " -V", true, false);
+		if (test != 0) {
+			logger.info("Cannot find " + p4d + ", please check PATH!");
+			logger.info("PATH = " + System.getenv("PATH"));
+			System.exit(test);
 		}
 	}
 
@@ -1154,56 +1148,13 @@ public class ImportTests {
 	}
 
 	/**
-	 * Start broker for Perforce connections Listen: <p4_port> Server: RSH
-	 * <p4_root>
-	 * 
-	 * @throws Exception
-	 */
-	private static void startBroker(String p4root, String p4port, String flags)
-			throws Exception {
-
-		Map<String, String> broker = new LinkedHashMap<String, String>();
-		String brokerConfig = "broker." + p4port + ".cfg";
-		brokerConfig = brokerConfig.replace(":", ".");
-		String rsh = "rsh:" + p4d + " -r " + p4root;
-		rsh += " -Llog " + flags + " -i";
-
-		// Build broker configuration file
-		broker.put("target", "\"" + rsh + "\"");
-		broker.put("listen", p4port);
-		broker.put("directory", p4root);
-		broker.put("logfile", "broker.log");
-		broker.put("debug-level", "server=1");
-		broker.put("admin-name", "svn-admin");
-		broker.put("admin-phone", "svn-phone");
-		broker.put("admin-email", "svn@email");
-		broker.put("redirection", "selective");
-
-		BufferedWriter out = new BufferedWriter(new FileWriter(brokerConfig));
-		for (String key : broker.keySet()) {
-			out.write(key + "=" + broker.get(key) + ";\n");
-		}
-		out.flush();
-		out.close();
-
-		String p4b = p4broker + " -c " + cwd + "/" + brokerConfig + " -d";
-		SystemCaller.exec(p4b, false, false);
-	}
-
-	/**
 	 * Cleans the perforce server (db files and archives)
 	 * 
 	 * @throws Exception
 	 */
 	private void cleanPerforce() throws Exception {
-		// Stop (flush) old perforce instance
-		String p4_port = (String) Config.get(CFG.P4_PORT);
-		String stop = p4 + " -u " + p4user + " -p " + p4_port + " admin stop";
-		SystemCaller.exec(stop, true, false);
-
 		// Remove old server and workspace
-		Thread.sleep(1000);
-		String rm = "rm" + " -rf " + p4root + "/* " + p4ws;
+		String rm = "rm" + " -rf " + p4root + " " + p4ws;
 		SystemCaller.exec(rm, true, false);
 
 		// Make p4 root
@@ -1211,15 +1162,15 @@ public class ImportTests {
 	}
 
 	private void seedPerforce(String seed) throws Exception {
-		String meta = cwd + "/" + seed + seedFile;
-		String lbr = cwd + "/" + seed + seedLbr;
-		String map = cwd + "/" + seed + seedLbr + "changeMap.txt";
+		String meta = cwd + seed + seedFile;
+		String lbr = cwd + seed + seedLbr;
+		String map = cwd + seed + seedLbr + "changeMap.txt";
 		String ckp = p4d + " -C1 -r " + p4root + " -jr " + meta;
 		SystemCaller.exec(ckp, true, false);
 		String upd = p4d + " -C1 -r " + p4root + " -xu";
 		SystemCaller.exec(upd, true, false);
 
-		String cp = "cp -rfv " + lbr + " " + cwd + "/" + p4root + "import";
+		String cp = "cp -rfv " + lbr + " " + p4root + "import";
 		SystemCaller.exec(cp, true, false);
 
 		String cpMap = "cp -f " + map + " " + cwd;
@@ -1245,8 +1196,6 @@ public class ImportTests {
 
 	private void testCase(String dumpCase, String seed, int warnings) {
 		try {
-			String p4_port = (String) Config.get(CFG.P4_PORT);
-
 			// Select dump file for test case
 			logger.info("testcase: " + dumpCase);
 			String dumpFileName = dumpPath + dumpCase + "/" + dumpFile;
@@ -1265,8 +1214,7 @@ public class ImportTests {
 
 			// Switch to unicode in enabled
 			if ((Boolean) Config.get(CFG.P4_UNICODE)) {
-				String p4uni = p4 + " -u " + p4user + " -p " + p4_port
-						+ " counter -f unicode 1";
+				String p4uni = p4d + " -r " + p4root + " -xi ";
 				SystemCaller.exec(p4uni, true, false);
 			}
 

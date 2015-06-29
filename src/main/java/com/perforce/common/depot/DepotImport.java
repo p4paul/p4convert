@@ -21,7 +21,6 @@ public class DepotImport implements DepotInterface {
 	private String depotName;
 	private String depotSub;
 	private String depotPath;
-	private String port;
 	private String user;
 	private String client;
 	private String defaultClientRoot;
@@ -45,7 +44,6 @@ public class DepotImport implements DepotInterface {
 		}
 
 		caseMode = mode;
-		port = (String) Config.get(CFG.P4_PORT);
 		user = (String) Config.get(CFG.P4_USER);
 		client = (String) Config.get(CFG.P4_CLIENT);
 		defaultClientRoot = (String) Config.get(CFG.P4_CLIENT_ROOT);
@@ -94,12 +92,7 @@ public class DepotImport implements DepotInterface {
 		return depotPath;
 	}
 
-	public String getPort() {
-		return port;
-	}
-
 	public IOptionsServer getIServer() {
-		// TODO: change interface?
 		return iserver;
 	}
 
@@ -108,13 +101,7 @@ public class DepotImport implements DepotInterface {
 		File file = new File(defaultClientRoot);
 		return file.getCanonicalPath() + "/";
 	}
-
-	public void setIServer(IOptionsServer ios) throws Exception {
-		if (iserver != null)
-			iserver.disconnect();
-		iserver = ios;
-	}
-
+	
 	public CaseSensitivity getCaseMode() {
 		return caseMode;
 	}

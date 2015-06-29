@@ -148,7 +148,7 @@ public class ConnectionFactory {
 			props.put(PropertyDefs.PROG_VERSION_KEY, Config.get(CFG.VERSION));
 
 			// Set up socket pooling to use a single socket
-			props.put(RpcPropertyDefs.RPC_SOCKET_POOL_SIZE_NICK, "1");
+			props.put(RpcPropertyDefs.RPC_SOCKET_POOL_SIZE_NICK, "0");
 
 			// Allow p4 admin commands.
 			props.put(RpcPropertyDefs.RPC_RELAX_CMD_NAME_CHECKS_NICK, "true");
@@ -158,12 +158,7 @@ public class ConnectionFactory {
 
 			// Get a server connection
 			String port = (String) Config.get(CFG.P4_PORT);
-			String serverUri;
-			if (port.startsWith("ssl:")) {
-				serverUri = "p4javassl://" + port.substring(4, port.length());
-			} else {
-				serverUri = "p4java://" + port;
-			}
+			String serverUri = getP4JavaUri(port);
 			newIServer = ServerFactory.getOptionsServer(serverUri, props, null);
 			try {
 				newIServer.connect();
@@ -184,6 +179,18 @@ public class ConnectionFactory {
 			}
 		}
 		return newIServer;
+	}
+
+	private static String getP4JavaUri(String port) {
+		if (port.startsWith("ssl:")) {
+			String trim = port.substring(4, port.length());
+			return "p4javassl://" + trim;
+		}
+		if (port.startsWith("rsh:")) {
+			String trim = port.substring(4, port.length());
+			return "p4jrsh://" + trim + " --java";
+		}
+		return "p4java://" + port;
 	}
 
 	/**
