@@ -5,7 +5,7 @@
 @pv@ 9 @db.rev@ @//import/trunk/source/sub/file030.txt@ 1 1 0 1 1360143430 1360143430 16FED0121505838F492D0295BA547558 8 0 0 @//import/trunk/source/sub/file030.txt@ @1.1@ 1 
 @pv@ 9 @db.rev@ @//import/trunk/source/sub/file040.txt@ 1 1 0 1 1360143430 1360143430 16FED0121505838F492D0295BA547558 8 0 0 @//import/trunk/source/sub/file040.txt@ @1.1@ 1 
 @pv@ 9 @db.rev@ @//import/trunk/work@ 2 262145 2 8 1360150240 0 00000000000000000000000000000000 -1 0 0 @//import/trunk/work@ @1.8@ 262145 
-@pv@ 9 @db.rev@ @//import/trunk/work@ 1 262145 0 7 1360150203 1360150203 36CD38F49B9AFA08222C0DC9EBFE35EB 6 0 0 @//import/trunk/work@ @1.7@ 262145 
+@pv@ 9 @db.rev@ @//import/trunk/work@ 1 262145 0 7 1360150203 1360150203 A50FBF9FE847B7DD34A032B206C1D45C 7 0 0 @//import/trunk/work@ @1.7@ 262145 
 @pv@ 9 @db.rev@ @//import/trunk/work/file001.txt@ 5 1 4 10 1360151294 1360143430 16FED0121505838F492D0295BA547558 8 0 1 @//import/trunk/source/file001.txt@ @1.1@ 1 
 @pv@ 9 @db.rev@ @//import/trunk/work/file001.txt@ 4 1 3 9 1360150264 1360143430 16FED0121505838F492D0295BA547558 8 0 1 @//import/trunk/source/file001.txt@ @1.1@ 1 
 @pv@ 9 @db.rev@ @//import/trunk/work/file001.txt@ 3 1 2 6 1360150152 0 00000000000000000000000000000000 -1 0 0 @//import/trunk/work/file001.txt@ @1.6@ 1 

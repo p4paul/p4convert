@@ -1,6 +1,6 @@
 @pv@ 9 @db.rev@ @//import/bar@ 1 1 0 1 1374829074 1374829074 7F4A5C5E297EBE5A5E27AE32A4F3125E 8 0 0 @//import/bar@ @1.1@ 1 
 @pv@ 9 @db.rev@ @//import/foo@ 2 1 1 2 1374829156 1374829156 06E56AE3390C14EE9EF5204E2EE47013 20 0 0 @//import/foo@ @1.2@ 1 
-@pv@ 9 @db.rev@ @//import/foo@ 1 262145 0 1 1374829074 1374829074 644CF2B858E919C1E887FE9ED38CFE0C 45 0 0 @//import/foo@ @1.1@ 262145 
+@pv@ 9 @db.rev@ @//import/foo@ 1 262145 0 1 1374829074 1374829074 71C14846C03DA62B1ED8A5901C08D14E 46 0 0 @//import/foo@ @1.1@ 262145 
 @pv@ 0 @db.integed@ @//import/bar@ @//import/foo@ 1 2 0 1 10 2 
 @pv@ 0 @db.integed@ @//import/foo@ @//import/bar@ 0 1 1 2 6 2 
 @pv@ 2 @db.change@ 2 2 @svn-client@ @pallen@ 1374829156 1 @Convert foo to file by copy
