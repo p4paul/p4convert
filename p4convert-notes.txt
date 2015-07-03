@@ -4,7 +4,7 @@
 This documentation needs an update reflecting the new features on the Public release of
 the converter.
 
-                        Version PUBLIC.Main.13776
+                        Version PUBLIC.Main.14806
 
 Introduction
 
@@ -44,6 +44,40 @@ Compatibility Statements
 	Java Virtual Machine
 	
 	  This release is certified to run on Java SE Runtime Environment 1.7.*
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.14806
+
+  #14805 
+
+  Fix for missing 2.0 revision labels.
+  
+  
+  #14230 (Bug)
+
+  Update test case for p4java 15.1 symlink '\n' fix.
+
+
+  #14229 (Bug)
+
+  Update p4java to 15.1 and use RSH connection for Unit tests.
+
+
+  #13958 (Bug 294)
+
+  Login check to avoid 'nouser' trying to create an account.
+
+  
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.13920
+
+  #13919 13920 
+
+  Update build to use Gradle
+  
 
 --------------------------------------------------------------------------
 
