@@ -546,6 +546,13 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "label-format");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case067() throws Exception {
+		Config.set(CFG.CVS_LABELS, true);
+		Config.set(CFG.CVS_MODULE, "rev2.0");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test

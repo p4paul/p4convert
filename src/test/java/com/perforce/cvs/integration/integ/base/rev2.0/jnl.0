@@ -1,0 +1,21 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @add
+@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 936542443 1 @add
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/file.txt@ 1 1 0 1 936542443 936542443 00000000000000000000000000000000 @//import/main/src/file.txt@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/main/src/file.txt@ 1 0 
+@pv@ 0 @db.desc@ 2 @readd file
+@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1378392074 1 @readd file
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/file.txt@ 2 1 1 2 1378392074 1378392074 00000000000000000000000000000000 @//import/main/src/file.txt@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/main/src/file.txt@ 2 1 
+@pv@ 5 @db.domain@ @RELEASE@ 108 @@ @@ @@ @@ @svn-user@ 1378392074 1378392074 0 @Created by p4convert. [Static Label]@ @@ 
+@pv@ 0 @db.label@ @RELEASE@ @//import/main/src/file.txt@ 2 
+@rv@ 1 @db.counters@ @change@ @2@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

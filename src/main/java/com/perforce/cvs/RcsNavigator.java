@@ -88,13 +88,12 @@ public abstract class RcsNavigator {
 	 */
 	protected void buildMaps(RcsObjectTag tag) {
 		RcsObjectNum id = tag.getId();
+		List<Integer> ids = id.getValues();
 		String name = tag.getTag();
 
-		if (id.getValues().contains(0)) {
-			List<Integer> branch = new ArrayList<Integer>(id.getValues());
-			int index = branch.size() - 2;
-			branch.remove(index);
-
+		if (ids.size() >= 4 && ids.contains(0)) {
+			List<Integer> branch = new ArrayList<Integer>(ids);
+			branch.remove(branch.lastIndexOf(0));
 			RcsObjectNum branchId = new RcsObjectNum(branch);
 			branchMap.put(branchId, name);
 
@@ -204,7 +203,7 @@ public abstract class RcsNavigator {
 			id = revision.getNext();
 		} while (id != null);
 	}
-	
+
 	/**
 	 * Format label name, by substituting '{symbol}' with the tag symbol.
 	 * 
@@ -222,10 +221,10 @@ public abstract class RcsNavigator {
 		if (!formatter.isEmpty()) {
 			String label = formatter;
 			name = label.replaceAll("\\{symbol\\}", name);
-			
+
 			// replace all spaces with '_'
 			name = name.replaceAll(" ", "_");
-		} 
+		}
 		return name;
 	}
 
