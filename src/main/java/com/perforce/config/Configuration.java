@@ -98,8 +98,8 @@ public class Configuration {
 		set(CFG.SVN_PROP_ENCODE, "ini");
 		set(CFG.SVN_PROP_ENABLED, false);
 		set(CFG.SVN_PROP_TYPE, ContentType.UNKNOWN);
-		set(CFG.SVN_DIR_NAME, ".svn.empty");
-		set(CFG.SVN_DIR_ENABLED, false);
+		set(CFG.EMPTY_DIR_NAME, ".svn.empty");
+		set(CFG.EMPTY_DIR_ENABLED, false);
 		set(CFG.SVN_KEEP_KEYWORD, true);
 		set(CFG.SVN_MERGEINFO, false);
 		set(CFG.SVN_LABELS, false);

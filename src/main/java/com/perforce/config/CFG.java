@@ -46,8 +46,6 @@ public enum CFG {
 	SVN_PROP_ENCODE("svn.propEncoding", String.class),
 	SVN_PROP_ENABLED("svn.propEnabled", Boolean.class),
 	SVN_PROP_TYPE("svn.propTextType", ContentType.class),
-	SVN_DIR_NAME("svn.emptyDirName", String.class),
-	SVN_DIR_ENABLED("svn.emptyDirEnabled", Boolean.class),
 	SVN_KEEP_KEYWORD("svn.keepKeyword", Boolean.class),
 	SVN_MERGEINFO("svn.mergeInfoEnabled", Boolean.class),
 	SVN_LABELS("svn.labels", Boolean.class),
@@ -71,7 +69,9 @@ public enum CFG {
 	TYPE_MAP("hidden.typeMap", String.class),
 	PATH_MAP("hidden.pathMap", String.class),
 	P4_LARGE_FILE("hidden.largeFile", Long.class),
-	CVS_MAXLINE("hidden.maxLineBuffer", Long.class);
+	CVS_MAXLINE("hidden.maxLineBuffer", Long.class),
+	EMPTY_DIR_NAME("hidden.emptyDirName", String.class),
+	EMPTY_DIR_ENABLED("hidden.emptyDirEnabled", Boolean.class);
 
 	final private String base = "com.p4convert.";
 	final private String id;
