@@ -761,6 +761,18 @@ public class RevisionImport {
 				" - merge from //", " - ignored //", " - copy from //",
 				"tampered with before resolve - edit or revert", "- vs");
 
+		// if tamper check issue, open for edit then resolve
+		if (P4Factory.trapFileSpecs(rsvMsg,
+				"tampered with before resolve - edit or revert")) {
+			// reopen for edit (don't send content)
+			editFile(depotToPath, null);
+
+			// Resolve target (accept action)
+			rsvMsg = iclient.resolveFilesAuto(brMsg, rsvOpts);
+			P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:",
+					"no file(s) to resolve", " - merging //",
+					" - merge from //");
+		}
 	}
 
 	private void dirtyEdit(String localToPath, Content content)
