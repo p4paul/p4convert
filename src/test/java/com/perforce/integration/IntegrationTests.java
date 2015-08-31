@@ -66,6 +66,9 @@ public class IntegrationTests {
 
 			// Clear LabelHistory Map
 			LabelHistory.clear();
+			
+			// Reset TypeMap
+			TypeMap.clear();
 		} catch (ConfigException e) {
 			e.printStackTrace();
 		}
@@ -944,6 +947,14 @@ public class IntegrationTests {
 	@Test
 	public void case125() throws Exception {
 		String test = "dots_path";
+		testCase(test);
+	}
+	
+	@Test
+	public void case126() throws Exception {
+		TypeMap.add("txt", "text+k");
+		Config.set(CFG.SVN_MERGEINFO, true);
+		String test = "copy-kdate";
 		testCase(test);
 	}
 

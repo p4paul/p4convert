@@ -29,6 +29,7 @@ import com.perforce.p4java.core.file.FileSpecBuilder;
 import com.perforce.p4java.core.file.FileSpecOpStatus;
 import com.perforce.p4java.core.file.IFileSpec;
 import com.perforce.p4java.impl.generic.core.Changelist;
+import com.perforce.p4java.option.client.EditFilesOptions;
 import com.perforce.p4java.server.IOptionsServer;
 import com.perforce.svn.history.ChangeAction;
 import com.perforce.svn.parser.Content;
@@ -99,7 +100,38 @@ public class ChangeImport implements ChangeInterface {
 			// call submit and check returned spec
 			List<IFileSpec> submitted = ichangelist.submit(null);
 			String ignore = "Submitted as change";
-			P4Factory.validateFileSpecs(submitted, ignore);
+			String tamper = " tampered with after resolve - edit or revert";
+			P4Factory.validateFileSpecs(submitted, ignore, tamper,
+					"Submit aborted");
+
+			// if tamper check found, add to list
+			List<String> tamp = new ArrayList<String>();
+			for (IFileSpec fileSpec : submitted) {
+				if (fileSpec.getOpStatus() != FileSpecOpStatus.VALID) {
+					String msg = fileSpec.getStatusMessage();
+					if (msg.contains(tamper)) {
+						int end = msg.indexOf(tamper);
+						String specStr = msg.substring(0, end);
+						tamp.add(specStr);
+					}
+				}
+			}
+
+			// open tampered files for edit
+			if (!tamp.isEmpty()) {
+				logger.info("Force submit: ignoring tamper check.");
+				EditFilesOptions editOpts = new EditFilesOptions();
+				editOpts.setChangelistId(ichangelist.getId());
+				List<IFileSpec> spec = FileSpecBuilder.makeFileSpecList(tamp);
+
+				List<IFileSpec> editMsg = iclient.editFiles(spec, editOpts);
+				P4Factory.validateFileSpecs(editMsg);
+
+				submitted = ichangelist.submit(null);
+				P4Factory.validateFileSpecs(submitted, ignore);
+			}
+
+			// get submitted change
 			change = findSubmittedChange(submitted);
 
 			// Clean up workspace
@@ -175,9 +207,10 @@ public class ChangeImport implements ChangeInterface {
 		iserver.deletePendingChangelist(ichangelist.getId());
 	}
 
-	public void addPath(Action nodeAction, String toPath,
-			ArrayList<MergeSource> fromList, Property property, boolean subBlock)
-			throws Exception {
+	public void
+			addPath(Action nodeAction, String toPath,
+					ArrayList<MergeSource> fromList, Property property,
+					boolean subBlock) throws Exception {
 
 		// Path syntax translation
 		String depotToPath = PathMapTranslator.translate(toPath);

@@ -94,4 +94,11 @@ public class TypeMap {
 	public static void add(String ext, String type) {
 		map.put(ext, type);
 	}
+	
+	/**
+	 * Test cleanup method.
+	 */
+	public static void clear() {
+		map.clear();
+	}
 }

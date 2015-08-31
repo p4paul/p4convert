@@ -1081,6 +1081,14 @@ public class ImportTests {
 		testCase(test);
 	}
 
+	@Test
+	public void case126() throws Exception {
+		TypeMap.add("txt", "text+k");
+		Config.set(CFG.SVN_MERGEINFO, true);
+		String test = "copy-kdate";
+		testCase(test);
+	}
+
 	/**
 	 * Environment test
 	 * 
