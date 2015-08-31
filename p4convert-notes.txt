@@ -4,7 +4,7 @@
 This documentation needs an update reflecting the new features on the Public release of
 the converter.
 
-                        Version PUBLIC.Main.14806
+                        Version PUBLIC.Main.15579
 
 Introduction
 
@@ -44,6 +44,31 @@ Compatibility Statements
 	Java Virtual Machine
 	
 	  This release is certified to run on Java SE Runtime Environment 1.7.*
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.15579
+
+  #15579
+
+  SVN: Fix for 'tampered with after resolve - edit or revert'.
+
+  Includes a manufactured test case, seems to be related to an IGNORE resolve 
+  with keyword/properties.
+
+  
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.15555
+
+  #15555
+
+  Added Tamper check to branchFile
+
+  #15176
+
+  To prevent confusion hide the unsupported Empty Dir options.
 
 
 --------------------------------------------------------------------------
