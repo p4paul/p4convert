@@ -5,6 +5,9 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.perforce.config.CFG;
+import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
 import com.perforce.cvs.parser.RcsReader;
 
 public class BranchNavigator extends RcsNavigator {
@@ -34,7 +37,8 @@ public class BranchNavigator extends RcsNavigator {
 		countBranch(name);
 		if (logger.isTraceEnabled()) {
 			int count = brCount.get(name);
-			logger.trace("... branch entry: " + name + " (" + count + ")");
+			logger.trace("... BranchNavigator entry: " + name + " (" + count
+					+ ")");
 		}
 	}
 
@@ -43,12 +47,19 @@ public class BranchNavigator extends RcsNavigator {
 		countBranch(name);
 		if (logger.isTraceEnabled()) {
 			int count = brCount.get(name);
-			logger.trace("... branch point: " + name + " (" + count + ")");
+			logger.trace("... BranchNavigator point: " + name + " (" + count
+					+ ")");
 		}
 	}
 
 	private void countBranch(String name) {
-		int count = 0;
+		boolean all = false;
+		try {
+			all = (Boolean) Config.get(CFG.CVS_BRANCH_ALL);
+		} catch (ConfigException e) {
+		}
+
+		int count = (all) ? 1 : 0;
 		if (brCount.containsKey(name)) {
 			count = brCount.get(name) + 1;
 		}

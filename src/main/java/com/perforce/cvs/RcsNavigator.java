@@ -39,10 +39,6 @@ public abstract class RcsNavigator {
 		return rcsRevision;
 	}
 
-	protected Set<Entry<RcsObjectNum, String>> getBranchMap() {
-		return branchMap.entrySet();
-	}
-
 	/**
 	 * Takes an RCS file; navigates the RCS to find all revisions, then adds
 	 * them to the list for sorting.
@@ -58,6 +54,7 @@ public abstract class RcsNavigator {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("RCS file: " + rcs.getRcsFile().getName());
+			logger.debug("Process symbols:");
 		}
 
 		// get label and branch names
@@ -85,8 +82,9 @@ public abstract class RcsNavigator {
 	 * 
 	 * @param id
 	 * @return
+	 * @throws ConfigException
 	 */
-	protected void buildMaps(RcsObjectTag tag) {
+	private void buildMaps(RcsObjectTag tag) throws ConfigException {
 		RcsObjectNum id = tag.getId();
 		List<Integer> ids = id.getValues();
 		String name = tag.getTag();
@@ -98,13 +96,21 @@ public abstract class RcsNavigator {
 			branchMap.put(branchId, name);
 
 			if (logger.isDebugEnabled()) {
-				logger.debug("\tbranch: '" + name + "' " + branchId.toString());
+				logger.debug("... Symbol: (branch) " + name + ":"
+						+ branchId.toString());
+			}
+		} else if (ids.size() % 2 != 0 && !ids.contains(0)) {
+			branchMap.put(id, name);
+
+			if (logger.isDebugEnabled()) {
+				logger.debug("... Symbol: (feature) " + name + ":"
+						+ id.toString());
 			}
 		} else {
 			labelsMap.put(name, id);
 
 			if (logger.isDebugEnabled()) {
-				logger.debug("\tlabel: '" + name + "'");
+				logger.debug("... Symbol: (label) " + name);
 			}
 		}
 	}
@@ -228,13 +234,17 @@ public abstract class RcsNavigator {
 		return name;
 	}
 
+	private Set<Entry<RcsObjectNum, String>> getBranchMap() {
+		return branchMap.entrySet();
+	}
+
 	/**
 	 * Return shortened branch ID e.g. 1.56.2.1 ==> 1.56.2
 	 * 
 	 * @param id
 	 * @return
 	 */
-	protected RcsObjectNum getBranchId(RcsObjectNum id) {
+	private RcsObjectNum getBranchId(RcsObjectNum id) {
 		List<Integer> branch = new ArrayList<Integer>(id.getValues());
 		int index = branch.size() - 1;
 		branch.remove(index);
@@ -270,7 +280,7 @@ public abstract class RcsNavigator {
 		return list;
 	}
 
-	protected String getParentName(RcsObjectNum from) {
+	private String getParentName(RcsObjectNum from) {
 		if (from == null) {
 			return null;
 		}

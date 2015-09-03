@@ -114,6 +114,7 @@ public class Configuration {
 		set(CFG.CVS_LABELS, false);
 		set(CFG.CVS_LABEL_FORMAT, "{symbol}");
 		set(CFG.CVS_TMPLOG_ENABLED, true);
+		set(CFG.CVS_BRANCH_ALL, false);
 
 		// UTF8 path normalisation
 		String os = System.getProperty("os.name").toLowerCase();
