@@ -9,12 +9,30 @@
 @ 
 @pv@ 3 @db.rev@ @//import/main/Makefile@ 1 1 0 1 876606909 876606909 00000000000000000000000000000000 @//import/main/Makefile@ @1.1@ 1 
 @pv@ 0 @db.revcx@ 1 @//import/main/Makefile@ 1 0 
-@pv@ 0 @db.desc@ 2 @moved files.
+@pv@ 0 @db.desc@ 2 @Import as of 09/25/97
 @ 
-@pv@ 0 @db.change@ 2 2 @svn-client@ @user1@ 881279971 1 @moved files.
+@pv@ 0 @db.change@ 2 2 @svn-client@ @user2@ 876606909 1 @Import as of 09/25/97
 @ 
-@pv@ 3 @db.rev@ @//import/main/Makefile@ 2 1 2 2 881279971 881279971 00000000000000000000000000000000 @//import/main/Makefile@ @1.2@ 1 
-@pv@ 0 @db.revcx@ 2 @//import/main/Makefile@ 2 2 
+@pv@ 3 @db.rev@ @//import/STUFF/Makefile@ 1 1 0 2 876606909 876606909 00000000000000000000000000000000 @//import/STUFF/Makefile@ @1.2@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/STUFF/Makefile@ 1 0 
+@pv@ 5 @db.domain@ @STUFF-current-1997-09-25@ 108 @@ @@ @@ @@ @svn-user@ 876606909 876606909 0 @Created by p4convert. [Static Label]@ @@ 
+@pv@ 0 @db.label@ @STUFF-current-1997-09-25@ @//import/STUFF/Makefile@ 1 
+@pv@ 5 @db.domain@ @Makefile@ 108 @@ @@ @@ @@ @svn-user@ 876606909 876606909 0 @Created by p4convert. [Static Label]@ @@ 
+@pv@ 0 @db.label@ @Makefile@ @//import/STUFF/Makefile@ 1 
+@pv@ 0 @db.desc@ 3 @Initial revision
+@ 
+@pv@ 0 @db.change@ 3 3 @svn-client@ @user2@ 876606909 1 @Initial revision
+@ 
+@pv@ 0 @db.integed@ @//import/STUFF/Makefile@ @//import/main/Makefile@ 0 1 1 2 4 3 
+@pv@ 0 @db.integed@ @//import/main/Makefile@ @//import/STUFF/Makefile@ 1 2 0 1 5 3 
+@pv@ 3 @db.rev@ @//import/STUFF/Makefile@ 2 1 4 3 876606909 876606909 00000000000000000000000000000000 @//import/main/Makefile@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/STUFF/Makefile@ 2 4 
+@pv@ 0 @db.desc@ 4 @moved files.
+@ 
+@pv@ 0 @db.change@ 4 4 @svn-client@ @user1@ 881279971 1 @moved files.
+@ 
+@pv@ 3 @db.rev@ @//import/main/Makefile@ 2 1 2 4 881279971 881279971 00000000000000000000000000000000 @//import/main/Makefile@ @1.4@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/main/Makefile@ 2 2 
 @pv@ 5 @db.domain@ @stuff-2006Q2-base@ 108 @@ @@ @@ @@ @svn-user@ 881279971 881279971 0 @Created by p4convert. [Static Label]@ @@ 
 @pv@ 0 @db.label@ @stuff-2006Q2-base@ @//import/main/Makefile@ 2 
 @pv@ 5 @db.domain@ @buildlink2-base@ 108 @@ @@ @@ @@ @svn-user@ 881279971 881279971 0 @Created by p4convert. [Static Label]@ @@ 
@@ -23,5 +41,5 @@
 @pv@ 0 @db.label@ @stuff-2005Q4-base@ @//import/main/Makefile@ 2 
 @pv@ 5 @db.domain@ @stuff-2006Q1-base@ 108 @@ @@ @@ @@ @svn-user@ 881279971 881279971 0 @Created by p4convert. [Static Label]@ @@ 
 @pv@ 0 @db.label@ @stuff-2006Q1-base@ @//import/main/Makefile@ 2 
-@rv@ 1 @db.counters@ @change@ @2@ 
+@rv@ 1 @db.counters@ @change@ @4@ 
 @rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

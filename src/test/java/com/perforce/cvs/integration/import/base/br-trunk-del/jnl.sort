@@ -1,10 +1,20 @@
-@pv@ 9 @db.rev@ @//import/main/Makefile@ 2 1 2 2 881279971 0 00000000000000000000000000000000 -1 0 0 @//import/main/Makefile@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/main/Makefile@ 2 1 2 4 881279971 0 00000000000000000000000000000000 -1 0 0 @//import/main/Makefile@ @1.4@ 1 
 @pv@ 9 @db.rev@ @//import/main/Makefile@ 1 1 0 1 876606909 876606909 9CF5A8B4C6CBE5B4A5F0448D432038B4 474 0 0 @//import/main/Makefile@ @1.1@ 1 
-@pv@ 2 @db.change@ 2 2 @svn-client@ @user1@ 881279971 1 @moved files.
+@pv@ 9 @db.rev@ @//import/STUFF/Makefile@ 2 1 4 3 876606909 876606909 9CF5A8B4C6CBE5B4A5F0448D432038B4 474 0 1 @//import/main/Makefile@ @1.1@ 1 
+@pv@ 9 @db.rev@ @//import/STUFF/Makefile@ 1 1 0 2 876606909 876606909 9CF5A8B4C6CBE5B4A5F0448D432038B4 474 0 0 @//import/STUFF/Makefile@ @1.2@ 1 
+@pv@ 0 @db.integed@ @//import/main/Makefile@ @//import/STUFF/Makefile@ 1 2 0 1 5 3 
+@pv@ 0 @db.integed@ @//import/STUFF/Makefile@ @//import/main/Makefile@ 0 1 1 2 4 3 
+@pv@ 2 @db.change@ 4 4 @svn-client@ @user1@ 881279971 1 @moved files.
+@pv@ 2 @db.change@ 3 3 @svn-client@ @user2@ 876606909 1 @Initial revision
+@pv@ 2 @db.change@ 2 2 @svn-client@ @user2@ 876606909 1 @Import as of 09/25/97
 @pv@ 2 @db.change@ 1 1 @svn-client@ @user2@ 876606909 1 @Initial revision
-@pv@ 0 @db.desc@ 2 @moved files.
+@pv@ 0 @db.desc@ 4 @moved files.
+@pv@ 0 @db.desc@ 3 @Initial revision
+@pv@ 0 @db.desc@ 2 @Import as of 09/25/97
 @pv@ 0 @db.desc@ 1 @Initial revision
 @pv@ 0 @db.label@ @buildlink2-base@ @//import/main/Makefile@ 2 
+@pv@ 0 @db.label@ @Makefile@ @//import/STUFF/Makefile@ 1 
 @pv@ 0 @db.label@ @stuff-2005Q4-base@ @//import/main/Makefile@ 2 
 @pv@ 0 @db.label@ @stuff-2006Q1-base@ @//import/main/Makefile@ 2 
 @pv@ 0 @db.label@ @stuff-2006Q2-base@ @//import/main/Makefile@ 2 
+@pv@ 0 @db.label@ @STUFF-current-1997-09-25@ @//import/STUFF/Makefile@ 1 
