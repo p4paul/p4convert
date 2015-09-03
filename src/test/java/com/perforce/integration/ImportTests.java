@@ -109,6 +109,9 @@ public class ImportTests {
 
 			// Set path translation map defaults
 			PathMapTranslator.setDefault();
+			
+			// Reset TypeMap
+			TypeMap.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
