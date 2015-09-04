@@ -127,7 +127,8 @@ public class CvsProcessNode extends ProcessNode {
 		// skip REMOVE action on all first revisions in a branch
 		if (nodeAction == Action.REMOVE) {
 			RcsObjectNum id = revEntry.getId();
-			if (id.getMinor() == 1) {
+			List<Integer> ids = id.getValues();
+			if (id.getMinor() == 1 && (ids.size() == 2 || revEntry.hasNext())) {
 				logger.info("skipping dead revision: " + id);
 				return;
 			}

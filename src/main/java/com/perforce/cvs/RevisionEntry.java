@@ -19,7 +19,8 @@ import com.perforce.cvs.parser.rcstypes.RcsObjectNum;
 
 public class RevisionEntry implements Comparable<RevisionEntry> {
 
-	transient private static Logger logger = LoggerFactory.getLogger(RevisionEntry.class);
+	transient private static Logger logger = LoggerFactory
+			.getLogger(RevisionEntry.class);
 
 	private RcsObjectNum id;
 	private Date date;
@@ -36,6 +37,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 	private boolean reverse = false;
 	private List<ContentProperty> props = new ArrayList<ContentProperty>();
 	private boolean binary;
+	private boolean next;
 
 	private String fromPath;
 	private List<String> labels = new ArrayList<String>();
@@ -47,6 +49,7 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 		this.author = revision.getAuthor().intern();
 		this.comment = revision.getLog().intern();
 		this.state = revision.getState();
+		this.next = revision.getNext() != null;
 	}
 
 	public boolean matches(Object obj) {
@@ -281,5 +284,9 @@ public class RevisionEntry implements Comparable<RevisionEntry> {
 
 	public void setProps(List<ContentProperty> props) {
 		this.props = props;
+	}
+
+	public boolean hasNext() {
+		return next;
 	}
 }
