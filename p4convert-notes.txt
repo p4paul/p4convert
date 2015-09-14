@@ -4,7 +4,7 @@
 This documentation needs an update reflecting the new features on the Public release of
 the converter.
 
-                        Version PUBLIC.Main.15579
+                        Version PUBLIC.Main.15706
 
 Introduction
 
@@ -48,7 +48,7 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
-Release PUBLIC.Main.15579
+Release PUBLIC.Main.15706
 
   #15579
 
