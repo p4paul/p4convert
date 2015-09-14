@@ -17,3 +17,7 @@ out.dump
 src/test
 bin
 build
+ftp
+ws.client
+ws.p4config
+tmp
