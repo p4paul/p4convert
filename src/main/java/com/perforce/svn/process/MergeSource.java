@@ -25,7 +25,10 @@ public class MergeSource {
 	}
 
 	public boolean fetchNode(QueryInterface query) throws Exception {
-		ChangeAction node = query.findLastAction(fromPath, endFromSvnRev);
+		// convert subversion revision to Perforce change for query
+		long change = ChangeMap.getChange((int) endFromSvnRev);
+
+		ChangeAction node = query.findLastAction(fromPath, change);
 		if (node != null && node.getAction() != Action.REMOVE) {
 
 			if (logger.isDebugEnabled()) {

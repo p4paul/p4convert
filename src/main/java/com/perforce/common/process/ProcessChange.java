@@ -52,8 +52,11 @@ public abstract class ProcessChange implements Callable<Integer> {
 			// register exception hook
 			Runtime.getRuntime().addShutdownHook(new CleanShutdown());
 
-			// run conversion
-			runSingle();
+			// Initialise common environment
+			processInit();
+
+			// Call processChange implementation
+			processChange();
 
 			// log summary
 			if (logger.isInfoEnabled()) {
@@ -91,6 +94,9 @@ public abstract class ProcessChange implements Callable<Integer> {
 
 		// Call processChange implementation
 		processChange();
+
+		// save state and shutdown cleanly
+		saveState();
 	}
 
 	private void processInit() throws Exception {

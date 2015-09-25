@@ -55,11 +55,8 @@ public class QueryPerforce implements QueryInterface {
 	}
 
 	@Override
-	public ChangeAction findLastAction(String path, long svnRev)
+	public ChangeAction findLastAction(String path, long change)
 			throws Exception {
-		// convert subversion revision to Perforce change for query
-		long change = ChangeMap.getChange((int) svnRev);
-
 		// Find revision at specified change
 		IExtendedFileSpec rev = findRevision(path, change);
 
