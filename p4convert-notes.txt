@@ -48,6 +48,16 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
+Release PUBLIC.Main.15933
+
+
+  #15933
+
+  SVN: Fix for findLastAction mixing Change/SVN Revision numbers.
+
+
+--------------------------------------------------------------------------
+
 Release PUBLIC.Main.15706
 
   #15579
