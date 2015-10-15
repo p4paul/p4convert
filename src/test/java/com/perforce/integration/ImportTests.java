@@ -109,7 +109,7 @@ public class ImportTests {
 
 			// Set path translation map defaults
 			PathMapTranslator.setDefault();
-			
+
 			// Reset TypeMap
 			TypeMap.clear();
 		} catch (Exception e) {
@@ -1088,7 +1088,10 @@ public class ImportTests {
 	public void case126() throws Exception {
 		Config.set(CFG.SVN_MERGEINFO, true);
 		String test = "copy-kdate";
-		testCase(test);
+
+		// Don't check db.rev as the MD5 will change
+		String[] tables = { "@db.integed@", "@db.change@", "@db.desc@", "@db.label@" };
+		testCase(test, null, 0, tables);
 	}
 
 	/**
@@ -1144,9 +1147,7 @@ public class ImportTests {
 	 * @param p4Root
 	 * @throws Exception
 	 */
-	private void filterJournal(String p4Root) throws Exception {
-		String[] tables = { "@db.rev@", "@db.integed@", "@db.change@",
-				"@db.desc@", "@db.label@" };
+	private void filterJournal(String p4Root, String[] tables) throws Exception {
 
 		// Filter results (grep and sort)
 		String base = "grep '^@pv@' " + p4root + "checkpoint.1 | ";
@@ -1205,6 +1206,11 @@ public class ImportTests {
 	}
 
 	private void testCase(String dumpCase, String seed, int warnings) {
+		String[] tables = { "@db.rev@", "@db.integed@", "@db.change@", "@db.desc@", "@db.label@" };
+		testCase(dumpCase, seed, warnings, tables);
+	}
+
+	private void testCase(String dumpCase, String seed, int warnings, String[] tables) {
 		try {
 			// Select dump file for test case
 			logger.info("testcase: " + dumpCase);
@@ -1247,7 +1253,7 @@ public class ImportTests {
 			Assert.assertEquals("Archive:", 0, arch);
 
 			// Filter and sort journal
-			filterJournal(p4root);
+			filterJournal(p4root, tables);
 
 			// Diff metadata
 			String jnlTest = p4root + journalFile;

@@ -31,40 +31,50 @@ public class MergeInfo {
 	public MergeInfo(String path) {
 		this.path = path;
 	}
-	
-	private void parse(String info) {
-		String[] mergeList = info.split("\\r?\\n");
-		String path = null;
 
+	private void parse(String info) {
+		// (\\r?\\n)|,(?=[^,-]{0,1000}:)
+		String[] mergeList = info.split("\\r?\\n");
 		for (String m : mergeList) {
 
-			if (m.contains(":")) {
-				// parse path from string
-				path = m.substring(0, m.indexOf(":"));
-				if (path.startsWith("/")) {
-					path = path.substring(1, path.length());
+			String[] subList = m.split(",(?=[^,]+:)");
+			for (String s : subList) {
+				if (s.contains(":")) {
+					parseMerge(s);
+				}
+			}
+		}
+	}
+
+	private void parseMerge(String m) {
+		// parse path from string
+		String path = m.substring(0, m.indexOf(":"));
+		if (path.startsWith("/")) {
+			path = path.substring(1, path.length());
+		}
+
+		// Fetch merge revision ranges. Ranges follow the form:
+		// <path>:<merge>,<ignore>,<ignore>...
+		String remainder = m.substring(m.indexOf(":") + 1);
+		String[] rangeStr = remainder.split(",");
+		ArrayList<String> ranges;
+		ranges = new ArrayList<String>(Arrays.asList(rangeStr));
+
+		if (!ranges.isEmpty()) {
+			// Find all merge ranges.
+			for (String r : ranges) {
+				MergeRange mergeRange = parseRange(r);
+
+				// Parse issue, ignore all remaining ranges
+				if (mergeRange == null) {
+					break;
 				}
 
-				// Fetch merge revision ranges. Ranges follow the form:
-				// <path>:<merge>,<ignore>,<ignore>...
-				String remainder = m.substring(m.indexOf(":") + 1);
-				String[] rangeStr = remainder.split(",");
-				ArrayList<String> ranges;
-				ranges = new ArrayList<String>(Arrays.asList(rangeStr));
+				MergePoint mergePoint = new MergePoint(path, mergeRange);
+				mergePoints.add(mergePoint);
 
-				if (!ranges.isEmpty()) {
-					// Find all merge ranges.
-					for (String r : ranges) {
-						MergeRange mergeRange = parseRange(r);
-
-						MergePoint mergePoint = new MergePoint(path, mergeRange);
-						mergePoints.add(mergePoint);
-
-						if (logger.isDebugEnabled()) {
-							logger.debug("merge range: "
-									+ mergeRange.toString());
-						}
-					}
+				if (logger.isDebugEnabled()) {
+					logger.debug("merge range: " + mergeRange.toString());
 				}
 			}
 		}
@@ -87,21 +97,23 @@ public class MergeInfo {
 		}
 
 		// calculate the widest range
-		if (info.contains("-")) {
-			String[] arg = info.split("-");
-			long start = Long.parseLong(arg[0]);
-			long end = Long.parseLong(arg[1]);
-			range = new MergeRange(start, end);
-		} else {
-			long point = Long.parseLong(info);
-			range = new MergeRange(point, point);
+		try {
+			if (info.contains("-")) {
+				String[] arg = info.split("-");
+				long start = Long.parseLong(arg[0]);
+				long end = Long.parseLong(arg[1]);
+				range = new MergeRange(start, end);
+			} else {
+				long point = Long.parseLong(info);
+				range = new MergeRange(point, point);
+			}
+		} catch (NumberFormatException e) {
+			logger.warn("Unable to read MergeInfo range: " + info);
 		}
-
 		return range;
 	}
 
-	public ArrayList<MergeSource> getMergeSources(String nodePath,
-			QueryInterface query) throws Exception {
+	public ArrayList<MergeSource> getMergeSources(String nodePath, QueryInterface query) throws Exception {
 		ArrayList<MergeSource> fromList = new ArrayList<MergeSource>();
 
 		for (MergePoint m : mergePoints) {
@@ -109,8 +121,7 @@ public class MergeInfo {
 			if (fromDir != null) {
 				String remap = NodeHelper.remap(path, fromDir, nodePath);
 				if (remap != null) {
-					MergeSource src = new MergeSource(remap, m.getRevStart(),
-							m.getRevEnd());
+					MergeSource src = new MergeSource(remap, m.getRevStart(), m.getRevEnd());
 					if (src.fetchNode(query)) {
 						fromList.add(src);
 					}
@@ -124,9 +135,9 @@ public class MergeInfo {
 	public MergeInfo removeLast(MergeInfo base) {
 		if (base != null) {
 			MergeInfo result = new MergeInfo(path);
-			
-			for(MergePoint m : mergePoints) {
-				if(!base.getMergePoints().contains(m)) {
+
+			for (MergePoint m : mergePoints) {
+				if (!base.getMergePoints().contains(m)) {
 					result.addMergePoint(m);
 				}
 			}
@@ -148,7 +159,7 @@ public class MergeInfo {
 	public Collection<MergePoint> getMergePoints() {
 		return mergePoints;
 	}
-	
+
 	public void addMergePoint(MergePoint m) {
 		mergePoints.add(m);
 	}
