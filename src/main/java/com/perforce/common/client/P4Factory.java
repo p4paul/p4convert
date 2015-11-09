@@ -25,6 +25,7 @@ public class P4Factory {
 	private static Logger logger = LoggerFactory.getLogger(P4Factory.class);
 
 	private static final Map<String, String> P4FileTypes;
+
 	static {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("ctempobj", "Sw");
@@ -54,12 +55,11 @@ public class P4Factory {
 	 * @param ignore
 	 * @throws ConverterException
 	 */
-	public static void validateFileSpecs(List<IFileSpec> fileSpecs,
-			String... ignore) throws ConverterException {
+	public static void validateFileSpecs(List<IFileSpec> fileSpecs, String... ignore) throws ConverterException {
 		for (IFileSpec fileSpec : fileSpecs) {
 			if (fileSpec.getOpStatus() != FileSpecOpStatus.VALID) {
 				String msg = fileSpec.getStatusMessage();
-				
+
 				// superfluous p4java message
 				boolean unknownMsg = true;
 				ArrayList<String> ignoreList = new ArrayList<String>();
@@ -67,23 +67,23 @@ public class P4Factory {
 				ignoreList.addAll(Arrays.asList(ignore));
 				for (String istring : ignoreList) {
 					if (msg.contains(istring)) {
-						if(logger.isTraceEnabled()) {
+						if (logger.isTraceEnabled()) {
 							logger.trace(msg);
 						}
 						// its a known message
 						unknownMsg = false;
-					}	
+					}
 				}
-						
+
 				// check and report unknown message
-				if(unknownMsg) {
+				if (unknownMsg) {
 					Stats.inc(StatsType.warningCount);
 					logger.warn("p4java: " + msg);
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Look for a message in the returned FileSpec from operation.
 	 * 
@@ -92,13 +92,14 @@ public class P4Factory {
 	 * @return
 	 * @throws ConverterException
 	 */
-	public static boolean trapFileSpecs(List<IFileSpec> fileSpecs,
-			String trap) throws ConverterException {
+	public static boolean trapFileSpecs(List<IFileSpec> fileSpecs, String... trap) throws ConverterException {
 		for (IFileSpec fileSpec : fileSpecs) {
 			if (fileSpec.getOpStatus() != FileSpecOpStatus.VALID) {
 				String msg = fileSpec.getStatusMessage();
-				if( msg.contains(trap) ) {
-					return true;
+				for (String t : trap) {
+					if (msg.contains(t)) {
+						return true;
+					}
 				}
 			}
 		}
@@ -112,8 +113,7 @@ public class P4Factory {
 	 * @return
 	 * @throws ConverterException
 	 */
-	public static Action p4javaToQueryAction(FileAction fileAction)
-			throws ConverterException {
+	public static Action p4javaToQueryAction(FileAction fileAction) throws ConverterException {
 		Action action = null;
 
 		if (fileAction == null)
@@ -134,8 +134,7 @@ public class P4Factory {
 			action = Action.BRANCH;
 			break;
 		default:
-			throw new ConverterException("Unknown FileAction: "
-					+ fileAction.name());
+			throw new ConverterException("Unknown FileAction: " + fileAction.name());
 		}
 		return action;
 	}
@@ -148,10 +147,10 @@ public class P4Factory {
 	 */
 	public static ContentType p4javaToContentType(String headType) {
 		ContentType type = ContentType.UNKNOWN;
-		
-		if(headType == null)
+
+		if (headType == null)
 			return ContentType.UNKNOWN;
-		
+
 		String base = null;
 		String[] parts;
 		if (headType.contains("+")) {
@@ -183,11 +182,11 @@ public class P4Factory {
 	 * @return
 	 */
 	public static List<ContentProperty> p4javaToContentProperty(String headType) {
-		
+
 		List<ContentProperty> props = new ArrayList<ContentProperty>();
-		if(headType == null)
+		if (headType == null)
 			return props;
-		
+
 		// Fetch modification bits
 		String modBits = "";
 		if (headType.contains("+")) {

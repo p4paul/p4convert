@@ -58,16 +58,14 @@ public class RevisionImport {
 	 * @param depot
 	 * @param date
 	 */
-	public RevisionImport(IClient iclient, IChangelist ichangelist,
-			DepotImport depot, Date date) {
+	public RevisionImport(IClient iclient, IChangelist ichangelist, DepotImport depot, Date date) {
 		this.iclient = iclient;
 		this.ichangelist = ichangelist;
 		this.depot = depot;
 		this.date = date;
 	}
 
-	public void branchPath(String from, long fromChange, String to)
-			throws Exception {
+	public void branchPath(String from, long fromChange, String to) throws Exception {
 
 		String toStr = to + "/...";
 		String fromStr = from + "/...@" + fromChange;
@@ -113,8 +111,7 @@ public class RevisionImport {
 		integOpts.setShowActionsOnly(false);
 		List<IFileSpec> brMsg;
 		brMsg = iclient.integrateFiles(iSource, iTarget, null, integOpts);
-		P4Factory.validateFileSpecs(brMsg, "no such file(s)",
-				"already integrated", "no file(s) at that changelist");
+		P4Factory.validateFileSpecs(brMsg, "no such file(s)", "already integrated", "no file(s) at that changelist");
 
 		// Resolve target by copying source (accept theirs)
 		ResolveFilesAutoOptions rsvOpts = new ResolveFilesAutoOptions();
@@ -202,8 +199,7 @@ public class RevisionImport {
 		}
 	}
 
-	public void rollBackBranch(String to, String from, long fromChange)
-			throws Exception {
+	public void rollBackBranch(String to, String from, long fromChange) throws Exception {
 
 		String toStr = to + "/...";
 		String fromStr = from + "/...@" + fromChange;
@@ -230,8 +226,7 @@ public class RevisionImport {
 			copyOpts.setChangelistId(ichangelist.getId());
 
 			// copy from old branch
-			List<IFileSpec> cpMsg = iclient
-					.copyFiles(iSource, toSpec, copyOpts);
+			List<IFileSpec> cpMsg = iclient.copyFiles(iSource, toSpec, copyOpts);
 			P4Factory.validateFileSpecs(cpMsg, "file(s) up-to-date");
 		}
 
@@ -317,8 +312,7 @@ public class RevisionImport {
 				deleteOpts.setChangelistId(ichangelist.getId());
 
 				// not tested - unable to create SVN dumpfile for this case
-				List<IFileSpec> delMsg = iclient.deleteFiles(fileSpec,
-						deleteOpts);
+				List<IFileSpec> delMsg = iclient.deleteFiles(fileSpec, deleteOpts);
 				P4Factory.validateFileSpecs(delMsg, "file(s) not on client");
 				break;
 
@@ -334,8 +328,7 @@ public class RevisionImport {
 				break;
 
 			default:
-				throw new ConverterException("unknown action '" + action.name()
-						+ "'");
+				throw new ConverterException("unknown action '" + action.name() + "'");
 			}
 
 			// Change file modtime
@@ -415,10 +408,8 @@ public class RevisionImport {
 		List<IFileSpec> iTargetFiles;
 		iTargetFiles = FileSpecBuilder.makeFileSpecList(realToPath);
 		List<IFileSpec> test = iclient.addFiles(iTargetFiles, addOpts);
-		P4Factory.validateFileSpecs(test, "empty, assuming text",
-				"using binary instead of ubinary",
-				"using text instead of xtext", "using text instead of unicode",
-				"currently opened for add");
+		P4Factory.validateFileSpecs(test, "empty, assuming text", "using binary instead of ubinary",
+				"using text instead of xtext", "using text instead of unicode", "currently opened for add");
 
 		// properties
 		reopenProps(depotToPath, content);
@@ -475,8 +466,8 @@ public class RevisionImport {
 	 * @param fromChange
 	 * @throws Exception
 	 */
-	public void rollBackFile(String localToPath, Content content,
-			String depotFromPath, long fromChange) throws Exception {
+	public void rollBackFile(String localToPath, Content content, String depotFromPath, long fromChange)
+			throws Exception {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("reEditFile(" + localToPath + ")");
@@ -499,8 +490,7 @@ public class RevisionImport {
 			copyOpts.setChangelistId(ichangelist.getId());
 
 			// copy from old branch
-			List<IFileSpec> cpMsg = iclient.copyFiles(iCopySource,
-					iTargetFiles, copyOpts);
+			List<IFileSpec> cpMsg = iclient.copyFiles(iCopySource, iTargetFiles, copyOpts);
 			P4Factory.validateFileSpecs(cpMsg, "file(s) up-to-date");
 
 		}
@@ -555,10 +545,8 @@ public class RevisionImport {
 					reOpts.setChangelistId(ichangelist.getId());
 					reOpts.setFileType(fileType);
 
-					List<IFileSpec> reSpec = iclient.reopenFiles(iTargetFiles,
-							reOpts);
-					P4Factory.validateFileSpecs(reSpec,
-							"- file(s) not opened on this client");
+					List<IFileSpec> reSpec = iclient.reopenFiles(iTargetFiles, reOpts);
+					P4Factory.validateFileSpecs(reSpec, "- file(s) not opened on this client");
 				}
 			}
 
@@ -680,8 +668,7 @@ public class RevisionImport {
 			// Delete files with -v
 			List<IFileSpec> iTargetFiles;
 			iTargetFiles = FileSpecBuilder.makeFileSpecList(localToPath);
-			List<IFileSpec> delMsg = iclient.deleteFiles(iTargetFiles,
-					deleteOpts);
+			List<IFileSpec> delMsg = iclient.deleteFiles(iTargetFiles, deleteOpts);
 			P4Factory.validateFileSpecs(delMsg, "file(s) not on client");
 		}
 	}
@@ -709,8 +696,8 @@ public class RevisionImport {
 	 * @param fromChange
 	 * @throws Exception
 	 */
-	public void branchFile(String depotToPath, Content content,
-			String depotFromPath, long fromChange) throws Exception {
+	public void branchFile(String depotToPath, Content content, String depotFromPath, long fromChange)
+			throws Exception {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("branchFile(" + depotToPath + ")");
@@ -756,27 +743,23 @@ public class RevisionImport {
 
 		List<IFileSpec> rsvMsg;
 		rsvMsg = iclient.resolveFilesAuto(brMsg, rsvOpts);
-		P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:",
-				"no file(s) to resolve", " - merging //", " - edit from //",
-				" - merge from //", " - ignored //", " - copy from //",
-				"tampered with before resolve - edit or revert", "- vs");
+		P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:", "no file(s) to resolve", " - merging //", " - edit from //",
+				" - merge from //", " - ignored //", " - copy from //", "tampered with before resolve - edit or revert",
+				"- vs");
 
 		// if tamper check issue, open for edit then resolve
-		if (P4Factory.trapFileSpecs(rsvMsg,
-				"tampered with before resolve - edit or revert")) {
+		if (P4Factory.trapFileSpecs(rsvMsg, "tampered with before resolve - edit or revert")) {
 			// reopen for edit (don't send content)
 			editFile(depotToPath, null);
 
 			// Resolve target (accept action)
 			rsvMsg = iclient.resolveFilesAuto(brMsg, rsvOpts);
-			P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:",
-					"no file(s) to resolve", " - merging //",
+			P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:", "no file(s) to resolve", " - merging //",
 					" - merge from //");
 		}
 	}
 
-	private void dirtyEdit(String localToPath, Content content)
-			throws Exception {
+	private void dirtyEdit(String localToPath, Content content) throws Exception {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("dirtyEdit(" + localToPath + ")");
@@ -791,8 +774,7 @@ public class RevisionImport {
 		List<IFileSpec> iTargetFiles;
 		iTargetFiles = FileSpecBuilder.makeFileSpecList(localToPath);
 		List<IFileSpec> editSpec = iclient.editFiles(iTargetFiles, editOpts);
-		P4Factory.validateFileSpecs(editSpec, "add of deleted file",
-				"currently opened for edit",
+		P4Factory.validateFileSpecs(editSpec, "add of deleted file", "currently opened for edit",
 				"can't edit (already opened for add)");
 
 		// write archive
@@ -828,8 +810,7 @@ public class RevisionImport {
 		return "binary";
 	}
 
-	private void reopenProps(String localToPath, Content content)
-			throws Exception {
+	private void reopenProps(String localToPath, Content content) throws Exception {
 
 		List<IFileSpec> iTargetFiles;
 		iTargetFiles = FileSpecBuilder.makeFileSpecList(localToPath);
@@ -883,17 +864,15 @@ public class RevisionImport {
 	 * @param action
 	 * @throws Exception
 	 */
-	public void integFile(String depotToPath, Content content,
-			String depotFromPath, long startFromChange, long endFromChange,
-			Action action) throws Exception {
+	public void integFile(String depotToPath, Content content, String depotFromPath, long startFromChange,
+			long endFromChange, Action action) throws Exception {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("integFile(" + depotToPath + ")");
 		}
 
 		// File spec paths
-		depotFromPath = depotFromPath + "@" + startFromChange + ",@"
-				+ endFromChange;
+		depotFromPath = depotFromPath + "@" + startFromChange + ",@" + endFromChange;
 
 		IFileSpec iTarget = new FileSpec(depotToPath);
 		IFileSpec iSource = new FileSpec(depotFromPath);
@@ -912,6 +891,16 @@ public class RevisionImport {
 		// Integrate files
 		List<IFileSpec> toRsv;
 		toRsv = iclient.integrateFiles(iSource, iTarget, null, integOpts);
+		boolean skip = P4Factory.trapFileSpecs(toRsv, "no such file(s)",
+				"no revision(s) above those at that changelist number");
+		
+		// bail if the integ source does not exist
+		if (skip) {
+			if (logger.isDebugEnabled()) {
+				logger.debug("no integ source: " + depotFromPath);
+			}
+			return;
+		}
 		P4Factory.validateFileSpecs(toRsv, "revision(s) already integrated.");
 
 		// Resolve options
@@ -945,21 +934,18 @@ public class RevisionImport {
 		// Resolve target (accept action)
 		List<IFileSpec> rsvMsg;
 		rsvMsg = iclient.resolveFilesAuto(toRsv, rsvOpts);
-		P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:",
-				"no file(s) to resolve", " - merging //", " - edit from //",
-				" - merge from //", " - ignored //", " - copy from //",
-				"tampered with before resolve - edit or revert", "- vs");
+		P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:", "no file(s) to resolve", " - merging //", " - edit from //",
+				" - merge from //", " - ignored //", " - copy from //", "tampered with before resolve - edit or revert",
+				"- vs");
 
 		// if tamper check issue, open for edit then resolve
-		if (P4Factory.trapFileSpecs(rsvMsg,
-				"tampered with before resolve - edit or revert")) {
+		if (P4Factory.trapFileSpecs(rsvMsg, "tampered with before resolve - edit or revert")) {
 			// reopen for edit (don't send content)
 			editFile(depotToPath, null);
 
 			// Resolve target (accept action)
 			rsvMsg = iclient.resolveFilesAuto(toRsv, rsvOpts);
-			P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:",
-					"no file(s) to resolve", " - merging //",
+			P4Factory.validateFileSpecs(rsvMsg, "Diff chunks:", "no file(s) to resolve", " - merging //",
 					" - merge from //");
 		}
 
@@ -974,8 +960,7 @@ public class RevisionImport {
 		}
 	}
 
-	private List<IFileSpec> updateHaveList(String path, boolean clientBypass)
-			throws Exception {
+	private List<IFileSpec> updateHaveList(String path, boolean clientBypass) throws Exception {
 
 		// build file revision spec
 		List<IFileSpec> syncFiles;
@@ -985,8 +970,7 @@ public class RevisionImport {
 		SyncOptions syncOpts = new SyncOptions();
 		syncOpts.setClientBypass(clientBypass);
 		List<IFileSpec> syncMsg = iclient.sync(syncFiles, syncOpts);
-		P4Factory.validateFileSpecs(syncMsg, "file(s) up-to-date.",
-				"no such file", "- is opened and not being changed",
+		P4Factory.validateFileSpecs(syncMsg, "file(s) up-to-date.", "no such file", "- is opened and not being changed",
 				"- must resolve", "- is opened for add and can't be replaced");
 
 		return syncMsg;
@@ -1053,8 +1037,7 @@ public class RevisionImport {
 	 * @param content
 	 * @throws Exception
 	 */
-	private void job067069(String localToPath, Content content)
-			throws Exception {
+	private void job067069(String localToPath, Content content) throws Exception {
 		if (content.getType() == ContentType.SYMLINK) {
 			if ((boolean) Config.get(CFG.TEST)) {
 				String dateFormat = "yyyyMMddHHmm.ss";
@@ -1129,8 +1112,7 @@ public class RevisionImport {
 		List<IFileSpec> brMsg;
 		brMsg = iclient.integrateFiles(source, target, null, integOpts);
 		// hide message - job057600
-		P4Factory.validateFileSpecs(brMsg,
-				"all revision(s) already integrated.");
+		P4Factory.validateFileSpecs(brMsg, "all revision(s) already integrated.");
 
 	}
 
@@ -1148,8 +1130,7 @@ public class RevisionImport {
 
 		// Sanity check
 		if (openFiles.size() != 1)
-			throw new ConverterException("opened failed on file: "
-					+ localToPath);
+			throw new ConverterException("opened failed on file: " + localToPath);
 
 		if (openFiles.get(0).getAction() == FileAction.BRANCH) {
 			// re-integrate file
