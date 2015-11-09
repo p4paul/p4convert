@@ -135,7 +135,7 @@ public class SvnProcessChange extends ProcessChange {
 				// reset label for next change
 				processLabel = new ProcessLabel(depot);
 
-				if (super.isStop() || (nextChange > revEnd && revEnd != 0)) {
+				if (super.isStop() || nextChange > revEnd) {
 					if (super.isStop()) {
 						// Premature stop -- update end rev
 						Config.set(CFG.P4_END, nextChange - 1);

@@ -111,8 +111,8 @@ public abstract class ProcessChange implements Callable<Integer> {
 		if (Config.isImportMode()) {
 			String javaVer = System.getProperty("java.version");
 			logger.info("java.version:\t\t" + javaVer);
-			if (!javaVer.startsWith("1.7")) {
-				throw new RuntimeException("JRE 1.7.x required for Import mode");
+			if (!javaVer.startsWith("1.7") && !javaVer.startsWith("1.8")) {
+				throw new RuntimeException("JRE 1.7.x or greater is required for Import mode");
 			}
 		}
 
