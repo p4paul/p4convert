@@ -136,6 +136,7 @@ public class ConnectionFactory {
 	private static IOptionsServer createIOptionsServer() throws Exception {
 
 		IOptionsServer newIServer = iserver;
+		String port = (String) Config.get(CFG.P4_PORT);
 
 		if (newIServer == null) {
 			if (logger.isDebugEnabled()) {
@@ -148,7 +149,11 @@ public class ConnectionFactory {
 			props.put(PropertyDefs.PROG_VERSION_KEY, Config.get(CFG.VERSION));
 
 			// Set up socket pooling to use a single socket
-			props.put(RpcPropertyDefs.RPC_SOCKET_POOL_SIZE_NICK, "0");
+			if(port.startsWith("rsh:")) {
+				props.put(RpcPropertyDefs.RPC_SOCKET_POOL_SIZE_NICK, "0");
+			} else {
+				props.put(RpcPropertyDefs.RPC_SOCKET_POOL_SIZE_NICK, "1");
+			}
 
 			// Allow p4 admin commands.
 			props.put(RpcPropertyDefs.RPC_RELAX_CMD_NAME_CHECKS_NICK, "true");
@@ -157,7 +162,7 @@ public class ConnectionFactory {
 			props.put(RpcPropertyDefs.RPC_SOCKET_SO_TIMEOUT_NICK, "0");
 
 			// Get a server connection
-			String port = (String) Config.get(CFG.P4_PORT);
+			
 			String serverUri = getP4JavaUri(port);
 			newIServer = ServerFactory.getOptionsServer(serverUri, props, null);
 			try {

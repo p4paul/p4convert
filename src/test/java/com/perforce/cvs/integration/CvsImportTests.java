@@ -5,7 +5,6 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.text.Normalizer.Form;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,8 +25,7 @@ import com.perforce.cvs.process.CvsProcessChange;
 import com.perforce.integration.SystemCaller;
 
 public class CvsImportTests {
-	private static Logger logger = LoggerFactory
-			.getLogger(CvsImportTests.class);
+	private static Logger logger = LoggerFactory.getLogger(CvsImportTests.class);
 
 	// Set fixed paths
 	private final static String p4dVersion = "r15.1";
@@ -207,11 +205,11 @@ public class CvsImportTests {
 
 	@Test
 	public void case016() throws Exception {
-		Form form = (Form) Config.get(CFG.P4_NORMALISATION);
-		if (form.equals(Form.NFD))
-			Config.set(CFG.CVS_MODULE, "utf8_path_nfd");
-		else
-			Config.set(CFG.CVS_MODULE, "utf8_path_nfc");
+		// Form form = (Form) Config.get(CFG.P4_NORMALISATION);
+		// if (form.equals(Form.NFD))
+		// Config.set(CFG.CVS_MODULE, "utf8_path_nfd");
+		// else
+		Config.set(CFG.CVS_MODULE, "utf8_path_nfc");
 
 		// TODO Config.set(CFG.CVS_MODULE, "utf8_path_nfc_win");
 		testCase("CVScluster01");
@@ -546,7 +544,7 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "label-format");
 		testCase("CVScluster01");
 	}
-	
+
 	@Test
 	public void case067() throws Exception {
 		Config.set(CFG.CVS_LABELS, true);
@@ -576,8 +574,7 @@ public class CvsImportTests {
 	 * @throws Exception
 	 */
 	private void filterJournal(String p4Root) throws Exception {
-		String[] tables = { "@db.rev@", "@db.integed@", "@db.change@",
-				"@db.desc@", "@db.label@" };
+		String[] tables = { "@db.rev@", "@db.integed@", "@db.change@", "@db.desc@", "@db.label@" };
 
 		// Filter results (grep and sort)
 		String base = "grep '^@pv@' " + p4root + "checkpoint.1 | ";
