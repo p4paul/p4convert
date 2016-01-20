@@ -4,7 +4,7 @@
 This documentation needs an update reflecting the new features on the Public release of
 the converter.
 
-                        Version PUBLIC.Main.15706
+                        Version PUBLIC.Main.16841
 
 Introduction
 
@@ -48,8 +48,28 @@ Compatibility Statements
 
 --------------------------------------------------------------------------
 
-Release PUBLIC.Main.15933
+Release PUBLIC.Main.16841
 
+  #16841
+  
+  Set RPC_SOCKET_POOL_SIZE_NICK use 1 for normal operation and 0 for RSH tests.
+  
+  #16494
+  
+  Subversion MergeInfo - bail early if source revision is not related to target.
+  
+  #16493 #16545 (Bug 318)
+  
+  Java 1.8 support and Subversion 'end' revision detection.
+  
+  #16270 
+  
+  SVN: Support for malformed or corrupt MergeInfo data.
+  
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.15933
 
   #15933
 
@@ -90,12 +110,12 @@ Release PUBLIC.Main.14806
   Fix for missing 2.0 revision labels.
   
   
-  #14230 (Bug)
+  #14230
 
   Update test case for p4java 15.1 symlink '\n' fix.
 
 
-  #14229 (Bug)
+  #14229
 
   Update p4java to 15.1 and use RSH connection for Unit tests.
 
