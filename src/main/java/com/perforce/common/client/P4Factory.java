@@ -121,12 +121,14 @@ public class P4Factory {
 
 		switch (fileAction) {
 		case ADD:
+		case MOVE_ADD:
 			action = Action.ADD;
 			break;
 		case EDIT:
 			action = Action.EDIT;
 			break;
 		case DELETE:
+		case MOVE_DELETE:
 			action = Action.REMOVE;
 			break;
 		case BRANCH:
