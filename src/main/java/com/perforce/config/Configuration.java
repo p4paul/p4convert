@@ -229,9 +229,9 @@ public class Configuration {
 			Date d = new Date();
 			out.write("# P4Convert configuration (" + d.toString()
 					+ ")\n\n");
-			out.write("# Please note that all paths should be absolute and must end with a path\n");
-			out.write("# delimiter e.g. '/' or '\\\\'.  For example:\n");
-			out.write("#   com.p4convert.p4.clientRoot=C:\\\\perforce\\\\client_ws\\\\ \n");
+			out.write("# Please note that all paths should be absolute and must end with the path\n");
+			out.write("# delimiter '/', even Windows must use '/' and not '\\'. For example:\n");
+			out.write("#   com.p4convert.p4.clientRoot=C:/perforce/client_ws/ \n");
 			out.write("#   com.p4convert.p4.clientRoot=/Users/perforce/client_ws/ \n");
 
 			switch (type) {
