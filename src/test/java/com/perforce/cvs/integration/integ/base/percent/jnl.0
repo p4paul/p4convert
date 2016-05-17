@@ -1,0 +1,33 @@
+@pv@ 0 @db.depot@ @import@ 0 @subdir@ @import/...@ 
+@pv@ 3 @db.domain@ @import@ 100 @@ @@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 3 @db.user@ @svn-user@ @svn-user@@svn-client@ @@ 0 0 @svn-user@ @@ 0 @@ 0 
+@pv@ 0 @db.view@ @svn-client@ 0 0 @//svn-client/...@ @//import/...@ 
+@pv@ 3 @db.domain@ @svn-client@ 99 @@ @/ws@ @@ @@ @svn-user@ 0 0 0 1 @Created by svn-user@ 
+@pv@ 0 @db.desc@ 1 @ADD and EDIT
+@ 
+@pv@ 0 @db.change@ 1 1 @svn-client@ @pallen@ 1386603220 1 @ADD and EDIT
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/d%25r/percent%25file@ 1 1 0 1 1386603220 1386603220 00000000000000000000000000000000 @//import/main/src/d%25r/percent%25file@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 1 @//import/main/src/d%25r/percent%25file@ 1 0 
+@pv@ 0 @db.desc@ 2 @ADD and EDIT
+@ 
+@pv@ 0 @db.change@ 2 2 @svn-client@ @pallen@ 1386603220 1 @ADD and EDIT
+@ 
+@pv@ 0 @db.integed@ @//import/branch/src/d%25r/percent%25file@ @//import/main/src/d%25r/percent%25file@ 0 1 0 1 2 2 
+@pv@ 0 @db.integed@ @//import/main/src/d%25r/percent%25file@ @//import/branch/src/d%25r/percent%25file@ 0 1 0 1 3 2 
+@pv@ 3 @db.rev@ @//import/branch/src/d%25r/percent%25file@ 1 1 3 2 1386603220 1386603220 00000000000000000000000000000000 @//import/main/src/d%25r/percent%25file@ @1.1@ 1 
+@pv@ 0 @db.revcx@ 2 @//import/branch/src/d%25r/percent%25file@ 1 3 
+@pv@ 0 @db.desc@ 3 @edit on branch
+@ 
+@pv@ 0 @db.change@ 3 3 @svn-client@ @pallen@ 1386603526 1 @edit on branch
+@ 
+@pv@ 3 @db.rev@ @//import/branch/src/d%25r/percent%25file@ 2 1 1 3 1386603526 1386603526 00000000000000000000000000000000 @//import/branch/src/d%25r/percent%25file@ @1.3@ 1 
+@pv@ 0 @db.revcx@ 3 @//import/branch/src/d%25r/percent%25file@ 2 1 
+@pv@ 0 @db.desc@ 4 @edits on MAIN
+@ 
+@pv@ 0 @db.change@ 4 4 @svn-client@ @pallen@ 1386606012 1 @edits on MAIN
+@ 
+@pv@ 3 @db.rev@ @//import/main/src/d%25r/percent%25file@ 2 1 1 4 1386606012 1386606012 00000000000000000000000000000000 @//import/main/src/d%25r/percent%25file@ @1.4@ 1 
+@pv@ 0 @db.revcx@ 4 @//import/main/src/d%25r/percent%25file@ 2 1 
+@rv@ 1 @db.counters@ @change@ @4@ 
+@rv@ 1 @db.counters@ @svn2p4.version@ @alpha/TestMode@ 

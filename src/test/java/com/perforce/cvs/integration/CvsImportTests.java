@@ -446,7 +446,7 @@ public class CvsImportTests {
 		runTest("CVScluster01", null);
 
 		String base = basePath + testCase + "/";
-		diffMetadata(base, 5);
+		diffMetadata(base, 0);
 	}
 
 	@Test
@@ -551,6 +551,12 @@ public class CvsImportTests {
 		Config.set(CFG.CVS_MODULE, "rev2.0");
 		testCase("CVScluster01");
 	}
+	
+	@Test
+	public void case068() throws Exception {
+		Config.set(CFG.CVS_MODULE, "percent");
+		testCase("CVScluster01");
+	}
 
 	/**
 	 * Environment test
@@ -630,8 +636,8 @@ public class CvsImportTests {
 			runTest(cvsCluster, seed);
 
 			String base = basePath + testCase + "/";
-			diffArchive(base);
 			diffMetadata(base, 0);
+			diffArchive(base);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			Assert.fail("Exception");

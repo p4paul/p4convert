@@ -342,7 +342,7 @@ public class ImportTests {
 		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
 		Config.set(CFG.P4_C1_MODE, true);
 		String test = "url-encoding-bug";
-		testCase(test, 5);
+		testCase(test, 0);
 	}
 
 	@Test

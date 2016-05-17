@@ -289,7 +289,7 @@ public class IntegrationTests {
 	@Test
 	public void case035() throws Exception {
 		String test = "url-encoding-bug";
-		testCase(test, 5);
+		testCase(test, 0);
 	}
 
 	@Test

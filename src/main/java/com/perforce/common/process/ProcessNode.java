@@ -81,8 +81,7 @@ public abstract class ProcessNode {
 		throw new Exception();
 	}
 
-	protected void setContentProp(String path, Content content)
-			throws Exception {
+	protected void setContentProp(String path, Content content) throws Exception {
 		// check typemap for properties
 		List<ContentProperty> typemapProps;
 		typemapProps = TypeMap.getContentProperty(path);
@@ -123,8 +122,8 @@ public abstract class ProcessNode {
 	 * @param content
 	 * @param subBlock
 	 */
-	protected void verbose(long change, int id, Action action,
-			NodeType nodeType, String path, Content content, boolean subBlock) {
+	protected void verbose(long change, int id, Action action, NodeType nodeType, String path, Content content,
+			boolean subBlock) {
 		if (logger.isInfoEnabled()) {
 			StringBuffer sb = new StringBuffer();
 			sb.append(change + "." + id + " ");
@@ -159,8 +158,7 @@ public abstract class ProcessNode {
 	 * @param content
 	 * @param action
 	 */
-	protected void processMergeCredit(MergeSource from, Content content,
-			Action action) {
+	protected void processMergeCredit(MergeSource from, Content content, Action action) {
 
 		String fromMD5 = null;
 		ChangeAction fromNode = from.getFromNode();
@@ -210,12 +208,10 @@ public abstract class ProcessNode {
 				try {
 					// if it decodes OK, don't replace '%'
 					path = URLDecoder.decode(path, "UTF-8");
-					Stats.inc(StatsType.warningCount);
-					logger.warn("URL encoded path - decoding...");
 				} catch (Exception e) {
-					// must replace before other '@' and '#' symbols
-					path = path.replace("%", "%25");
 				}
+				// must replace before other '@' and '#' symbols
+				path = path.replace("%", "%25");
 			}
 
 			path = path.replace("@", "%40");
@@ -234,8 +230,8 @@ public abstract class ProcessNode {
 					path = path.replace("*", "%2A");
 				}
 			}
-			
-			if(path.contains("...")) {
+
+			if (path.contains("...")) {
 				StringBuffer sb = new StringBuffer();
 				sb.append("Perforce does not allow '...' in filenames, ");
 				sb.append("replacing '...' with tag '_ELLIPSIS_'.");
