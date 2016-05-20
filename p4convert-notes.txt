@@ -4,7 +4,7 @@
 This documentation needs an update reflecting the new features on the Public release of
 the converter.
 
-                        Version PUBLIC.Main.16841
+                        Version PUBLIC.Main.19403
 
 Introduction
 
@@ -44,6 +44,26 @@ Compatibility Statements
 	Java Virtual Machine
 	
 	  This release is certified to run on Java SE Runtime Environment 1.7.*
+
+
+--------------------------------------------------------------------------
+
+Release PUBLIC.Main.19403
+
+  #19403 (Bug 505)
+
+  Fix for URI encode path with %25, gets decoded back to %. Removed warning for
+  'URL encoded path - decoding...' and warning count.
+
+  #18461
+
+  Update Windows path usage in the config file.  Windows must use 
+  'c:/perforce/client_ws/' and not the Windows backslash delimiter.
+
+
+  #18448
+
+  Query support for MOVE_ADD/MOVE_DELETE actions
 
 
 --------------------------------------------------------------------------
