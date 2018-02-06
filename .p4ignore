@@ -1,7 +1,10 @@
+.idea
 MANIFEST.MF
+.DS_Store
 audit.log
 .settings
 *.cfg
+*.iml
 docs/beautifulsoup4-4.3.2
 changeMap.txt
 converter.log
@@ -14,10 +17,11 @@ p4_root
 ws
 out.dump
 .gradle
-src/test
 bin
 build
 ftp
 ws.client
 ws.p4config
 tmp
+out
+builder/

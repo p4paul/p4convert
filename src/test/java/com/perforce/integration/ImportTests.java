@@ -1,18 +1,5 @@
 package com.perforce.integration;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStreamReader;
-import java.text.Normalizer.Form;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentType;
@@ -24,6 +11,18 @@ import com.perforce.config.Config;
 import com.perforce.config.ScmType;
 import com.perforce.svn.change.ChangeParser;
 import com.perforce.svn.process.SvnProcessChange;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.text.Normalizer.Form;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ImportTests {
 
@@ -267,6 +266,11 @@ public class ImportTests {
 
 	@Test
 	public void case024() throws Exception {
+		String rsh = "rsh:" + p4d + " -C1 -r " + p4root + " -i";
+		Config.set(CFG.P4_PORT, rsh);
+		Config.set(CFG.P4_C1_MODE, true);
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
+
 		String os = System.getProperty("os.name").toLowerCase();
 		if (os.contains("win")) {
 			String test = "reserved_chars_win";
@@ -339,6 +343,8 @@ public class ImportTests {
 
 	@Test
 	public void case035() throws Exception {
+		String rsh = "rsh:" + p4d + " -C1 -r " + p4root + " -i";
+		Config.set(CFG.P4_PORT, rsh);
 		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
 		Config.set(CFG.P4_C1_MODE, true);
 		String test = "url-encoding-bug";
@@ -401,7 +407,7 @@ public class ImportTests {
 		if (mode == CaseSensitivity.NONE) {
 			// switch to broker on 4445 running without -C1 for Unix test
 			Config.set(CFG.P4_C1_MODE, false);
-			Config.set(CFG.P4_PORT, "localhost:4445");
+			//Config.set(CFG.P4_PORT, "localhost:4445");
 			test = "rename_case";
 		} else {
 			test = "rename_none";
@@ -990,6 +996,8 @@ public class ImportTests {
 
 	@Test
 	public void case116() throws Exception {
+		String rsh = "rsh:" + p4d + " -C1 -r " + p4root + " -i";
+		Config.set(CFG.P4_PORT, rsh);
 		Config.set(CFG.P4_C1_MODE, true);
 		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
 		String test = "rename_edit";
@@ -1030,6 +1038,10 @@ public class ImportTests {
 
 	@Test
 	public void case120() throws Exception {
+		String rsh = "rsh:" + p4d + " -C1 -r " + p4root + " -i";
+		Config.set(CFG.P4_PORT, rsh);
+		Config.set(CFG.P4_C1_MODE, true);
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
 		String test = "job115";
 		testCase(test);
 	}
@@ -1080,6 +1092,10 @@ public class ImportTests {
 
 	@Test
 	public void case125() throws Exception {
+		String rsh = "rsh:" + p4d + " -C1 -r " + p4root + " -i";
+		Config.set(CFG.P4_PORT, rsh);
+		Config.set(CFG.P4_C1_MODE, true);
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
 		String test = "dots_path";
 		testCase(test);
 	}
@@ -1173,12 +1189,17 @@ public class ImportTests {
 	}
 
 	private void seedPerforce(String seed) throws Exception {
+		String p4a = p4d + " -C0 -r " + p4root;
+		if ((Boolean) Config.get(CFG.P4_C1_MODE)) {
+			p4a = p4d + " -C1 -r " + p4root;
+		}
+
 		String meta = cwd + seed + seedFile;
 		String lbr = cwd + seed + seedLbr;
 		String map = cwd + seed + seedLbr + "changeMap.txt";
-		String ckp = p4d + " -C1 -r " + p4root + " -jr " + meta;
+		String ckp = p4a + " -jr " + meta;
 		SystemCaller.exec(ckp, true, false);
-		String upd = p4d + " -C1 -r " + p4root + " -xu";
+		String upd = p4a + " -xu";
 		SystemCaller.exec(upd, true, false);
 
 		String cp = "cp -rfv " + lbr + " " + p4root + "import";
@@ -1239,7 +1260,10 @@ public class ImportTests {
 			process.runSingle();
 
 			// Checkpoint
-			String p4c = p4d + " -r " + p4root + " -jc";
+			String p4c = p4d + " -C0 -r " + p4root + " -jc";
+			if ((Boolean) Config.get(CFG.P4_C1_MODE)) {
+				p4c = p4d + " -C1 -r " + p4root + " -jc";
+			}
 			SystemCaller.exec(p4c, true, false);
 
 			// Diff archive files

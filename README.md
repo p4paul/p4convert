@@ -200,6 +200,10 @@ To run all tests:
 
     gradle test
     
+Run an individual test:
+
+    gradle test --tests com.perforce.integration.ImportTests.case126
+    
     
 ### Contributing
 

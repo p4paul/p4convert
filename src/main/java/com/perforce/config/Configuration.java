@@ -1,5 +1,10 @@
 package com.perforce.config;
 
+import com.perforce.common.ExitCode;
+import com.perforce.common.asset.ContentType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,12 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.perforce.common.ExitCode;
-import com.perforce.common.asset.ContentType;
 
 public class Configuration {
 
@@ -122,7 +121,7 @@ public class Configuration {
 		if (os.contains("win"))
 			set(CFG.P4_NORMALISATION, Normaliser.NFC);
 		else if (os.contains("mac"))
-			set(CFG.P4_NORMALISATION, Normaliser.NFD);
+			set(CFG.P4_NORMALISATION, Normaliser.NFC);
 		else if (os.contains("nix"))
 			set(CFG.P4_NORMALISATION, Normaliser.NFC);
 		else if (os.contains("nux"))
