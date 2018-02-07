@@ -1,0 +1,16 @@
+@pv@ 9 @db.rev@ @//import/trunk/mcruger/links_p4/fileA.txt@ 2 1 1 3 1517255191 1517255191 EDC3A6CB6B3CF6764AA62E0018EA4327 16 0 0 @//import/trunk/mcruger/links_p4/fileA.txt@ @1.3@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/mcruger/links_p4/fileA.txt@ 1 1 0 2 1517255081 1517255081 6259889DD7C84A56A7452BE176538FE3 7 0 0 @//import/trunk/mcruger/links_p4/fileA.txt@ @1.2@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/mcruger/links_p4/fileA_LINK.txt@ 1 262145 0 2 1517255081 1517255081 7099F821D922D37209CB67F21443DA10 10 0 0 @//import/trunk/mcruger/links_p4/fileA_LINK.txt@ @1.2@ 262145 
+@pv@ 9 @db.rev@ @//import/trunk/mcruger/links_p4/fileB.txt@ 3 1 0 6 1517256563 1517256563 4EB63BBDEC5DFA425E3735DC1D4C5EE8 6 0 0 @//import/trunk/mcruger/links_p4/fileB.txt@ @1.6@ 1 
+@pv@ 9 @db.rev@ @//import/trunk/mcruger/links_p4/fileB.txt@ 2 262145 2 5 1517256520 0 00000000000000000000000000000000 -1 0 0 @//import/trunk/mcruger/links_p4/fileB.txt@ @1.5@ 262145 
+@pv@ 9 @db.rev@ @//import/trunk/mcruger/links_p4/fileB.txt@ 1 262145 0 4 1517256503 1517256503 7099F821D922D37209CB67F21443DA10 10 0 0 @//import/trunk/mcruger/links_p4/fileB.txt@ @1.4@ 262145 
+@pv@ 2 @db.change@ 6 6 @svn-client@ @admin@ 1517256563 1 @adding fileB.txt back as a file@ @//import/trunk/mcruger/links_p4/*@ 
+@pv@ 2 @db.change@ 5 5 @svn-client@ @admin@ 1517256520 1 @remove fileB.txt link
+@pv@ 2 @db.change@ 4 4 @svn-client@ @admin@ 1517256503 1 @add fileB.txt as a link to file@ @//import/trunk/mcruger/links_p4/*@ 
+@pv@ 2 @db.change@ 3 3 @svn-client@ @admin@ 1517255191 1 @modify fileA.txt
+@pv@ 2 @db.change@ 2 2 @svn-client@ @admin@ 1517255081 1 @add a file and a link to it
+@pv@ 0 @db.desc@ 6 @adding fileB.txt back as a file
+@pv@ 0 @db.desc@ 5 @remove fileB.txt link
+@pv@ 0 @db.desc@ 4 @add fileB.txt as a link to fileA.txt: fileB.txt -> fileA.txt 
+@pv@ 0 @db.desc@ 3 @modify fileA.txt
+@pv@ 0 @db.desc@ 2 @add a file and a link to it

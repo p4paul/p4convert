@@ -1,0 +1,203 @@
+SVN-fs-dump-format-version: 2
+
+UUID: 44b8369e-9000-42c4-819d-e883668a43ce
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2013-08-27T14:50:00.078596Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 134
+Content-length: 134
+
+K 10
+svn:author
+V 4
+ltao
+K 8
+svn:date
+V 27
+2016-08-15T21:50:03.406544Z
+K 7
+svn:log
+V 35
+svnfiltereddump boots trap revision
+PROPS-END
+
+Node-path: trunk
+Node-kind: dir
+Node-action: add
+
+Node-path: trunk/mcruger
+Node-kind: dir
+Node-action: add
+
+Revision-number: 2
+Prop-content-length: 127
+Content-length: 127
+
+K 10
+svn:author
+V 5
+admin
+K 8
+svn:date
+V 27
+2018-01-29T19:44:41.141649Z
+K 7
+svn:log
+V 27
+add a file and a link to it
+PROPS-END
+
+Node-path: trunk/mcruger/links_p4
+Node-kind: dir
+Node-action: add
+
+Node-path: trunk/mcruger/links_p4/fileA.txt
+Node-kind: file
+Node-action: add
+Text-content-md5: 6259889dd7c84a56a7452be176538fe3
+Text-content-sha1: 216bd36e8777911d580a4f6ee5305adeaea60101
+Text-content-length: 7
+Content-length: 7
+
+file A
+
+
+Node-path: trunk/mcruger/links_p4/fileA_LINK.txt
+Node-kind: file
+Node-action: add
+Text-content-md5: 8002cf847bb33fb83447b98d7bc491cd
+Text-content-sha1: 276130636a6fa27fe17df9f46658b220bb0c092f
+Prop-content-length: 33
+Text-content-length: 14
+Content-length: 47
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link fileA.txt
+
+Revision-number: 3
+Prop-content-length: 116
+Content-length: 116
+
+K 10
+svn:author
+V 5
+admin
+K 8
+svn:date
+V 27
+2018-01-29T19:46:31.937717Z
+K 7
+svn:log
+V 16
+modify fileA.txt
+PROPS-END
+
+Node-path: trunk/mcruger/links_p4/fileA.txt
+Node-kind: file
+Node-action: change
+Text-content-md5: edc3a6cb6b3cf6764aa62e0018ea4327
+Text-content-sha1: dae26cd73a8ef281107461b0545071d7c4a04ad9
+Text-content-length: 16
+Content-length: 16
+
+file A
+add line
+
+
+Revision-number: 4
+Prop-content-length: 161
+Content-length: 161
+
+K 10
+svn:author
+V 5
+admin
+K 8
+svn:date
+V 27
+2018-01-29T20:08:23.103647Z
+K 7
+svn:log
+V 61
+add fileB.txt as a link to fileA.txt: fileB.txt -> fileA.txt 
+PROPS-END
+
+Node-path: trunk/mcruger/links_p4/fileB.txt
+Node-kind: file
+Node-action: add
+Text-content-md5: 8002cf847bb33fb83447b98d7bc491cd
+Text-content-sha1: 276130636a6fa27fe17df9f46658b220bb0c092f
+Prop-content-length: 33
+Text-content-length: 14
+Content-length: 47
+
+K 11
+svn:special
+V 1
+*
+PROPS-END
+link fileA.txt
+
+Revision-number: 5
+Prop-content-length: 121
+Content-length: 121
+
+K 10
+svn:author
+V 5
+admin
+K 8
+svn:date
+V 27
+2018-01-29T20:08:40.120404Z
+K 7
+svn:log
+V 21
+remove fileB.txt link
+PROPS-END
+
+Node-path: trunk/mcruger/links_p4/fileB.txt
+Node-action: delete
+
+Revision-number: 6
+Prop-content-length: 131
+Content-length: 131
+
+K 10
+svn:author
+V 5
+admin
+K 8
+svn:date
+V 27
+2018-01-29T20:09:23.331750Z
+K 7
+svn:log
+V 31
+adding fileB.txt back as a file
+PROPS-END
+
+Node-path: trunk/mcruger/links_p4/fileB.txt
+Node-kind: file
+Node-action: add
+Text-content-md5: 4eb63bbdec5dfa425e3735dc1d4c5ee8
+Text-content-sha1: 03939175ceac92b9c6464d037a0243e22563c423
+Text-content-length: 6
+Content-length: 6
+
+fileB
+
+

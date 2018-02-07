@@ -957,6 +957,12 @@ public class IntegrationTests {
 		testCase(test);
 	}
 
+	@Test
+	public void case127() throws Exception {
+		String test = "symlink_del";
+		testCase(test);
+	}
+
 	private void testCase(String dumpCase) {
 		testCase(dumpCase, 0);
 	}

@@ -1,11 +1,5 @@
 package com.perforce.svn.process;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.perforce.common.ConverterException;
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
@@ -38,6 +32,11 @@ import com.perforce.svn.prescan.ExcludeParser;
 import com.perforce.svn.query.QueryInterface;
 import com.perforce.svn.tag.TagEntry;
 import com.perforce.svn.tag.TagParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SvnProcessNode extends ProcessNode {
 
@@ -317,7 +316,7 @@ public class SvnProcessNode extends ProcessNode {
 		if (nodeAction != Action.BRANCH && (property == null)
 				&& (lastAction != null)) {
 			ContentType last = lastAction.getType();
-			if (last == ContentType.SYMLINK)
+			if (last == ContentType.SYMLINK && lastAction.getAction() != Action.REMOVE)
 				return last;
 		}
 

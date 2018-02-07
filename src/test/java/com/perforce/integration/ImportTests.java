@@ -1110,6 +1110,12 @@ public class ImportTests {
 		testCase(test, null, 0, tables);
 	}
 
+	@Test
+	public void case127() throws Exception {
+		String test = "symlink_del";
+		testCase(test);
+	}
+
 	/**
 	 * Environment test
 	 * 
