@@ -1,6 +1,22 @@
 package com.perforce.cvs.integration;
 
-import static org.junit.Assert.fail;
+import com.perforce.common.Stats;
+import com.perforce.common.StatsType;
+import com.perforce.common.asset.TypeMap;
+import com.perforce.common.node.PathMapTranslator;
+import com.perforce.config.CFG;
+import com.perforce.config.CaseSensitivity;
+import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
+import com.perforce.config.ScmType;
+import com.perforce.config.UserMapping;
+import com.perforce.cvs.process.CvsProcessChange;
+import com.perforce.integration.SystemCaller;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.file.FileSystems;
@@ -9,23 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.text.Normalizer.Form;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.perforce.common.Stats;
-import com.perforce.common.StatsType;
-import com.perforce.common.asset.TypeMap;
-import com.perforce.common.node.PathMapTranslator;
-import com.perforce.config.CFG;
-import com.perforce.config.CaseSensitivity;
-import com.perforce.config.Config;
-import com.perforce.config.ScmType;
-import com.perforce.config.UserMapping;
-import com.perforce.cvs.process.CvsProcessChange;
-import com.perforce.integration.SystemCaller;
+import static org.junit.Assert.fail;
 
 public class CvsIntegrationTests {
 
@@ -90,6 +90,7 @@ public class CvsIntegrationTests {
 
 	@Test
 	public void case002() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_MODULE, "edit-textblock");
 		testCase("CVScluster01");
 	}
@@ -503,6 +504,7 @@ public class CvsIntegrationTests {
 	
 	@Test
 	public void case063() throws Exception {
+		setCaseInsensitive();
 		UserMapping.add("jen", "jennifer");
 		Config.set(CFG.CVS_MODULE, "username_map");
 		testCase("CVScluster01");
@@ -523,6 +525,7 @@ public class CvsIntegrationTests {
 	
 	@Test
 	public void case066() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_LABELS, true);
 		Config.set(CFG.CVS_LABEL_FORMAT, "prefix_{symbol}");
 		Config.set(CFG.CVS_MODULE, "label-format");
@@ -605,5 +608,10 @@ public class CvsIntegrationTests {
 		// check warning count
 		long count = Stats.getLong(StatsType.warningCount);
 		Assert.assertEquals("Warnings:", warn, count);
+	}
+
+	private void setCaseInsensitive() throws ConfigException {
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
+		Config.set(CFG.P4_C1_MODE, true);
 	}
 }

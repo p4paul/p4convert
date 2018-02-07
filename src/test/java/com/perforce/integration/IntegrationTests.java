@@ -1,16 +1,5 @@
 package com.perforce.integration;
 
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.text.Normalizer.Form;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.ContentType;
@@ -25,6 +14,16 @@ import com.perforce.config.Normaliser;
 import com.perforce.config.ScmType;
 import com.perforce.svn.change.ChangeParser;
 import com.perforce.svn.process.SvnProcessChange;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.text.Normalizer.Form;
+
+import static org.junit.Assert.fail;
 
 public class IntegrationTests {
 
@@ -946,6 +945,7 @@ public class IntegrationTests {
 
 	@Test
 	public void case125() throws Exception {
+		setCaseInsensitive();
 		String test = "dots_path";
 		testCase(test);
 	}
@@ -1007,5 +1007,10 @@ public class IntegrationTests {
 			e.printStackTrace();
 			fail("Exception");
 		}
+	}
+
+	private void setCaseInsensitive() throws ConfigException {
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
+		Config.set(CFG.P4_C1_MODE, true);
 	}
 }
