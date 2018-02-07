@@ -1,17 +1,5 @@
 package com.perforce.cvs.integration;
 
-import java.io.File;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.perforce.common.Stats;
 import com.perforce.common.StatsType;
 import com.perforce.common.asset.TypeMap;
@@ -19,10 +7,22 @@ import com.perforce.common.node.PathMapTranslator;
 import com.perforce.config.CFG;
 import com.perforce.config.CaseSensitivity;
 import com.perforce.config.Config;
+import com.perforce.config.ConfigException;
 import com.perforce.config.ScmType;
 import com.perforce.config.UserMapping;
 import com.perforce.cvs.process.CvsProcessChange;
 import com.perforce.integration.SystemCaller;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 public class CvsImportTests {
 	private static Logger logger = LoggerFactory.getLogger(CvsImportTests.class);
@@ -114,6 +114,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case002() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_MODULE, "edit-textblock");
 		testCase("CVScluster01");
 	}
@@ -141,12 +142,14 @@ public class CvsImportTests {
 
 	@Test
 	public void case006() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_MODULE, "reserved_chars");
 		testCase("CVScluster01");
 	}
 
 	@Test
 	public void case007() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_MODULE, "merge-rev");
 		testCase("CVScluster01");
 	}
@@ -321,6 +324,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case035() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_MODULE, "branch");
 		testCase("CVScluster01");
 	}
@@ -427,6 +431,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case051() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_LABELS, true);
 		Config.set(CFG.CVS_MODULE, "br-trunk-del");
 		testCase("CVScluster01");
@@ -519,6 +524,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case063() throws Exception {
+		setCaseInsensitive();
 		UserMapping.add("jen", "jennifer");
 		Config.set(CFG.CVS_MODULE, "username_map");
 		testCase("CVScluster01");
@@ -539,6 +545,7 @@ public class CvsImportTests {
 
 	@Test
 	public void case066() throws Exception {
+		setCaseInsensitive();
 		Config.set(CFG.CVS_LABELS, true);
 		Config.set(CFG.CVS_LABEL_FORMAT, "prefix_{symbol}");
 		Config.set(CFG.CVS_MODULE, "label-format");
@@ -606,12 +613,17 @@ public class CvsImportTests {
 	}
 
 	private void seedPerforce(String seed) throws Exception {
+		String p4a = p4d + " -C0 -r " + p4root;
+		if ((Boolean) Config.get(CFG.P4_C1_MODE)) {
+			p4a = p4d + " -C1 -r " + p4root;
+		}
+
 		String meta = cwd + seed + seedFile;
 		String lbr = cwd + seed + seedLbr;
 		String map = cwd + seed + seedLbr + "changeMap.txt";
-		String ckp = p4d + " -C1 -r " + p4root + " -jr " + meta;
+		String ckp = p4a + " -jr " + meta;
 		SystemCaller.exec(ckp, true, false);
-		String upd = p4d + " -C1 -r " + p4root + " -xu";
+		String upd = p4a + " -xu";
 		SystemCaller.exec(upd, true, false);
 
 		String cp = "cp -rfv " + lbr + " " + cwd + p4root + "import";
@@ -701,5 +713,12 @@ public class CvsImportTests {
 		// check warning count
 		long count = Stats.getLong(StatsType.warningCount);
 		Assert.assertEquals("Warnings:", warn, count);
+	}
+
+	private void setCaseInsensitive() throws ConfigException {
+		String rsh = "rsh:" + p4d + " -C1 -r " + p4root + " -i";
+		Config.set(CFG.P4_PORT, rsh);
+		Config.set(CFG.P4_CASE, CaseSensitivity.FIRST);
+		Config.set(CFG.P4_C1_MODE, true);
 	}
 }
